@@ -34,18 +34,18 @@ class User < ApplicationRecord
   end
 
   def is_password?(password)
-    BCrpyt::Password.new(self.password_digest).is_password?(password)
+    BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
   def reset_session_token!
-    generate_unique_session_token
+    set_unique_session_token
     self.save!
     self.session_token
   end
 
   private
   def ensure_session_token
-    generate_unique_session_token unless self.session_token
+    set_unique_session_token unless self.session_token
   end
 
   def set_unique_session_token
