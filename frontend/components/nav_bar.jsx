@@ -15,7 +15,7 @@ class NavBar extends React.Component {
 
   render () {
     const { currentUser } = this.props;
-    let element = <SessionFormModal receiveFormType={this.props.receiveFormType}/>
+    let element = <SessionFormModal receiveFormType={this.props.receiveFormType} loc='nav-bar'/>
     if (currentUser) {
       element = (
         <div className="session-button-div">

@@ -52,7 +52,6 @@ class SessionForm extends React.Component {
 
   handleFormReset(e) {
     e.preventDefault();
-    console.log(this.state);
     this.props.receiveFormType("");
   }
 
@@ -62,10 +61,20 @@ class SessionForm extends React.Component {
 
     let buttonText = "Continue";
     let inputForm = (
+      <div className="session-form-input">
+        <h2 className="signup-h2">Welcome to EliteBeats</h2>
         <label>
           <input type="text" onChange={this.update('identifier')} placeholder="Your email address or profile URL *" value={identifier} />
         </label>
+
+      </div>
     );
+
+    let signupCheck = (
+      <div>
+        <h5 className="signup-h5">By signing in, you agree to our Terms of Use.</h5>
+      </div>
+    )
 
     const errorsList = (
       <ul className='errors-list'>
@@ -87,28 +96,43 @@ class SessionForm extends React.Component {
       this.processForm = this.props.login;
       buttonText = "Sign in"
       inputForm = (
-        <div>
+        <div className="login-form">
+          <h2 className="signup-h2">Welcome back</h2>
           {identifierDiv}
-          <label>
-            <input type="password" placeholder="Your Password *" onChange={this.update('password')}/>
-          </label>
+          <div className="session-form-input">
+            <label>
+              <input type="password" placeholder="Your Password *" onChange={this.update('password')}/>
+            </label>
+          </div>
         </div>
       )
     } else if (formType === 'signup') {
       this.processForm = this.props.signup;
-      inputForm = (
+      signupCheck = (
         <div>
-          {identifierDiv}
-          <label>
-            Choose a  password *
-            <input type="password" onChange={this.update('password')}/>
-          </label>
-          <label>
-            Tell us your age *
-            <input type="text" onChange={this.update('age')}/>
-          </label>
+          <h3 className="signup-h3">Are you trying to sign in?</h3>
+          <h4 className="signup-h4">The email address that you entered was not found.</h4>
+          <h4 className="signup-h4">Double-check your email.</h4>
         </div>
-      )
+      );
+      inputForm = (
+        <div className="signup-form">
+          <h2 className="signup-h2">Create your EliteBeats account</h2>
+          {identifierDiv}
+          <div className="session-form-input">
+            <label className="form-password-label">
+              Choose a  password <strong className="asterick-container">*</strong>
+              <input type="password" onChange={this.update('password')}/>
+            </label>
+          </div>
+          <div className="session-form-input">
+            <label className="form-age-label">
+              Tell us your age <strong className="asterick-container">*</strong>
+              <input type="text" onChange={this.update('age')}/>
+            </label>
+          </div>
+        </div>
+      );
     }
     return (
       <div className="session-form-container">
@@ -117,6 +141,7 @@ class SessionForm extends React.Component {
           {errorsList}
           <button className="session-button" id="continue-bttn">{buttonText}</button>
         </form>
+        {signupCheck}
         <button onClick={this.demoLogin} id="demo-bttn">Demo</button>
       </div>
     )

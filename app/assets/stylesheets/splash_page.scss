@@ -1,15 +1,17 @@
 .splash-div {
   background-image: asset-url('splash.jpg');
   opacity: 0.95;
-  background-size: 100%;
-  max-width: 1590px;
-  max-height: 1060px;
+  background-size: cover;
+  // max-width: 1590px;
+  // max-height: 1060px;
   min-width: 900px;
-  min-height: 600px;
-  height: auto;
-  width: auto;
+  min-height: 500px;
+  background-position: 50% 35%;
   background-repeat: no-repeat;
-  border-top: 5px solid #0059B3
+  border-top: 5px solid #0059B3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .nav-bar {
@@ -31,11 +33,48 @@
   text-shadow: 0.5px 0.5px black;
 }
 
-.session-button-div {
+.nav-bar-session-bttns {
   position: absolute;
   display: flex;
   right: 35px;
   top: 30px;
   width: 208px;
   justify-content: space-between;
+}
+
+
+[class^="splash-h"] {
+  text-align: center;
+  color: white;
+}
+
+.splash-notice {
+  position: absolute;
+  top: 35%;
+  transform: translateY(-50%);
+  width: 550px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.splash-h1 {
+  font-size: 36px;
+  font-family: 'Montserrat', sans-serif;
+  padding: 20px;
+  font-weight: 500;
+}
+
+.splash-h2 {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+  padding: 5px;
+}
+
+#big-signup-bttn {
+  margin-top: 25px;
+  font-size: 18px;
+  padding: 10px 25px;
 }

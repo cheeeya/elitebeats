@@ -8,8 +8,6 @@ class SessionFormModal extends React.Component {
     this.state = {
       modalActive : false
     };
-
-    console.log(this.props);
     this.activateModal = this.activateModal.bind(this);
     this.deactivateModal = this.deactivateModal.bind(this);
     this.getApplicationNode = this.getApplicationNode.bind(this);
@@ -40,10 +38,25 @@ class SessionFormModal extends React.Component {
         </div>
       </AriaModal>
     : false;
+
+    let buttonElements = (
+      <div className="nav-bar-session-bttns">
+        <button className="session-button" id="signin-btn" onClick={this.activateModal} >Sign in</button>
+        <button className="session-button" id="register-btn" onClick={this.activateModal} >Create account</button>
+      </div>
+    );
+    console.log(this.props);
+
+    if (this.props.loc === 'splash') {
+      buttonElements = (
+        <div className="splash-bttn">
+          <button className="session-button" id="big-signup-bttn" onClick={this.activateModal} >Sign Up for Free</button>
+        </div>
+      )
+    }
     return (
       <div className="session-button-div">
-        <button className="session-button" id="signin-btn" onClick={this.activateModal}>Sign in</button>
-        <button className="session-button" id="register-btn" onClick={this.activateModal}>Create account</button>
+        {buttonElements}
         {sessionFormModal}
       </div>
     );

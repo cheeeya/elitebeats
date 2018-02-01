@@ -1,11 +1,9 @@
 import React from 'react';
-import NavBarContainer from './nav_bar_container';
+import SplashContainer from './splash_container';
 
 const App = () => (
   <div>
-    <div className="splash-div">
-      <NavBarContainer />
-    </div>
+    <SplashContainer />
   </div>
 );
 
