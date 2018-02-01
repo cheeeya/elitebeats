@@ -41,7 +41,8 @@ class SessionFormModal extends React.Component {
     : false;
     return (
       <div>
-        <button onClick={this.activateModal}>Login</button>
+        <button onClick={this.activateModal}>Sign in</button>
+        <button onClick={this.activateModal}>Create account</button>
         {sessionFormModal}
       </div>
     );

@@ -1,8 +1,9 @@
-import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { RECEIVE_CURRENT_USER, RECEIVE_FORM_TYPE, RECEIVE_ERRORS } from '../actions/session_actions';
 import { merge } from 'lodash';
 
 const _nullState = {
-  currentUser: null
+  currentUser: null,
+  formType: ""
 }
 
 const sessionReducer = (state = _nullState, action) => {
@@ -13,6 +14,12 @@ const sessionReducer = (state = _nullState, action) => {
       newState = merge(newState, state);
       newState.currentUser = action.currentUser;
       return newState;
+    case RECEIVE_FORM_TYPE:
+      newState = merge(newState, state);
+      newState.formType = action.formType;
+      return newState;
+    case RECEIVE_ERRORS:
+      return _nullState;
     default:
       return state;
   }

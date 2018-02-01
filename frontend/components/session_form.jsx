@@ -11,18 +11,22 @@ class SessionForm extends React.Component {
       validEmail: false,
       formType: ""
     }
-    this.action = this.props.login
+    this.processForm = this.props.login
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFormReset = this.handleFormReset.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ formType: nextProps.formType });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.formType) {
-      this.action(this.state);
+      this.processForm(this.state);
     } else {
-      this.props.getUser(this.state).then(formType => this.setState({ formType }));
+      this.props.getUser(this.state);
     }
   }
 
@@ -44,12 +48,13 @@ class SessionForm extends React.Component {
 
   handleFormReset(e) {
     e.preventDefault();
-    this.setState({ email: "", password: "", age: "", validEmail: false, formType: "" })
+    this.setState({ password: "", age: "", formType: "" })
   }
 
   render() {
     const { formType, identifier } = this.state;
-
+    const { errors } = this.props;
+    
     let inputForm = (
       <div>
         <label>
@@ -58,14 +63,23 @@ class SessionForm extends React.Component {
       </div>
     );
 
+    const errorsList = (
+      <ul>
+        {
+          errors.map((error, idx) => <li key={idx}>{error}</li>)
+        }
+      </ul>
+    )
+
     const identifierDiv = (
       <div onClick={this.handleFormReset}>
         {this.state.identifier}
       </div>
     )
 
+
     if (formType === 'login') {
-      this.action = this.props.login;
+      this.processForm = this.props.login;
       inputForm = (
         <div>
           {identifierDiv}
@@ -75,7 +89,7 @@ class SessionForm extends React.Component {
         </div>
       )
     } else if (formType === 'signup') {
-      this.action = this.props.signup;
+      this.processForm = this.props.signup;
       inputForm = (
         <div>
           {identifierDiv}
@@ -94,6 +108,7 @@ class SessionForm extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           {inputForm}
+          {errorsList}
           <button>Continue</button>
         </form>
         <button onClick={this.demoLogin}>Demo</button>
