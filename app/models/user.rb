@@ -14,17 +14,29 @@
 #
 
 class User < ApplicationRecord
-  validates :username, :email, :password_digest, presence: true
+  validates :email, :password_digest, :profile_url, :session_token, :display_name, :age, presence: true
   validates :password, length: { minimum: 6 }, allow_nil: true
+  validates :age, numericality: { greater_than_or_equal_to: 13 }
 
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :ensure_profile_url, :ensure_display_name
 
   attr_reader :password
 
+  def self.user_exists? (identifier)
+    !!User.find_by_identifier(identifier)
+  end
 
+  def self.find_by_identifier(identifier)
+    if identifier.include? ('@')
+      user = User.find_by(email: identifier)
+    else
+      user = User.find_by(profile_url: identifier)
+    end
+    user
+  end
 
-  def self.find_by_credentials(username, password)
-    @user = User.find_by(username: username)
+  def self.find_by_credentials(identifier, password)
+    @user = User.find_by_identifier(identifier)
     @user && @user.is_password?(password) ? @user : nil
   end
 
@@ -45,19 +57,39 @@ class User < ApplicationRecord
 
   private
   def ensure_session_token
-    set_unique_session_token unless self.session_token
+    set_unique_session_token unless !self.new_record? || self.session_token
+  end
+
+  def ensure_profile_url
+    set_unique_profile_url unless !self.new_record? || self.profile_url
+  end
+
+  def ensure_display_name
+    display_name = self.profile_url.split("-").join(" ").capitalize
+    self.display_name ||= display_name
   end
 
   def set_unique_session_token
-    self.session_token = generate_session_token
-    while (User.find_by(session_token: self.session_token))
-      self.session_token = generate_session_token
+    new_session_token = generate_session_token
+    while (User.find_by(session_token: new_session_token))
+      new_session_token = generate_session_token
     end
-    self.session_token
+    self.session_token = new_session_token
+  end
+
+  def set_unique_profile_url
+    new_profile_url = 'user-' + generate_random_number.to_s
+    while (User.find_by(profile_url: new_profile_url))
+      new_profile_url = 'user-' + generate_random_number.to_s
+    end
+    self.profile_url = new_profile_url
   end
 
   def generate_session_token
     SecureRandom.urlsafe_base64(16)
   end
 
+  def generate_random_number
+    Random.rand(0..999999999)
+  end
 end

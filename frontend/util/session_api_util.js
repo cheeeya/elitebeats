@@ -1,5 +1,32 @@
 // const xhr = new XMLHttpRequest();
 
-export const signup = () => ({
+export const signup = user => (
+  $.ajax({
+    method: 'POST',
+    url: 'api/users',
+    data: { user }
+  })
+);
 
-})
+export const login = user => (
+  $.ajax({
+    method: 'POST',
+    url: 'api/session',
+    data: { user }
+  })
+);
+
+export const logout = () => (
+  $.ajax({
+    method: 'DELETE',
+    url: 'api/session',
+  })
+);
+
+export const getUser = user => (
+  $.ajax({
+    method: 'POST',
+    url: 'api/users/find',
+    data: { user }
+  })
+);
