@@ -15,7 +15,7 @@ class NavBar extends React.Component {
 
   render () {
     const { currentUser } = this.props;
-    let element = <SessionFormModal />
+    let element = <SessionFormModal receiveFormType={this.props.receiveFormType}/>
     if (currentUser) {
       element = (
         <div className="session-button-div">
@@ -25,7 +25,7 @@ class NavBar extends React.Component {
     }
     return (
       <div id='nav-bar'>
-        <div class="splash-logo">
+        <div className="splash-logo">
           <h1>ELITEBEATS</h1>
         </div>
         {element}

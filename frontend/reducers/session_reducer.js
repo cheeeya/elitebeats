@@ -19,7 +19,7 @@ const sessionReducer = (state = _nullState, action) => {
       newState.formType = action.formType;
       return newState;
     case RECEIVE_ERRORS:
-      return _nullState;
+      return state;
     default:
       return state;
   }

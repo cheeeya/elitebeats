@@ -9,6 +9,7 @@ class SessionFormModal extends React.Component {
       modalActive : false
     };
 
+    console.log(this.props);
     this.activateModal = this.activateModal.bind(this);
     this.deactivateModal = this.deactivateModal.bind(this);
     this.getApplicationNode = this.getApplicationNode.bind(this);
@@ -19,6 +20,7 @@ class SessionFormModal extends React.Component {
   }
 
   deactivateModal() {
+    this.props.receiveFormType("");
     this.setState({ modalActive: false });
   }
 

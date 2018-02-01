@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { logout } from '../actions/session_actions';
+import { logout, receiveFormType } from '../actions/session_actions';
 import NavBar from './nav_bar';
 
 const mapStateToProps = state => ({
@@ -7,7 +7,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  receiveFormType: (formType) => dispatch(receiveFormType(formType))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps) (NavBar);

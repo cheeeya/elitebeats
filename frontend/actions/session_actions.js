@@ -14,7 +14,7 @@ export const receiveErrors = errors => ({
   errors
 });
 
-const receiveFormType = formType => ({
+export const receiveFormType = formType => ({
   type: RECEIVE_FORM_TYPE,
   formType
 })

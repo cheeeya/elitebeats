@@ -33,10 +33,14 @@ class SessionForm extends React.Component {
   update(field) {
     return (e) => {
       const emailFormatRegex = /\w+@\w+\.\w{2,}/;
-      if (field === 'identifier' && emailFormatRegex.test(e.target.value)) {
-        this.setState({ [field]: e.target.value, email: e.target.value, validEmail: true });
+      if (field === 'identifier') {
+        if (emailFormatRegex.test(e.target.value)) {
+          this.setState({ [field]: e.target.value, email: e.target.value, validEmail: true });
+        } else {
+          this.setState({ [field]: e.target.value, email: e.target.value, validEmail: false });
+        }
       } else {
-        this.setState({ [field]: e.target.value, validEmail: false });
+        this.setState({ [field]: e.target.value });
       }
     }
   }
@@ -48,31 +52,32 @@ class SessionForm extends React.Component {
 
   handleFormReset(e) {
     e.preventDefault();
-    this.setState({ password: "", age: "", formType: "" })
+    console.log(this.state);
+    this.props.receiveFormType("");
   }
 
   render() {
     const { formType, identifier } = this.state;
     const { errors } = this.props;
 
+    let buttonText = "Continue";
     let inputForm = (
-      <div>
         <label>
           <input type="text" onChange={this.update('identifier')} placeholder="Your email address or profile URL *" value={identifier} />
         </label>
-      </div>
     );
 
     const errorsList = (
       <ul className='errors-list'>
         {
-          errors.map((error, idx) => <li key={idx}>{error}</li>)
+          errors.map((error, idx) => <li key={idx} className="error">{error}</li>)
         }
       </ul>
     )
 
     const identifierDiv = (
-      <div onClick={this.handleFormReset}>
+      <div onClick={this.handleFormReset} className="form-id-div">
+        <i className="fa fa-caret-left" id="form-id-caret"></i>
         {this.state.identifier}
       </div>
     )
@@ -80,6 +85,7 @@ class SessionForm extends React.Component {
 
     if (formType === 'login') {
       this.processForm = this.props.login;
+      buttonText = "Sign in"
       inputForm = (
         <div>
           {identifierDiv}
@@ -109,7 +115,7 @@ class SessionForm extends React.Component {
         <form onSubmit={this.handleSubmit} className="session-form">
           {inputForm}
           {errorsList}
-          <button>Continue</button>
+          <button className="session-button" id="continue-bttn">{buttonText}</button>
         </form>
         <button onClick={this.demoLogin} id="demo-bttn">Demo</button>
       </div>
