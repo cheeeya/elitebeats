@@ -32,7 +32,6 @@ class SessionFormModal extends React.Component {
         titleText='login-form'
         onExit={this.deactivateModal}
         getApplicationNode={this.getApplicationNode}
-        underlaystyle={{ paddingTop: '10px' }}
       >
         <div id='session-form-modal' className='modal'>
           <SessionFormContainer />
