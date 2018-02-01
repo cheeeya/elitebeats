@@ -40,9 +40,9 @@ class SessionFormModal extends React.Component {
       </AriaModal>
     : false;
     return (
-      <div>
-        <button onClick={this.activateModal}>Sign in</button>
-        <button onClick={this.activateModal}>Create account</button>
+      <div className="session-button-div">
+        <button className="session-button" id="signin-btn" onClick={this.activateModal}>Sign in</button>
+        <button className="session-button" id="register-btn" onClick={this.activateModal}>Create account</button>
         {sessionFormModal}
       </div>
     );

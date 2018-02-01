@@ -1,0 +1,40 @@
+.splash-div {
+  background-image: url('/assets/splash.jpg');
+  opacity: 0.85;
+  background-size: 100%;
+  max-width: 1500px;
+  max-height: 1000px;
+  min-width: 900px;
+  min-height: 600px;
+  height: auto;
+  width: auto;
+  background-repeat: no-repeat;
+  border-top: 5px solid #003366
+}
+
+.nav-bar {
+  position: relative;
+}
+
+.splash-logo {
+  position: absolute;
+  top: 10px;
+  left: 25px;
+}
+
+.splash-logo h1 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+  text-shadow: 1px 1px black;
+}
+
+.session-button-div {
+  position: absolute;
+  display: flex;
+  right: 35px;
+  top: 28px;
+  width: 208px;
+  justify-content: space-between;
+}

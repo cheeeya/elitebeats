@@ -17,10 +17,17 @@ class NavBar extends React.Component {
     const { currentUser } = this.props;
     let element = <SessionFormModal />
     if (currentUser) {
-      element = <button onClick={this.handleLogout}>Logout</button>
+      element = (
+        <div className="session-button-div">
+          <button className="session-button" id='logout-btn' onClick={this.handleLogout}>Logout</button>
+        </div>
+      )
     }
     return (
       <div id='nav-bar'>
+        <div class="splash-logo">
+          <h1>ELITEBEATS</h1>
+        </div>
         {element}
       </div>
     )

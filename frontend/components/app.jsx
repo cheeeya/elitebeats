@@ -3,8 +3,9 @@ import NavBarContainer from './nav_bar_container';
 
 const App = () => (
   <div>
-    <h1>EliteBeats</h1>
-    <NavBarContainer />
+    <div className="splash-div">
+      <NavBarContainer />
+    </div>
   </div>
 );
 

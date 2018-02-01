@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+
+#signin-btn {
+  background: none;
+  border: 0.5px solid white;
+}
+
+#register-btn {
+  background: #003366;
+  border: 0.6px solid #002566;
+}
+
+.session-button {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: white;
+  border-radius: 2px;
+  padding: 6px 15px;
+}
+
+button:hover {
+  cursor: pointer;
+  outline: 0;
+}
+
+button:focus {
+  outline: 0;
+}

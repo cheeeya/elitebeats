@@ -54,7 +54,7 @@ class SessionForm extends React.Component {
   render() {
     const { formType, identifier } = this.state;
     const { errors } = this.props;
-    
+
     let inputForm = (
       <div>
         <label>
@@ -64,7 +64,7 @@ class SessionForm extends React.Component {
     );
 
     const errorsList = (
-      <ul>
+      <ul className='errors-list'>
         {
           errors.map((error, idx) => <li key={idx}>{error}</li>)
         }
@@ -105,13 +105,13 @@ class SessionForm extends React.Component {
       )
     }
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className="session-form-container">
+        <form onSubmit={this.handleSubmit} className="session-form">
           {inputForm}
           {errorsList}
           <button>Continue</button>
         </form>
-        <button onClick={this.demoLogin}>Demo</button>
+        <button onClick={this.demoLogin} id="demo-bttn">Demo</button>
       </div>
     )
   }
