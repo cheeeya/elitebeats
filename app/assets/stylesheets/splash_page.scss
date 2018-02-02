@@ -1,12 +1,15 @@
 .splash-main-div {
   max-width: 1260px;
   min-width: 900px;
+  height: auto;
 }
 
 .splash-hero {
+  position: relative;
   background-image: asset-url('splash.jpg');
   width: 100%;
   max-height: 840px;
+  min-height: 600px;
   opacity: 0.95;
   background-size: cover;
   background-position: 50% 35%;
@@ -15,11 +18,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.splash-nav {
-  position: relative;
-  display: flex;
 }
 
 .splash-logo {
