@@ -1,9 +1,7 @@
-.splash-div {
+.splash-hero {
   background-image: asset-url('splash.jpg');
   opacity: 0.95;
   background-size: cover;
-  // max-width: 1590px;
-  // max-height: 1060px;
   min-width: 900px;
   min-height: 500px;
   background-position: 50% 35%;
@@ -48,9 +46,9 @@
   color: white;
 }
 
-.splash-notice {
+.splash-hero-notice {
   position: absolute;
-  top: 35%;
+  top: 38%;
   transform: translateY(-50%);
   width: 550px;
   margin: 0 auto;
@@ -77,4 +75,68 @@
   margin-top: 25px;
   font-size: 18px;
   padding: 10px 25px;
+}
+
+.splash-lower {
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 45px 10px;
+}
+
+.splash-search-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-input {
+  font-size: 15px;
+  width: 500px;
+  background: #eeeeee;
+  padding: 15px;
+  border-radius: 3px;
+  border: none;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.splash-trending {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trending-h1 {
+  font-size: 24px;
+  font-weight: 350;
+  text-align: center;
+  margin: 35px 0;
+}
+
+.trending-list-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 35px;
+}
+
+.trending-list {
+  margin: 0 auto;
+}
+
+.trending-list-el {
+  height: 158px;
+  width: 158px;
+  border: 1px solid black;
+  margin: 10px;
+}
+
+#explore-bttn {
+  font-size: 16px;
+  padding: 10px 20px;
 }

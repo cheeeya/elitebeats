@@ -45,7 +45,6 @@ class SessionFormModal extends React.Component {
         <button className="session-button" id="register-btn" onClick={this.activateModal} >Create account</button>
       </div>
     );
-    console.log(this.props);
 
     if (this.props.loc === 'splash') {
       buttonElements = (

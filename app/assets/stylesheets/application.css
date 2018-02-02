@@ -19,7 +19,7 @@
   border: 0.5px solid white;
 }
 
-.session-button {
+.session-button, .explore-bttn {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: white;

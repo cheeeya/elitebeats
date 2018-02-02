@@ -8,10 +8,10 @@ import { login } from './actions/session_actions';
 document.addEventListener('DOMContentLoaded', () => {
   let store;
 
-  store = configureStore();
+  store = configureStore({ session: { currentUser: window.currentUser } });
 
   window.getState = store.getState;
-  
+
   const rootEl = document.getElementById('root');
   ReactDOM.render(<Root store={store}/>, rootEl);
 });
