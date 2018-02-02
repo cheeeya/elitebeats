@@ -10,7 +10,6 @@ class Splash extends React.Component {
   render() {
     return(
       <div className="splash-main-div">
-
         <div className="splash-hero" id="splash-hero">
           <div className="splash-logo">
             <h1>ELITEBEATS</h1>
