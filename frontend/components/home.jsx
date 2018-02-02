@@ -9,11 +9,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
-        <header>
-          <NavBarContainer />
-        </header>
-      </div>
+      <NavBarContainer />
     );
   }
 }

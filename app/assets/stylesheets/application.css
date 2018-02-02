@@ -13,10 +13,16 @@
  *= require_tree .
  *= require_self
  */
-#root {
+
+#app {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#root {
+  background: #eeeeee;
 }
 
 #signin-btn {
@@ -43,10 +49,4 @@ button:hover {
 
 button:focus {
   outline: 0;
-}
-
-body {
-  background: #eeeeee;
-  margin-left: 12px;
-  margin-right: 12px;
 }
