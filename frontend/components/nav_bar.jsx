@@ -24,12 +24,20 @@ class NavBar extends React.Component {
       )
     }
     return (
-      <div id='nav-bar'>
-        <div className="splash-logo">
-          <h1>ELITEBEATS</h1>
+      <header>
+        <div id='nav-bar'>
+          <div className="nav-logo">
+            <Link to="/home" className="root-link"><img className="logo-blue" src="http://res.cloudinary.com/samueldchia/image/upload/v1517614712/LOGO-blue_v54gez.jpg"></img></Link>
+          </div>
+          <div className="left-nav">
+            <ul>
+              <li><Link to="/home" className="left-nav-link">Home</Link></li>
+              <li><Link to="/collection" className="left-nav-link">Collection</Link></li>
+            </ul>
+          </div>
+          {element}
         </div>
-        {element}
-      </div>
+      </header>
     )
   }
 }
