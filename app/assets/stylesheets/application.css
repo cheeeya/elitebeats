@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 #signin-btn {
   background: none;
