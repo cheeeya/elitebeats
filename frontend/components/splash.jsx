@@ -10,12 +10,16 @@ class Splash extends React.Component {
   render() {
     return(
       <div className="splash-main-div">
-        <div className="splash-hero">
-          <NavBarContainer />
-          <div className='splash-hero-notice'>
-            <h1 className="splash-h1">Connect on EliteBeats</h1>
-            <h2 className="splash-h2">Discover, stream, and share a constantly expanding mix of music from emerging and major artists around the world.</h2>
-            <SessionFormModal receiveFormType={this.props.receiveFormType} loc="splash" />
+
+        <div className="splash-hero" id="splash-hero">
+          <div className="splash-logo">
+            <h1>ELITEBEATS</h1>
+          </div>
+          <SessionFormModal receiveFormType={this.props.receiveFormType} loc="splash-hero"/>
+          <div className='splash-hero-notice' id="splash-notice">
+            <h1 className="splash-text-h1">Connect on EliteBeats</h1>
+            <h2 className="splash-text-h2">Discover, stream, and share a constantly expanding mix of music from emerging and major artists around the world.</h2>
+            <SessionFormModal receiveFormType={this.props.receiveFormType} loc="splash-notice" />
           </div>
         </div>
         <div className='splash-lower'>

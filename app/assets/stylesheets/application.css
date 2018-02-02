@@ -19,8 +19,9 @@
   border: 0.5px solid white;
 }
 
-.session-button, .explore-bttn {
+.session-button {
   font-family: 'Roboto', sans-serif;
+  opacity: 1;
   font-size: 14px;
   color: white;
   border-radius: 3px;

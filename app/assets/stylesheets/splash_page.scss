@@ -12,7 +12,7 @@
   align-items: center;
 }
 
-.nav-bar {
+.splash-nav {
   position: relative;
   display: flex;
 }
@@ -41,7 +41,7 @@
 }
 
 
-[class^="splash-h"] {
+[class^="splash-text-h"] {
   text-align: center;
   color: white;
 }
@@ -57,14 +57,14 @@
   align-items: center;
 }
 
-.splash-h1 {
+.splash-text-h1 {
   font-size: 36px;
   font-family: 'Montserrat', sans-serif;
   padding: 20px;
   font-weight: 500;
 }
 
-.splash-h2 {
+.splash-text-h2 {
   font-size: 18px;
   font-weight: 400;
   line-height: 1.2;

@@ -23,7 +23,7 @@ class SessionFormModal extends React.Component {
   }
 
   getApplicationNode() {
-    return document.getElementById('nav-bar')
+    return document.getElementById(this.props.loc);
   }
 
   render() {
@@ -46,7 +46,7 @@ class SessionFormModal extends React.Component {
       </div>
     );
 
-    if (this.props.loc === 'splash') {
+    if (this.props.loc === 'splash-notice') {
       buttonElements = (
         <div className="splash-bttn">
           <button className="session-button" id="big-signup-bttn" onClick={this.activateModal} >Sign Up for Free</button>
