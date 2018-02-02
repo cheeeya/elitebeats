@@ -2,14 +2,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1500px;
-  max-height: 1000px;
+  max-width: 1260px;
+
   min-width: 900px;
-  min-height: 500px;
 }
 
 .splash-hero {
   background-image: asset-url('splash.jpg');
+  width: 100%;
+  max-height: 840px;
   opacity: 0.95;
   background-size: cover;
   background-position: 50% 35%;
