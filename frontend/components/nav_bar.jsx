@@ -18,8 +18,11 @@ class NavBar extends React.Component {
     let element = <SessionFormModal receiveFormType={this.props.receiveFormType} loc='nav-bar'/>
     if (currentUser) {
       element = (
-        <div className="session-button-div">
-          <button className="session-button" id='logout-btn' onClick={this.handleLogout}>Logout</button>
+        <div className="user-nav-container">
+          <div className="user-nav">{currentUser.display_name}</div>
+          <div className="session-button-div">
+            <button className="session-button" id='logout-btn' onClick={this.handleLogout}>Logout</button>
+          </div>
         </div>
       )
     }
@@ -38,7 +41,6 @@ class NavBar extends React.Component {
           </div>
           <div className="right-nav">
             <Link to="/upload"><div className="nav-link" id="upload-link">Upload</div></Link>
-            <div className="user-nav">{currentUser.display_name}</div>
             {element}
           </div>
         </div>
