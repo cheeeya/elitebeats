@@ -30,12 +30,17 @@ class NavBar extends React.Component {
             <Link to="/home" className="root-link"><img className="logo-blue" src="http://res.cloudinary.com/samueldchia/image/upload/v1517614712/LOGO-blue_v54gez.jpg"></img></Link>
           </div>
           <div className="left-nav">
-            <ul>
-              <li><Link to="/home" className="left-nav-link">Home</Link></li>
-              <li><Link to="/collection" className="left-nav-link">Collection</Link></li>
-            </ul>
+            <Link to="/home"><div className="nav-link" id="home-link">Home</div></Link>
+            <Link to="/collection"><div className="nav-link" id="collection-link">Collection</div></Link>
           </div>
-          {element}
+          <div className="search-bar-container">
+            <input className="search-bar" placeholder="Search"></input>
+          </div>
+          <div className="right-nav">
+            <Link to="/upload"><div className="nav-link" id="upload-link">Upload</div></Link>
+            <div className="user-nav">{currentUser.display_name}</div>
+            {element}
+          </div>
         </div>
       </header>
     )
