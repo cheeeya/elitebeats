@@ -4,6 +4,7 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import SessionFormContainer from './session_form_container';
 import MainContainer from './main_container';
 import NavBarContainer from './nav_bar_container';
+import { withRouter } from 'react-router-dom';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,14 +12,14 @@ class App extends React.Component {
   }
 
   render () {
-    let nav;
-    if (window.location.hash !== "#/") {
-      nav = <NavBarContainer />
+    let navBar;
+    if (this.props.location.pathname !== "/") {
+      navBar = (<NavBarContainer />);
     }
     return (
       <div id="app">
-        {nav}
-        <AuthRoute path="/" component={SplashContainer} />
+        {navBar}
+        <AuthRoute exact path="/" component={SplashContainer} />
         <ProtectedRoute path="/home" component={MainContainer} />
       </div>
     )
@@ -27,4 +28,4 @@ class App extends React.Component {
 
 
 
-export default App;
+export default withRouter(App);
