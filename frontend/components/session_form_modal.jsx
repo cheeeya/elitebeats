@@ -40,7 +40,7 @@ class SessionFormModal extends React.Component {
     : false;
 
     let buttonElements = (
-      <div className="nav-bar-session-bttns">
+      <div className={`${this.props.loc}-session-bttns`}>
         <button className="session-button" id="signin-btn" onClick={this.activateModal} >Sign in</button>
         <button className="session-button" id="register-btn" onClick={this.activateModal} >Create account</button>
       </div>
