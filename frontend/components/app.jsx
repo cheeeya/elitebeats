@@ -4,7 +4,8 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import SessionFormContainer from './session_form_container';
 import MainContainer from './main_container';
 import NavBarContainer from './nav_bar_container';
-import { withRouter } from 'react-router-dom';
+import SongUploadFormContainer from './song_upload_form_container';
+import { withRouter, Route } from 'react-router-dom';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class App extends React.Component {
         {navBar}
         <AuthRoute exact path="/" component={SplashContainer} />
         <ProtectedRoute path="/home" component={MainContainer} />
+        <Route path="/upload" component={SongUploadFormContainer} />
       </div>
     )
   }

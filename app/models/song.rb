@@ -17,11 +17,12 @@
 #  songfile_content_type :string
 #  songfile_file_size    :integer
 #  songfile_updated_at   :datetime
-#  aws_path              :string
+#  aws_url               :string
+#  permalink             :string           not null
 #
 
 class Song < ApplicationRecord
-  validates :title, presence: true
+  validates :title, :author_id, :permalink, presence: true
   has_attached_file :image, default_url: "https://res.cloudinary.com/samueldchia/image/upload/v1517883350/default_f207ry.jpg"
   has_attached_file :songfile
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/

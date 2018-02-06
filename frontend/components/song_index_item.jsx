@@ -1,5 +1,6 @@
 import React from 'react';
 import { Howl, Howler } from 'howler';
+import { Link } from 'react-router-dom';
 
 class SongIndexItem extends React.Component {
   constructor(props) {
@@ -7,7 +8,6 @@ class SongIndexItem extends React.Component {
     this.state = {
       status: 'play'
     }
-    console.log(this.props.song);
     this.songHowl = new Howl({
       src: [this.props.song.song_url]
     });
@@ -29,11 +29,20 @@ class SongIndexItem extends React.Component {
   render() {
     const { song } = this.props;
     const { status } = this.state;
+    let author_url = "";
+    let permalink = "";
+    if (song) {
+      author_url = `/${song.author_url}`;
+      permalink = `${author_url}/${song.permalink}`;
+    }
     return (
       <li>
-        <img className="song-artwork" src={song.image_url} />
-        <button className={`${status}-button`} onClick={this.handleClick('play')}><span>{status}</span></button>
-        {song.title}
+        <Link to={permalink}><img className="song-artwork" src={song.image_url} /></Link>
+        <button className={`${status}-button`} onClick={this.handleClick('play')}><span className="playback-button-txt">{status}</span></button>
+        <div className="songtitle">
+          <Link to={author_url}><span>{song.author_name}</span></Link>
+          <Link to={permalink}><span>{song.title}</span></Link>
+        </div>
       </li>
     );
   }
