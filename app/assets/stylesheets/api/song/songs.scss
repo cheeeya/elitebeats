@@ -27,10 +27,12 @@
   border: none;
 }
 
-button span {
+.playback-button-txt {
   display: none;
 }
 
 .songs-index {
   background: #fafafa;
+  max-width: 1260px;
+  min-width: 900px;
 }

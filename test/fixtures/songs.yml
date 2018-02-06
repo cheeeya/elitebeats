@@ -17,7 +17,8 @@
 #  songfile_content_type :string
 #  songfile_file_size    :integer
 #  songfile_updated_at   :datetime
-#  aws_path              :string
+#  aws_url               :string
+#  permalink             :string           not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

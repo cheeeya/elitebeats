@@ -1,6 +1,5 @@
 import React from 'react';
 import SessionFormModal from './session_form_modal';
-import NavBarContainer from './nav_bar_container';
 
 class Splash extends React.Component {
   constructor(props) {
@@ -30,7 +29,7 @@ class Splash extends React.Component {
           <div className="splash-trending">
             <h1 className="trending-h1">Hear what’s trending in the EliteBeats community</h1>
               <ul className="trendingList">
-                <div className="trending-list-container">
+                <div className="trending-list-wrapper">
                   <div className="trending-list-el"><li></li></div>
                   <div className="trending-list-el"><li></li></div>
                   <div className="trending-list-el"><li></li></div>
