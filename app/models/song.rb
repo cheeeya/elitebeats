@@ -22,7 +22,7 @@
 
 class Song < ApplicationRecord
   validates :title, presence: true
-  has_attached_file :image, default_url: "default.jpg"
+  has_attached_file :image, default_url: "https://res.cloudinary.com/samueldchia/image/upload/v1517883350/default_f207ry.jpg"
   has_attached_file :songfile
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates_attachment :songfile, content_type: { content_type: ["audio/mp3", "audio/mp4", "audio/mpeg", "audio/mpeg3"] }
