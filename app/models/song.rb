@@ -28,7 +28,7 @@ class Song < ApplicationRecord
     path: "/songs/images/:id/original/:basename.:extension"
   has_attached_file :songfile, path: "/songs/songfiles/:id/original/:basename.:extension"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-  # validates_attachment_content_type :songfile, content_type: ['audio/mp3', 'audio/mp4', 'audio/mpeg', 'audio/mpeg3']
+  validates_attachment_content_type :songfile, content_type: ['audio/mp3', 'audio/mp4', 'audio/mpeg', 'audio/mpeg3']
 
   belongs_to :author,
     primary_key: :id,
