@@ -1,0 +1,36 @@
+// Place all the styles related to the api/songs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.song-artwork {
+  height: 160px;
+  width: 160px;
+}
+
+.play-button {
+  background-image: image_url('playbutton.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 36px;
+  width: 36px;
+  border: none;
+}
+
+.pause-button {
+  background-image: image_url('pausebutton.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 36px;
+  width: 36px;
+  border: none;
+}
+
+button span {
+  display: none;
+}
+
+.songs-index {
+  background: #fafafa;
+}

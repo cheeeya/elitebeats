@@ -12,6 +12,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "howler": "^2.0.8",
     "lodash": "^4.17.4",
     "react": "^16.2.0",
     "react-aria-modal": "^2.12.0",

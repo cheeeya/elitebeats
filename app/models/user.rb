@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  username        :string           not null
 #  email           :string           not null
 #  password_digest :string           not null
 #  session_token   :string           not null
@@ -11,6 +10,9 @@
 #  follows_id      :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  profile_url     :string           not null
+#  age             :integer          not null
+#  display_name    :string           not null
 #
 
 class User < ApplicationRecord
@@ -21,6 +23,11 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token, :ensure_profile_url, :ensure_display_name
 
   attr_reader :password
+
+  has_many :songs,
+    primary_key: :id,
+    foreign_key: :author_id,
+    class_name: 'Song'
 
   def self.user_exists? (identifier)
     !!User.find_by_identifier(identifier)

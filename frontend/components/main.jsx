@@ -1,8 +1,9 @@
 import React from 'react';
-import NavBarContainer from './nav_bar_container';
+import { Link } from 'react-router-dom';
+import SongIndexContainer from './song_index_container';
 
 
-class Home extends React.Component {
+class Main extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -10,9 +11,11 @@ class Home extends React.Component {
   render() {
     return (
       <main>
+        <Link to="/stream">Stream</Link>
+        <SongIndexContainer />
       </main>
     );
   }
 }
 
-export default Home;
+export default Main;
