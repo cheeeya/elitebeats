@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180201052939) do
+ActiveRecord::Schema.define(version: 20180206014120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "songs", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "genre", default: "None"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer "author_id", null: false
+    t.string "songfile_file_name"
+    t.string "songfile_content_type"
+    t.integer "songfile_file_size"
+    t.datetime "songfile_updated_at"
+    t.string "aws_url"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
