@@ -121,13 +121,13 @@ class SessionForm extends React.Component {
           {identifierDiv}
           <div className="session-form-input">
             <label className="form-password-label">
-              Choose a  password <strong className="asterick-container">*</strong>
+              Choose a  password <strong className="asterick-wrapper">*</strong>
               <input type="password" onChange={this.update('password')}/>
             </label>
           </div>
           <div className="session-form-input">
             <label className="form-age-label">
-              Tell us your age <strong className="asterick-container">*</strong>
+              Tell us your age <strong className="asterick-wrapper">*</strong>
               <input type="text" onChange={this.update('age')}/>
             </label>
           </div>
@@ -135,7 +135,7 @@ class SessionForm extends React.Component {
       );
     }
     return (
-      <div className="session-form-container">
+      <div className="session-form-wrapper">
         <form onSubmit={this.handleSubmit} className="session-form">
           {inputForm}
           {errorsList}

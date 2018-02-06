@@ -1,11 +1,12 @@
 import React from 'react';
-import SplashContainer from './splash_container';
+import { withRouter, Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import SplashContainer from './splash_container';
 import SessionFormContainer from './session_form_container';
 import MainContainer from './main_container';
 import NavBarContainer from './nav_bar_container';
 import SongUploadFormContainer from './song_upload_form_container';
-import { withRouter, Route } from 'react-router-dom';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -21,8 +22,9 @@ class App extends React.Component {
       <div id="app">
         {navBar}
         <AuthRoute exact path="/" component={SplashContainer} />
-        <ProtectedRoute path="/home" component={MainContainer} />
-        <Route path="/upload" component={SongUploadFormContainer} />
+        <ProtectedRoute exact path="/stream" component={MainContainer} />
+        <ProtectedRoute exact path="/home" component={MainContainer} />
+        <Route exact path="/upload" component={SongUploadFormContainer} />
       </div>
     )
   }

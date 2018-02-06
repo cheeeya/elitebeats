@@ -40,8 +40,8 @@ class SongIndexItem extends React.Component {
         <Link to={permalink}><img className="song-artwork" src={song.image_url} /></Link>
         <button className={`${status}-button`} onClick={this.handleClick('play')}><span className="playback-button-txt">{status}</span></button>
         <div className="songtitle">
-          <Link to={author_url}><span>{song.author_name}</span></Link>
-          <Link to={permalink}><span>{song.title}</span></Link>
+          <Link to={author_url}><span className="songtitle-author">{song.author_name}</span></Link>
+          <Link to={permalink}><span className="songtitle-title">{song.title}</span></Link>
         </div>
       </li>
     );
