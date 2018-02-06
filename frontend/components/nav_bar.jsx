@@ -18,7 +18,7 @@ class NavBar extends React.Component {
     let element = <SessionFormModal receiveFormType={this.props.receiveFormType} loc='nav-bar'/>
     if (currentUser) {
       element = (
-        <div className="user-nav-container">
+        <div className="user-nav-wrapper">
           <div className="user-nav">{currentUser.display_name}</div>
           <div className="session-button-div">
             <button className="session-button" id='logout-btn' onClick={this.handleLogout}>Logout</button>
@@ -36,7 +36,7 @@ class NavBar extends React.Component {
             <Link to="/home"><div className="nav-link" id="home-link">Home</div></Link>
             <Link to="/collection"><div className="nav-link" id="collection-link">Collection</div></Link>
           </div>
-          <div className="search-bar-container">
+          <div className="search-bar-wrapper">
             <input className="search-bar" placeholder="Search"></input>
           </div>
           <div className="right-nav">

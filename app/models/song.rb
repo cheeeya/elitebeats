@@ -23,10 +23,12 @@
 
 class Song < ApplicationRecord
   validates :title, :author_id, :permalink, presence: true
-  has_attached_file :image, default_url: "https://res.cloudinary.com/samueldchia/image/upload/v1517883350/default_f207ry.jpg"
-  has_attached_file :songfile
+  has_attached_file :image,
+    default_url: "https://res.cloudinary.com/samueldchia/image/upload/v1517883350/default_f207ry.jpg",
+    path: "/songs/images/:id/original/:basename.:extension"
+  has_attached_file :songfile, path: "/songs/songfiles/:id/original/:basename.:extension"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-  validates_attachment :songfile, content_type: { content_type: ["audio/mp3", "audio/mp4", "audio/mpeg", "audio/mpeg3"] }
+  # validates_attachment_content_type :songfile, content_type: ['audio/mp3', 'audio/mp4', 'audio/mpeg', 'audio/mpeg3']
 
   belongs_to :author,
     primary_key: :id,

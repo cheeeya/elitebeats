@@ -1,8 +1,6 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import SongIndexItem from './song_index_item';
 import SongPageContainer from './song_page_container';
-
 
 class SongIndex extends React.Component {
   constructor (props) {
@@ -22,7 +20,6 @@ class SongIndex extends React.Component {
             songs.map(song => <SongIndexItem song={song} key={song.id} />)
           }
         </ul>
-        <Route path=":author_url/:permalink" component={SongPageContainer}/>
       </section>
     );
   }
