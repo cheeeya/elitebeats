@@ -15,6 +15,10 @@ header {
   color: #999999;
 }
 
+.nav-logo {
+  height: 46px;
+}
+
 .logo-blue {
   width: 178px;
   height: 46px;
@@ -25,15 +29,16 @@ header {
 }
 
 .nav-link {
+  font-size: 14px;
   border-right: 1px solid black;
 }
 
 #home-link {
-  padding: 15px 35px;
+  padding: 16px 35px;
 }
 
 #collection-link {
-  padding: 15px 20px;
+  padding: 16px 20px;
 }
 
 a {
@@ -42,7 +47,7 @@ a {
 
 .search-bar-wrapper {
   width: 540px;
-  padding: 10px;
+  padding: 8.25px;
 }
 
 .search-bar {
@@ -57,7 +62,7 @@ a {
 }
 
 #upload-link {
-  padding: 15px 10px;
+  padding: 16px 10px;
   border: none;
 }
 
@@ -72,7 +77,8 @@ a {
 }
 
 .user-nav {
-  padding: 15px 10px;
+  font-size: 14px;
+  padding: 16px 10px;
 }
 
 .user-nav:hover {

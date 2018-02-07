@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
 
-  def get_user
+  def verify_user_exists
     @user = User.find_by_identifier(params[:user][:identifier])
     if @user
       @login = 'login'
@@ -11,6 +11,15 @@ class Api::UsersController < ApplicationController
       return
     end
     render json: @login.to_json
+  end
+
+  def get_user
+    @user = User.find_by(profile_url: params[:profile_url])
+    if @user
+      render 'api/users/profile'
+    else
+      render json: ['Unable to find user'], status: 422
+    end
   end
 
   def create
