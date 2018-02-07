@@ -18,7 +18,8 @@
 class User < ApplicationRecord
   validates :email, :password_digest, :profile_url, :session_token, :display_name, :age, presence: true
   validates :password, length: { minimum: 6 }, allow_nil: true
-  validates :age, numericality: { greater_than_or_equal_to: 13 }
+  validates :age, numericality: { greater_than_or_equal_to: 13, message: "must be at least 13 years old" }
+  validates :profile_url, :email, uniqueness: true
 
   after_initialize :ensure_session_token, :ensure_profile_url, :ensure_display_name
 

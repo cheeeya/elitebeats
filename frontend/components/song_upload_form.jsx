@@ -9,7 +9,8 @@ class SongUploadForm extends React.Component {
       songFile: null,
       title: "",
       genre: "",
-      description: ""
+      description: "",
+      permalink: ""
     }
     this.handleUploadButton = this.handleUploadButton.bind(this);
     this.handleFile = this.handleFile.bind(this);
@@ -46,17 +47,19 @@ class SongUploadForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { title, genre, description } = this.state;
+    const { title, genre, description, permalink } = this.state;
     const file = this.state.songFile;
     const formData = new FormData();
     formData.append("song[title]", title);
     formData.append("song[genre]", genre);
     formData.append("song[description]", description);
+    formData.append("song[permalink]", permalink);
     if (file) formData.append("song[songfile]", file);
     this.props.createSong(formData);
   }
 
   render() {
+    const { currentUser } = this.props;
     return(
       <section className="upload-form-wrapper">
 
@@ -66,6 +69,10 @@ class SongUploadForm extends React.Component {
           <label>
             Title:
             <input className="upload-form-input" onChange={this.handleUpdate('title')}/>
+          </label>
+          <label>
+            elitebeats.herokuapp.com/#/{currentUser.profile_url}/
+            <input onChange={this.handleUpdate('permalink')}/>
           </label>
           <label>
             Genre

@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :songs, only: [:index, :create, :destroy, :update]
 
-    post '/users/find', to: 'users#get_user'
+    post '/users/find', to: 'users#verify_user_exists'
+    get '/users/:profile_url', to: 'users#get_user'
   end
 
   # namespace :api, defaults: { format: :plain } do
