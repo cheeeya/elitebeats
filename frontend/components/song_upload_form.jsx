@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Redirect } from 'react-router-dom';
 
 class SongUploadForm extends React.Component {
   constructor (props) {
@@ -56,6 +56,7 @@ class SongUploadForm extends React.Component {
     formData.append("song[permalink]", permalink);
     if (file) formData.append("song[songfile]", file);
     this.props.createSong(formData);
+    <Redirect to={`/${currentUser.profile_url}/${permalink}`}/>
   }
 
   render() {
