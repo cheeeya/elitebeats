@@ -4,7 +4,7 @@ import SongIndex from './song_index';
 
 
 const mapStateToProps = (state) => ({
-  songs: Object.values(state.entities.songs)
+   songs: Object.values(state.entities.playlists.allSongs)
 });
 
 const mapDispatchToProps = (dispatch) => ({

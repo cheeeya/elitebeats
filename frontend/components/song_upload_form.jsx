@@ -10,7 +10,8 @@ class SongUploadForm extends React.Component {
       title: "",
       genre: "",
       description: "",
-      permalink: ""
+      permalink: "",
+      redirect: false
     }
     this.handleUploadButton = this.handleUploadButton.bind(this);
     this.handleFile = this.handleFile.bind(this);
@@ -55,12 +56,18 @@ class SongUploadForm extends React.Component {
     formData.append("song[description]", description);
     formData.append("song[permalink]", permalink);
     if (file) formData.append("song[songfile]", file);
-    this.props.createSong(formData);
-    <Redirect to={`/${currentUser.profile_url}/${permalink}`}/>
+    this.props.createSong(formData).then(() => this.setState({ songUrl: "", songFile: null, title: "", genre: "", description: "", redirect: true }))
+
   }
 
   render() {
     const { currentUser } = this.props;
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return <Redirect to='/stream' />
+    }
+
     return(
       <section className="upload-form-wrapper">
 
