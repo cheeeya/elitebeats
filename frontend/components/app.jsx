@@ -8,6 +8,7 @@ import NavBarContainer from './nav_bar_container';
 import SongUploadFormContainer from './song_upload_form_container';
 import SongPageContainer from './song_page_container';
 import UserProfileContainer from './user_profile_container';
+import PlayerContainer from './player_container';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,8 +17,10 @@ class App extends React.Component {
 
   render () {
     let navBar;
+    let player;
     if (this.props.location.pathname !== "/") {
       navBar = (<NavBarContainer />);
+      player = (<PlayerContainer />);
     }
     return (
       <div id="app">
@@ -30,6 +33,7 @@ class App extends React.Component {
           <Route exact path="/:author_url/:permalink" component={SongPageContainer} />
           <Route exact path="/:author_url" component={UserProfileContainer} />
         </Switch>
+        {player}
       </div>
     )
   }

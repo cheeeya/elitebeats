@@ -12,12 +12,18 @@ class SongIndex extends React.Component {
   }
 
   render () {
-    const { songs } = this.props;
+    const { songs, currentSong } = this.props;
     return (
       <section className="songs-index">
         <ul className="songs-list">
           {
-            songs.map(song => <SongIndexItem song={song} key={song.id} />)
+            songs.map(song => {
+              let status = 'pause';
+              if (currentSong && song.id === currentSong.id) {
+                status = currentSong.status;
+              }
+              return <SongIndexItem song={song} play={this.props.play} pause={this.props.pause} status={status} key={song.id} />
+            })
           }
         </ul>
       </section>

@@ -86,7 +86,7 @@ class SessionForm extends React.Component {
 
     const identifierDiv = (
       <div onClick={this.handleFormReset} className="form-id-div">
-        <i className="fa fa-caret-left" id="form-id-caret"></i>
+        <i className="fas fa-caret-left" id="form-id-caret"></i>
         {this.state.identifier}
       </div>
     )
