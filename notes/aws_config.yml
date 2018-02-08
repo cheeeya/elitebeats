@@ -1,4 +1,4 @@
-#put into config/appliation.yml
+#put into config/application.yml
 
 development:
   s3_bucket: "BUCKET-NAME-DEV"

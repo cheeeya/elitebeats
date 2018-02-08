@@ -8,8 +8,7 @@ import { merge } from 'lodash';
 
 const _nullState = {
   currentUser: null,
-  formType: "",
-  currentPlaylist: 'allSongs'
+  formType: ""
 }
 
 const sessionReducer = (state = _nullState, action) => {
@@ -23,10 +22,6 @@ const sessionReducer = (state = _nullState, action) => {
     case RECEIVE_FORM_TYPE:
       let formType = action.formType;
       newState = merge(newState, state, { formType });
-      return newState;
-    case RECEIVE_CURRENT_PLAYLIST:
-      let currentPlaylist = action.playlist;
-      newState = merge(newState, state, { currentPlaylist });
       return newState;
     case RECEIVE_ERRORS:
       return state;

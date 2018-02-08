@@ -1,8 +1,9 @@
-import { PLAY_SONG, NEXT_SONG, PREV_SONG, PAUSE_SONG } from '../actions/player_actions';
+import { PLAY_SONG, NEXT_SONG, PREV_SONG, PAUSE_SONG, RECEIVE_CURRENT_PLAYLIST } from '../actions/player_actions';
 import { merge } from 'lodash';
 
 const _default = {
-  currentSong: { status: "" },
+  currentPlaylist: "",
+  currentSong: { status: "" }
 }
 
 const playerReducer = (state = _default, action) => {
@@ -10,6 +11,10 @@ const playerReducer = (state = _default, action) => {
   let newState = {};
   let currentSong = {};
   switch (action.type) {
+    case RECEIVE_CURRENT_PLAYLIST:
+      let currentPlaylist = action.playlist;
+      newState = merge(newState, state, { currentPlaylist });
+      return newState;
     case PLAY_SONG:
       currentSong = merge({}, action.song, { status: 'play' });
       newState = merge(newState, state, { currentSong });
