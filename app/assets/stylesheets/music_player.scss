@@ -6,6 +6,8 @@
   border-top: 1px solid #cecece;
   background: #f2f2f2;
   z-index: 10;
+  display: flex;
+  justify-content: center;
 }
 
 #player-play-button {
@@ -24,6 +26,14 @@
   background-image: url("http://res.cloudinary.com/elitebeats/image/upload/v1518095535/prev_pacxej.svg");
 }
 
+#player-volume-button {
+  background-image: url("http://res.cloudinary.com/elitebeats/image/upload/v1518124462/volume_fii9qx.svg");
+}
+
+#player-muted-button {
+  background-image: url("http://res.cloudinary.com/elitebeats/image/upload/v1518124938/muted_ubzvs2.svg");
+}
+
 .player-button {
   background-color: #f2f2f2;
   background-position: 50% 50%;
@@ -40,4 +50,72 @@
 
 .disabled-button:hover {
   cursor: default;
+}
+
+.progress-bar-div {
+  padding: 0 20px;
+}
+
+.progress-bar-elapsed-time {
+  width: 0;
+  height: 1px;
+  background: #0059B3;
+  margin: 23.5px 0;
+}
+
+.progress-bar-total {
+  width: 100%;
+  height: 1px;
+  background: #cccccc;
+}
+
+.progress-bar {
+  width: 500px;
+}
+
+.progress-bar-div {
+  height: 100%;
+  display: flex;
+}
+
+div[class^='progress-bar-time'] {
+  height: 49px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+div[class^='progress-bar-time'] span {
+  width: 35px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.progress-bar-time-current span {
+  color: #0059B3;
+}
+
+.volume-control-div {
+  margin-right: 15px;
+}
+
+.player-song-info {
+  display: flex;
+  align-items: center;
+}
+
+.player-song-author {
+  color: #999999;
+}
+
+.player-song-title {
+  color: #666666;
+}
+
+span[class^="player-song"] {
+  font-size: 11px;
+}
+
+span[class^="player-song"]:hover {
+  color: black;
 }

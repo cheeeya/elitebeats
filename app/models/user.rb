@@ -20,6 +20,9 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, allow_nil: true
   validates :age, numericality: { greater_than_or_equal_to: 13, message: "must be at least 13 years old" }
   validates :profile_url, :email, uniqueness: true
+  has_attached_file :profile_picture, default_url: "http://res.cloudinary.com/elitebeats/image/upload/v1518126520/defaultprofile_zl2itc.png"
+  has_attached_file :cover, default_url: "http://res.cloudinary.com/elitebeats/image/upload/v1518126963/defaultcover_jrzcgl.png"
+  validates_attachment_content_type :profile_picture, :cover, content_type: /\Aimage\/.*\Z/
 
   after_initialize :ensure_session_token, :ensure_profile_url, :ensure_display_name
 
