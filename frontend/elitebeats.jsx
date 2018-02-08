@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloadedState = {
       session: {
         currentUser: window.currentUser,
-        formType: "",
-        currentPlaylist: 'allSongs'
+        formType: ""
       }, player: {
+        currentPlaylist: "allSongs",
         currentSong: null
       }
     };

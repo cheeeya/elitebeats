@@ -33,3 +33,11 @@
   border: none;
   margin-left: 12px;
 }
+
+.disabled-button {
+  opacity: .3;
+}
+
+.disabled-button:hover {
+  cursor: default;
+}
