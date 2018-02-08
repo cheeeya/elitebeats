@@ -20,6 +20,11 @@ export const receiveFormType = formType => ({
   formType
 });
 
+export const receiveCurrentPlaylist = playlist => ({
+  type: RECEIVE_CURRENT_PLAYLIST,
+  playlist
+})
+
 
 export const login = user => dispatch => (
   SessionAPIUtil.login(user).then(

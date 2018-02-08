@@ -9,13 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
   let store;
 
   if(window.currentUser) {
-    const preloadedState = { session: { currentUser: window.currentUser } };
+    const preloadedState = {
+      session: {
+        currentUser: window.currentUser,
+        formType: "",
+        currentPlaylist: 'allSongs'
+      }, player: {
+        currentSong: null
+      }
+    };
     store = configureStore(preloadedState);
     delete window.currentUser;
   } else {
     store= configureStore()
   }
-  
+
   window.getState = store.getState;
 
   const rootEl = document.getElementById('root');

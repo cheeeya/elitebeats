@@ -1,0 +1,34 @@
+.music-player {
+  position: fixed;
+  bottom: 0;
+  height: 48px;
+  width: 100%;
+  border-top: 1px solid #cecece;
+  background: #f2f2f2;
+}
+
+#player-play-button {
+  background-image: url("http://res.cloudinary.com/elitebeats/image/upload/v1518087210/play_peehcf.svg");
+}
+
+#player-pause-button {
+  background-image: url("http://res.cloudinary.com/elitebeats/image/upload/v1518087485/pause_mwlebg.svg");
+}
+
+#player-next-button {
+  background-image: url("http://res.cloudinary.com/elitebeats/image/upload/v1518095532/next_fcbbl5.svg");
+}
+
+#player-prev-button {
+  background-image: url("http://res.cloudinary.com/elitebeats/image/upload/v1518095535/prev_pacxej.svg");
+}
+
+.player-button {
+  background-color: #f2f2f2;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  height: 48px;
+  width: 24px;
+  border: none;
+  margin-left: 12px;
+}

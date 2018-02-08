@@ -9,7 +9,7 @@ import { merge } from 'lodash';
 const _nullState = {
   currentUser: null,
   formType: "",
-  currentPlaylist: ""
+  currentPlaylist: 'allSongs'
 }
 
 const sessionReducer = (state = _nullState, action) => {

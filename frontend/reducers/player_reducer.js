@@ -1,15 +1,26 @@
-import { PLAY_SONG, NEXT_SONG, PREV_SONG } from '../actions/player_actions';
+import { PLAY_SONG, NEXT_SONG, PREV_SONG, PAUSE_SONG } from '../actions/player_actions';
 import { merge } from 'lodash';
 
-const playerReducer = (state ={}, action) => {
+const _default = {
+  currentSong: { status: "" },
+}
+
+const playerReducer = (state = _default, action) => {
   Object.freeze(state);
   let newState = {};
+  let currentSong = {};
   switch (action.type) {
     case PLAY_SONG:
-      let song = action.song;
-      newState = merge(newState, state, { [song.index]: song })
+      currentSong = merge({}, action.song, { status: 'play' });
+      newState = merge(newState, state, { currentSong });
+      return newState;
+    case PAUSE_SONG:
+      currentSong = merge({}, state.currentSong, { status: 'pause' });
+      newState = merge(newState, state, { currentSong });
       return newState;
     default:
       return state;
   }
 }
+
+export default playerReducer;
