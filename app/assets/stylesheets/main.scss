@@ -1,0 +1,49 @@
+main {
+  position: relative;
+  max-width: 1200px;
+  min-width: 600px;
+  background: white;
+  display: flex;
+  padding: 46px 30px;
+}
+
+.main-section {
+  width: 100%;
+  padding: 30px 30px 0 0;
+  margin-right: 330px;
+  border-right: 1px solid #f2f2f2;
+}
+
+.main-tabs {
+  border-bottom: 1px solid #f2f2f2;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.main-tab-link {
+  font-size: 24px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  margin-right: 24px;
+  border-bottom: 1px solid transparent;
+  line-height: 1.6;
+  padding: 5px 0;
+}
+
+.main-tab-link:last-child {
+  margin: 0;
+}
+
+.main-tab-link:hover {
+  border-color: black;
+}
+
+.selected-tab {
+  color: #0059B3;
+  border-color: #0059B3;
+  cursor: default;
+}
+
+.selected-tab:hover {
+  border-color: #0059B3;
+}

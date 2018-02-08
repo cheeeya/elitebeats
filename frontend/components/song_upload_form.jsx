@@ -69,7 +69,7 @@ class SongUploadForm extends React.Component {
     }
 
     return(
-      <section className="upload-form-wrapper">
+      <main className="upload-form-wrapper">
 
         <form onSubmit={this.handleSubmit}>
           <input type="file" id="file-input" onChange={this.handleFile}/>
@@ -127,7 +127,7 @@ class SongUploadForm extends React.Component {
           <button onClick={this.handleCancel}><span>Cancel</span></button>
           <button><span>Save</span></button>
         </form>
-      </section>
+      </main>
     );
   }
 }

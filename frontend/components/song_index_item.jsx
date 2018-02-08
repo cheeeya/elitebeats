@@ -49,7 +49,7 @@ class SongIndexItem extends React.Component {
       permalink = `${author_url}/${song.permalink}`;
     }
     return (
-      <li>
+      <li className="song-list-item">
         <Link to={permalink}><img className="song-artwork" src={song.image_url} /></Link>
         <button className={`${button}-button`} onClick={this.handleClick(button)}><span className="playback-button-txt">{button}</span></button>
         <div className="songtitle">

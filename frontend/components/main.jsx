@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SongIndexContainer from './song_index_container';
+import SidebarContainer from './sidebar_container';
 
 class Main extends React.Component {
   constructor(props) {
@@ -9,14 +10,24 @@ class Main extends React.Component {
 
   render() {
     let element;
+    let streamActive;
+    let discoverActive;
     if (this.props.location.pathname === '/stream') {
       element = <SongIndexContainer />
+      streamActive = "selected-tab";
+    } else if (this.props.location.pathname === '/home') {
+      discoverActive = "selected-tab";
     }
     return (
       <main className="main">
-        <Link to="/stream">Stream</Link>
-        <Link to="/home">Discover</Link>
-        {element}
+        <section className="main-section">
+          <div className="main-tabs">
+            <Link className={`main-tab-link ${streamActive}`} to="/stream">Stream</Link>
+            <Link className={`main-tab-link ${discoverActive}`} to="/home">Discover</Link>
+          </div>
+          {element}
+        </section>
+        <SidebarContainer />
       </main>
     );
   }
