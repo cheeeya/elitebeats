@@ -24,6 +24,11 @@ class Api::SongsController < ApplicationController
     end
   end
 
+  def destroy
+    @song = Song.find(params[:id])
+    render json: @song.delete
+  end
+
 
   private
   def song_params

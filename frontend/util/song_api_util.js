@@ -18,13 +18,20 @@ export const createSong = (formData) => (
   })
 );
 
-export const updateSong = (formData, song_id) => (
+export const updateSong = (formData, songId) => (
   $.ajax({
     method: 'PATCH',
-    url: `api/songs/${song_id}`,
+    url: `api/songs/${songId}`,
     processData: false,
     contentType: false,
     dataType: 'json',
     data: formData
   })
-)
+);
+
+export const deleteSong = (songId) => (
+  $.ajax({
+    method: 'DELETE',
+    url: `api/songs/${songId}`,
+  })
+);

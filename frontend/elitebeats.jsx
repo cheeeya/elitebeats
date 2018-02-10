@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloadedState = {
       session: {
         currentUser: window.currentUser,
-        formType: ""
+        formType: "",
+        updateRequired: false
       }, player: {
         currentPlaylist: "allSongs",
         currentSong: null
