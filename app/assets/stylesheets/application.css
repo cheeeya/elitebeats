@@ -50,3 +50,7 @@ button:hover {
 button:focus {
   outline: 0;
 }
+
+.disabled {
+  display: none;
+}

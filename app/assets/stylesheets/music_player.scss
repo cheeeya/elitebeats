@@ -53,7 +53,27 @@
 }
 
 .progress-bar-div {
-  padding: 0 20px;
+  padding: 0 18px;
+}
+
+.progress-bar-div:hover {
+  cursor: pointer;
+}
+
+.progress-ball {
+  position: absolute;
+  margin-top: -2.5px;
+  margin-right: -5px;
+  border: 1px solid #0059B3;
+  border-radius: 100%;
+  height: 4px;
+  width: 4px;
+  background-color: #0059B3;
+  opacity: 0;
+}
+
+.progress-bar-div:hover .progress-ball {
+  opacity: 1;
 }
 
 .progress-bar-elapsed-time {
@@ -96,12 +116,18 @@ div[class^='progress-bar-time'] span {
 }
 
 .volume-control-div {
-  margin-right: 15px;
+  margin-right: 20px;
 }
 
 .player-song-info {
+  width: 250px;
   display: flex;
   align-items: center;
+  overflow: hidden;
+}
+
+.player-song-info > a {
+  height: 30px;
 }
 
 .player-song-author {
@@ -118,4 +144,10 @@ span[class^="player-song"] {
 
 span[class^="player-song"]:hover {
   color: black;
+}
+
+.player-song-artwork {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
 }

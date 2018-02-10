@@ -22,6 +22,7 @@ class App extends React.Component {
       navBar = (<NavBarContainer />);
       player = (<PlayerContainer />);
     }
+
     return (
       <div id="app">
         {navBar}
@@ -29,6 +30,7 @@ class App extends React.Component {
           <AuthRoute exact path="/" component={SplashContainer} />
           <ProtectedRoute exact path="/stream" component={MainContainer} />
           <ProtectedRoute exact path="/home" component={MainContainer} />
+          <ProtectedRoute exact path="/collection" component={MainContainer} />
           <ProtectedRoute exact path="/upload" component={SongUploadFormContainer} />
           <Route exact path="/:author_url/:permalink" component={SongPageContainer} />
           <Route exact path="/:author_url" component={UserProfileContainer} />

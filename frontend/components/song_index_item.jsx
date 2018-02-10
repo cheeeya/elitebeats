@@ -6,14 +6,31 @@ class SongIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: this.props.status
+      status: this.props.status,
+      showMore: false
     }
     this.button = this.button.bind(this);
+    this.showMoreToggle = this.showMoreToggle.bind(this);
+    this.closeShowMore = this.closeShowMore.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.state.status !== nextProps.status) {
       this.setState({ status: nextProps.status })
+    }
+  }
+
+  showMoreToggle(e) {
+    e.preventDefault();
+    let showMore = !this.state.showMore;
+    this.setState({ showMore });
+  }
+
+  closeShowMore(e) {
+    e.preventDefault();
+    if (e.target.id !== `more-${this.props.song.id}`) {
+      this.setState({ showMore: false });
     }
   }
 
@@ -38,9 +55,15 @@ class SongIndexItem extends React.Component {
     }
   }
 
+  handleEdit(e) {
+    e.preventDefault();
+    window.song = this.props.song;
+    window.activateEdit();
+  }
+
   render() {
     const { song } = this.props;
-    const { status } = this.state;
+    const { status, showMore } = this.state;
     const button = this.button();
     let author_url = "";
     let permalink = "";
@@ -48,13 +71,35 @@ class SongIndexItem extends React.Component {
       author_url = `/${song.author_url}`;
       permalink = `${author_url}/${song.permalink}`;
     }
+    let showMoreClass = "";
+    if (showMore) {
+      showMoreClass = "display-list";
+      document.getElementById('root').addEventListener("click", this.closeShowMore, true);
+    } else {
+      document.getElementById('root').removeEventListener("click", this.closeShowMore, true);
+    }
+    let disabledClass = "disabled";
+    if (this.props.path !== 'stream' && this.props.currentUser) {
+      if (this.props.currentUser.id === song.author_id) {
+        disabledClass = "";
+      }
+    }
     return (
       <li className="song-list-item">
         <Link to={permalink}><img className="song-artwork" src={song.image_url} /></Link>
-        <button className={`${button}-button`} onClick={this.handleClick(button)}><span className="playback-button-txt">{button}</span></button>
         <div className="songtitle">
-          <Link to={author_url}><span className="songtitle-author">{song.author_name}</span></Link>
-          <Link to={permalink}><span className="songtitle-title">{song.title}</span></Link>
+          <button className="song-list-playback-button" id={`song-list-${button}-button`} onClick={this.handleClick(button)}><span className="playback-button-txt">{button}</span></button>
+          <ul className="songtitle-list">
+            <li className="songtitle-list-el"><Link to={author_url}><span className="songtitle-author">{song.author_name}</span></Link></li>
+            <li className="songtitle-list-el"><Link to={permalink}><span className="songtitle-title">{song.title}</span></Link></li>
+          </ul>
+          <div className={`management-div ${disabledClass}`}>
+            <button className="song-management" id="more-button" onClick={this.showMoreToggle}><span id={`more-${song.id}`}><i className="fas fa-ellipsis-h"></i>  More</span></button>
+            <ul className={`more-buttons-list ${showMoreClass}`}>
+              <li className="more-list-item"><button className="song-edit-button" onClick={this.handleEdit}><span>Edit</span></button></li>
+              <li className="more-list-item"><button className="song-delete-button">Delete</button></li>
+            </ul>
+          </div>
         </div>
       </li>
     );

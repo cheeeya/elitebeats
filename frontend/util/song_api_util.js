@@ -17,3 +17,14 @@ export const createSong = (formData) => (
     data: formData
   })
 );
+
+export const updateSong = (formData, song_id) => (
+  $.ajax({
+    method: 'PATCH',
+    url: `api/songs/${song_id}`,
+    processData: false,
+    contentType: false,
+    dataType: 'json',
+    data: formData
+  })
+)

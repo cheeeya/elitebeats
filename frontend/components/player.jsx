@@ -6,10 +6,10 @@ class Player extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: "",
-      disabled: false,
+      status: "play",
       time: 0,
-      muted: false
+      muted: false,
+      currentIndex: -1
     }
     this.playbackButton = this.playbackButton.bind(this);
     this.updateTime = this.updateTime.bind(this);
@@ -20,23 +20,37 @@ class Player extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    let newStatus = false;
+    let clicked = false;
     if (nextProps.song) {
-      if (!this.props.song || this.props.song.id != nextProps.song.id) {
+      if (!this.songHowl || this.props.song.id != nextProps.song.id) {
         if (this.songHowl) {
           this.songHowl.unload();
           clearInterval(this.interval);
+          this.setState({ time: 0 });
         }
         this.songHowl =  new Howl({
           src: [nextProps.song.song_url],
-          onend: () => this.handleNext(nextProps.song.index + 1)
+          onend: () => this.props.next(this.props.currentPlaylist, this.state.currentIndex + 1)
         });
-        if (!this.state.disabled && nextProps.song.index === Object.keys(this.props.currentPlaylist).length - 1) {
-          this.setState({ disabled: true });
-        } else if (this.state.disabled && nextProps.song.index !== Object.keys(this.props.currentPlaylist).length - 1 ){
-          this.setState({ disabled: false });
+        let cPlaylist = Object.keys(nextProps.currentPlaylist);
+        let currentIndex = cPlaylist.indexOf(nextProps.song.id.toString())
+        console.log(cPlaylist);
+        this.setState({ currentIndex });
+        console.log(currentIndex);
+        if (this.state.muted) {
+          this.songHowl.mute(true);
         }
+        // if (!this.state.disabled && this.currentSongindex + 1 === Object.keys(this.props.currentPlaylist).length - 1) {
+        //   this.setState({ disabled: true });
+        // } else if (this.state.disabled && nextProps.song.index !== Object.keys(this.props.currentPlaylist).length - 1 ){
+        //   this.setState({ disabled: false });
+        // }
       }
-      this.playbackControl(nextProps.song.status);
+      if (this.props.song && this.state.status === nextProps.song.status && this.props.song.id === nextProps.song.id) {
+        return;
+      }
+      this.playbackControl(nextProps.song.status, newStatus);
     }
   }
 
@@ -52,6 +66,7 @@ class Player extends React.Component {
     return (e) => {
       e.preventDefault();
       this.songHowl.stop();
+      clearInterval(this.interval);
       this.props.next(this.props.currentPlaylist, nextIdx);
     }
   }
@@ -68,20 +83,21 @@ class Player extends React.Component {
 
   playbackControl(action) {
     if (action === 'play') {
+      this.setState({ status: action });
       this.songHowl.play();
-      this.interval = setInterval(() => this.updateTime(), 1000);
+      this.interval = setInterval(() => this.updateTime(), 100);
     } else if (action === 'pause'){
+      this.setState({ status: action });
       this.songHowl.pause();
       clearInterval(this.interval);
     }
-    this.setState({ status: action });
   }
 
   updateTime() {
     if (this.songHowl) {
       let time = this.songHowl.seek();
       if (typeof time === 'number'){
-        this.setState({ time: Math.floor(time) });
+        this.setState({ time });
       }
     }
   }
@@ -115,7 +131,7 @@ class Player extends React.Component {
   }
 
   render () {
-    const { status, disabled, time } = this.state;
+    const { status, disabled, time, currentIndex } = this.state;
     const { song } = this.props;
     const playbackButton = this.playbackButton();
     const volumeButton = this.volumeButton();
@@ -123,9 +139,9 @@ class Player extends React.Component {
       return null;
     }
     let disabledNext = "";
-    if (disabled) {
-      disabledNext = "disabled-button";
-    }
+    // if (disabled) {
+    //   disabledNext = "disabled-button";
+    // }
     let progressWidth = 0;
     if (this.songHowl.duration() > 0 ) {
       progressWidth = (500 / this.songHowl.duration()) * time;
@@ -133,17 +149,21 @@ class Player extends React.Component {
     let elapsedTimeStyle = {
       width: progressWidth + 'px'
     }
+    let progressBallStyle = {
+      marginLeft: (progressWidth - 4) + 'px'
+    }
     return(
       <section className="music-player">
-        <button className="player-button" id="player-prev-button" onClick={this.handleNext(song.index - 1)}></button>
+        <button className="player-button" id="player-prev-button" onClick={this.handleNext(currentIndex - 1)}></button>
         <button className="player-button" id={`player-${playbackButton}-button`} onClick={this.handlePlayback(playbackButton)}><span className="playback-button-txt">{playbackButton}</span></button>
-        <button className={`player-button ${disabledNext}`} id="player-next-button" onClick={this.handleNext(song.index + 1)} disabled={disabled}></button>
+        <button className={`player-button ${disabledNext}`} id="player-next-button" onClick={this.handleNext(currentIndex + 1)} disabled={disabled}></button>
         <div className="progress-bar-div">
           <div className="progress-bar-time-current">
             <span>{this.formatTime(this.state.time)}</span>
           </div>
           <div className="progress-bar">
-            <div className="progress-bar-total"><div className="progress-bar-elapsed-time" style={elapsedTimeStyle}></div></div>
+
+            <div className="progress-bar-total"><div className="progress-bar-elapsed-time" style={elapsedTimeStyle}><div className="progress-ball" style={progressBallStyle}/></div></div>
           </div>
           <div className="progress-bar-time-total">
             <span>{this.formatTime(this.songHowl.duration())}</span>
@@ -154,9 +174,10 @@ class Player extends React.Component {
           <div className="volume-control-max"><div className="volume-control-current"></div></div>
         </div>
         <div className="player-song-info">
+          <Link to={song.permalink}><img className="player-song-artwork" src={song.image_url} /></Link>
           <ul>
-            <li><Link to={this.props.song.author_url}><span className="player-song-author">{this.props.song.author_name}</span></Link></li>
-            <li><Link to={this.props.song.permalink}><span className="player-song-title">{this.props.song.title}</span></Link></li>
+            <li><Link to={song.author_url}><span className="player-song-author">{song.author_name}</span></Link></li>
+            <li><Link to={song.permalink}><span className="player-song-title">{song.title}</span></Link></li>
           </ul>
         </div>
       </section>

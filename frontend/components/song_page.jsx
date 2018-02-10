@@ -5,11 +5,11 @@ class SongPage extends React.Component {
     super(props);
   }
 
-  
+
 
   render() {
     return (
-      <section>
+      <section className="song-show-page">
         song page
       </section>
     );

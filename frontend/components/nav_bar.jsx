@@ -19,7 +19,7 @@ class NavBar extends React.Component {
     if (currentUser) {
       element = (
         <div className="user-nav-wrapper">
-          <div className="user-nav">{currentUser.display_name}</div>
+          <Link to={`/${currentUser.profile_url}`}><div className="user-nav">{currentUser.display_name}</div></Link>
           <div className="session-button-div">
             <button className="session-button" id='logout-btn' onClick={this.handleLogout}>Logout</button>
           </div>

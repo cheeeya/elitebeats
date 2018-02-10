@@ -64,7 +64,7 @@ class SessionForm extends React.Component {
       <div className="session-form-input">
         <h2 className="signup-h2">Welcome to EliteBeats</h2>
         <label>
-          <input type="text" onChange={this.update('identifier')} placeholder="Your email address or profile URL *" value={identifier} />
+          <input type="text" onChange={this.update('identifier')} placeholder="Your email address or profile URL *" value={identifier} required="required"/>
         </label>
 
       </div>
@@ -101,7 +101,7 @@ class SessionForm extends React.Component {
           {identifierDiv}
           <div className="session-form-input">
             <label>
-              <input type="password" placeholder="Your Password *" onChange={this.update('password')}/>
+              <input type="password" placeholder="Your Password *" onChange={this.update('password')} required="required"/>
             </label>
           </div>
         </div>
@@ -122,13 +122,13 @@ class SessionForm extends React.Component {
           <div className="session-form-input">
             <label className="form-password-label">
               Choose a  password <strong className="asterick-wrapper">*</strong>
-              <input type="password" onChange={this.update('password')}/>
+            <input type="password" onChange={this.update('password')} required="required"/>
             </label>
           </div>
           <div className="session-form-input">
             <label className="form-age-label">
               Tell us your age <strong className="asterick-wrapper">*</strong>
-              <input type="text" onChange={this.update('age')}/>
+              <input type="text" onChange={this.update('age')} required="required"/>
             </label>
           </div>
         </div>

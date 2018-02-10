@@ -5,25 +5,24 @@
 .song-artwork {
   height: 160px;
   width: 160px;
+  margin-right: 10px;
 }
 
-.play-button {
+#song-list-play-button {
   background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1517883347/playbutton_wgasg8.jpg');
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: cover;
-  height: 36px;
-  width: 36px;
-  border: none;
 }
 
-.pause-button {
+#song-list-pause-button {
   background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1517883344/pausebutton_vqwmk7.jpg');
+}
+
+.song-list-playback-button {
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
   height: 36px;
   width: 36px;
+  margin-right: 5px;
   border: none;
 }
 
@@ -37,4 +36,33 @@
 
 .song-list-item {
   width: 839px;
+  display: flex;
+}
+
+.songtitle {
+  display: flex;
+  padding: 7px;
+}
+
+.songtitle-author {
+  font-size: 12px;
+  color: #999999;
+  line-height: 16px;
+}
+
+.song-list-item {
+  margin-bottom: 36px;
+}
+
+.songtitle-author:hover {
+  color: black;
+}
+
+.songtitle-title {
+  font-size: 15px;
+  line-height: 1.2px;
+}
+
+.songtitle-list-el {
+  margin-bottom: 3px;
 }
