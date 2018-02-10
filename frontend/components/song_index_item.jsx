@@ -13,6 +13,7 @@ class SongIndexItem extends React.Component {
     this.showMoreToggle = this.showMoreToggle.bind(this);
     this.closeShowMore = this.closeShowMore.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -61,6 +62,11 @@ class SongIndexItem extends React.Component {
     window.activateEdit();
   }
 
+  handleDelete(e) {
+    e.preventDefault();
+    this.props.deleteSong(this.props.song.id);
+  }
+
   render() {
     const { song } = this.props;
     const { status, showMore } = this.state;
@@ -97,7 +103,7 @@ class SongIndexItem extends React.Component {
             <button className="song-management" id="more-button" onClick={this.showMoreToggle}><span id={`more-${song.id}`}><i className="fas fa-ellipsis-h"></i>  More</span></button>
             <ul className={`more-buttons-list ${showMoreClass}`}>
               <li className="more-list-item"><button className="song-edit-button" onClick={this.handleEdit}><span>Edit</span></button></li>
-              <li className="more-list-item"><button className="song-delete-button">Delete</button></li>
+              <li className="more-list-item"><button className="song-delete-button" onClick={this.handleDelete}>Delete</button></li>
             </ul>
           </div>
         </div>
