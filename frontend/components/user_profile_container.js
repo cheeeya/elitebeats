@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import UserProfile from './user_profile';
 import { fetchUserProfile } from '../actions/profile_actions';
+import { updateUserData } from '../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
   let profile_url;
@@ -15,7 +16,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchUserProfile: (profile_url) => dispatch(fetchUserProfile(profile_url))
+  fetchUserProfile: (profile_url) => dispatch(fetchUserProfile(profile_url)),
+  update: (formData, user_id) => dispatch(updateUserData(formData, user_id))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps) (UserProfile));

@@ -23,3 +23,9 @@ export const createSong = formData => dispatch => (
     song => dispatch(receiveSong(song))
   )
 );
+
+export const updateSong = (formData, song_id) => dispatch => (
+  SongAPIUtil.updateSong(formData, song_id).then(
+    song=> dispatch(receiveSong(song))
+  )
+);

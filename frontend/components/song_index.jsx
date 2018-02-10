@@ -1,5 +1,5 @@
 import React from 'react';
-import SongIndexItem from './song_index_item';
+import SongItemContainer from './song_item_container';
 import SongPageContainer from './song_page_container';
 
 class SongIndex extends React.Component {
@@ -13,17 +13,13 @@ class SongIndex extends React.Component {
   }
 
   render () {
-    const { songs, currentSong } = this.props;
+    const { songs, currentSong, pause, play, currentUser } = this.props;
     return (
       <section className="songs-index">
         <ul className="songs-list">
           {
             songs.map(song => {
-              let status = 'pause';
-              if (currentSong && song.id === currentSong.id) {
-                status = currentSong.status;
-              }
-              return <SongIndexItem song={song} play={this.props.play} pause={this.props.pause} status={status} key={song.id} />
+              return <SongItemContainer song={song} key={song.id} path="stream" />
             })
           }
         </ul>

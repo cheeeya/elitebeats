@@ -1,3 +1,152 @@
 #file-input {
   display: none;
+  width: 1px;
+}
+
+#song-form-modal {
+  position: relative;
+  top: 50px;
+  border: none;
+}
+
+.upload-form-modal {
+  width: 852px;
+  height: 348px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload-form-page {
+  position: relative;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  top: 46px;
+  background: white;
+  padding: 30px;
+  margin: 0 10px;
+  width: 1200px;
+}
+
+.upload-form-input-div input, select, textarea {
+  border: 1px solid #cccccc;
+  padding: 5px 8px;
+  border-radius: 3px;
+  width: 400px;
+  margin-top: 7px;
+}
+
+.upload-form-input-div input:focus {
+  border: 1px solid gray;
+  outline: none;
+}
+
+.upload-form-input-div {
+  width: 420px;
+  margin-bottom: 20px;
+}
+
+.upload-form-input-div:first-of-type{
+  margin-bottom: 7px;
+}
+
+.song-upload-form-wrapper {
+  width: 852px;
+}
+
+.song-upload-form {
+  width: 800px;
+  display: flex;
+  padding: 25px;
+  border: 1px solid #f2f2f2;
+  border-radius: 5px;
+  background: white;
+}
+
+.upload-form-inner-div {
+  width: 530px;
+  margin-left: 20px;
+  display: block;
+}
+
+#song-upload-button {
+  margin-bottom: 30px;
+}
+
+#upload-form-permalink-div {
+  margin-bottom: 15px;
+  font-size: 13px;
+  width: 530px;
+  margin-right:0;
+}
+
+#upload-form-permalink-input {
+  border: none;
+  padding: 5px 0;
+  width: 319px;
+}
+
+#upload-form-permalink-input:focus {
+  border: 1px solid gray;
+
+}
+.upload-form-permalink-span {
+  color: gray;
+}
+
+.upload-form-cancel-button {
+  border: none;
+  color: gray;
+  background: none;
+  margin-right: 10px;
+}
+
+.upload-form-save-button {
+  border: none;
+  color: white;
+  background: #0059B3;
+  font-family: "Roboto";
+  padding: 5px 8px;
+  border-radius: 3px;
+}
+
+.upload-form-buttons-div {
+  margin-top: 20px;
+}
+
+.upload-artwork {
+  width: 250px;
+  height: 250px;
+}
+
+#artwork-input {
+  display: none;
+}
+
+.artwork-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-update-button {
+  padding-top: 5px;
+  border-radius: 3px;
+  opacity: 0.7;
+  border: 0.7px solid black;
+  background: white;
+}
+
+.image-update-button:hover {
+  opacity: 1;
+  transition-duration: 0.5s;
+}
+
+.disabled-button {
+  opacity: 0.8;
+}
+
+.disabled-button:hover {
+  cursor: default;
 }

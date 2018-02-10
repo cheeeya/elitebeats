@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchAllSongs } from '../actions/song_actions';
-import { playSong, pauseSong, receiveCurrentPlaylist } from '../actions/player_actions';
+import { receiveCurrentPlaylist } from '../actions/player_actions';
 import SongIndex from './song_index';
 
 
@@ -11,8 +11,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchAllSongs: () => dispatch(fetchAllSongs()),
-  play: (song) => dispatch(playSong(song)),
-  pause: () => dispatch(pauseSong()),
   receiveCurrentPlaylist: (playlist) => dispatch(receiveCurrentPlaylist(playlist))
 });
 
