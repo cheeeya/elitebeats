@@ -85,7 +85,10 @@ class SongUploadForm extends React.Component {
 
   handleCancel(e) {
     e.preventDefault();
-    this.setState({ songUrl: "", songFile: null, title: "", genre: "", description: "", permalink: "", redirect: false })
+    this.setState({ songUrl: "", songFile: null, title: "", genre: "", description: "", permalink: "", redirect: false });
+    if (window.closeEdit) {
+      window.closeEdit();
+    }
   }
 
   handleSubmit(e) {

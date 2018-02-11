@@ -6,3 +6,68 @@
 .display-list {
   display: block;
 }
+
+.song-management {
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  padding: 0;
+}
+
+.song-management:hover {
+  border-color: #cccccc;
+}
+
+.active-button {
+  border-color: #0059B3;
+  color: #0059B3;
+}
+
+.active-button:hover {
+  border-color: #0059B3;
+}
+
+.song-management-button {
+  background: white;
+  border: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.song-management-button > i {
+  margin-left: 5px;
+}
+
+.fa-trash {
+  margin-right: 1.67px;
+}
+
+.song-management-button:hover {
+  background: #f2f2f2;
+}
+
+.sm-button-text {
+  height: 14px;
+  margin-left: 5px;
+}
+
+.more-list-item {
+  width: 115px;
+  height: 30px;
+  border: 1px solid #e5e5e5;
+}
+
+.more-list-item:first-of-type {
+  border-bottom: none;
+}
+
+.song-item-right {
+  display: block;
+}
+
+i[id^="more-"] {
+  font-size: 16px;
+  padding: 2px 5px 1px 5px;
+}
