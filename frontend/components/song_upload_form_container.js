@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   let song = {
     song_url: "",
     title: "",
-    genre: "",
+    genre: "none",
     description: "",
     permalink: "",
     image_url: "http://res.cloudinary.com/elitebeats/image/upload/v1518134441/default_album_kynclq.png",

@@ -97,7 +97,7 @@ class SongIndexItem extends React.Component {
     }
     return (
       <div className="song-item">
-        <Link to={permalink}><img className="song-artwork" src={song.image_url} /></Link>
+        <Link to={permalink}><div className="song-artwork" style={{ backgroundImage: `url(${song.image_url})`}} /></Link>
         <div className="song-item-right">
           <div className="songtitle">
             <button className="song-list-playback-button" id={`song-list-${button}-button`} onClick={this.handleClick(button)}><span className="playback-button-txt">{button}</span></button>

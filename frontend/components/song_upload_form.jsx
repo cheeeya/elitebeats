@@ -25,7 +25,7 @@ class SongUploadForm extends React.Component {
 
   titleToPermalink(title) {
     let plink = title;
-    plink = plink.replace(/[-@#]/g, " ");
+    plink = plink.replace(/[-@&#]/g, " ");
     plink = plink.replace(/\s\s+/g, " ");
     plink = plink.replace(/[ ]/g, "-");
     plink = plink.replace(/['()\[\]{}$%^&+=!,;"~`,|.]/g, "");
@@ -176,8 +176,8 @@ class SongUploadForm extends React.Component {
               <div className="upload-form-input-div">
                 <label>
                   <span className="genre-span">Genre:</span>
-                  <select className="genre-select" onChange={this.handleUpdate('genre')}>
-                    <option value="none" selecter="selected">None</option>
+                  <select className="genre-select" onChange={this.handleUpdate('genre')} value={this.state.genre}>
+                    <option value="none">None</option>
                     <option value="alternative">Alternative Rock</option>
                     <option value="ambient">Ambient</option>
                     <option value="classical">Classical</option>

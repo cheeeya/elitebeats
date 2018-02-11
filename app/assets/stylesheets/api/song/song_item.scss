@@ -2,6 +2,14 @@
   display: none;
 }
 
+.song-artwork {
+  height: 160px;
+  width: 160px;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  margin-right: 10px;
+}
 
 .display-list {
   display: block;

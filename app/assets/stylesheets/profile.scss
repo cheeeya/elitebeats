@@ -1,7 +1,7 @@
 .profile-page {
   position: absolute;
   top: 46px;
-  width: 1240px;
+  width: 1260px;
   min-width: 900px;
   min-height: 600px;
   background: white;
@@ -20,7 +20,9 @@
 .profile-picture {
   height: 200px;
   width: 200px;
+  background-size: cover;
   background-position: 50% 50%;
+  background-repeat: no-repeat;
   margin-left: 30px;
   border-radius: 100%;
   border: none;
@@ -57,7 +59,7 @@
 }
 
 .profile-music {
-  margin: 30px;
+  margin: 20px 30px;
 }
 
 .profile-tabs {
