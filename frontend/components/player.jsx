@@ -33,6 +33,7 @@ class Player extends React.Component {
           src: [nextProps.song.song_url],
           onend: () => this.props.next(this.props.currentPlaylist, this.state.currentIndex + 1)
         });
+        console.log(nextProps);
         let cPlaylist = Object.keys(nextProps.currentPlaylist);
         let currentIndex = cPlaylist.indexOf(nextProps.song.id.toString())
         console.log(cPlaylist);

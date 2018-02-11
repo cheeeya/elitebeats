@@ -19,7 +19,7 @@ class SongIndex extends React.Component {
         <ul className="songs-list">
           {
             songs.map(song => {
-              return <SongItemContainer song={song} key={song.id} path="stream" />
+              return <SongItemContainer song={song} key={song.id} path="stream" playlist="allSongs" />
             })
           }
         </ul>

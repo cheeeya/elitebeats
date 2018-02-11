@@ -39,6 +39,9 @@ class SongIndexItem extends React.Component {
     return (e) => {
       e.preventDefault();
       if (action === 'play') {
+        if (this.props.currentPlaylist != this.props.playlist) {
+          this.props.updateCurrentPlaylist(this.props.playlist);
+        }
         this.props.play(this.props.song)
       }
       else {
