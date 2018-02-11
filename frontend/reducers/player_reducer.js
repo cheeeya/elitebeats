@@ -3,7 +3,7 @@ import { merge } from 'lodash';
 
 const _default = {
   currentPlaylist: "",
-  currentSong: { status: "" }
+  currentSong: null
 }
 
 const playerReducer = (state = _default, action) => {
