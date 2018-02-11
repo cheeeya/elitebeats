@@ -9,7 +9,6 @@ class SongIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchAllSongs();
-    this.props.receiveCurrentPlaylist("allSongs");
   }
 
   render () {

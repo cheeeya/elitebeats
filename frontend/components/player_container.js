@@ -5,7 +5,8 @@ import Player from './player';
 
 const mapStateToProps = state => ({
   song: state.player.currentSong,
-  currentPlaylist: state.entities.playlists[state.player.currentPlaylist]
+  currentPlaylist: state.entities.playlists[state.player.currentPlaylist],
+  currentPlaylistTitle: state.player.currentPlaylist
 });
 
 const mapDispatchToProps = dispatch => ({

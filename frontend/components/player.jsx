@@ -7,6 +7,7 @@ class Player extends React.Component {
     super(props);
     this.state = {
       status: "play",
+      disabled: false,
       time: 0,
       muted: false,
       currentIndex: -1
@@ -20,10 +21,9 @@ class Player extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let newStatus = false;
     let clicked = false;
     if (nextProps.song) {
-      if (!this.songHowl || this.props.song.id != nextProps.song.id) {
+      if (!this.songHowl || this.props.song.id != nextProps.song.id || this.props.currentPlaylistTitle != nextProps.currentPlaylistTitle) {
         if (this.songHowl) {
           this.songHowl.unload();
           clearInterval(this.interval);
@@ -33,30 +33,28 @@ class Player extends React.Component {
           src: [nextProps.song.song_url],
           onend: () => this.props.next(this.props.currentPlaylist, this.state.currentIndex + 1)
         });
-        let cPlaylist = Object.keys(nextProps.currentPlaylist)
-        cPlaylist = cPlaylist.slice(0, cPlaylist.length - 1);
-        let currentIndex = cPlaylist.indexOf(nextProps.song.id.toString())
+        let cPlaylist = Object.keys(nextProps.currentPlaylist);
+        let currentIndex = cPlaylist.indexOf(nextProps.song.id.toString());
         this.setState({ currentIndex });
         if (this.state.muted) {
           this.songHowl.mute(true);
         }
-        // if (!this.state.disabled && this.currentSongindex + 1 === Object.keys(this.props.currentPlaylist).length - 1) {
-        //   this.setState({ disabled: true });
-        // } else if (this.state.disabled && nextProps.song.index !== Object.keys(this.props.currentPlaylist).length - 1 ){
-        //   this.setState({ disabled: false });
-        // }
+        if (!this.state.disabled && currentIndex + 1 === Object.keys(this.props.currentPlaylist).length) {
+          this.setState({ disabled: true });
+        } else if (this.state.disabled && currentIndex !== Object.keys(this.props.currentPlaylist).length){
+          this.setState({ disabled: false });
+        }
       }
       if (this.props.song && this.state.status === nextProps.song.status && this.props.song.id === nextProps.song.id) {
         return;
       }
-      this.playbackControl(nextProps.song.status, newStatus);
+      this.playbackControl(nextProps.song.status);
     }
   }
 
   handlePlayback(action) {
     return (e) => {
       e.preventDefault();
-      this.playbackControl(action);
       this.props[action](this.props.song);
     }
   }
@@ -66,7 +64,11 @@ class Player extends React.Component {
       e.preventDefault();
       this.songHowl.stop();
       clearInterval(this.interval);
-      this.props.next(this.props.currentPlaylist, nextIdx);
+      if (nextIdx === -1 ) {
+        this.playbackControl('play');
+      } else {
+        this.props.next(this.props.currentPlaylist, nextIdx);
+      }
     }
   }
 
@@ -138,9 +140,9 @@ class Player extends React.Component {
       return null;
     }
     let disabledNext = "";
-    // if (disabled) {
-    //   disabledNext = "disabled-button";
-    // }
+    if (disabled) {
+      disabledNext = "disabled-button";
+    }
     let progressWidth = 0;
     if (this.songHowl.duration() > 0 ) {
       progressWidth = (500 / this.songHowl.duration()) * time;
