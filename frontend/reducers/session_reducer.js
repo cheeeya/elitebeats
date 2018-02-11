@@ -6,7 +6,7 @@ import {
   FINISH_UPDATE
 } from '../actions/session_actions';
 import { merge } from 'lodash';
-import { REMOVE_SONG } from '../actions/song_actions';
+import { REMOVE_SONG, RECEIVE_SONG } from '../actions/song_actions';
 
 const _nullState = {
   currentUser: null,
@@ -28,6 +28,7 @@ const sessionReducer = (state = _nullState, action) => {
       return newState;
     case RECEIVE_ERRORS:
       return state;
+    case RECEIVE_SONG:
     case REMOVE_SONG:
       return merge({}, state, { updateRequired: true });
     case FINISH_UPDATE:

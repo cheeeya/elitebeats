@@ -1,5 +1,5 @@
 import { RECEIVE_USER_PROFILE } from '../actions/profile_actions';
-import { merge } from 'lodash';
+import { merge, pick, keys } from 'lodash';
 
 const profileReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -7,7 +7,10 @@ const profileReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_USER_PROFILE:
       let userData = action.userData;
-      return merge(newState, state, { [userData.profile_url]: userData })
+      newState =  merge({}, state);
+      delete newState[userData.profile_url];
+      newState = merge(newState, { [userData.profile_url]: userData });
+      return newState;
     default:
       return state;
   }

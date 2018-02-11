@@ -77,7 +77,6 @@ class SongUploadForm extends React.Component {
     } else {
       this.setState({ artworkUrl: "", artwork: null });
     }
-    console.log(this.state);
   }
 
   handleUpdate(field) {
