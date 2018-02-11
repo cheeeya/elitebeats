@@ -39,9 +39,12 @@ class Player extends React.Component {
         if (this.state.muted) {
           this.songHowl.mute(true);
         }
-        if (!this.state.disabled && currentIndex + 1 === Object.keys(this.props.currentPlaylist).length) {
+        console.log(currentIndex);
+        console.log(cPlaylist.length);
+        console.log(this.state.disabled);
+        if (!this.state.disabled && currentIndex + 1 >= cPlaylist.length) {
           this.setState({ disabled: true });
-        } else if (this.state.disabled && currentIndex !== Object.keys(this.props.currentPlaylist).length){
+        } else if (this.state.disabled && currentIndex + 1 !== cPlaylist.length){
           this.setState({ disabled: false });
         }
       }
