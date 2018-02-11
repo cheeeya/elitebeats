@@ -25,17 +25,16 @@ class SongUploadForm extends React.Component {
 
   titleToPermalink(title) {
     let plink = title;
-    let plinkArr = plink.split(".");
-    if (plinkArr.length > 2) {
-      plink = plinkArr.splice(0, plinkArr.length - 1).join(".");
-    } else {
-      plink = plinkArr[0];
-    }
     plink = plink.replace(/[-@#]/g, " ");
     plink = plink.replace(/\s\s+/g, " ");
     plink = plink.replace(/[ ]/g, "-");
     plink = plink.replace(/['()\[\]{}$%^&+=!,;"~`,|.]/g, "");
     return plink.toLowerCase();
+  }
+
+  capitalizeTitle(title) {
+    let titleArr = title.split(" ");
+    return titleArr.map(word => word[0].toUpperCase().concat(word.slice(1))).join(" ");
   }
 
   handleUploadButton(inputId) {
@@ -49,8 +48,11 @@ class SongUploadForm extends React.Component {
     e.preventDefault();
     const reader = new FileReader();
     const file = e.currentTarget.files[0];
-    let permalink = this.titleToPermalink(file.name);
-    reader.onloadend = () => this.setState({ songUrl: reader.result, songFile: file, title: file.name, permalink });
+    let title = file.name.split(".");
+    title = title.length > 2 ? title.slice(0, title.length - 1).join(".") : title[0];
+    let permalink = this.titleToPermalink(title);
+    title = this.capitalizeTitle(title);
+    reader.onloadend = () => this.setState({ songUrl: reader.result, songFile: file, title, permalink });
     if (file) {
       reader.readAsDataURL(file);
     } else {
