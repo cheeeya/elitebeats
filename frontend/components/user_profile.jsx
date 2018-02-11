@@ -78,7 +78,12 @@ class UserProfile extends React.Component {
             </div>
             <ul className="all-tracks">
               {
-                Object.values(tracks.allSongs).map(track => <SongItemContainer key={track.id} song={track} path="profile"/>)
+                Object.values(tracks.allTracks).map(track => {
+                  if (typeof track === 'object'){
+                    return <SongItemContainer key={track.id} song={track} path="profile" playlist={tracks.allTracks.title}/>
+                  }
+                  return null;
+                })
               }
             </ul>
           </section>
