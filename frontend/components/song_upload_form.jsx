@@ -127,8 +127,7 @@ class SongUploadForm extends React.Component {
       }
     } else {
       if (this.props.page === 'modal') {
-        this.props.updateSong(formData, id);
-        window.closeEdit;
+        this.props.updateSong(formData, id).then(() => window.closeEdit());
       }
     }
 
