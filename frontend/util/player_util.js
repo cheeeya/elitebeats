@@ -17,7 +17,7 @@
 
 
 export const getSongFromPlaylist = (playlist, songIndex) => {
-  let songArray = Object.values(playlist);
+  let songArray = Object.values(playlist).reverse();
   if (songArray[songIndex]) {
     return songArray[songIndex];
   } else {
