@@ -5,7 +5,7 @@ import SongIndex from './song_index';
 
 
 const mapStateToProps = (state) => ({
-   songs: Object.values(state.entities.playlists.allSongs),
+   songs: Object.values(state.entities.playlists.allSongs).reverse(),
    currentSong: state.player.currentSong
 });
 
