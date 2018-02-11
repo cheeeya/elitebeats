@@ -24,11 +24,18 @@ class SongUploadForm extends React.Component {
   }
 
   titleToPermalink(title) {
-    let plink = title.replace(/[-@#]/g, " ");
+    let plink = title;
+    let plinkArr = plink.split(".");
+    if (plinkArr.length > 2) {
+      plink = plinkArr.splice(0, plinkArr.length - 1).join(".");
+    } else {
+      plink = plinkArr[0];
+    }
+    plink = plink.replace(/[-@#]/g, " ");
     plink = plink.replace(/\s\s+/g, " ");
     plink = plink.replace(/[ ]/g, "-");
-    plink = plink.replace(/['()\[\]{}$%^&+=!,;"~`,|]/g, "");
-    return plink.split(".")[0].toLowerCase();
+    plink = plink.replace(/['()\[\]{}$%^&+=!,;"~`,|.]/g, "");
+    return plink.toLowerCase();
   }
 
   handleUploadButton(inputId) {
