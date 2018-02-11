@@ -37,6 +37,10 @@
   margin-top: 7px;
 }
 
+.genre-select {
+  width: 220px;
+}
+
 .upload-form-input-div input:focus {
   border: 1px solid gray;
   outline: none;
@@ -77,19 +81,18 @@
 #upload-form-permalink-div {
   margin-bottom: 15px;
   font-size: 13px;
-  width: 530px;
+  width: 418px;
   margin-right:0;
 }
 
 #upload-form-permalink-input {
-  border: none;
+  border: 1px solid transparent;
   padding: 5px 0;
-  width: 317px;
+  width: auto;
 }
 
 #upload-form-permalink-input:focus {
-  border: 1px solid gray;
-
+  border-color: gray;
 }
 .upload-form-permalink-span {
   color: gray;
@@ -149,4 +152,8 @@
 
 .disabled-button:hover {
   cursor: default;
+}
+
+.genre-span{
+  display: block;
 }

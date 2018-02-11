@@ -176,8 +176,8 @@ class SongUploadForm extends React.Component {
               </div>
               <div className="upload-form-input-div">
                 <label>
-                  Genre
-                  <select onChange={this.handleUpdate('genre')}>
+                  <span className="genre-span">Genre:</span>
+                  <select className="genre-select" onChange={this.handleUpdate('genre')}>
                     <option value="none" selecter="selected">None</option>
                     <option value="alternative">Alternative Rock</option>
                     <option value="ambient">Ambient</option>
