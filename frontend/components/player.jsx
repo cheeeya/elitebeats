@@ -37,7 +37,6 @@ class Player extends React.Component {
         let currentIndex = cPlaylist.indexOf(nextProps.song.id.toString())
         console.log(cPlaylist);
         this.setState({ currentIndex });
-        console.log(currentIndex);
         if (this.state.muted) {
           this.songHowl.mute(true);
         }

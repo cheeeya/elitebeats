@@ -15,7 +15,6 @@ class UserProfile extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.pathname !== this.props.location.pathname || nextProps.updateRequired) {
-      console.log(nextProps.updateRequired);
       let profile_url = nextProps.location.pathname.split("/")[1];
       this.props.fetchUserProfile(profile_url);
       this.props.finishUpdate();
@@ -79,7 +78,7 @@ class UserProfile extends React.Component {
             </div>
             <ul className="all-tracks">
               {
-                Object.values(tracks).map(track => <SongItemContainer key={track.id} song={track} path="profile"/>)
+                Object.values(tracks.allSongs).map(track => <SongItemContainer key={track.id} song={track} path="profile"/>)
               }
             </ul>
           </section>
