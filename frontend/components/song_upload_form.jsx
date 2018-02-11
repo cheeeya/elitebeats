@@ -55,12 +55,12 @@ class SongUploadForm extends React.Component {
     e.preventDefault();
     const reader = new FileReader();
     const file = e.currentTarget.files[0];
-    let title = file.name.split(".");
-    title = title.length > 2 ? title.slice(0, title.length - 1).join(".") : title[0];
-    let permalink = this.titleToPermalink(title);
-    title = this.capitalizeTitle(title);
-    reader.onloadend = () => this.setState({ songUrl: reader.result, songFile: file, title, permalink });
     if (file) {
+      let title = file.name.split(".");
+      title = title.length > 2 ? title.slice(0, title.length - 1).join(".") : title[0];
+      let permalink = this.titleToPermalink(title);
+      title = this.capitalizeTitle(title);
+      reader.onloadend = () => this.setState({ songUrl: reader.result, songFile: file, title, permalink });
       reader.readAsDataURL(file);
     } else {
       this.setState({ songUrl: "", songFile: null });
