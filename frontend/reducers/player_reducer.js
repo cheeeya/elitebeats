@@ -13,6 +13,7 @@ const playerReducer = (state = _default, action) => {
   switch (action.type) {
     case RECEIVE_CURRENT_PLAYLIST:
       let currentPlaylist = action.playlist;
+      console.log(currentPlaylist);
       newState = merge(newState, state, { currentPlaylist });
       return newState;
     case PLAY_SONG:

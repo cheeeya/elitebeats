@@ -5,7 +5,9 @@ const songReducer = (state = {}, action) => {
   let newState = {};
   switch (action.type) {
     case RECEIVE_ALL_SONGS:
-      return action.allSongs;
+      newState = merge({}, action.allSongs);
+      delete newState.title;
+      return newState;
     case RECEIVE_SONG:
       let song = action.song;
       newState = merge(newState, state, { [song.id]: song });
