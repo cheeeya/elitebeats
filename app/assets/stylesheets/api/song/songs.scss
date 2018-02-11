@@ -34,9 +34,10 @@
   width: 100%;
 }
 
-.song-list-item {
+.song-item {
   width: 839px;
   display: flex;
+  margin-bottom: 36px;
 }
 
 .songtitle {
@@ -48,10 +49,6 @@
   font-size: 12px;
   color: #999999;
   line-height: 16px;
-}
-
-.song-list-item {
-  margin-bottom: 36px;
 }
 
 .songtitle-author:hover {

@@ -1,4 +1,5 @@
-json.extract! song, :id, :title, :description, :permalink, :author_id
+json.extract! song, :id, :title, :description, :permalink, :author_id, :created_at
+json.author_picture_url song.author.profile_picture.url
 json.author_name song.author.display_name
 json.image_url asset_path(song.image.url)
 json.author_url song.author.profile_url
