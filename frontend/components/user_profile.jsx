@@ -78,7 +78,7 @@ class UserProfile extends React.Component {
             </div>
             <ul className="all-tracks">
               {
-                Object.values(tracks.allTracks).map(track => {
+                Object.values(tracks.allTracks).reverse().map(track => {
                   if (typeof track === 'object'){
                     return (
                       <li className="profile-song-list-item" key={track.id}>
