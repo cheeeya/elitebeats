@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180208215146) do
+ActiveRecord::Schema.define(version: 20180211140801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "songs", force: :cascade do |t|
     t.string "title", null: false
-    t.string "genre", default: "None"
+    t.string "genre", default: "none"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20180208215146) do
     t.datetime "songfile_updated_at"
     t.string "aws_url"
     t.string "permalink", null: false
+    t.string "seed_image_url"
     t.index ["author_id", "permalink"], name: "index_songs_on_author_id_and_permalink", unique: true
   end
 
@@ -54,6 +55,8 @@ ActiveRecord::Schema.define(version: 20180208215146) do
     t.string "cover_content_type"
     t.integer "cover_file_size"
     t.datetime "cover_updated_at"
+    t.string "s_prof_pic_url"
+    t.string "s_cover_url"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["profile_url"], name: "index_users_on_profile_url", unique: true
   end

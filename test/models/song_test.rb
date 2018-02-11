@@ -4,7 +4,7 @@
 #
 #  id                    :integer          not null, primary key
 #  title                 :string           not null
-#  genre                 :string           default("None")
+#  genre                 :string           default("none")
 #  description           :string
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
@@ -19,6 +19,7 @@
 #  songfile_updated_at   :datetime
 #  aws_url               :string
 #  permalink             :string           not null
+#  seed_image_url        :string
 #
 
 require 'test_helper'

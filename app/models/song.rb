@@ -4,7 +4,7 @@
 #
 #  id                    :integer          not null, primary key
 #  title                 :string           not null
-#  genre                 :string           default("None")
+#  genre                 :string           default("none")
 #  description           :string
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
@@ -19,6 +19,7 @@
 #  songfile_updated_at   :datetime
 #  aws_url               :string
 #  permalink             :string           not null
+#  seed_image_url        :string
 #
 
 class Song < ApplicationRecord
@@ -28,7 +29,7 @@ class Song < ApplicationRecord
     path: "/songs/images/:id/original/:basename.:extension"
   has_attached_file :songfile, path: "/songs/songfiles/:id/original/:basename.:extension"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-  validates_attachment_content_type :songfile, content_type: ['audio/mp3', 'audio/mp4', 'audio/mpeg', 'audio/mpeg3']
+  validates_attachment_content_type :songfile, content_type: ['audio/mp3', 'audio/mpeg', 'audio/mpeg3']
 
   belongs_to :author,
     primary_key: :id,

@@ -2,17 +2,27 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  email           :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  info            :text
-#  follows_id      :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  profile_url     :string           not null
-#  age             :integer          not null
-#  display_name    :string           not null
+#  id                           :integer          not null, primary key
+#  email                        :string           not null
+#  password_digest              :string           not null
+#  session_token                :string           not null
+#  info                         :text
+#  follows_id                   :integer
+#  created_at                   :datetime         not null
+#  updated_at                   :datetime         not null
+#  profile_url                  :string           not null
+#  age                          :integer          not null
+#  display_name                 :string           not null
+#  profile_picture_file_name    :string
+#  profile_picture_content_type :string
+#  profile_picture_file_size    :integer
+#  profile_picture_updated_at   :datetime
+#  cover_file_name              :string
+#  cover_content_type           :string
+#  cover_file_size              :integer
+#  cover_updated_at             :datetime
+#  s_prof_pic_url               :string
+#  s_cover_url                  :string
 #
 
 class User < ApplicationRecord
@@ -20,8 +30,12 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, allow_nil: true
   validates :age, numericality: { greater_than_or_equal_to: 13, message: "must be at least 13 years old" }
   validates :profile_url, :email, uniqueness: true
-  has_attached_file :profile_picture, default_url: "http://res.cloudinary.com/elitebeats/image/upload/v1518126520/defaultprofile_zl2itc.png"
-  has_attached_file :cover, default_url: "http://res.cloudinary.com/elitebeats/image/upload/v1518134151/page-background-default_gg8ppn.jpg"
+  has_attached_file :profile_picture,
+    default_url: "http://res.cloudinary.com/elitebeats/image/upload/v1518126520/defaultprofile_zl2itc.png",
+    path: "/users/images/profile_pictures/:id/original/:basename.:extension"
+  has_attached_file :cover,
+    default_url: "http://res.cloudinary.com/elitebeats/image/upload/v1518134151/page-background-default_gg8ppn.jpg",
+    path: "/users/images/covers/:id/original/:basename.:extension"
   validates_attachment_content_type :profile_picture, :cover, content_type: /\Aimage\/.*\Z/
 
   after_initialize :ensure_session_token, :ensure_profile_url, :ensure_display_name
