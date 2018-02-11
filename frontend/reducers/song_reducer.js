@@ -12,9 +12,6 @@ const songReducer = (state = {}, action) => {
       let song = action.song;
       newState = merge(newState, state, { [song.id]: song });
       return newState;
-    case REMOVE_SONG:
-      newState = merge({}, state, { [action.song.id]: null });
-      return newState;
     default:
       return state;
   }
