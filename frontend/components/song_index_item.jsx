@@ -94,7 +94,7 @@ class SongIndexItem extends React.Component {
       }
     }
     return (
-      <li className="song-list-item">
+      <div className="song-item">
         <Link to={permalink}><img className="song-artwork" src={song.image_url} /></Link>
         <div className="songtitle">
           <button className="song-list-playback-button" id={`song-list-${button}-button`} onClick={this.handleClick(button)}><span className="playback-button-txt">{button}</span></button>
@@ -110,7 +110,7 @@ class SongIndexItem extends React.Component {
             </ul>
           </div>
         </div>
-      </li>
+      </div>
     );
   }
 }
