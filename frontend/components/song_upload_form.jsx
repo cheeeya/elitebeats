@@ -34,7 +34,14 @@ class SongUploadForm extends React.Component {
 
   capitalizeTitle(title) {
     let titleArr = title.split(" ");
-    return titleArr.map(word => word[0].toUpperCase().concat(word.slice(1))).join(" ");
+    return titleArr.map(
+      (word) => {
+        if (word) {
+          return word[0].toUpperCase().concat(word.slice(1));
+        }
+        return word;
+      }
+    ).join(" ");
   }
 
   handleUploadButton(inputId) {
