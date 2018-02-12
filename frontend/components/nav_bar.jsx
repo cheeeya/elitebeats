@@ -10,6 +10,10 @@ class NavBar extends React.Component {
 
   handleLogout(e) {
     e.preventDefault;
+    if (window.songHowl) {
+      this.props.pause();
+      window.songHowl.unload();
+    }
     this.props.logout();
   }
 
