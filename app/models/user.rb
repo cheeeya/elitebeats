@@ -31,10 +31,10 @@ class User < ApplicationRecord
   validates :age, numericality: { greater_than_or_equal_to: 13, message: "must be at least 13 years old" }
   validates :profile_url, :email, uniqueness: true
   has_attached_file :profile_picture,
-    default_url: "http://res.cloudinary.com/elitebeats/image/upload/v1518126520/defaultprofile_zl2itc.png",
+    default_url: "https://res.cloudinary.com/elitebeats/image/upload/v1518126520/defaultprofile_zl2itc.png",
     path: "/users/images/profile_pictures/:id/original/:basename.:extension"
   has_attached_file :cover,
-    default_url: "http://res.cloudinary.com/elitebeats/image/upload/v1518134151/page-background-default_gg8ppn.jpg",
+    default_url: "https://res.cloudinary.com/elitebeats/image/upload/v1518134151/page-background-default_gg8ppn.jpg",
     path: "/users/images/covers/:id/original/:basename.:extension"
   validates_attachment_content_type :profile_picture, :cover, content_type: /\Aimage\/.*\Z/
 
