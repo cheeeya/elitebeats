@@ -182,7 +182,7 @@ class Player extends React.Component {
           <div className="volume-control-max"><div className="volume-control-current"></div></div>
         </div>
         <div className="player-song-info">
-          <Link to={song.permalink}><img className="player-song-artwork" src={song.image_url} /></Link>
+          <Link to={permalink}><img className="player-song-artwork" src={song.image_url} /></Link>
           <ul>
             <li><Link to={author_url}><span className="player-song-author">{song.author_name}</span></Link></li>
             <li><Link to={permalink}><span className="player-song-title">{song.title}</span></Link></li>
