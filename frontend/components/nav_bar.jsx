@@ -34,7 +34,7 @@ class NavBar extends React.Component {
       <header>
         <div id='nav-bar'>
           <div className="nav-logo">
-            <Link to="/stream" className="root-link"><img className="logo-blue" src="http://res.cloudinary.com/elitebeats/image/upload/v1517614712/LOGO-blue_v54gez.jpg"></img></Link>
+            <Link to="/stream" className="root-link"><img className="logo-blue" src="https://res.cloudinary.com/elitebeats/image/upload/v1517614712/LOGO-blue_v54gez.jpg"></img></Link>
           </div>
           <div className="left-nav">
             <Link to="/stream"><div className="nav-link" id="home-link">Home</div></Link>

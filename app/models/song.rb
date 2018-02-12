@@ -25,7 +25,7 @@
 class Song < ApplicationRecord
   validates :title, :author_id, :permalink, presence: true
   has_attached_file :image,
-    default_url: "http://res.cloudinary.com/elitebeats/image/upload/v1518134441/default_album_kynclq.png",
+    default_url: "https://res.cloudinary.com/elitebeats/image/upload/v1518134441/default_album_kynclq.png",
     path: "/songs/images/:id/original/:basename.:extension"
   has_attached_file :songfile, path: "/songs/songfiles/:id/original/:basename.:extension"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
