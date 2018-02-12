@@ -154,6 +154,12 @@ class Player extends React.Component {
     let progressBallStyle = {
       marginLeft: (progressWidth - 4) + 'px'
     }
+    let author_url = "";
+    let permalink = "";
+    if (song) {
+      author_url = `/${song.author_url}`;
+      permalink = `${author_url}/${song.permalink}`;
+    }
     return(
       <section className="music-player">
         <button className="player-button" id="player-prev-button" onClick={this.handleNext(currentIndex - 1)}></button>
@@ -178,8 +184,8 @@ class Player extends React.Component {
         <div className="player-song-info">
           <Link to={song.permalink}><img className="player-song-artwork" src={song.image_url} /></Link>
           <ul>
-            <li><Link to={song.author_url}><span className="player-song-author">{song.author_name}</span></Link></li>
-            <li><Link to={song.permalink}><span className="player-song-title">{song.title}</span></Link></li>
+            <li><Link to={author_url}><span className="player-song-author">{song.author_name}</span></Link></li>
+            <li><Link to={permalink}><span className="player-song-title">{song.title}</span></Link></li>
           </ul>
         </div>
       </section>
