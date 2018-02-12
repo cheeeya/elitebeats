@@ -9,7 +9,7 @@ class SongIndexItem extends React.Component {
       status: this.props.status,
       showMore: false
     }
-    this.button = this.button.bind(this);
+    this.playbackButton = this.playbackButton.bind(this);
     this.showMoreToggle = this.showMoreToggle.bind(this);
     this.closeShowMore = this.closeShowMore.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
@@ -51,7 +51,7 @@ class SongIndexItem extends React.Component {
     }
   }
 
-  button() {
+  playbackButton() {
     if (this.state.status === 'play') {
       return 'pause';
     } else {
@@ -73,7 +73,7 @@ class SongIndexItem extends React.Component {
   render() {
     const { song } = this.props;
     const { status, showMore } = this.state;
-    const button = this.button();
+    const playbackButton = this.playbackButton();
     let author_url = "";
     let permalink = "";
     if (song) {
@@ -100,7 +100,7 @@ class SongIndexItem extends React.Component {
         <Link to={permalink}><div className="song-artwork" style={{ backgroundImage: `url(${song.image_url})`}} /></Link>
         <div className="song-item-right">
           <div className="songtitle">
-            <button className="song-list-playback-button" id={`song-list-${button}-button`} onClick={this.handleClick(button)}><span className="playback-button-txt">{button}</span></button>
+            <button className="song-list-playback-button" id={`song-list-${playbackButton}-button`} onClick={this.handleClick(playbackButton)}><span className="playback-button-txt">{playbackButton}</span></button>
             <ul className="songtitle-list">
               <li className="songtitle-list-el"><Link to={author_url}><span className="songtitle-author">{song.author_name}</span></Link></li>
               <li className="songtitle-list-el"><Link to={permalink}><span className="songtitle-title">{song.title}</span></Link></li>

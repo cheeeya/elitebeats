@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
     post '/users/find', to: 'users#verify_user_exists'
     get '/users/:profile_url', to: 'users#get_user'
+    get '/users/:profile_url/songs/:permalink', to: 'songs#fetch_song'
   end
 
   # namespace :api, defaults: { format: :plain } do

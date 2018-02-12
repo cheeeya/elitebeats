@@ -1,4 +1,117 @@
 .song-show-page {
   position: absolute;
   top: 46px;
+  background: white;
+}
+
+.song-page-playback-button {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 60px;
+  width: 60px;
+  margin-right: 5px;
+  border: none;
+}
+
+#song-page-play-button {
+  background-image: url('http://res.cloudinary.com/elitebeats/image/upload/v1518427647/playbutton_d04vy0.png');
+  background-color: transparent;
+}
+
+#song-page-pause-button {
+  background-image: url('http://res.cloudinary.com/elitebeats/image/upload/v1518428461/pausebutton_aj6oxo.png');
+  background-color: transparent;
+}
+
+.song-page-header {
+  background-image: url('http://res.cloudinary.com/elitebeats/image/upload/v1518134094/default-cover3_x3axyo.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 1260px;
+  height: 380px;
+  display: flex;
+}
+
+.song-page-header-left {
+  display: flex;
+  padding: 30px 10px 20px 30px;
+}
+
+.song-page-header-title {
+  margin-left: 10px;
+  width: 615px;
+  height: 60px;
+}
+
+.header-author-div {
+  margin-bottom: 10px;
+  height: 21px;
+}
+
+.header-author {
+  position: relative;
+  top: 2px;
+  font-size: 16px;
+  color: #cccccc;
+  background: black;
+  padding: 5px 7px 1px 7px;
+}
+
+.header-author:hover {
+  color: white;
+}
+
+
+.header-title-songtitle {
+  font-size: 24px;
+  background: black;
+  padding: 8px 8px 4px 8px;
+  color: white;
+}
+
+.header-info {
+  color: white;
+  font-size: 16px;
+  font-weight: 100;
+  width: 150px;
+  display: block;
+  height: 60px;
+}
+
+.header-time {
+  position: relative;
+  top: 5px;
+  font-size: 16px;
+  margin-bottom: 17px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.header-genre {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.header-genre > span {
+  font-size: 16px;
+  background: #999999;
+  border-radius: 20px;
+  justify-content: space-around;
+  padding: 5px 5px 1px 5px;
+}
+
+.song-header-artwork {
+  height: 340px;
+  width: 340px;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 20px;
+}
+
+.song-page-main {
+  padding: 30px;
 }

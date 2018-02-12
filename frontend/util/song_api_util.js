@@ -35,3 +35,11 @@ export const deleteSong = (songId) => (
     url: `api/songs/${songId}`,
   })
 );
+
+
+export const fetchSong = (profile_url, permalink) => (
+  $.ajax({
+    method: 'GET',
+    url: `api/users/${profile_url}/songs/${permalink}`
+  })
+);

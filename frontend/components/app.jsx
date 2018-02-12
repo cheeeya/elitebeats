@@ -6,7 +6,7 @@ import SessionFormContainer from './session_form_container';
 import MainContainer from './main_container';
 import NavBarContainer from './nav_bar_container';
 import SongUploadFormContainer from './song_upload_form_container';
-import SongPageContainer from './song_page_container';
+import SongProfileContainer from './song_profile_container';
 import UserProfileContainer from './user_profile_container';
 import PlayerContainer from './player_container';
 
@@ -32,7 +32,7 @@ class App extends React.Component {
           <ProtectedRoute exact path="/home" component={MainContainer} />
           <ProtectedRoute exact path="/collection" component={MainContainer} />
           <ProtectedRoute exact path="/upload" component={SongUploadFormContainer} />
-          <Route exact path="/:author_url/:permalink" component={SongPageContainer} />
+          <Route exact path="/:author_url/:permalink" component={SongProfileContainer} />
           <Route exact path="/:author_url" component={UserProfileContainer} />
         </Switch>
         {player}
