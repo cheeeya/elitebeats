@@ -23,7 +23,7 @@ class Main extends React.Component {
         <section className="main-section">
           <div className="main-tabs">
             <Link className={`main-tab-link ${streamActive}`} to="/stream">Stream</Link>
-            <Link className={`main-tab-link ${discoverActive}`} to="/stream">Discover</Link>
+            <Link className={`main-tab-link ${discoverActive}`} to="/home">Discover</Link>
           </div>
           {element}
         </section>
