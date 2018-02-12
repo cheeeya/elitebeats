@@ -2,7 +2,7 @@ import { PLAY_SONG, NEXT_SONG, PREV_SONG, PAUSE_SONG, RECEIVE_CURRENT_PLAYLIST }
 import { merge } from 'lodash';
 
 const _default = {
-  currentPlaylist: "",
+  currentPlaylist: "allSongs",
   currentSong: null
 }
 
