@@ -15,15 +15,12 @@ class Main extends React.Component {
     if (this.props.location.pathname === '/stream') {
       element = <SongIndexContainer />
       streamActive = "selected-tab";
-    } else if (this.props.location.pathname === '/home') {
-      discoverActive = "selected-tab";
     }
     return (
       <main className="main">
         <section className="main-section">
           <div className="main-tabs">
             <Link className={`main-tab-link ${streamActive}`} to="/stream">Stream</Link>
-            <Link className={`main-tab-link ${discoverActive}`} to="/home">Discover</Link>
           </div>
           {element}
         </section>

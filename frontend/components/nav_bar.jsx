@@ -38,7 +38,7 @@ class NavBar extends React.Component {
           </div>
           <div className="left-nav">
             <Link to="/stream"><div className="nav-link" id="home-link">Home</div></Link>
-            <Link to="/collection"><div className="nav-link" id="collection-link">Collection</div></Link>
+            <Link to="/stream"><div className="nav-link" id="collection-link">Collection</div></Link>
           </div>
           <div className="search-bar-wrapper">
             <input className="search-bar" placeholder="Search"></input>

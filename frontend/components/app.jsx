@@ -29,8 +29,6 @@ class App extends React.Component {
         <Switch>
           <AuthRoute exact path="/" component={SplashContainer} />
           <ProtectedRoute exact path="/stream" component={MainContainer} />
-          <ProtectedRoute exact path="/home" component={MainContainer} />
-          <ProtectedRoute exact path="/collection" component={MainContainer} />
           <ProtectedRoute exact path="/upload" component={SongUploadFormContainer} />
           <Route exact path="/:author_url/:permalink" component={SongProfileContainer} />
           <Route exact path="/:author_url" component={UserProfileContainer} />
