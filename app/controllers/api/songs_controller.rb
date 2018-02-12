@@ -29,6 +29,17 @@ class Api::SongsController < ApplicationController
     render json: @song.delete
   end
 
+  def fetch_song
+    @user = User.find_by(profile_url: params[:profile_url])
+    if (@user)
+      @song = @user.songs.find_by(permalink: params[:permalink])
+      if (@song)
+        render :show
+        return
+      end
+    end
+    render json: @song.errors.full_messages, status: 404
+  end
 
   private
   def song_params
