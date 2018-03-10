@@ -46,6 +46,11 @@ class User < ApplicationRecord
     primary_key: :id,
     foreign_key: :author_id,
     class_name: 'Song'
+    
+  has_many :comments,
+    primary_key: :id,
+    foreign_key: :author_id,
+    class_name; 'Comment'
 
   def self.user_exists? (identifier)
     !!User.find_by_identifier(identifier)
