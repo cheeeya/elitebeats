@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  validates :author_id, :song_id, :body, presence: true
+
   belongs_to :song,
     primary_key: :id,
     foreign_key: :song_id,
