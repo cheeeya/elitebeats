@@ -36,9 +36,12 @@ class Song < ApplicationRecord
     foreign_key: :author_id,
     class_name: 'User'
 
+<<<<<<< HEAD
   has_many :comments,
     primary_key: :id,
     foreign_key: :song_id,
     class_name: 'Comment'
 
+=======
+>>>>>>> 6fbb183f43d5d711ff4e3a5bf6bc872b82906e06
 end
