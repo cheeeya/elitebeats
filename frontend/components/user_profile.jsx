@@ -50,14 +50,14 @@ class UserProfile extends React.Component {
   render () {
     const { profile, currentUser } = this.props;
     let tracks = {};
-    let isOwner = "";
+    let isOwner = "disabled";
     let tracksElement = <div className="profile-empty-tracks">
                           <img className="profile-no-tracks-img" src="http://res.cloudinary.com/elitebeats/image/upload/v1520851992/no-music_z6x98i.png"></img>
                           <h4 className="profile-empty-h4">Nothing to hear here</h4>
                         </div>;
     if (currentUser && profile) {
       if (currentUser.profile_url === profile.profile_url) {
-        isOwner = "update";
+        isOwner = "";
       }
     }
     if (profile) {
@@ -85,7 +85,7 @@ class UserProfile extends React.Component {
           <div className="profile-cover" style={{ backgroundImage: `url(${profile.cover_url})` }}>
             <div className="profile-picture" style={{ backgroundImage: `url(${profile.profile_picture_url})`}}>
               <input id="profile-pic-input" type="file" onChange={this.handleFile('profile_picture')}></input>
-              <button onClick={this.triggerFileUpload('profile-pic')} className={`${isOwner}-profile-pic`}><span><i className="fas fa-camera"></i>  Update image</span></button>
+              <button onClick={this.triggerFileUpload('profile-pic')} className={`update-profile-pic ${isOwner}`} disabled={isOwner === "disabled"}><span><i className="fas fa-camera"></i>  Update image</span></button>
             </div>
             <div className="profile-header">
               <h1 className="display-name"><span>{this.props.profile.display_name}</span></h1>
