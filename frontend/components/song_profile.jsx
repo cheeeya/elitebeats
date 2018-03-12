@@ -72,7 +72,7 @@ class SongProfile extends React.Component {
   render() {
     const playbackButton = this.playbackButton();
     const { songProfile, currentUser } = this.props;
-    let userAvatarUrl = "http://res.cloudinary.com/elitebeats/image/upload/v1520836942/blue_v6mtey.jpg";
+    let userAvatarUrl = "https://res.cloudinary.com/elitebeats/image/upload/v1520836942/blue_v6mtey.jpg";
     if (!songProfile) {
       return null;
     }

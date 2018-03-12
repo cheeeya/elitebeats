@@ -39,7 +39,7 @@ class NavBar extends React.Component {
       <header>
         <div id='nav-bar'>
           <div className="nav-logo">
-            <Link to="/stream" className="root-link"><img className="logo-blue" src="http://res.cloudinary.com/elitebeats/image/upload/v1520850261/eb_icon_bluewhite_calphx.png"></img></Link>
+            <Link to="/stream" className="root-link"><img className="logo-blue" src="https://res.cloudinary.com/elitebeats/image/upload/v1520850261/eb_icon_bluewhite_calphx.png"></img></Link>
           </div>
           <div className="left-nav">
             <Link to="/stream"><div className="nav-link" id="home-link">Home</div></Link>
