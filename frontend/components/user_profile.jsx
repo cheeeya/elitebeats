@@ -51,6 +51,9 @@ class UserProfile extends React.Component {
     const { profile, currentUser } = this.props;
     let tracks = {};
     let isOwner = "";
+    let tracksElement = <div className="profile-empty-tracks">
+                          <img className="profile-no-tracks-img" src="http://res.cloudinary.com/elitebeats/image/upload/v1520851992/no-music_z6x98i.png"></img>
+                        </div>;
     if (currentUser && profile) {
       if (currentUser.profile_url === profile.profile_url) {
         isOwner = "update";
@@ -59,6 +62,22 @@ class UserProfile extends React.Component {
     if (profile) {
       if (profile.tracks) {
         tracks = profile.tracks;
+        if (Object.values(tracks.allTracks).length > 1) {
+          tracksElement = <ul className="all-tracks">
+                            {
+                              Object.values(tracks.allTracks).reverse().map(track => {
+                                if (typeof track === 'object'){
+                                  return (
+                                    <li className="profile-song-list-item" key={track.id}>
+                                      <SongItemContainer song={track} path="profile" playlist={tracks.allTracks.title}/>
+                                    </li>
+                                  )
+                                }
+                                return null;
+                              })
+                            }
+                          </ul>
+        }
       }
       return (
         <section className="profile-page">
@@ -76,20 +95,7 @@ class UserProfile extends React.Component {
             <div className="profile-tabs">
               <div className="profile-tab-all"><span>All</span></div>
             </div>
-            <ul className="all-tracks">
-              {
-                Object.values(tracks.allTracks).reverse().map(track => {
-                  if (typeof track === 'object'){
-                    return (
-                      <li className="profile-song-list-item" key={track.id}>
-                        <SongItemContainer song={track} path="profile" playlist={tracks.allTracks.title}/>
-                      </li>
-                    )
-                  }
-                  return null;
-                })
-              }
-            </ul>
+            {tracksElement}
           </section>
           <SongFormModal loc="profile-page"/>
         </section>

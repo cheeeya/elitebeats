@@ -18,15 +18,15 @@
 }
 
 .upload-form-page {
-  position: relative;
+  box-sizing: border-box;
   display:flex;
   flex-direction: column;
   align-items: center;
-  top: 46px;
   background: white;
-  padding: 30px;
+  padding: 76px 30px 30px 30px;
   margin: 0 10px;
-  width: 1200px;
+  width: 1260px;
+  min-height: 100vh;
 }
 
 .upload-form-input-div input, select, textarea {

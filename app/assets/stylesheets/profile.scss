@@ -1,9 +1,9 @@
 .profile-page {
-  position: absolute;
-  top: 46px;
+  box-sizing: border-box;
+  padding-top: 46px;
   width: 1260px;
   min-width: 900px;
-  min-height: 600px;
+  min-height: 100vh;
   background: white;
 }
 
@@ -93,4 +93,16 @@ button[class*="profile-pic"] {
   border: none;
   background-color: none;
   opacity: 0;
+}
+
+.profile-empty-tracks {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-no-tracks-img {
+  height: 178px;
+  width: 240px;
 }
