@@ -73,7 +73,6 @@ class SongProfile extends React.Component {
     const playbackButton = this.playbackButton();
     const { songProfile, currentUser } = this.props;
     let userAvatarUrl = "http://res.cloudinary.com/elitebeats/image/upload/v1520836942/blue_v6mtey.jpg";
-    console.log(songProfile);
     if (!songProfile) {
       return null;
     }
@@ -111,8 +110,8 @@ class SongProfile extends React.Component {
             </div>
             <div className="song-info">
               <div className="song-info-author-info">
-                <div className="song-info-author-image" style={{ backgroundImage: `url(${songProfile.author_picture_url})`}}></div>
-                <span className="song-info-author-name">{songProfile.author_name}</span>
+                <Link to={`/${songProfile.author_url}`}><div className="song-info-author-image" style={{ backgroundImage: `url(${songProfile.author_picture_url})`}}></div></Link>
+                <Link to={`/${songProfile.author_url}`}><span className="song-info-author-name">{songProfile.author_name}</span></Link>
                 <div className="song-info-author-details">
                   <div className="song-info-author-icon-followers"></div>
                   <span>0</span>
