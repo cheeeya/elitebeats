@@ -71,9 +71,13 @@ class SongProfile extends React.Component {
 
   render() {
     const playbackButton = this.playbackButton();
-    const { songProfile } = this.props;
+    const { songProfile, currentUser } = this.props;
+    let userAvatarUrl = "http://res.cloudinary.com/elitebeats/image/upload/v1520836942/blue_v6mtey.jpg";
     if (!songProfile) {
       return null;
+    }
+    if (currentUser) {
+      userAvatarUrl = currentUser.profile_picture_url;
     }
     let time = this.timeFormat(songProfile.created_at);
     let genre;
@@ -98,9 +102,11 @@ class SongProfile extends React.Component {
         </div>
         <div className="song-page-main">
           <div className="song-comments">
-            <div className="comment-user-image" style={{ backgroundImage: `url(${currentUser.profile_picture_url})`}}></div>
-            <div className="comment-input-div">
-              <input type="text" className="song-comment-input" placeholder="Write a comment"></input>
+            <div className="write-comment-div">
+              <div className="comment-user-image" style={{ backgroundImage: `url(${userAvatarUrl})`}}></div>
+              <div className="comment-input-div">
+                <input type="text" className="song-comment-input" placeholder="Write a comment"></input>
+              </div>
             </div>
           </div>
         </div>

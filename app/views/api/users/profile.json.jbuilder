@@ -1,9 +1,4 @@
 json.extract! @user, :id, :display_name, :profile_url, :info
-if @user.s_prof_pic_url
-  json.profile_picture_url @user.s_prof_pic_url
-else
-  json.profile_picture_url @user.profile_picture.url
-end
 if @user.s_cover_url
   json.cover_url @user.s_cover_url
 else

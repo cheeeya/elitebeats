@@ -116,13 +116,25 @@
   padding: 30px;
 }
 
-.comment-input-div {
+.write-comment-div {
+  display: flex;
+}
+
+.comment-user-image {
   height: 40px;
+  width: 40px;
+  background-size: cover;
+}
+
+.comment-input-div {
+  padding: 5px;
+  display: flex;
+  align-items: center;
   background-color: #f2f2f2;
 }
 
 .song-comment-input {
-  height: 27px;
+  height: 25px;
   width: 745px;
   border-radius: 4px;
   font-size: 14px;
