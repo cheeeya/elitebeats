@@ -80,8 +80,20 @@ a {
 }
 
 .user-nav {
+  display: flex;
+  align-items: center;
+}
+
+.user-nav-avatar {
+  height: 26px;
+  width: 26px;
+  background-size: cover;
+  border-radius: 100%;
+}
+
+.user-nav-name {
   font-size: 14px;
-  padding: 16px 10px;
+  padding: 16px 10px 16px 5px;
 }
 
 .user-nav:hover {

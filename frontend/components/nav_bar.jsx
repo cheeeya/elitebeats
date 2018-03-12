@@ -18,12 +18,17 @@ class NavBar extends React.Component {
   }
 
   render () {
-    const { currentUser } = this.props;
-    let element = <SessionFormModal receiveFormType={this.props.receiveFormType} loc='nav-bar'/>
+    const { currentUser, receiveFormType } = this.props;
+    let element = <SessionFormModal receiveFormType={receiveFormType} loc='nav-bar'/>
     if (currentUser) {
       element = (
         <div className="user-nav-wrapper">
-          <Link to={`/${currentUser.profile_url}`}><div className="user-nav">{currentUser.display_name}</div></Link>
+          <Link to={`/${currentUser.profile_url}`}>
+            <div className="user-nav">
+              <div className="user-nav-avatar" style={{ backgroundImage: `url(${currentUser.profile_picture_url})`}}></div>
+              <span className="user-nav-name">{currentUser.display_name}</span>
+            </div>
+          </Link>
           <div className="session-button-div">
             <button className="session-button" id='logout-btn' onClick={this.handleLogout}>Logout</button>
           </div>
