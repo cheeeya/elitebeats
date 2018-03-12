@@ -103,7 +103,7 @@ class SongProfile extends React.Component {
         <div className="song-page-main">
           <div className="song-comments">
             <div className="write-comment-div">
-              <div className="comment-user-image" style={{ backgroundImage: `url(${userAv})`}}></div>
+              <div className="comment-user-image" style={{ backgroundImage: `url(${userAvatarUrl})`}}></div>
               <div className="comment-input-div">
                 <input type="text" className="song-comment-input" placeholder="Write a comment"></input>
               </div>
