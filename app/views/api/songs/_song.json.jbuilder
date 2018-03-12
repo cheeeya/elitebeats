@@ -5,6 +5,7 @@ else
   json.author_picture_url song.author.profile_picture.url
 end
 json.author_name song.author.display_name
+json.author_sounds song.author.songs.length
 if song.seed_image_url
   json.image_url song.seed_image_url
 else
@@ -16,3 +17,4 @@ if song.aws_url
 else
   json.song_url asset_path(song.songfile.url)
 end
+json.comments song.comments

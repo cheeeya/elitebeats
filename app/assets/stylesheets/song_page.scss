@@ -146,3 +146,88 @@
   outline: none;
   border-color: #999999;
 }
+
+.song-info {
+  width: 815px;
+  display: flex;
+  border-top: 1px solid #f2f2f2;
+  margin-top: 15px;
+  padding-top: 20px;
+}
+
+.song-info-author-image {
+  height: 120px;
+  width: 120px;
+  border-radius: 100%;
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.song-info-author-info {
+  display: block;
+  width: 120px;
+  font-size: 14px;
+}
+
+.song-info-author-name {
+  overflow: hidden;
+}
+
+.song-info-author-details {
+  display: flex;
+  color: #999999;
+  align-items: center;
+  margin-top: 5px;
+  height: 14px;
+}
+
+.song-info-author-details > span {
+  margin-top: 1.5px;
+}
+
+div[class^="song-info-author-icon-"] {
+  background-size: 16px 16px;
+  background-position: center center;
+  height: 12px;
+  width: 16px;
+  margin-right: 3px;
+}
+
+.song-info-author-icon-followers {
+  background-image: url(http://res.cloudinary.com/elitebeats/image/upload/v1520840201/followers_morlse.svg);
+}
+
+.song-info-author-icon-sounds {
+  margin-left: 10px;
+  background-image: url(http://res.cloudinary.com/elitebeats/image/upload/v1520842715/sounds_zopriw.svg);
+}
+
+.song-info-main {
+  margin-left: 40px;
+  width: 100%;
+}
+
+.song-info-description {
+  height: 100px;
+  overflow: hidden;
+}
+
+.song-info-comment-header {
+  display: flex;
+  height: 21px;
+  width: 100%;
+  font-size: 14px;
+  color: #999999;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.song-info-comment-icon {
+  height: 21px;
+  width: 21px;
+  background-size: 22px 22px;
+  background-image: url(http://res.cloudinary.com/elitebeats/image/upload/v1520841178/comments_zgunvi.svg);
+  background-position: center bottom;
+  margin-right: 5px;
+}

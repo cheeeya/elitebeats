@@ -73,6 +73,7 @@ class SongProfile extends React.Component {
     const playbackButton = this.playbackButton();
     const { songProfile, currentUser } = this.props;
     let userAvatarUrl = "http://res.cloudinary.com/elitebeats/image/upload/v1520836942/blue_v6mtey.jpg";
+    console.log(songProfile);
     if (!songProfile) {
       return null;
     }
@@ -101,11 +102,34 @@ class SongProfile extends React.Component {
           <div className="song-header-artwork" style={{ backgroundImage: `url(${songProfile.image_url})`}}></div>
         </div>
         <div className="song-page-main">
-          <div className="song-comments">
+          <div className="song-about">
             <div className="write-comment-div">
               <div className="comment-user-image" style={{ backgroundImage: `url(${userAvatarUrl})`}}></div>
               <div className="comment-input-div">
                 <input type="text" className="song-comment-input" placeholder="Write a comment"></input>
+              </div>
+            </div>
+            <div className="song-info">
+              <div className="song-info-author-info">
+                <div className="song-info-author-image" style={{ backgroundImage: `url(${songProfile.author_picture_url})`}}></div>
+                <span className="song-info-author-name">{songProfile.author_name}</span>
+                <div className="song-info-author-details">
+                  <div className="song-info-author-icon-followers"></div>
+                  <span>0</span>
+                  <div className="song-info-author-icon-sounds"></div>
+                  <span>{songProfile.author_sounds}</span>
+                </div>
+              </div>
+              <div className="song-info-main">
+                <div className="song-info-description">
+                  {songProfile.description}
+                </div>
+                <div className="song-info-comments">
+                  <div className="song-info-comment-header">
+                    <div className="song-info-comment-icon"></div>
+                    <span>{songProfile.comments.length} comments</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
