@@ -232,3 +232,59 @@ div[class^="song-info-author-icon-"] {
   background-position: center bottom;
   margin-right: 5px;
 }
+
+.post-comment-button {
+  display: none;
+}
+
+.comment-list {
+  font-size: 13px;
+}
+
+.comment-list-item {
+  display: flex;
+  padding: 10px 10px 10px 0;
+}
+
+.comment-author-avatar {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  border-radius: 100%;
+  background-size: cover;
+}
+
+.comment-author-name {
+  color: #999999;
+  margin-bottom: 5px;
+}
+
+.comment-author-name:hover {
+  color: #333333;
+}
+
+.comment-main {
+  width: 520px;
+}
+
+.comment-time {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 1px;
+  color: #999999;
+  font-size: 11px;
+  width: 85px;
+}
+
+.empty-comments-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.empty-comments-image {
+  height: 195px;
+  width: 194px;
+}

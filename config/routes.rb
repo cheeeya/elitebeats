@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create, :destroy, :update]
     resource :session, only: [:create, :destroy]
-    resources :songs, only: [:index, :create, :destroy, :update]
+    resources :songs, only: [:index, :create, :destroy, :update] do
+      resources :comments, only: [:create, :destroy]
+    end
 
     post '/users/find', to: 'users#verify_user_exists'
     get '/users/:profile_url', to: 'users#get_user'

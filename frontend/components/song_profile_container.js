@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchSong } from '../actions/song_actions';
 import { playSong, pauseSong, receiveCurrentPlaylist } from '../actions/player_actions';
+import { postComment } from '../actions/comment_actions';
 import SongProfile from './song_profile';
 
 const mapStateToProps = (state, ownProps) => {
@@ -31,7 +32,8 @@ const mapDispatchToProps = dispatch => ({
   fetchSong: (profileUrl, permalink) => dispatch(fetchSong(profileUrl, permalink)),
   play: (song) => dispatch(playSong(song)),
   pause: () => dispatch(pauseSong()),
-  updateCurrentPlaylist: (playlist) => dispatch(receiveCurrentPlaylist(playlist))
+  updateCurrentPlaylist: (playlist) => dispatch(receiveCurrentPlaylist(playlist)),
+  postComment: (comment, songId) => dispatch(postComment(comment, songId))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps) (SongProfile));

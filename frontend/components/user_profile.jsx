@@ -57,7 +57,7 @@ class UserProfile extends React.Component {
     let isOwner = "disabled";
     let tracksElement = <div className="profile-empty-tracks">
                           <img className="profile-no-tracks-img" src="https://res.cloudinary.com/elitebeats/image/upload/v1520851992/no-music_z6x98i.png"></img>
-                          <h4 className="profile-empty-h4">Nothing to hear here</h4>
+                          <h4 className="empty-h4">Nothing to hear here</h4>
                         </div>;
     if (currentUser && profile) {
       if (currentUser.profile_url === profile.profile_url) {

@@ -1,4 +1,5 @@
 import { RECEIVE_SONG_PROFILE } from '../actions/song_actions';
+import { RECEIVE_COMMENT } from '../actions/comment_actions';
 import { merge } from 'lodash';
 
 const songProfileReducer = (state = {}, action) => {
@@ -9,6 +10,11 @@ const songProfileReducer = (state = {}, action) => {
       let song = action.song;
       let fullUrl = song.author_url + "/" + song.permalink;
       newState = merge({}, state, { [fullUrl]: song});
+      return newState;
+    case RECEIVE_COMMENT:
+      let comment = action.comment;
+      fullUrl = comment.song_full_url;
+      newState = merge({}, state, { [fullUrl]: { comments: { [comment.id]: comment }}})
       return newState;
     default:
       return state;

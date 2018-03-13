@@ -5,9 +5,12 @@ class SongProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: this.props.status
+      status: this.props.status,
+      body: ""
     }
     this.playbackButton = this.playbackButton.bind(this);
+    this.handleComment = this.handleComment.bind(this);
+    this.handleSubmitComment = this.handleSubmitComment.bind(this);
   }
 
   componentDidMount () {
@@ -36,6 +39,17 @@ class SongProfile extends React.Component {
     }
   }
 
+  handleSubmitComment(e) {
+    e.preventDefault();
+    let comment = { body: this.state.body }
+    this.props.postComment(comment, this.props.songProfile.id)
+  }
+
+  handleComment(e) {
+    e.preventDefault();
+    this.setState({ body: e.target.value })
+  }
+
   timeFormat(createdAt) {
     let postDate = new Date(createdAt);
     let now = new Date();
@@ -55,7 +69,8 @@ class SongProfile extends React.Component {
         elapsedTime = elapsedTime * 60;
         timeString = " minute";
         if (elapsedTime < 1) {
-          timeString = "less than 1 minute";
+          elapsedTime = elapsedTime * 60;
+          timeString = " second";
         }
       }
     }
@@ -65,6 +80,8 @@ class SongProfile extends React.Component {
       if (elapsedTime > 1) {
         timeString += "s";
       }
+    } else {
+      timeString = 1 + timeString;
     }
     return timeString+= " ago";
   }
@@ -73,8 +90,17 @@ class SongProfile extends React.Component {
     const playbackButton = this.playbackButton();
     const { songProfile, currentUser } = this.props;
     let userAvatarUrl = "https://res.cloudinary.com/elitebeats/image/upload/v1520836942/blue_v6mtey.jpg";
+    let commentsEl = <div className="empty-comments-div">
+                      <img className="empty-comments-image" src="http://res.cloudinary.com/elitebeats/image/upload/v1520941219/no-comments_f0a9ay.png"/>
+                      <h4 className="empty-h4">Seems a little quiet over here</h4>
+                      <h5 className="empty-h5">Be the first to comment on this track</h5>
+                   </div>
+    let comments = [];
     if (!songProfile) {
       return null;
+    }
+    if (songProfile.comments) {
+      comments = Object.values(songProfile.comments);
     }
     if (currentUser) {
       userAvatarUrl = currentUser.profile_picture_url;
@@ -83,6 +109,33 @@ class SongProfile extends React.Component {
     let genre;
     if (songProfile.genre != "none") {
       genre = (<div className="header-genre"><span># {songProfile.genre}</span></div>)
+    }
+    console.log(songProfile);
+    if (comments.length > 0) {
+      commentsEl = <div className="song-info-comments">
+                    <div className="song-info-comment-header">
+                      <div className="song-info-comment-icon"/>
+                      <span>{comments.length} comments</span>
+                    </div>
+                    <ul className="comment-list">
+                      {
+                        comments.map(comment => {
+                          return (
+                            <li className="comment-list-item" key={comment.id}>
+                              <Link to={`/${comment.author_url}`}><div className="comment-author-avatar" style={{ backgroundImage: `url(${comment.author_picture_url})` }}></div></Link>
+                              <div className="comment-main">
+                                <Link to={`/${comment.author_url}`}><div className="comment-author-name">{comment.author_name}</div></Link>
+                                <p>{comment.body}</p>
+                              </div>
+                              <div className="comment-time">
+                                <span>{this.timeFormat(comment.created_at)}</span>
+                              </div>
+                            </li>
+                          )
+                        })
+                      }
+                    </ul>
+                 </div>
     }
     return (
       <section className="song-show-page">
@@ -98,14 +151,17 @@ class SongProfile extends React.Component {
               {genre}
             </div>
           </div>
-          <div className="song-header-artwork" style={{ backgroundImage: `url(${songProfile.image_url})`}}></div>
+          <div className="song-header-artwork" style={{ backgroundImage: `url(${songProfile.image_url})` }}></div>
         </div>
         <div className="song-page-main">
           <div className="song-about">
             <div className="write-comment-div">
-              <div className="comment-user-image" style={{ backgroundImage: `url(${userAvatarUrl})`}}></div>
+              <div className="comment-user-image" style={{ backgroundImage: `url(${userAvatarUrl})` }}></div>
               <div className="comment-input-div">
-                <input type="text" className="song-comment-input" placeholder="Write a comment"></input>
+                <form onSubmit={this.handleSubmitComment}>
+                  <input type="text" className="song-comment-input" placeholder="Write a comment" onChange={this.handleComment}/>
+                  <button className="post-comment-button"/>
+                </form>
               </div>
             </div>
             <div className="song-info">
@@ -123,12 +179,7 @@ class SongProfile extends React.Component {
                 <div className="song-info-description">
                   {songProfile.description}
                 </div>
-                <div className="song-info-comments">
-                  <div className="song-info-comment-header">
-                    <div className="song-info-comment-icon"></div>
-                    <span>{songProfile.comments.length} comments</span>
-                  </div>
-                </div>
+                {commentsEl}
               </div>
             </div>
           </div>

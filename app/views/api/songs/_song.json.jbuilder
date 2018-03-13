@@ -17,4 +17,10 @@ if song.aws_url
 else
   json.song_url asset_path(song.songfile.url)
 end
-json.comments song.comments
+json.comments do
+  song.comments.each do |comment|
+    json.set! comment.id do
+      json.partial! 'api/comments/comment', comment: comment
+    end
+  end
+end
