@@ -8,10 +8,10 @@ class Sidebar extends React.Component {
   render() {
     return(
       <section className="sidebar">
-        <div className="sidebar-wrapper">
-          <div>Who to follow</div>
-          <div>likes</div>
-          <div>Listening history</div>
+        <div className="wrapper-sidebar">
+          <div className="sidebar-follow">Who to follow</div>
+          <div className="sidebar-likes">likes</div>
+          <div className="sidebar-history">Listening history</div>
           <footer>
             <a>Legal</a>
             <a>Privacy</a>
