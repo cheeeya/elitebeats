@@ -9,9 +9,9 @@ class Sidebar extends React.Component {
     return(
       <section className="sidebar">
         <div className="wrapper-sidebar">
-          <div className="sidebar-follow">Who to follow</div>
-          <div className="sidebar-likes">likes</div>
-          <div className="sidebar-history">Listening history</div>
+          <div className="sidebar-follow"><div id="sidebar-icon-follow"/>Who to follow</div>
+          <div className="sidebar-likes"><div id="sidebar-icon-likes"/>likes</div>
+          <div className="sidebar-history"><div id="sidebar-icon-history"/>Listening history</div>
           <footer>
             <a>Legal</a>
             <a>Privacy</a>

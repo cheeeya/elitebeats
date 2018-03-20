@@ -12,7 +12,29 @@
 
 
 div[class^="sidebar-"] {
+  font-size: 14px;
   color: #999999;
   line-height: 24px;
   border-bottom: 1px solid #f2f2f2;
+  display:flex;
+}
+
+div[id^="sidebar-icon-"] {
+  height: 23px;
+  width: 21px;
+  background-size: 20px 20px;
+  margin-right: 4px;
+  background-repeat: no-repeat;
+}
+
+#sidebar-icon-follow {
+  background-image: url("http://res.cloudinary.com/elitebeats/image/upload/v1520840201/followers_morlse.svg");
+}
+
+#sidebar-icon-likes {
+  background-image: url("http://res.cloudinary.com/elitebeats/image/upload/v1521527201/likes_ebzwza.svg");
+}
+
+#sidebar-icon-history {
+  background-image: url("http://res.cloudinary.com/elitebeats/image/upload/v1521527198/history_pclqzq.svg");
 }
