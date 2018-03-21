@@ -14,21 +14,26 @@
  *= require_self
  */
 
+ html {
+   min-height: 100vh;
+   overflow-y: scroll;
+ }
+
+ body {
+   background: #f2f2f2;
+   min-height: 100vh;
+ }
+
+ #root {
+   min-height: 100vh;
+ }
+
 #app {
   width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-html {
-  height: 100%;
-  overflow-y: scroll;
-}
-
-body {
-  background: #f2f2f2;
-  height: 100%;
 }
 
 #signin-btn {
