@@ -8,7 +8,7 @@ class Sidebar extends React.Component {
   render() {
     return(
       <section className="sidebar">
-        <div className="wrapper-sidebar">
+        <div className="sidebar-wrapper">
           <div className="sidebar-follow sidebar-header"><div id="sidebar-icon-follow"/>Who to follow</div>
           <div className="sidebar-content">
           </div>
