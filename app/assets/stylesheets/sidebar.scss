@@ -11,7 +11,7 @@
 }
 
 
-div[class^="sidebar-"] {
+.sidebar-header {
   font-size: 14px;
   color: #999999;
   line-height: 24px;
@@ -37,4 +37,23 @@ div[id^="sidebar-icon-"] {
 
 #sidebar-icon-history {
   background-image: url("http://res.cloudinary.com/elitebeats/image/upload/v1521527198/history_pclqzq.svg");
+}
+
+.sidebar-content {
+  height: 210px;
+  width: 300px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.sidebar-footer {
+  font-size: 11px;
+  color: #cccccc;
+  border-top: 1px solid #f2f2f2;
+  padding: 11px 0;
+}
+
+.sidebar-footer > a:hover {
+  color: #999999;
+  cursor: pointer;
 }
