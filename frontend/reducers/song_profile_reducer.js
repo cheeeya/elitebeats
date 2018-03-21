@@ -1,5 +1,5 @@
 import { RECEIVE_SONG_PROFILE } from '../actions/song_actions';
-import { RECEIVE_COMMENT } from '../actions/comment_actions';
+import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import { merge } from 'lodash';
 
 const songProfileReducer = (state = {}, action) => {
@@ -15,6 +15,12 @@ const songProfileReducer = (state = {}, action) => {
       let comment = action.comment;
       fullUrl = comment.song_full_url;
       newState = merge({}, state, { [fullUrl]: { comments: { [comment.id]: comment }}})
+      return newState;
+    case REMOVE_COMMENT:
+      comment = action.comment;
+      fullUrl = comment.song_full_url;
+      newState = merge({}, state);
+      delete newState[fullUrl]['comments'][comment.id]
       return newState;
     default:
       return state;

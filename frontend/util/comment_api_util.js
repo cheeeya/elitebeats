@@ -5,3 +5,10 @@ export const postComment = (comment, songId) => (
     data: { comment }
   })
 );
+
+export const deleteComment = (commentId) => (
+  $.ajax({
+    method: 'DELETE',
+    url: `api/comments/${commentId}`
+  })
+);

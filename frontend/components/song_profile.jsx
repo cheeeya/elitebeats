@@ -11,6 +11,7 @@ class SongProfile extends React.Component {
     this.playbackButton = this.playbackButton.bind(this);
     this.handleComment = this.handleComment.bind(this);
     this.handleSubmitComment = this.handleSubmitComment.bind(this);
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   componentDidMount () {
@@ -36,6 +37,13 @@ class SongProfile extends React.Component {
         this.props.pause();
       }
       this.setState({ status: action });
+    }
+  }
+
+  handleDelete(commentId) {
+    return (e) => {
+      e.preventDefault();
+      this.props.deleteComment(commentId);
     }
   }
 
@@ -136,7 +144,7 @@ class SongProfile extends React.Component {
                               </div>
                               <div className="comment-extra">
                                 <span>{this.timeFormat(comment.created_at)}</span>
-                                <button id="delete-comment-button"><div className="delete-icon"/></button>
+                                <button id="delete-comment-button" onClick={this.handleDelete(comment.id)}><div className="delete-icon"/></button>
                               </div>
                             </li>
                           )

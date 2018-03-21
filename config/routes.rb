@@ -4,9 +4,9 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :destroy, :update]
     resource :session, only: [:create, :destroy]
     resources :songs, only: [:index, :create, :destroy, :update] do
-      resources :comments, only: [:create, :destroy]
+      resources :comments, only: [:create]
     end
-
+    resources :comments, only: [:destroy]
     post '/users/find', to: 'users#verify_user_exists'
     get '/users/:profile_url', to: 'users#get_user'
     get '/users/:profile_url/songs/:permalink', to: 'songs#fetch_song'
