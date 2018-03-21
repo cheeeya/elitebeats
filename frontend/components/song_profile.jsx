@@ -41,13 +41,15 @@ class SongProfile extends React.Component {
 
   handleSubmitComment(e) {
     e.preventDefault();
-    let comment = { body: this.state.body }
-    this.props.postComment(comment, this.props.songProfile.id)
+    let comment = { body: this.state.body };
+    this.props.postComment(comment, this.props.songProfile.id).then(
+      this.setState({ body: "" })
+    )
   }
 
   handleComment(e) {
     e.preventDefault();
-    this.setState({ body: e.target.value })
+    this.setState({ body: e.target.value });
   }
 
   timeFormat(createdAt) {
@@ -163,7 +165,7 @@ class SongProfile extends React.Component {
               <div className="comment-user-image" style={{ backgroundImage: `url(${userAvatarUrl})` }}></div>
               <div className="comment-input-div">
                 <form onSubmit={this.handleSubmitComment}>
-                  <input type="text" className="song-comment-input" placeholder="Write a comment" onChange={this.handleComment}/>
+                  <input type="text" className="song-comment-input" placeholder="Write a comment" onChange={this.handleComment} value={this.state.body}/>
                   <button className="post-comment-button"/>
                 </form>
               </div>
