@@ -130,7 +130,7 @@ class SongProfile extends React.Component {
                       {
                         comments.map(comment => {
                           let isAuthor = "";
-                          if (currentUser && comment.author_id == currentUser.id) {
+                          if (currentUser && (comment.author_id == currentUser.id || songProfile.author_id == currentUser.id)) {
                             isAuthor = "comment-list-item-author";
                           }
                           return (
