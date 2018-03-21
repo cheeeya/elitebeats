@@ -100,7 +100,7 @@ class SongProfile extends React.Component {
       return null;
     }
     if (songProfile.comments) {
-      comments = Object.values(songProfile.comments);
+      comments = Object.values(songProfile.comments).reverse();
     }
     if (currentUser) {
       userAvatarUrl = currentUser.profile_picture_url;

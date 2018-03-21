@@ -6,4 +6,4 @@ else
 end
 json.author_name comment.author.display_name
 json.author_url comment.author.profile_url
-json.song_full_url "#{comment.author.profile_url}/#{comment.song.permalink}" 
+json.song_full_url "#{comment.song.author.profile_url}/#{comment.song.permalink}" 
