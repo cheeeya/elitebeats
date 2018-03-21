@@ -89,13 +89,13 @@ class SongProfile extends React.Component {
   render() {
     const playbackButton = this.playbackButton();
     const { songProfile, currentUser } = this.props;
-    let userAvatarUrl = "https://res.cloudinary.com/elitebeats/image/upload/v1520836942/blue_v6mtey.jpg";
+    let userAvatarUrl = "https://res.cloudinary.com/elitebeats/image/upload/v1520836942/blue_v6mtey.jpg",
+        comments = [];
     let commentsEl = <div className="empty-comments-div">
                        <img className="empty-comments-image" src="http://res.cloudinary.com/elitebeats/image/upload/v1520941219/no-comments_f0a9ay.png"/>
                        <h4 className="empty-h4">Seems a little quiet over here</h4>
                        <h5 className="empty-h5">Be the first to comment on this track</h5>
                      </div>
-    let comments = [];
     if (!songProfile) {
       return null;
     }
@@ -110,7 +110,6 @@ class SongProfile extends React.Component {
     if (songProfile.genre != "none") {
       genre = (<div className="header-genre"><span># {songProfile.genre}</span></div>)
     }
-    console.log(songProfile);
     if (comments.length > 0) {
       commentsEl = <div className="song-info-comments">
                     <div className="song-info-comment-header">
@@ -120,15 +119,20 @@ class SongProfile extends React.Component {
                     <ul className="comment-list">
                       {
                         comments.map(comment => {
+                          let isAuthor = "";
+                          if (currentUser && comment.author_id == currentUser.id) {
+                            isAuthor = "comment-list-item-author";
+                          }
                           return (
-                            <li className="comment-list-item" key={comment.id}>
+                            <li className={`comment-list-item ${isAuthor}`} key={comment.id}>
                               <Link to={`/${comment.author_url}`}><div className="comment-author-avatar" style={{ backgroundImage: `url(${comment.author_picture_url})` }}></div></Link>
                               <div className="comment-main">
                                 <Link to={`/${comment.author_url}`}><div className="comment-author-name">{comment.author_name}</div></Link>
                                 <p>{comment.body}</p>
                               </div>
-                              <div className="comment-time">
+                              <div className="comment-extra">
                                 <span>{this.timeFormat(comment.created_at)}</span>
+                                <button id="delete-comment-button"><div className="delete-icon"/></button>
                               </div>
                             </li>
                           )

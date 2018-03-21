@@ -195,12 +195,12 @@ div[class^="song-info-author-icon-"] {
 }
 
 .song-info-author-icon-followers {
-  background-image: url(https://res.cloudinary.com/elitebeats/image/upload/v1520840201/followers_morlse.svg);
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1520840201/followers_morlse.svg");
 }
 
 .song-info-author-icon-sounds {
   margin-left: 10px;
-  background-image: url(https://res.cloudinary.com/elitebeats/image/upload/v1520842715/sounds_zopriw.svg);
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1520842715/sounds_zopriw.svg");
 }
 
 .song-info-main {
@@ -231,7 +231,7 @@ div[class^="song-info-author-icon-"] {
   height: 21px;
   width: 21px;
   background-size: 22px 22px;
-  background-image: url(https://res.cloudinary.com/elitebeats/image/upload/v1520841178/comments_zgunvi.svg);
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1520841178/comments_zgunvi.svg");
   background-position: center bottom;
   margin-right: 5px;
 }
@@ -270,7 +270,7 @@ div[class^="song-info-author-icon-"] {
   width: 520px;
 }
 
-.comment-time {
+.comment-extra {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -291,4 +291,29 @@ div[class^="song-info-author-icon-"] {
 .empty-comments-image {
   height: 195px;
   width: 194px;
+}
+
+#delete-comment-button {
+  margin-top: 4px;
+  height: 22px;
+  width: 25px;
+  background: none;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  padding: 0;
+  display: none;
+}
+
+.delete-icon {
+  margin: 0 1px;
+  height: 20px;
+  width: 20px;
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1521626721/delete_uibpeh.svg");
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.comment-list-item-author:hover #delete-comment-button {
+  display: block;
 }
