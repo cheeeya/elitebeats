@@ -63,7 +63,6 @@
   color: white;
 }
 
-
 .header-title-songtitle {
   font-size: 24px;
   background: black;
@@ -250,9 +249,12 @@ div[class^="song-info-author-icon-"] {
 }
 
 .comment-author-avatar {
+    margin-right: 10px;
+}
+
+.comment-author-avatar-image {
   height: 40px;
   width: 40px;
-  margin-right: 10px;
   border-radius: 100%;
   background-size: cover;
 }
@@ -294,7 +296,7 @@ div[class^="song-info-author-icon-"] {
 }
 
 #delete-comment-button {
-  margin-top: 4px;
+  margin-top: 5px;
   height: 22px;
   width: 25px;
   background: none;

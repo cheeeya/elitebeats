@@ -127,7 +127,9 @@ class SongProfile extends React.Component {
                           }
                           return (
                             <li className={`comment-list-item ${isAuthor}`} key={comment.id}>
-                              <Link to={`/${comment.author_url}`}><div className="comment-author-avatar" style={{ backgroundImage: `url(${comment.author_picture_url})` }}></div></Link>
+                              <div className="comment-author-avatar">
+                                <Link to={`/${comment.author_url}`}><div className="comment-author-avatar-image" style={{ backgroundImage: `url(${comment.author_picture_url})` }}></div></Link>
+                              </div>
                               <div className="comment-main">
                                 <div className="comment-author-name"><Link to={`/${comment.author_url}`}>{comment.author_name}</Link></div>
                                 <p>{comment.body}</p>
