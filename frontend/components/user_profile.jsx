@@ -54,14 +54,14 @@ class UserProfile extends React.Component {
   render () {
     const { profile, currentUser } = this.props;
     let tracks = {};
-    let isOwner = "disabled";
+    let disabledUnlessOwner = "disabled";
     let tracksElement = <div className="profile-empty-tracks">
                           <img className="profile-no-tracks-img" src="https://res.cloudinary.com/elitebeats/image/upload/v1520851992/no-music_z6x98i.png"></img>
                           <h4 className="empty-h4">Nothing to hear here</h4>
                         </div>;
     if (currentUser && profile) {
       if (currentUser.profile_url === profile.profile_url) {
-        isOwner = "";
+        disabledUnlessOwner = "";
       }
     }
     if (profile) {
@@ -89,7 +89,7 @@ class UserProfile extends React.Component {
           <div className="profile-cover" style={{ backgroundImage: `url(${profile.cover_url})` }}>
             <div className="profile-picture" style={{ backgroundImage: `url(${profile.profile_picture_url})`}}>
               <input id="profile-pic-input" type="file" onChange={this.handleFile('profile_picture')}></input>
-              <button onClick={this.triggerFileUpload('profile-pic')} className={`update-profile-pic ${isOwner}`} disabled={isOwner === "disabled"}><span><i className="fas fa-camera"></i>  Update image</span></button>
+              <button onClick={this.triggerFileUpload('profile-pic')} className={`update-profile-pic ${disabledUnlessOwner}`} disabled={disabledUnlessOwner === "disabled"}><span><i className="fas fa-camera"></i>  Update image</span></button>
             </div>
             <div className="profile-header">
               <h1 className="display-name"><span>{this.props.profile.display_name}</span></h1>
@@ -99,7 +99,7 @@ class UserProfile extends React.Component {
           <section className="profile-music">
             <div className="profile-info">
               <div className="profile-tab-all"><span>All</span></div>
-              <button className="profile-edit-button">Edit</button>
+              <button className={`profile-edit-button ${disabledUnlessOwner}`}><i className="fas fa-pencil-alt" /><span className="sm-button-text">Edit</span></button>
             </div>
             {tracksElement}
           </section>

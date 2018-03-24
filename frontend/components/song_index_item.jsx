@@ -109,7 +109,7 @@ class SongIndexItem extends React.Component {
           <div className={`management-div ${disabledClass}`}>
             <button className={`song-management ${activeClass}`} id="more-button" onClick={this.showMoreToggle}><i className="fas fa-ellipsis-h" id={`more-${song.id}`}></i></button>
             <ul className={`more-buttons-list ${showMoreClass}`}>
-              <li className="more-list-item"><button className="song-management-button" onClick={this.handleEdit}><i className="fas fa-pencil-alt"/ ><span className="sm-button-text">Edit Track</span></button></li>
+              <li className="more-list-item"><button className="song-management-button" onClick={this.handleEdit}><i className="fas fa-pencil-alt" /><span className="sm-button-text">Edit Track</span></button></li>
               <li className="more-list-item"><button className="song-management-button" onClick={this.handleDelete}><i className="fas fa-trash" /><span className="sm-button-text">Delete Track</span></button></li>
             </ul>
           </div>
