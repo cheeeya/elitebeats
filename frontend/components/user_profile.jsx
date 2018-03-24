@@ -97,8 +97,9 @@ class UserProfile extends React.Component {
             </div>
           </div>
           <section className="profile-music">
-            <div className="profile-tabs">
+            <div className="profile-info">
               <div className="profile-tab-all"><span>All</span></div>
+              <button className="profile-edit-button">Edit</button>
             </div>
             {tracksElement}
           </section>
