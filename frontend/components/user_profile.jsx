@@ -1,11 +1,19 @@
 import React from 'react';
+import AriaModal from 'react-aria-modal';
 import SongItemContainer from './song_item_container';
 import SongFormModal from './song_form_modal';
+import EditProfileFormContainer from './edit_profile_form_container';
 
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      modalActive: false
+    };
     this.handleFile = this.handleFile.bind(this);
+    this.activateModal = this.activateModal.bind(this);
+    this.deactivateModal = this.deactivateModal.bind(this);
+    this.getApplicationNode = this.getApplicationNode.bind(this);
   }
 
   componentDidMount() {
@@ -19,6 +27,19 @@ class UserProfile extends React.Component {
       this.props.fetchUserProfile(profile_url);
       this.props.finishUpdate();
     }
+  }
+
+  activateModal() {
+    this.setState({ modalActive: true });
+  }
+
+  deactivateModal() {
+    this.props.receiveFormType("");
+    this.setState({ modalActive: false });
+  }
+
+  getApplicationNode() {
+    return document.getElementById("profile-section");
   }
 
   triggerFileUpload(inputButton) {
@@ -59,6 +80,17 @@ class UserProfile extends React.Component {
                           <img className="profile-no-tracks-img" src="https://res.cloudinary.com/elitebeats/image/upload/v1520851992/no-music_z6x98i.png"></img>
                           <h4 className="empty-h4">Nothing to hear here</h4>
                         </div>;
+    const editProfileFormModal = this.state.modalActive
+                                ? <AriaModal
+                                titleText='login-form'
+                                onExit={this.deactivateModal}
+                                getApplicationNode={this.getApplicationNode}
+                                >
+                                <div id='session-form-modal' className='modal'>
+                                  <EditProfileFormContainer />
+                                </div>
+                              </AriaModal>
+                              : false;
     if (currentUser && profile) {
       if (currentUser.profile_url === profile.profile_url) {
         disabledUnlessOwner = "";
@@ -85,7 +117,7 @@ class UserProfile extends React.Component {
         }
       }
       return (
-        <section className="profile-page">
+        <section className="profile-page" id="profile-section">
           <div className="profile-cover" style={{ backgroundImage: `url(${profile.cover_url})` }}>
             <div className="profile-picture" style={{ backgroundImage: `url(${profile.profile_picture_url})`}}>
               <input id="profile-pic-input" type="file" onChange={this.handleFile('profile_picture')}></input>
@@ -99,11 +131,12 @@ class UserProfile extends React.Component {
           <section className="profile-music">
             <div className="profile-info">
               <div className="profile-tab-all"><span>All</span></div>
-              <button className={`profile-edit-button ${disabledUnlessOwner}`}><i className="fas fa-pencil-alt" /><span className="sm-button-text">Edit</span></button>
+              <button className={`profile-edit-button ${disabledUnlessOwner}`} onClick={this.activateModal}><i className="fas fa-pencil-alt" /><span className="sm-button-text">Edit</span></button>
             </div>
             {tracksElement}
           </section>
           <SongFormModal loc="profile-page"/>
+          {editProfileFormModal}
         </section>
       );
     } else {
