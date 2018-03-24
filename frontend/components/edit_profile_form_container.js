@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import EditProfileForm from './edit_profile_form';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => ({
 
-}
+})
 
 const mapDispatchToProps = dispatch => ({
 

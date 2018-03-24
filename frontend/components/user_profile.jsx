@@ -34,7 +34,6 @@ class UserProfile extends React.Component {
   }
 
   deactivateModal() {
-    this.props.receiveFormType("");
     this.setState({ modalActive: false });
   }
 
