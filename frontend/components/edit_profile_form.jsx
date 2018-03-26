@@ -16,44 +16,44 @@ class EditProfileForm extends React.Component {
               </strong>
             </span>
           </label>
-          <div>
+          <div className="pf-input-div">
             <input className="pf-form-input" id="pf-display-name" type="text" />
           </div>
         </div>
         <div className="profile-form-field-div">
           <label htmlFor="pf-profile-url">Profile URL</label>
-          <div>
+          <div className="pf-input-div">
             <span className="form-permalink-span">elitebeats.herokuapp.com/#/</span>
             <input className="pf-form-input" id="pf-profile-url" type="text" />
           </div>
         </div>
         <div className="profile-form-field-div">
           <label htmlFor="pf-first-name">First name</label>
-          <div>
+          <div className="pf-input-div">
             <input className="pf-form-input" id="pf-first-name" type="text" />
           </div>
         </div>
         <div className="profile-form-field-div">
           <label htmlFor="pf-last-name">Last name</label>
-          <div>
+          <div className="pf-input-div">
             <input className="pf-form-input" id="pf-last-name" type="text" />
           </div>
         </div>
         <div className="profile-form-field-div">
           <label htmlFor="pf-city">City</label>
-          <div>
+          <div className="pf-input-div">
             <input className="pf-form-input" id="pf-city"type="text" />
           </div>
         </div>
         <div className="profile-form-field-div">
           <label htmlFor="pf-country">Country</label>
-          <div>
+          <div className="pf-input-div">
             <input className="pf-form-input" id="pf-country" type="text" />
           </div>
         </div>
         <div className="profile-form-field-div">
           <label htmlFor="pf-bio">Bio</label>
-          <div>
+          <div className="pf-input-div">
             <textarea className="pf-form-input" id="pf-bio" placeholder="Tell the world a little bit about yourself. The shorter the better."/>
           </div>
         </div>

@@ -16,18 +16,25 @@
 
 .profile-form-field-div {
   margin-bottom:  15px;
-  width: auto;
+  display: inline-block;
+  justify-content: space-between;
+  padding: 0 5px;
+}
+
+.pf-input-div {
+  display: block;
 }
 
 .pf-form-input {
-  width: 250px;
-  padding: 2px 7px;
+  width: 245px;
+  padding: 3px 6px;
   box-sizing: border-box;
 }
 
 #pf-display-name {
   width: 500px;
   font-size: 18px;
+  padding: 7px 8px;
 }
 
 #pf-profile-url {
