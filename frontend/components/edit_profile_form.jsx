@@ -7,54 +7,59 @@ class EditProfileForm extends React.Component {
     return (
       <form className="profile-form">
         <h2 className="pf-h2">Edit your Profile</h2>
-        <div className="profile-form-field-div">
-          <label htmlFor="pf-display-name">
-            <span className="pf-span">
-              Display name
-              <strong className="asterick-wrapper">
-                *
-              </strong>
-            </span>
-          </label>
-          <div className="pf-input-div">
-            <input className="pf-form-input" id="pf-display-name" type="text" />
-          </div>
-        </div>
-        <div className="profile-form-field-div">
-          <label htmlFor="pf-profile-url">Profile URL</label>
-          <div className="pf-input-div">
-            <span className="form-permalink-span">elitebeats.herokuapp.com/#/</span>
-            <input className="pf-form-input" id="pf-profile-url" type="text" />
-          </div>
-        </div>
-        <div className="profile-form-field-div">
-          <label htmlFor="pf-first-name">First name</label>
-          <div className="pf-input-div">
-            <input className="pf-form-input" id="pf-first-name" type="text" />
-          </div>
-        </div>
-        <div className="profile-form-field-div">
-          <label htmlFor="pf-last-name">Last name</label>
-          <div className="pf-input-div">
-            <input className="pf-form-input" id="pf-last-name" type="text" />
-          </div>
-        </div>
-        <div className="profile-form-field-div">
-          <label htmlFor="pf-city">City</label>
-          <div className="pf-input-div">
-            <input className="pf-form-input" id="pf-city"type="text" />
-          </div>
-        </div>
-        <div className="profile-form-field-div">
-          <label htmlFor="pf-country">Country</label>
-          <div className="pf-input-div">
-            <input className="pf-form-input" id="pf-country" type="text" />
-          </div>
-        </div>
-        <div className="profile-form-field-div">
-          <label htmlFor="pf-bio">Bio</label>
-          <div className="pf-input-div">
-            <textarea className="pf-form-input" id="pf-bio" placeholder="Tell the world a little bit about yourself. The shorter the better."/>
+        <div className="pf-main">
+          <div className="pf-image"/>
+          <div className="pf-settings">
+            <div className="profile-form-field-div">
+              <label htmlFor="pf-display-name">
+                <span className="pf-span">
+                  Display name
+                  <strong className="asterick-wrapper">
+                    *
+                  </strong>
+                </span>
+              </label>
+              <div className="pf-input-div">
+                <input className="pf-form-input" id="pf-display-name" type="text" />
+              </div>
+            </div>
+            <div className="profile-form-field-div">
+              <label htmlFor="pf-profile-url">Profile URL</label>
+              <div className="pf-input-div">
+                <span className="form-permalink-span">elitebeats.herokuapp.com/#/</span>
+                <input className="pf-form-input" id="pf-profile-url" type="text" />
+              </div>
+            </div>
+            <div className="profile-form-field-div">
+              <label htmlFor="pf-first-name">First name</label>
+              <div className="pf-input-div">
+                <input className="pf-form-input" id="pf-first-name" type="text" />
+              </div>
+            </div>
+            <div className="profile-form-field-div">
+              <label htmlFor="pf-last-name">Last name</label>
+              <div className="pf-input-div">
+                <input className="pf-form-input" id="pf-last-name" type="text" />
+              </div>
+            </div>
+            <div className="profile-form-field-div">
+              <label htmlFor="pf-city">City</label>
+              <div className="pf-input-div">
+                <input className="pf-form-input" id="pf-city"type="text" />
+              </div>
+            </div>
+            <div className="profile-form-field-div">
+              <label htmlFor="pf-country">Country</label>
+              <div className="pf-input-div">
+                <input className="pf-form-input" id="pf-country" type="text" />
+              </div>
+            </div>
+            <div className="profile-form-field-div">
+              <label htmlFor="pf-bio">Bio</label>
+              <div className="pf-input-div">
+                <textarea className="pf-form-input" id="pf-bio" placeholder="Tell the world a little bit about yourself. The shorter the better."/>
+              </div>
+            </div>
           </div>
         </div>
       </form>

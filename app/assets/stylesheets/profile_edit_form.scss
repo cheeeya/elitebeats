@@ -1,9 +1,15 @@
 .profile-form{
-  display: block;
   height: auto;
   background: #ffffff;
   font-size: 14px;
   padding: 25px;
+}
+
+.pf-main {
+  display: flex;
+  width: 800px;
+  height: 334px;
+  border-bottom: 1px solid #f2f2f2;
 }
 
 .pf-h2 {
@@ -14,11 +20,23 @@
   border-bottom: 1px solid #f2f2f2;
 }
 
+.pf-image {
+  height: 260px;
+  width: 260px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin-right: 25px;
+  box-sizing: border-box;
+}
+
+.pf-settings {
+  width: 515px;
+}
+
 .profile-form-field-div {
-  margin-bottom:  15px;
+  margin-bottom: 15px;
   display: inline-block;
   justify-content: space-between;
-  padding: 0 5px;
 }
 
 .pf-input-div {
@@ -26,24 +44,28 @@
 }
 
 .pf-form-input {
-  width: 245px;
+  width: 250px;
   padding: 3px 6px;
   box-sizing: border-box;
 }
 
 #pf-display-name {
-  width: 500px;
+  width: 515px;
   font-size: 18px;
   padding: 7px 8px;
 }
 
 #pf-profile-url {
   border-color: transparent;
-  width: 315px;
+  width: 330px;
 }
 
 #pf-profile-url:focus {
   border-color: gray;
+}
+
+#pf-city, #pf-first-name {
+  margin-right: 15px;
 }
 
 .pf-span {
@@ -52,6 +74,6 @@
 }
 
 #pf-bio {
-  width: 500px;
-  height: 60px;
+  width: 515px;
+  height: 65px;
 }
