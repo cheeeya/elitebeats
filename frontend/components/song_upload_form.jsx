@@ -162,21 +162,21 @@ class SongUploadForm extends React.Component {
               <div className="upload-form-input-div">
                 <label>
                   Title:<strong className="asterick-wrapper">*</strong>
-                  <input  onChange={this.handleUpdate('title')} value={title} required="required"/>
+                <input className="upload-form-input" onChange={this.handleUpdate('title')} value={title} required="required"/>
                 </label>
               </div>
               <div className="upload-form-input-div" id="upload-form-permalink-div">
-                <label>
+                <label className="form-permalink-label">
                   <span className="form-permalink-span">
                     elitebeats.herokuapp.com/#/{currentUser.profile_url}/
                   </span>
-                  <input onChange={this.handleUpdate('permalink')} value={this.state.permalink} id="upload-form-permalink-input" required="required"/>
                 </label>
+                <input onChange={this.handleUpdate('permalink')} value={this.state.permalink} id="upload-form-permalink-input" required="required"/>
               </div>
               <div className="upload-form-input-div">
                 <label>
                   <span className="genre-span">Genre:</span>
-                  <select className="genre-select" onChange={this.handleUpdate('genre')} value={this.state.genre}>
+                  <select className="genre-select upload-form-input" onChange={this.handleUpdate('genre')} value={this.state.genre}>
                     <option value="none">None</option>
                     <option value="alternative">Alternative Rock</option>
                     <option value="ambient">Ambient</option>
@@ -215,6 +215,7 @@ class SongUploadForm extends React.Component {
                 <label>
                   Description:
                   <textarea
+                    className="upload-form-input"
                     onChange={this.handleUpdate('description')}
                     placeholder="Describe your track"/>
                 </label>

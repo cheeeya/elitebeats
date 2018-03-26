@@ -28,8 +28,8 @@
   min-height: 100vh;
 }
 
-.upload-form-input-div input, select, textarea {
-  width: 400px;
+.upload-form-input, select, textarea {
+  width: 502px;
   margin-top: 7px;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .upload-form-input-div {
-  width: 420px;
+  width: 520px;
   margin-bottom: 20px;
 }
 
@@ -72,22 +72,26 @@
 #upload-form-permalink-div {
   margin-bottom: 15px;
   font-size: 13px;
-  width: 418px;
   margin-right:0;
+  display: flex;
 }
 
 #upload-form-permalink-input {
   border: 1px solid transparent;
   padding: 5px 0;
   width: auto;
+  flex: 1;
 }
 
 #upload-form-permalink-input:focus {
   border-color: gray;
 }
 
-.form-permalink-span {
+.form-permalink-label {
+  display: flex;
+  align-items: center;
   color: gray;
+  padding: 5px 0;
 }
 
 .form-cancel-button {
