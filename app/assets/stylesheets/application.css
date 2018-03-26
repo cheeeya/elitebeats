@@ -87,3 +87,29 @@ button:focus {
 .disabled-button:hover {
   cursor: default;
 }
+
+textarea {
+  resize: vertical;
+}
+
+input:focus {
+  outline: none;
+  border-color: gray;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: gray;
+}
+
+select:focus {
+  outline: none;
+  border-color: gray;
+}
+
+input, textarea, select {
+  padding: 7px 8px;
+  border-radius: 4px;
+  border: 1px solid #cccccc;
+  color: black;
+}

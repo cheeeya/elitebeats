@@ -1,0 +1,50 @@
+.profile-form{
+  display: block;
+  height: auto;
+  background: #ffffff;
+  font-size: 14px;
+  padding: 25px;
+}
+
+.pf-h2 {
+  font-weight: 600;
+  font-size: 22px;
+  padding-bottom: 7px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.profile-form-field-div {
+  margin-bottom:  15px;
+  width: auto;
+}
+
+.pf-form-input {
+  width: 250px;
+  padding: 2px 7px;
+  box-sizing: border-box;
+}
+
+#pf-display-name {
+  width: 500px;
+  font-size: 18px;
+}
+
+#pf-profile-url {
+  border-color: transparent;
+  width: 315px;
+}
+
+#pf-profile-url:focus {
+  border-color: gray;
+}
+
+.pf-span {
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+#pf-bio {
+  width: 500px;
+  height: 60px;
+}

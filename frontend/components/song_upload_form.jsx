@@ -167,7 +167,7 @@ class SongUploadForm extends React.Component {
               </div>
               <div className="upload-form-input-div" id="upload-form-permalink-div">
                 <label>
-                  <span className="upload-form-permalink-span">
+                  <span className="form-permalink-span">
                     elitebeats.herokuapp.com/#/{currentUser.profile_url}/
                   </span>
                   <input onChange={this.handleUpdate('permalink')} value={this.state.permalink} id="upload-form-permalink-input" required="required"/>

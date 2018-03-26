@@ -29,20 +29,12 @@
 }
 
 .upload-form-input-div input, select, textarea {
-  border: 1px solid #cccccc;
-  padding: 5px 8px;
-  border-radius: 3px;
   width: 400px;
   margin-top: 7px;
 }
 
 .genre-select {
   width: 220px;
-}
-
-.upload-form-input-div input:focus {
-  border: 1px solid gray;
-  outline: none;
 }
 
 .upload-form-input-div {
@@ -93,7 +85,8 @@
 #upload-form-permalink-input:focus {
   border-color: gray;
 }
-.upload-form-permalink-span {
+
+.form-permalink-span {
   color: gray;
 }
 
