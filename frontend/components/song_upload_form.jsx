@@ -161,12 +161,12 @@ class SongUploadForm extends React.Component {
             <div className="upload-form-inner-div">
               <div className="upload-form-input-div">
                 <label>
-                  Title:<strong className="asterick-wrapper">*</strong>
+                  <span className="label-span">Title:&nbsp;<strong className="asterick-wrapper">*</strong></span>
                 <input className="upload-form-input" onChange={this.handleUpdate('title')} value={title} required="required"/>
                 </label>
               </div>
               <div className="upload-form-input-div" id="upload-form-permalink-div">
-                <label className="form-permalink-label">
+                <label className="form-permalink-label" htmlFor="upload-form-permalink-input">
                   <span className="form-permalink-span">
                     elitebeats.herokuapp.com/#/{currentUser.profile_url}/
                   </span>

@@ -12,23 +12,22 @@ class EditProfileForm extends React.Component {
           <div className="pf-settings">
             <div className="profile-form-field-div">
               <label htmlFor="pf-display-name">
-                <span className="pf-span">
-                  Display name
-                  <strong className="asterick-wrapper">
-                    *
-                  </strong>
+                <span className="label-span">
+                  Display name&nbsp;<strong className="asterick-wrapper">*</strong>
                 </span>
               </label>
               <div className="pf-input-div">
-                <input className="pf-form-input" id="pf-display-name" type="text" />
+                <input id="pf-display-name" type="text" />
               </div>
             </div>
             <div className="profile-form-field-div">
-              <label htmlFor="pf-profile-url">Profile URL</label>
-              <div className="pf-input-div">
-                <span className="form-permalink-span">elitebeats.herokuapp.com/#/</span>
-                <input className="pf-form-input" id="pf-profile-url" type="text" />
-              </div>
+              <label htmlFor="pf-profile-url">
+                Profile URL
+                <div className="pf-input-div">
+                  <span className="form-permalink-span">elitebeats.herokuapp.com/#/</span>
+                  <input className="pf-form-input" id="pf-profile-url" type="text" />
+                </div>
+              </label>
             </div>
             <div className="profile-form-field-div">
               <label htmlFor="pf-first-name">First name</label>

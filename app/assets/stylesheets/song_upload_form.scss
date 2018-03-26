@@ -43,7 +43,7 @@
 }
 
 .upload-form-input-div:first-of-type{
-  margin-bottom: 7px;
+  margin-bottom: 10px;
 }
 
 .song-upload-form-wrapper {
@@ -78,7 +78,7 @@
 
 #upload-form-permalink-input {
   border: 1px solid transparent;
-  padding: 5px 0;
+  padding: 4px 0 3px 1px;
   width: auto;
   flex: 1;
 }
@@ -90,8 +90,11 @@
 .form-permalink-label {
   display: flex;
   align-items: center;
+  padding: 4px 0 3px 0;
+}
+
+.form-permalink-span {
   color: gray;
-  padding: 5px 0;
 }
 
 .form-cancel-button {

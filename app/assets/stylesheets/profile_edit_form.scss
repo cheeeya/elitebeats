@@ -8,7 +8,7 @@
 .pf-main {
   display: flex;
   width: 800px;
-  height: 334px;
+  height: 364px;
   border-bottom: 1px solid #f2f2f2;
 }
 
@@ -41,23 +41,25 @@
 
 .pf-input-div {
   display: block;
+  margin-top: 6px;
 }
 
 .pf-form-input {
   width: 250px;
-  padding: 3px 6px;
+  padding: 3px 6px 2px 6px;
   box-sizing: border-box;
 }
 
 #pf-display-name {
   width: 515px;
   font-size: 18px;
-  padding: 7px 8px;
+  box-sizing: border-box;
 }
 
 #pf-profile-url {
   border-color: transparent;
   width: 330px;
+  padding: 2px 0 1px 1px;
 }
 
 #pf-profile-url:focus {
@@ -68,14 +70,13 @@
   margin-right: 15px;
 }
 
-.pf-span {
-  display: inline-block;
-  margin-bottom: 6px;
-}
-
 #pf-bio {
   width: 515px;
   height: 65px;
+}
+
+.label-span {
+  display: flex;
 }
 
 .pf-footer {
