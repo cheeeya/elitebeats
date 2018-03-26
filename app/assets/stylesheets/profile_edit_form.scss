@@ -39,9 +39,22 @@
   justify-content: space-between;
 }
 
+.profile-form-permalink-div {
+  width: 100%;
+}
+
+.pf-permalink-input-div {
+  display: flex;
+}
+
 .pf-input-div {
-  display: block;
   margin-top: 6px;
+}
+
+.pf-span-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 2px 0 1px 0;
 }
 
 .pf-form-input {
@@ -58,8 +71,9 @@
 
 #pf-profile-url {
   border-color: transparent;
-  width: 330px;
   padding: 2px 0 1px 1px;
+  flex: 1;
+  width: auto;
 }
 
 #pf-profile-url:focus {
