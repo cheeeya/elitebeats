@@ -77,3 +77,10 @@
   width: 515px;
   height: 65px;
 }
+
+.pf-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 20px;
+}

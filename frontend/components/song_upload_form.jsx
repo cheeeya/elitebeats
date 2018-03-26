@@ -220,8 +220,8 @@ class SongUploadForm extends React.Component {
                 </label>
               </div>
               <div className="upload-form-buttons-div">
-                <button className={`upload-form-cancel-button ${btnDisabled}`} onClick={this.handleCancel} disabled={disabled}><span>Cancel</span></button>
-                <button className={`upload-form-save-button ${btnDisabled}`} disabled={disabled}><span>Save</span></button>
+                <button className={`form-cancel-button ${btnDisabled}`} onClick={this.handleCancel} disabled={disabled}><span>Cancel</span></button>
+                <button className={`form-save-button ${btnDisabled}`} disabled={disabled}><span>Save</span></button>
               </div>
             </div>
           </form>

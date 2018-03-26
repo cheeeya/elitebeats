@@ -62,6 +62,12 @@ class EditProfileForm extends React.Component {
             </div>
           </div>
         </div>
+        <div className="pf-footer">
+          <div className="pf-buttons">
+            <button className="form-cancel-button"><span>Cancel</span></button>
+            <button className="form-save-button"><span>Save changes</span></button>
+          </div>
+        </div>
       </form>
     )
   }
