@@ -9,8 +9,7 @@
 }
 
 .upload-form-modal {
-  width: 852px;
-  height: 348px;
+  width: 850px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,17 +27,17 @@
 }
 
 .upload-form-input {
-  width: 502px;
+  width: 497px;
   margin-top: 7px;
 }
 
 .genre-select {
-  width: 220px;
+  width: 230px;
 }
 
 .upload-form-input-div {
   margin-top: 15px;
-  width: 520px;
+  width: 515px;
 }
 
 .upload-form-input-div:first-of-type {
@@ -49,22 +48,25 @@
   margin-bottom: 10px;
 }
 
-.song-upload-form-wrapper {
-  width: 852px;
+.song-upload-form {
+  border: 1px solid #f2f2f2;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 5px;
+  width: 850px;
+  padding: 25px;
 }
 
-.song-upload-form {
+.sf-main {
   width: 800px;
   display: flex;
-  padding: 25px;
-  border: 1px solid #f2f2f2;
-  border-radius: 5px;
-  background: white;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .upload-form-inner-div {
-  width: 530px;
-  margin-left: 20px;
+  width: 515px;
+  margin-left: 25px;
   display: block;
 }
 
@@ -79,16 +81,10 @@
   display: flex;
 }
 
-#upload-form-permalink-input {
-  padding: 4px 0 3px 1px;
-  width: auto;
-  flex: 1;
-}
-
 .form-permalink-label {
   display: flex;
   align-items: center;
-  padding: 4px 0 3px 0;
+  padding: 2px 0 1px 0;
 }
 
 .form-permalink-span {
@@ -115,13 +111,9 @@
   border-radius: 3px;
 }
 
-.upload-form-buttons-div {
-  margin-top: 20px;
-}
-
 .upload-artwork {
-  width: 250px;
-  height: 250px;
+  width: 260px;
+  height: 260px;
 }
 
 #artwork-input {
@@ -150,4 +142,20 @@
 
 .genre-span{
   display: block;
+}
+
+.sf-description {
+  height: 65px;
+}
+
+.upload-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload-h1 {
+  text-align: center;
+  margin-bottom:  25px;
+  font-size: 24px;
 }

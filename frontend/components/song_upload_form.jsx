@@ -8,18 +8,20 @@ class SongUploadForm extends React.Component {
     this.validationError = "";
     this.errorMessage = "";
     this.saveButtonDisabled = "disabled-save-button";
+    let { song } = props;
     this.state = {
-      songUrl: this.props.song.song_url,
+      songUrl: song.song_url,
       songFile: null,
-      title: this.props.song.title,
-      genre: this.props.song.genre,
-      description: this.props.song.description,
-      permalink: this.props.song.permalink,
+      title: song.title,
+      genre: song.genre,
+      description: song.description,
+      permalink: song.permalink,
       redirect: false,
-      artworkUrl: this.props.song.image_url,
+      artworkUrl: song.image_url,
       artwork: null,
       disabled: false,
-      id: this.props.song.id
+      id: song.id,
+      newError: false
     }
     this.handleFile = this.handleFile.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,12 +30,13 @@ class SongUploadForm extends React.Component {
   }
 
   titleToPermalink(title) {
-    let plink = title;
+    let plink = title.toLowerCase(), num = 1;
     plink = plink.replace(/[-@&#]/g, " ");
     plink = plink.replace(/\s\s+/g, " ");
     plink = plink.replace(/[ ]/g, "-");
     plink = plink.replace(/['()\[\]{}$%^&+=!,;"~`,|.]/g, "");
-    return plink.toLowerCase();
+    let base = plink;
+    return plink;
   }
 
   capitalizeTitle(title) {
@@ -48,11 +51,16 @@ class SongUploadForm extends React.Component {
     ).join(" ");
   }
 
+  clickUrlEdit(e) {
+    e.preventDefault();
+    document.getElementById("upload-form-permalink-input").select();
+  }
+
   resetErrors() {
     this.pLinkErrorDisabled = "disabled";
     this.validationError = "";
     this.errorMessage = "";
-    this.saveButtonDisabled = "disabled-save-button";
+    this.saveButtonDisabled = "";
   }
 
   setErrorMessage(message) {
@@ -78,6 +86,7 @@ class SongUploadForm extends React.Component {
       title = title.length > 2 ? title.slice(0, title.length - 1).join(".") : title[0];
       let permalink = this.titleToPermalink(title);
       title = this.capitalizeTitle(title);
+      this.resetErrors();
       reader.onloadend = () => this.setState({ songUrl: reader.result,
         songFile: file, title, permalink });
       reader.readAsDataURL(file);
@@ -102,7 +111,7 @@ class SongUploadForm extends React.Component {
   handleUpdate(field) {
     return (e) => {
       this.resetErrors();
-      this.setState({ [field]: e.currentTarget.value })
+      this.setState({ [field]: e.currentTarget.value, newError: false })
     }
   }
 
@@ -131,6 +140,7 @@ class SongUploadForm extends React.Component {
     if (sfile)  {
       formData.append("song[songfile]", sfile);
       this.setState({ disabled: true });
+      this.saveButtonDisabled = "disabled-save-button";
       if (this.props.page === 'page') {
         this.props.createSong(formData).then(
           () => this.setState({
@@ -138,11 +148,16 @@ class SongUploadForm extends React.Component {
             title: "", genre: "", description: "",
             redirect: true, artwork: null,
             artworkUrl: ""
-          }));
+          }),
+          error => this.setState({ disabled: false, newError: true })
+        );
       }
     } else {
       if (this.props.page === 'modal') {
-        this.props.updateSong(formData, id).then(() => window.closeEdit());
+        this.props.updateSong(formData, id).then(
+          () => window.closeEdit(),
+          error => this.setState({ disabled: false, newError: true })
+        );
       }
     }
 
@@ -150,42 +165,45 @@ class SongUploadForm extends React.Component {
 
   render() {
     const { redirect, title, genre, description,
-          disabled, permalink, artworkUrl } = this.state,
-          { currentUser, page } = this.props,
+          disabled, permalink, artworkUrl, newError } = this.state,
+          { currentUser, page, errors } = this.props,
           permalinkRegex = /^[a-z0-9_-]*$/;
     let btnDisabled = "",
         linkSpanElement = document.getElementById("song-form-link-span"),
-        uploadButton = "", errorMargin = "185px";
-    if (disabled) {
-      btnDisabled = "disabled-button";
+        uploadButtonDiv = "", errorMargin = "185px";
+    if (disabled) btnDisabled = "disabled-button";
+    if (redirect) return (<Redirect to='/stream' />)
+    if (page === 'page') {
+        uploadButtonDiv = <div className="upload-header">
+                            <h1 className="upload-h1">Upload to EliteBeats</h1>
+                            <div>
+                              <button onClick={this.handleUploadButton("file-input")}
+                                className="session-button" id="song-upload-button"
+                                type="button">
+                                <span>Choose a file to upload</span>
+                              </button>
+                            </div>
+                          </div>
     }
-    if (redirect) {
-      return <Redirect to='/stream' />
-    }
-    if (this.props.page === 'page') {
-        uploadButton = <button onClick={this.handleUploadButton("file-input")}
-          className="session-button" id="song-upload-button">
-          <span>Choose a file to upload</span>
-        </button>
+    if (linkSpanElement) errorMargin = `${linkSpanElement.offsetWidth}px`;
+    if (errors.includes("Permalink has already been taken") && newError) {
+      this.setErrorMessage("This permalink is already in use. Enter another one.");
     }
     if (!permalinkRegex.test(permalink)) {
       this.setErrorMessage("Use only numbers, lowercase letters, underscores, or hyphens.");
     }
-    if (linkSpanElement) {
-      errorMargin = `${linkSpanElement.offsetWidth}px`;
-    }
     return(
       <section className={`upload-form-${page}`}>
 
-        {uploadButton}
-        <div className="upload-form-wrapper">
-          <form onSubmit={this.handleSubmit} className="song-upload-form">
+        {uploadButtonDiv}
+        <form onSubmit={this.handleSubmit} className="song-upload-form">
+          <div className="sf-main">
             <input type="file" id="file-input" onChange={this.handleFile} />
             <div className="artwork-div">
               <img src={artworkUrl} className="upload-artwork"></img>
               <input type="file" id="artwork-input" onChange={this.handleImage} />
               <button onClick={this.handleUploadButton("artwork-input")}
-                className="image-update-button">
+                className="image-update-button" type="button">
                 <span>
                   <i className="fas fa-camera"></i>&nbsp;Update image
                 </span>
@@ -210,7 +228,12 @@ class SongUploadForm extends React.Component {
                 </label>
                 <input id="upload-form-permalink-input"
                   className={`url-input ${this.validationError}`} value={permalink}
-                  onChange={this.handleUpdate('permalink')} required="required" />
+                  onChange={this.handleUpdate('permalink')} required="required"
+                  onClick={this.clickUrlEdit} />
+                <button type="button" className="permalink-edit-button"
+                  onClick={this.clickUrlEdit}>
+                  <i className="fas fa-pencil-alt link-edit-pencil" />
+                </button>
               </div>
               <div className={`permalink-validation ${this.pLinkErrorDisabled}`} style={{ marginLeft: `${errorMargin}` }}>
                 {this.errorMessage}
@@ -258,25 +281,27 @@ class SongUploadForm extends React.Component {
                 <label>
                   Description:
                   <textarea
-                    className="upload-form-input"
+                    className="upload-form-input sf-description"
                     onChange={this.handleUpdate('description')}
                     value={description}
                     placeholder="Describe your track"/>
                 </label>
               </div>
-              <div className="upload-form-buttons-div">
-                <button type="button" className={`form-cancel-button ${btnDisabled}`}
-                  onClick={this.handleCancel} disabled={disabled}>
-                  <span>Cancel</span>
-                </button>
-                <button type="submit" className={`form-save-button ${btnDisabled}`}
-                  disabled={disabled}>
-                  <span>Save</span>
-                </button>
-              </div>
             </div>
-          </form>
-        </div>
+          </div>
+          <div className="form-footer">
+            <div className="upload-form-buttons-div">
+              <button type="button" className={`form-cancel-button ${btnDisabled}`}
+                onClick={this.handleCancel} disabled={disabled}>
+                <span>Cancel</span>
+              </button>
+              <button type="submit" className={`form-save-button ${this.saveButtonDisabled}`}
+                disabled={this.saveButtonDisabled}>
+                <span>Save</span>
+              </button>
+            </div>
+          </div>
+        </form>
       </section>
     );
   }

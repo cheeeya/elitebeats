@@ -48,7 +48,7 @@ export const getUser = user => dispatch => (
     formType => dispatch(receiveFormType(formType)),
     errors => dispatch(receiveErrors(errors.responseJSON))
   )
-)
+);
 
 export const updateUserData = (formData, user_id) => dispatch => (
   UserAPIUtil.updateUserData(formData, user_id).then(
@@ -58,4 +58,4 @@ export const updateUserData = (formData, user_id) => dispatch => (
     },
     errors => dispatch(receiveErrors(errors.responseJSON))
   )
-)
+);

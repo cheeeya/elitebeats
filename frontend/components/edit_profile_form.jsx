@@ -3,7 +3,7 @@ import React from 'react';
 class EditProfileForm extends React.Component {
   constructor(props) {
     super(props);
-    let { profile } = this.props;
+    let { profile } = props;
     this.oldUrl = profile.profile_url;
     this.changed = false;
     this.usedUrls = [];
@@ -26,7 +26,6 @@ class EditProfileForm extends React.Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkRedirect = this.checkRedirect.bind(this);
-    this.clickUrlEdit = this.clickUrlEdit.bind(this);
   }
 
   handleInput(field) {
@@ -185,7 +184,7 @@ class EditProfileForm extends React.Component {
             </div>
           </div>
         </div>
-        <div className="pf-footer">
+        <div className="form-footer">
           <div className="pf-buttons">
             <button type="button" className="form-cancel-button" onClick={this.cancelEdit}>
               <span>Cancel</span>

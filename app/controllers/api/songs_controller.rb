@@ -8,7 +8,7 @@ class Api::SongsController < ApplicationController
   def create
     @song = Song.new(song_params)
     @song.author_id = current_user.id
-    if @song.save!
+    if @song.save
       render :show
     else
       render json: @song.errors.full_messages, status: 422

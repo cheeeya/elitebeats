@@ -34,7 +34,7 @@ class Api::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    render json: @user.destroy!
+    render json: @user.delete
   end
 
   def update
