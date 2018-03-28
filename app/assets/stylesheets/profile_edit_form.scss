@@ -24,7 +24,9 @@
   width: 260px;
   border-radius: 50%;
   margin-right: 25px;
-  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 .pf-settings {
