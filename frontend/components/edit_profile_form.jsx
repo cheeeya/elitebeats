@@ -129,6 +129,7 @@ class EditProfileForm extends React.Component {
                   </div>
                   <input id="pf-profile-url" className={`pf-url-input ${this.validationError}`} type="text" value={profile_url}
                     required="required" onChange={this.handleInput("profile_url")} />
+                  <button type="button" className="permalink-edit-button" />
                 </div>
                 <div className={`permalink-validation ${this.pLinkErrorDisabled}`}>{this.errorMessage}</div>
               </label>

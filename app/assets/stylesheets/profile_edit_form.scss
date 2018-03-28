@@ -1,3 +1,7 @@
+#profile-form-modal {
+  margin-top: 76px;
+}
+
 .profile-form{
   height: auto;
   background: #ffffff;
@@ -45,6 +49,12 @@
 
 .pf-permalink-input-div {
   display: flex;
+}
+
+.permalink-edit-button {
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
 }
 
 .pf-input-div {

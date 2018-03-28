@@ -4,8 +4,7 @@
 }
 
 #song-form-modal {
-  position: relative;
-  top: 50px;
+  margin-top: 76px;
   border: none;
 }
 
@@ -95,6 +94,10 @@
 
 .form-permalink-span {
   color: gray;
+}
+
+.form-permalink-span {
+  cursor: text;
 }
 
 .form-cancel-button {

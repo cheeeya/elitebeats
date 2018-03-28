@@ -86,7 +86,7 @@ class UserProfile extends React.Component {
                                 onExit={this.deactivateModal}
                                 getApplicationNode={this.getApplicationNode}
                                 >
-                                <div id='session-form-modal' className='modal'>
+                                <div id='profile-form-modal' className='modal'>
                                   <EditProfileFormContainer />
                                 </div>
                               </AriaModal>
