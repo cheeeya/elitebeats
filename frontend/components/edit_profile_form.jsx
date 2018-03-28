@@ -21,6 +21,7 @@ class EditProfileForm extends React.Component {
       first_name: profile.first_name,
       last_name: profile.last_name,
       profile_url: profile.profile_url,
+      profile_picture_url: profile.profile_picture_url,
       newError: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -84,7 +85,7 @@ class EditProfileForm extends React.Component {
 
   render() {
     let { bio, city, country, display_name, first_name,
-      last_name, profile_url, newError } = this.state;
+      last_name, profile_url, profile_picture_url, newError } = this.state;
     const permalinkRegex = /^[a-zA-Z0-9_-]*$/;
     if (this.changed) {
       this.saveButtonDisabled = "";
@@ -104,7 +105,7 @@ class EditProfileForm extends React.Component {
       <form className="profile-form" onSubmit={this.handleSubmit}>
         <h2 className="pf-h2">Edit your Profile</h2>
         <div className="pf-main">
-          <div className="pf-image"/>
+          <div className="pf-image" style={{ backgroundImage: `url(${profile_picture_url})` }}/>
           <div className="pf-settings">
             <div className="profile-form-field-div">
               <label htmlFor="pf-display-name">
