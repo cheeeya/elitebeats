@@ -7,6 +7,12 @@ class EditProfileForm extends React.Component {
     this.oldUrl = profile.profile_url;
     this.changed = false;
     this.usedUrls = [];
+    this.pLinkErrorDisabled = "disabled";
+    this.validationError = "";
+    this.errorMessage = "";
+    this.saveButtonDisabled = "disabled-save-button";
+    this.reservedLinks = ["stream", "home", "collection", "upload",
+      "charts", "discover", "search"];
     this.state = {
       bio: profile.bio,
       city: profile.city,
@@ -24,6 +30,7 @@ class EditProfileForm extends React.Component {
   handleInput(field) {
     return e => {
       if (this.state[field] !== e.target.value) {
+        this.resetErrors();
         this.changed = true;
         this.setState({ [field]: e.target.value, newError: false })
       }
@@ -39,6 +46,20 @@ class EditProfileForm extends React.Component {
     if (this.oldUrl !== this.state.profile_url) {
       this.props.history.push(`/${this.state.profile_url}`)
     }
+  }
+
+  resetErrors() {
+    this.pLinkErrorDisabled = "disabled";
+    this.validationError = "";
+    this.errorMessage = "";
+    this.saveButtonDisabled = "disabled-save-button";
+  }
+
+  setErrorMessage(message) {
+    this.pLinkErrorDisabled = "";
+    this.validationError = "validation-error"
+    this.errorMessage = message;
+    this.saveButtonDisabled = "disabled-save-button";
   }
 
   handleSubmit(e) {
@@ -63,29 +84,21 @@ class EditProfileForm extends React.Component {
 
   render() {
     let { bio, city, country, display_name, first_name,
-      last_name, profile_url, newError } = this.state,
-      pLinkErrorDisabled = "disabled", validationError = "",
-      errorMessage = "", saveButtonDisabled = "disabled-save-button";
+      last_name, profile_url, newError } = this.state;
     const permalinkRegex = /^[a-zA-Z0-9_-]*$/;
     if (this.changed) {
-      saveButtonDisabled = "";
+      this.saveButtonDisabled = "";
+    }
+    if (this.reservedLinks.includes(profile_url)) {
+      this.setErrorMessage("This permalink is reserved. Enter another one.");
     }
     if (this.props.errors.includes("Profile url has already been taken") && (this.usedUrls.includes(profile_url) || newError)) {
-      pLinkErrorDisabled = "";
-      validationError = "validation-error"
-      errorMessage = "This profile URL is already in use. Try a different one.";
-      saveButtonDisabled = "disabled-save-button";
+      this.setErrorMessage("This profile URL is already in use. Try a different one.");
     }
     if (!profile_url) {
-      pLinkErrorDisabled = "";
-      validationError = "validation-error"
-      errorMessage = "Enter a profile URL";
-      saveButtonDisabled = "disabled-save-button";
+      this.setErrorMessage("Enter a profile URL");
     }else if (!permalinkRegex.test(profile_url)) {
-      pLinkErrorDisabled = "";
-      validationError = "validation-error";
-      errorMessage = "Use only numbers, letters, underscores, or hyphens.";
-      saveButtonDisabled = "disabled-save-button";
+      this.setErrorMessage("Use only numbers, letters, underscores, or hyphens.");
     }
     return (
       <form className="profile-form" onSubmit={this.handleSubmit}>
@@ -113,10 +126,10 @@ class EditProfileForm extends React.Component {
                   <div className="pf-span-wrapper">
                     <span className="form-permalink-span">elitebeats.herokuapp.com/#/</span>
                   </div>
-                  <input id="pf-profile-url" className={`pf-url-input ${validationError}`} type="text" value={profile_url}
+                  <input id="pf-profile-url" className={`pf-url-input ${this.validationError}`} type="text" value={profile_url}
                     required="required" onChange={this.handleInput("profile_url")} />
                 </div>
-                <div className={`permalink-validation ${pLinkErrorDisabled}`}>{errorMessage}</div>
+                <div className={`permalink-validation ${this.pLinkErrorDisabled}`}>{this.errorMessage}</div>
               </label>
             </div>
             <div className="profile-form-field-div">
@@ -162,7 +175,7 @@ class EditProfileForm extends React.Component {
             <button type="button" className="form-cancel-button" onClick={this.cancelEdit}>
               <span>Cancel</span>
             </button>
-            <button type="submit" className={`form-save-button ${saveButtonDisabled}`} disabled={saveButtonDisabled}>
+            <button type="submit" className={`form-save-button ${this.saveButtonDisabled}`} disabled={this.saveButtonDisabled}>
               <span>Save changes</span>
             </button>
           </div>
