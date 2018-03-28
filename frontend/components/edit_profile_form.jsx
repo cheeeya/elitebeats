@@ -25,7 +25,7 @@ class EditProfileForm extends React.Component {
       newError: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.checkRedirect = this.checkRedirect.bind(this);
+    this.clickUrlEdit = this.clickUrlEdit.bind(this)
   }
 
   handleInput(field) {
@@ -61,6 +61,12 @@ class EditProfileForm extends React.Component {
     this.validationError = "validation-error"
     this.errorMessage = message;
     this.saveButtonDisabled = "disabled-save-button";
+  }
+
+  clickUrlEdit(e) {
+    e.preventDefault();
+    document.getElementById("pf-profile-url").focus();
+    document.getElementById("pf-profile-url").select();
   }
 
   handleSubmit(e) {
@@ -127,11 +133,17 @@ class EditProfileForm extends React.Component {
                   <div className="pf-span-wrapper">
                     <span className="form-permalink-span">elitebeats.herokuapp.com/#/</span>
                   </div>
-                  <input id="pf-profile-url" className={`pf-url-input ${this.validationError}`} type="text" value={profile_url}
-                    required="required" onChange={this.handleInput("profile_url")} />
-                  <button type="button" className="permalink-edit-button" />
+                  <input id="pf-profile-url" className={`pf-url-input ${this.validationError}`}
+                    type="text" value={profile_url} required="required"
+                    onChange={this.handleInput("profile_url")} onClick={this.clickUrlEdit}/>
+                  <button type="button" className="permalink-edit-button"
+                    onClick={this.clickUrlEdit}>
+                    <i className="fas fa-pencil-alt link-edit-pencil" />
+                  </button>
                 </div>
-                <div className={`permalink-validation ${this.pLinkErrorDisabled}`}>{this.errorMessage}</div>
+                <div className={`permalink-validation ${this.pLinkErrorDisabled}`}>
+                  {this.errorMessage}
+                </div>
               </label>
             </div>
             <div className="profile-form-field-div">
@@ -177,7 +189,8 @@ class EditProfileForm extends React.Component {
             <button type="button" className="form-cancel-button" onClick={this.cancelEdit}>
               <span>Cancel</span>
             </button>
-            <button type="submit" className={`form-save-button ${this.saveButtonDisabled}`} disabled={this.saveButtonDisabled}>
+            <button type="submit" disabled={this.saveButtonDisabled}
+              className={`form-save-button ${this.saveButtonDisabled}`}>
               <span>Save changes</span>
             </button>
           </div>

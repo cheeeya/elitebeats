@@ -139,10 +139,10 @@ class SessionForm extends React.Component {
         <form onSubmit={this.handleSubmit} className="session-form">
           {inputForm}
           {errorsList}
-          <button className="session-button" id="continue-bttn">{buttonText}</button>
+          <button type="submit" className="session-button" id="continue-bttn">{buttonText}</button>
         </form>
         {signupCheck}
-        <button onClick={this.demoLogin} id="demo-bttn">Demo</button>
+        <button type="button" onClick={this.demoLogin} id="demo-bttn">Demo</button>
       </div>
     )
   }
