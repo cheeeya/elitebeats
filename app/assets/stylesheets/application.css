@@ -85,7 +85,7 @@ button:focus {
 }
 
 .disabled-save-button {
-  opacity: 0.9;
+  opacity: 1;
   background-color: #f2f2f2;
   color: #ccc;
   border-color: #e5e5e5;
