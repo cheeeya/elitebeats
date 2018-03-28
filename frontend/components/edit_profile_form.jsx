@@ -31,10 +31,11 @@ class EditProfileForm extends React.Component {
 
   handleInput(field) {
     return e => {
-      if (this.state[field] !== e.target.value) {
+      let input = e.target.value;
+      if (this.state[field] !== input) {
         this.resetErrors();
         this.changed = true;
-        this.setState({ [field]: e.target.value, newError: false })
+        this.setState({ [field]: input, newError: false })
       }
     }
   }
@@ -79,7 +80,7 @@ class EditProfileForm extends React.Component {
     formData.append("user[display_name]", display_name);
     formData.append("user[first_name]", first_name);
     formData.append("user[last_name]", last_name);
-    formData.append("user[profile_url]", profile_url.toLowerCase());
+    formData.append("user[profile_url]", profile_url);
     this.props.update(formData, this.props.currentUserId)
       .then(
         window.closeProfileEdit,
@@ -92,7 +93,7 @@ class EditProfileForm extends React.Component {
   render() {
     let { bio, city, country, display_name, first_name,
       last_name, profile_url, profile_picture_url, newError } = this.state;
-    const permalinkRegex = /^[a-zA-Z0-9_-]*$/;
+    const permalinkRegex = /^[a-z0-9_-]*$/;
     if (this.changed) {
       this.saveButtonDisabled = "";
     }
@@ -105,7 +106,7 @@ class EditProfileForm extends React.Component {
     if (!profile_url) {
       this.setErrorMessage("Enter a profile URL");
     }else if (!permalinkRegex.test(profile_url)) {
-      this.setErrorMessage("Use only numbers, letters, underscores, or hyphens.");
+      this.setErrorMessage("Use only numbers, lowercase letters, underscores, or hyphens.");
     }
     return (
       <form className="profile-form" onSubmit={this.handleSubmit}>
@@ -133,7 +134,7 @@ class EditProfileForm extends React.Component {
                   <div className="pf-span-wrapper">
                     <span className="form-permalink-span">elitebeats.herokuapp.com/#/</span>
                   </div>
-                  <input id="pf-profile-url" className={`pf-url-input ${this.validationError}`}
+                  <input id="pf-profile-url" className={`url-input ${this.validationError}`}
                     type="text" value={profile_url} required="required"
                     onChange={this.handleInput("profile_url")} onClick={this.clickUrlEdit}/>
                   <button type="button" className="permalink-edit-button"

@@ -37,8 +37,12 @@
 }
 
 .upload-form-input-div {
+  margin-top: 15px;
   width: 520px;
-  margin-bottom: 20px;
+}
+
+.upload-form-input-div:first-of-type {
+  margin-top: 5px;
 }
 
 .upload-form-input-div:first-of-type{
@@ -69,21 +73,16 @@
 }
 
 #upload-form-permalink-div {
-  margin-bottom: 15px;
+  margin-bottom: 0;
   font-size: 13px;
   margin-right:0;
   display: flex;
 }
 
 #upload-form-permalink-input {
-  border: 1px solid transparent;
   padding: 4px 0 3px 1px;
   width: auto;
   flex: 1;
-}
-
-#upload-form-permalink-input:focus {
-  border-color: gray;
 }
 
 .form-permalink-label {
