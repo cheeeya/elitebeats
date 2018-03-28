@@ -14,6 +14,7 @@ class UserProfile extends React.Component {
     this.activateModal = this.activateModal.bind(this);
     this.deactivateModal = this.deactivateModal.bind(this);
     this.getApplicationNode = this.getApplicationNode.bind(this);
+    window.closeProfileEdit = this.deactivateModal.bind(this);
   }
 
   componentDidMount() {
@@ -130,7 +131,7 @@ class UserProfile extends React.Component {
           <section className="profile-music">
             <div className="profile-info">
               <div className="profile-tab-all"><span>All</span></div>
-              <button className={`profile-edit-button ${disabledUnlessOwner}`} onClick={this.activateModal}><i className="fas fa-pencil-alt" /><span className="sm-button-text">Edit</span></button>
+              <button className={`profile-edit-button ${disabledUnlessOwner}`} disabled={disabledUnlessOwner} onClick={this.activateModal}><i className="fas fa-pencil-alt" /><span className="sm-button-text">Edit</span></button>
             </div>
             {tracksElement}
           </section>

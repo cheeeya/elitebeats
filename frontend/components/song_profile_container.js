@@ -22,7 +22,7 @@ const mapStateToProps = (state, ownProps) => {
     permalink:  ownProps.match.params.permalink,
     status,
     songProfile
-  }
+  };
 }
 
 
