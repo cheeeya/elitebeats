@@ -8,7 +8,6 @@
 .pf-main {
   display: flex;
   width: 800px;
-  height: 364px;
   border-bottom: 1px solid #f2f2f2;
 }
 
@@ -70,13 +69,16 @@
 }
 
 #pf-profile-url {
-  border-color: transparent;
   padding: 2px 0 1px 1px;
   flex: 1;
   width: auto;
 }
 
-#pf-profile-url:focus {
+.pf-url-input {
+  border-color: transparent;
+}
+
+.pf-url-input:focus {
   border-color: gray;
 }
 
@@ -98,4 +100,19 @@
   flex-direction: column;
   align-items: flex-end;
   margin-top: 20px;
+}
+
+.permalink-validation {
+  margin-left: 185px;
+  margin-top: 5px;
+  color: #35A7FF;
+  font-size: 12px;
+}
+
+.validation-error {
+  border-color: #35A7FF;
+}
+
+.validation-error:focus {
+  border-color: #35A7FF;
 }

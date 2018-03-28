@@ -5,6 +5,7 @@ class EditProfileForm extends React.Component {
     super(props);
     let { profile } = this.props;
     this.oldUrl = profile.profile_url;
+    this.changed = false;
     this.state = {
       bio: profile.bio,
       city: profile.city,
@@ -20,7 +21,10 @@ class EditProfileForm extends React.Component {
 
   handleInput(field) {
     return e => {
-      this.setState({ [field]: e.target.value })
+      if (this.state[field] !== e.target.value) {
+        this.changed = true;
+        this.setState({ [field]: e.target.value })
+      }
     }
   }
 
@@ -52,7 +56,24 @@ class EditProfileForm extends React.Component {
 
   render() {
     let { bio, city, country, display_name, first_name,
-      last_name, profile_url} = this.state;
+      last_name, profile_url} = this.state,
+      pLinkErrorDisabled = "disabled", validationError = "",
+      errorMessage = "", saveButtonDisabled = "disabled-save-button";
+    const permalinkRegex = /^[a-zA-Z0-9_-]*$/;
+    if (this.changed) {
+      saveButtonDisabled = "";
+    }
+    if (!profile_url) {
+      pLinkErrorDisabled = "";
+      validationError = "validation-error"
+      errorMessage = "Enter a profile URL";
+      saveButtonDisabled = "disabled-save-button";
+    }else if (!permalinkRegex.test(profile_url)) {
+      pLinkErrorDisabled = "";
+      validationError = "validation-error";
+      errorMessage = "Use only numbers, letters, underscores, or hyphens.";
+      saveButtonDisabled = "disabled-save-button";
+    }
     return (
       <form className="profile-form" onSubmit={this.handleSubmit}>
         <h2 className="pf-h2">Edit your Profile</h2>
@@ -79,9 +100,10 @@ class EditProfileForm extends React.Component {
                   <div className="pf-span-wrapper">
                     <span className="form-permalink-span">elitebeats.herokuapp.com/#/</span>
                   </div>
-                  <input id="pf-profile-url" type="text" value={profile_url}
+                  <input id="pf-profile-url" className={`pf-url-input ${validationError}`} type="text" value={profile_url}
                     required="required" onChange={this.handleInput("profile_url")} />
                 </div>
+                <div className={`permalink-validation ${pLinkErrorDisabled}`}>{errorMessage}</div>
               </label>
             </div>
             <div className="profile-form-field-div">
@@ -127,7 +149,7 @@ class EditProfileForm extends React.Component {
             <button className="form-cancel-button" onClick={this.cancelEdit}>
               <span>Cancel</span>
             </button>
-            <button className="form-save-button">
+            <button className={`form-save-button ${saveButtonDisabled}`} disabled={saveButtonDisabled}>
               <span>Save changes</span>
             </button>
           </div>

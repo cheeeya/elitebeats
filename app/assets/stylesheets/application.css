@@ -84,6 +84,17 @@ button:focus {
   opacity: 0.3;
 }
 
+.disabled-save-button {
+  opacity: 0.9;
+  background-color: #f2f2f2;
+  color: #ccc;
+  border-color: #e5e5e5;
+}
+
+.disabled-save-button:hover {
+  cursor: default;
+}
+
 .disabled-button:hover {
   cursor: default;
 }
