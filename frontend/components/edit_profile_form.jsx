@@ -13,6 +13,7 @@ class EditProfileForm extends React.Component {
       last_name: profile.last_name,
       profile_url: profile.profile_url
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInput(field) {
@@ -26,10 +27,24 @@ class EditProfileForm extends React.Component {
     window.closeProfileEdit();
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const { bio, city, country, display_name, first_name, last_name, profile_url } = this.state;
+    const formData = new FormData();
+    formData.append("user[bio]", bio);
+    formData.append("user[city]", city);
+    formData.append("user[country]", country);
+    formData.append("user[display_name]", display_name);
+    formData.append("user[first_name]", first_name);
+    formData.append("user[last_name]", last_name);
+    formData.append("user[profile_url]", profile_url);
+    this.props.update(formData, this.props.currentUserId).then(window.closeProfileEdit);
+  }
+
   render() {
     let { bio, city, country, display_name, first_name, last_name, profile_url } = this.state;
     return (
-      <form className="profile-form">
+      <form className="profile-form" onSubmit={this.handleSubmit}>
         <h2 className="pf-h2">Edit your Profile</h2>
         <div className="pf-main">
           <div className="pf-image"/>

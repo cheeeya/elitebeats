@@ -40,7 +40,7 @@ class Api::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      render :show
+      render 'api/users/profile'
     else
       render json: @user.errors.full_messages, status: 422
     end
@@ -48,6 +48,8 @@ class Api::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :password, :age, :display_name, :profile_url, :profile_picture, :cover)
+    params.require(:user).permit(:email, :password, :age, :display_name,
+      :profile_url, :profile_picture, :cover, :bio, :first_name, :last_name,
+      :city, :country)
   end
 end
