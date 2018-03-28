@@ -25,7 +25,8 @@ class EditProfileForm extends React.Component {
       newError: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.clickUrlEdit = this.clickUrlEdit.bind(this)
+    this.checkRedirect = this.checkRedirect.bind(this);
+    this.clickUrlEdit = this.clickUrlEdit.bind(this);
   }
 
   handleInput(field) {
@@ -65,7 +66,6 @@ class EditProfileForm extends React.Component {
 
   clickUrlEdit(e) {
     e.preventDefault();
-    document.getElementById("pf-profile-url").focus();
     document.getElementById("pf-profile-url").select();
   }
 
