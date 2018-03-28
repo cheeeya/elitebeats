@@ -6,7 +6,7 @@
 #  email                        :string           not null
 #  password_digest              :string           not null
 #  session_token                :string           not null
-#  info                         :text
+#  bio                          :text
 #  follows_id                   :integer
 #  created_at                   :datetime         not null
 #  updated_at                   :datetime         not null
@@ -23,6 +23,10 @@
 #  cover_updated_at             :datetime
 #  s_prof_pic_url               :string
 #  s_cover_url                  :string
+#  first_name                   :string
+#  last_name                    :string
+#  city                         :string
+#  country                      :string
 #
 
 class User < ApplicationRecord
