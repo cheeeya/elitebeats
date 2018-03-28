@@ -51,7 +51,7 @@ class EditProfileForm extends React.Component {
     formData.append("user[display_name]", display_name);
     formData.append("user[first_name]", first_name);
     formData.append("user[last_name]", last_name);
-    formData.append("user[profile_url]", profile_url);
+    formData.append("user[profile_url]", profile_url.toLowerCase());
     this.props.update(formData, this.props.currentUserId)
       .then(
         window.closeProfileEdit,
@@ -70,7 +70,7 @@ class EditProfileForm extends React.Component {
     if (this.changed) {
       saveButtonDisabled = "";
     }
-    if (this.props.errors.length > 0 && (this.usedUrls.includes(profile_url) || newError)) {
+    if (this.props.errors.includes("Profile url has already been taken") && (this.usedUrls.includes(profile_url) || newError)) {
       pLinkErrorDisabled = "";
       validationError = "validation-error"
       errorMessage = "This profile URL is already in use. Try a different one.";
