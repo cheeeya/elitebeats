@@ -32,7 +32,7 @@ class SessionForm extends React.Component {
 
   update(field) {
     return (e) => {
-      const emailFormatRegex = /\w+@\w+\.\w{2,}/;
+      const emailFormatRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (field === 'identifier') {
         if (emailFormatRegex.test(e.target.value)) {
           this.setState({ [field]: e.target.value, email: e.target.value, validEmail: true });

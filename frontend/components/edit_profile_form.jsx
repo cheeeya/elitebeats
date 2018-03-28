@@ -6,6 +6,7 @@ class EditProfileForm extends React.Component {
     let { profile } = this.props;
     this.oldUrl = profile.profile_url;
     this.changed = false;
+    this.usedUrls = [];
     this.state = {
       bio: profile.bio,
       city: profile.city,
@@ -13,7 +14,8 @@ class EditProfileForm extends React.Component {
       display_name: profile.display_name,
       first_name: profile.first_name,
       last_name: profile.last_name,
-      profile_url: profile.profile_url
+      profile_url: profile.profile_url,
+      newError: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkRedirect = this.checkRedirect.bind(this);
@@ -23,7 +25,7 @@ class EditProfileForm extends React.Component {
     return e => {
       if (this.state[field] !== e.target.value) {
         this.changed = true;
-        this.setState({ [field]: e.target.value })
+        this.setState({ [field]: e.target.value, newError: false })
       }
     }
   }
@@ -51,17 +53,28 @@ class EditProfileForm extends React.Component {
     formData.append("user[last_name]", last_name);
     formData.append("user[profile_url]", profile_url);
     this.props.update(formData, this.props.currentUserId)
-      .then(window.closeProfileEdit).then(this.checkRedirect);
+      .then(
+        window.closeProfileEdit,
+        errors => {
+          this.usedUrls.push(profile_url);
+          this.setState({ newError: true })
+        }).then(this.checkRedirect);
   }
 
   render() {
     let { bio, city, country, display_name, first_name,
-      last_name, profile_url} = this.state,
+      last_name, profile_url, newError } = this.state,
       pLinkErrorDisabled = "disabled", validationError = "",
       errorMessage = "", saveButtonDisabled = "disabled-save-button";
     const permalinkRegex = /^[a-zA-Z0-9_-]*$/;
     if (this.changed) {
       saveButtonDisabled = "";
+    }
+    if (this.props.errors.length > 0 && (this.usedUrls.includes(profile_url) || newError)) {
+      pLinkErrorDisabled = "";
+      validationError = "validation-error"
+      errorMessage = "This profile URL is already in use. Try a different one.";
+      saveButtonDisabled = "disabled-save-button";
     }
     if (!profile_url) {
       pLinkErrorDisabled = "";
@@ -146,10 +159,10 @@ class EditProfileForm extends React.Component {
         </div>
         <div className="pf-footer">
           <div className="pf-buttons">
-            <button className="form-cancel-button" onClick={this.cancelEdit}>
+            <button type="button" className="form-cancel-button" onClick={this.cancelEdit}>
               <span>Cancel</span>
             </button>
-            <button className={`form-save-button ${saveButtonDisabled}`} disabled={saveButtonDisabled}>
+            <button type="submit" className={`form-save-button ${saveButtonDisabled}`} disabled={saveButtonDisabled}>
               <span>Save changes</span>
             </button>
           </div>

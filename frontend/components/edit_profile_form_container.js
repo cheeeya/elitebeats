@@ -7,7 +7,8 @@ const mapStateToProps = (state, ownProps) => {
   let profileUrl = ownProps.location.pathname.slice(1);
   return {
     currentUserId: state.session.currentUser.id,
-    profile: state.entities.profiles[profileUrl]
+    profile: state.entities.profiles[profileUrl],
+    errors: state.errors.session
   };
 }
 
