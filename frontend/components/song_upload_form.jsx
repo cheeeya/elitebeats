@@ -245,7 +245,7 @@ class SongUploadForm extends React.Component {
           <div className="sf-main">
             <input type="file" id="file-input" onChange={this.handleFile} />
             <div className="artwork-div">
-              <img src={artworkUrl} className="upload-artwork"></img>
+              <div className="upload-artwork" style={{ backgroundImage: `url(${artworkUrl})` }}></div>
               <input type="file" id="artwork-input" onChange={this.handleImage} />
               <button onClick={this.handleUploadButton("artwork-input")}
                 className="image-update-button" type="button">

@@ -114,6 +114,9 @@
 .upload-artwork {
   width: 260px;
   height: 260px;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 }
 
 #artwork-input {
