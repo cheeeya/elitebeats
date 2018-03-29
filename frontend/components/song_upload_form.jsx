@@ -6,9 +6,13 @@ class SongUploadForm extends React.Component {
     super(props);
     this.pLinkErrorDisabled = "disabled";
     this.fileErrorDisabled = "disabled";
+    this.imageErrorDisabled = "disabled";
     this.linkValidationError = "";
-    this.fileValidationError = "";
-    this.errorMessage = "";
+    this.errorMessages = {
+      file: "",
+      image: "",
+      link: ""
+    }
     this.saveButtonDisabled = "disabled-save-button";
     let { song } = props;
     this.state = {
@@ -23,7 +27,9 @@ class SongUploadForm extends React.Component {
       artwork: null,
       disabled: false,
       id: song.id,
-      newError: false
+      linkError: false,
+      fileError: false,
+      imageError: false
     }
     this.handleFile = this.handleFile.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -61,19 +67,26 @@ class SongUploadForm extends React.Component {
   resetErrors() {
     this.pLinkErrorDisabled = "disabled";
     this.fileErrorDisabled = "disabled";
+    this.imageErrorDisabled = "disabled";
     this.linkValidationError = "";
-    this.errorMessage = "";
+    this.errorMessages = {
+      file: "",
+      image: "",
+      link: ""
+    }
     this.saveButtonDisabled = "";
   }
 
   setErrorMessage(message, field) {
-    if (field === "permalink") {
+    if (field === "link") {
       this.pLinkErrorDisabled = "";
       this.linkValidationError = "validation-error"
     } else if (field === "file") {
       this.fileErrorDisabled = "";
+    } else if(field === "image") {
+      this.imageErrorDisabled = "";
     }
-    this.errorMessage = message;
+    this.errorMessages[field] = message;
     this.saveButtonDisabled = "disabled-save-button";
   }
 
@@ -95,10 +108,10 @@ class SongUploadForm extends React.Component {
       title = this.capitalizeTitle(title);
       this.resetErrors();
       reader.onloadend = () => this.setState({ songUrl: reader.result,
-        songFile: file, title, permalink, newError: false });
+        songFile: file, title, permalink, linkError: false, fileError: false });
       reader.readAsDataURL(file);
     } else {
-      this.setState({ songUrl: "", songFile: null, newError: false });
+      this.setState({ songUrl: "", songFile: null, fileError: true });
     }
   }
 
@@ -106,26 +119,30 @@ class SongUploadForm extends React.Component {
     e.preventDefault();
     const reader = new FileReader();
     const imagefile = e.currentTarget.files[0];
+    this.resetErrors();
     reader.onloadend = () => this.setState({ artworkUrl: reader.result,
-      artwork: imagefile });
+      artwork: imagefile, imageError: false });
     if (imagefile) {
       reader.readAsDataURL(imagefile);
     } else {
-      this.setState({ artworkUrl: "", artwork: null });
+      this.setState({ artworkUrl: "", artwork: null, imageError: true });
     }
   }
 
   handleUpdate(field) {
     return (e) => {
       this.resetErrors();
-      this.setState({ [field]: e.currentTarget.value, newError: false })
+      this.setState({ [field]: e.currentTarget.value, linkError: false })
     }
   }
 
   handleCancel(e) {
     e.preventDefault();
+    this.resetErrors();
     this.setState({ songUrl: "", songFile: null, title: "",
-      genre: "", description: "", permalink: "", redirect: false });
+      genre: "", description: "", permalink: "", redirect: false,
+      linkError: false, fileError: false, imageError: false,
+      artworkUrl: "https://res.cloudinary.com/elitebeats/image/upload/v1518134441/default_album_kynclq.png" });
     if (window.closeEdit) {
       window.closeEdit();
     }
@@ -156,14 +173,26 @@ class SongUploadForm extends React.Component {
             redirect: true, artwork: null,
             artworkUrl: ""
           }),
-          error => this.setState({ disabled: false, newError: true })
+          error => {
+            let linkError = false, imageError = false, fileError = false;
+            if (error.responseJSON.includes("Songfile is invalid")) fileError = true;
+            if (error.responseJSON.includes("Image is invalid")) imageError = true;
+            if (error.responseJSON.includes("Permalink has already been taken")) linkError = true;
+            this.setState({ disabled: false, linkError, fileError, imageError });
+          }
         );
       }
     } else {
       if (this.props.page === 'modal') {
         this.props.updateSong(formData, id).then(
           () => window.closeEdit(),
-          error => this.setState({ disabled: false, newError: true })
+          error => {
+            let linkError = false, imageError = false, fileError = false;
+            if (error.responseJSON.includes("Songfile is invalid")) fileError = true;
+            if (error.responseJSON.includes("Image is invalid")) imageError = true;
+            if (error.responseJSON.includes("Permalink has already been taken")) linkError = true;
+            this.setState({ disabled: false, linkError, fileError, imageError });
+          }
         );
       }
     }
@@ -172,7 +201,7 @@ class SongUploadForm extends React.Component {
 
   render() {
     const { redirect, title, genre, description,
-          disabled, permalink, artworkUrl, newError } = this.state,
+          disabled, permalink, artworkUrl, linkError, fileError, imageError } = this.state,
           { currentUser, page, errors } = this.props,
           permalinkRegex = /^[a-z0-9_-]*$/;
     let btnDisabled = "",
@@ -193,21 +222,24 @@ class SongUploadForm extends React.Component {
                           </div>
     }
     if (linkSpanElement) errorMargin = `${linkSpanElement.offsetWidth}px`;
-    if (errors.includes("Permalink has already been taken") && newError) {
-      this.setErrorMessage("This permalink is already in use. Enter another one.", "permalink");
+    if (errors.includes("Permalink has already been taken") && linkError) {
+      this.setErrorMessage("This permalink is already in use. Enter another one.", "link");
     }
     if (!permalinkRegex.test(permalink)) {
-      this.setErrorMessage("Use only numbers, lowercase letters, underscores, or hyphens.", "permalink");
+      this.setErrorMessage("Use only numbers, lowercase letters, underscores, or hyphens.", "link");
     }
-    if (errors.includes("Songfile is invalid") && newError) {
-      this.setErrorMessage("Your file is too large or not supported.", "file")
+    if (errors.includes("Songfile is invalid") && fileError) {
+      this.setErrorMessage("Your song file is too large or not supported.", "file");
+    }
+    if (errors.includes("Image is invalid") && imageError) {
+      this.setErrorMessage("Your image file is too large or not supported.", "image");
     }
     return(
       <section className={`upload-form-${page}`}>
 
         {uploadButtonDiv}
         <div className={`file-validation ${this.fileErrorDisabled}`}>
-          {this.errorMessage}
+          {this.errorMessages.file}
         </div>
         <form onSubmit={this.handleSubmit} className="song-upload-form">
           <div className="sf-main">
@@ -221,6 +253,9 @@ class SongUploadForm extends React.Component {
                   <i className="fas fa-camera"></i>&nbsp;Update image
                 </span>
               </button>
+              <div className={`artwork-validation ${this.imageErrorDisabled}`}>
+                {this.errorMessages.image}
+              </div>
             </div>
             <div className="upload-form-inner-div">
               <div className="upload-form-input-div">
@@ -249,7 +284,7 @@ class SongUploadForm extends React.Component {
                 </button>
               </div>
               <div className={`permalink-validation ${this.pLinkErrorDisabled}`} style={{ marginLeft: `${errorMargin}` }}>
-                {this.errorMessage}
+                {this.errorMessages.link}
               </div>
               <div className="upload-form-input-div">
                 <label>
