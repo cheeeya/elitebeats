@@ -5,7 +5,9 @@ class SongUploadForm extends React.Component {
   constructor (props) {
     super(props);
     this.pLinkErrorDisabled = "disabled";
-    this.validationError = "";
+    this.fileErrorDisabled = "disabled";
+    this.linkValidationError = "";
+    this.fileValidationError = "";
     this.errorMessage = "";
     this.saveButtonDisabled = "disabled-save-button";
     let { song } = props;
@@ -58,14 +60,19 @@ class SongUploadForm extends React.Component {
 
   resetErrors() {
     this.pLinkErrorDisabled = "disabled";
-    this.validationError = "";
+    this.fileErrorDisabled = "disabled";
+    this.linkValidationError = "";
     this.errorMessage = "";
     this.saveButtonDisabled = "";
   }
 
-  setErrorMessage(message) {
-    this.pLinkErrorDisabled = "";
-    this.validationError = "validation-error"
+  setErrorMessage(message, field) {
+    if (field === "permalink") {
+      this.pLinkErrorDisabled = "";
+      this.linkValidationError = "validation-error"
+    } else if (field === "file") {
+      this.fileErrorDisabled = "";
+    }
     this.errorMessage = message;
     this.saveButtonDisabled = "disabled-save-button";
   }
@@ -88,10 +95,10 @@ class SongUploadForm extends React.Component {
       title = this.capitalizeTitle(title);
       this.resetErrors();
       reader.onloadend = () => this.setState({ songUrl: reader.result,
-        songFile: file, title, permalink });
+        songFile: file, title, permalink, newError: false });
       reader.readAsDataURL(file);
     } else {
-      this.setState({ songUrl: "", songFile: null });
+      this.setState({ songUrl: "", songFile: null, newError: false });
     }
   }
 
@@ -187,15 +194,21 @@ class SongUploadForm extends React.Component {
     }
     if (linkSpanElement) errorMargin = `${linkSpanElement.offsetWidth}px`;
     if (errors.includes("Permalink has already been taken") && newError) {
-      this.setErrorMessage("This permalink is already in use. Enter another one.");
+      this.setErrorMessage("This permalink is already in use. Enter another one.", "permalink");
     }
     if (!permalinkRegex.test(permalink)) {
-      this.setErrorMessage("Use only numbers, lowercase letters, underscores, or hyphens.");
+      this.setErrorMessage("Use only numbers, lowercase letters, underscores, or hyphens.", "permalink");
+    }
+    if (errors.includes("Songfile is invalid") && newError) {
+      this.setErrorMessage("Your file is too large or not supported.", "file")
     }
     return(
       <section className={`upload-form-${page}`}>
 
         {uploadButtonDiv}
+        <div className={`file-validation ${this.fileErrorDisabled}`}>
+          {this.errorMessage}
+        </div>
         <form onSubmit={this.handleSubmit} className="song-upload-form">
           <div className="sf-main">
             <input type="file" id="file-input" onChange={this.handleFile} />
@@ -227,7 +240,7 @@ class SongUploadForm extends React.Component {
                   </span>
                 </label>
                 <input id="upload-form-permalink-input"
-                  className={`url-input ${this.validationError}`} value={permalink}
+                  className={`url-input ${this.linkValidationError}`} value={permalink}
                   onChange={this.handleUpdate('permalink')} required="required"
                   onClick={this.clickUrlEdit} />
                 <button type="button" className="permalink-edit-button"
