@@ -36,11 +36,11 @@ header {
 }
 
 #home-link {
-  padding: 16px 35px;
+  padding: 17px 35px 15px 35px;
 }
 
 #collection-link {
-  padding: 16px 20px;
+  padding: 17px 20px 15px 20px;
 }
 
 .search-bar-wrapper {
@@ -60,7 +60,7 @@ header {
 }
 
 #upload-link {
-  padding: 16px 10px;
+  padding: 17px 10px 15px 10px;
   border: none;
 }
 
@@ -89,7 +89,7 @@ header {
 
 .user-nav-name {
   font-size: 14px;
-  padding: 16px 10px 16px 5px;
+  padding: 17px 10px 15px 5px;
 }
 
 .user-nav:hover {
@@ -108,6 +108,10 @@ header {
   margin: 0 10px;
   padding: 4px 11px 3px 10px;
   border-color: #676767;
+}
+
+#nav-bar-signin-btn:hover {
+  border-color: #e5e5e5;
 }
 
 #nav-bar-register-btn {
