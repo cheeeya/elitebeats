@@ -47,6 +47,7 @@ class NavBar extends React.Component {
           </div>
           <div className="search-bar-wrapper">
             <input className="search-bar" placeholder="Search"></input>
+            <button className="nav-bar-search-btn"></button>
           </div>
           <div className="right-nav">
             <Link to="/upload"><div className="nav-link" id="upload-link">Upload</div></Link>
