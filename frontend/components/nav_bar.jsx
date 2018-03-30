@@ -18,13 +18,23 @@ class NavBar extends React.Component {
   }
 
   render () {
-    const { currentUser, receiveFormType } = this.props;
-    let element = <SessionFormModal receiveFormType={receiveFormType} loc='nav-bar'/>
+    const { currentUser, receiveFormType, route } = this.props;
+    let element = <SessionFormModal receiveFormType={receiveFormType} loc='nav-bar'/>,
+        activeHome = "", activeUpload ="", activeProfile = "";
+
+    if (route === "/stream") {
+      activeHome = "active-tab";
+    } else if (route === "/upload") {
+      activeUpload = "active-tab";
+    }
     if (currentUser) {
+      if (route === `/${currentUser.profile_url}`) {
+        activeProfile = "active-tab";
+      }
       element = (
         <div className="user-nav-wrapper">
           <Link to={`/${currentUser.profile_url}`}>
-            <div className="user-nav">
+            <div className={`user-nav ${activeProfile}`}>
               <div className="user-nav-avatar" style={{ backgroundImage: `url(${currentUser.profile_picture_url})`}}></div>
               <span className="user-nav-name">{currentUser.display_name}</span>
             </div>
@@ -42,7 +52,7 @@ class NavBar extends React.Component {
             <Link to="/stream" className="root-link"><img className="logo-blue" src="https://res.cloudinary.com/elitebeats/image/upload/v1520850261/eb_icon_bluewhite_calphx.png"></img></Link>
           </div>
           <div className="left-nav">
-            <Link to="/stream"><div className="nav-link" id="home-link">Home</div></Link>
+            <Link to="/stream"><div className={`nav-link ${activeHome}`} id="home-link">Home</div></Link>
             <Link to="/stream"><div className="nav-link" id="collection-link">Collection</div></Link>
           </div>
           <div className="search-bar-wrapper">
@@ -50,7 +60,7 @@ class NavBar extends React.Component {
             <button className="nav-bar-search-btn"></button>
           </div>
           <div className="right-nav">
-            <Link to="/upload"><div className="nav-link" id="upload-link">Upload</div></Link>
+            <Link to="/upload"><div className={`nav-link ${activeUpload}`} id="upload-link">Upload</div></Link>
             {element}
           </div>
         </div>
