@@ -22,7 +22,7 @@ class NavBar extends React.Component {
     let element = <SessionFormModal receiveFormType={receiveFormType} loc='nav-bar'/>,
         activeHome = "", activeUpload ="", activeProfile = "";
 
-    if (route === "/stream") {
+    if (route === "/stream" || route === "/discover") {
       activeHome = "active-tab";
     } else if (route === "/upload") {
       activeUpload = "active-tab";
