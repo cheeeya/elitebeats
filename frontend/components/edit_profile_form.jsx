@@ -11,7 +11,7 @@ class EditProfileForm extends React.Component {
     this.validationError = "";
     this.errorMessage = "";
     this.saveButtonDisabled = "disabled-save-button";
-    this.reservedLinks = ["stream", "home", "collection", "upload",
+    this.reservedLinks = ["stream", "collection", "upload",
       "charts", "discover", "search"];
     this.state = {
       bio: profile.bio,

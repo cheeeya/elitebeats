@@ -15,7 +15,7 @@ class Main extends React.Component {
     if (this.props.location.pathname === '/stream') {
       element = <SongIndexContainer />
       streamActive = "selected-tab";
-    } else if (this.props.location.pathname === '/home') {
+    } else if (this.props.location.pathname === '/discover') {
       discoverActive = "selected-tab";
     }
     return (
@@ -23,7 +23,7 @@ class Main extends React.Component {
         <section className="main-section">
           <div className="main-tabs">
             <Link className={`main-tab-link ${streamActive}`} to="/stream">Stream</Link>
-            <Link className={`main-tab-link ${discoverActive}`} to="/home">Discover</Link>
+            <Link className={`main-tab-link ${discoverActive}`} to="/discover">Discover</Link>
           </div>
           {element}
         </section>
