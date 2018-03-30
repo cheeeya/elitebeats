@@ -36,11 +36,6 @@
   align-items: center;
 }
 
-#signin-btn {
-  background: none;
-  border: 0.5px solid white;
-}
-
 .session-button {
   font-family: 'Roboto', sans-serif;
   opacity: 1;
@@ -51,6 +46,11 @@
   /* background: #003366; */
   background: #0059B3;
   border: 0.6px solid #002566;
+}
+
+.signin-btn {
+  background: none;
+  border: 0.5px solid white;
 }
 
 button:hover {
@@ -111,6 +111,10 @@ input:focus {
 textarea:focus {
   outline: none;
   border-color: gray;
+}
+
+a {
+  text-decoration: none;
 }
 
 select:focus {

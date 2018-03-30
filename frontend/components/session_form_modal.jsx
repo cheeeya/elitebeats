@@ -41,8 +41,8 @@ class SessionFormModal extends React.Component {
 
     let buttonElements = (
       <div className={`${this.props.loc}-session-bttns`}>
-        <button className="session-button" id="signin-btn" onClick={this.activateModal} >Sign in</button>
-        <button className="session-button" id="register-btn" onClick={this.activateModal} >Create account</button>
+        <button className="session-button signin-btn" id={`${this.props.loc}-signin-btn`} onClick={this.activateModal} >Sign in</button>
+        <button className="session-button" id={`${this.props.loc}-register-btn`} onClick={this.activateModal} >Create account</button>
       </div>
     );
 
