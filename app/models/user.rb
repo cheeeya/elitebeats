@@ -7,7 +7,7 @@
 #  password_digest              :string           not null
 #  session_token                :string           not null
 #  bio                          :text
-#  follows_id                   :integer
+#  following_id                 :integer
 #  created_at                   :datetime         not null
 #  updated_at                   :datetime         not null
 #  profile_url                  :string           not null
@@ -55,6 +55,17 @@ class User < ApplicationRecord
     primary_key: :id,
     foreign_key: :author_id,
     class_name: 'Comment'
+
+  has_and_belongs_to_many :followers,
+    primary_key: :id,
+    foreign_key: :following_id,
+    class_name: 'User'
+
+  has_and_belongs_to_many :following,
+    primary_key: :id,
+    foreign_key: :following_id,
+    class_name: 'User'
+
 
   def self.user_exists? (identifier)
     !!User.find_by_identifier(identifier)
