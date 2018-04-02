@@ -11,6 +11,17 @@ class Sidebar extends React.Component {
         <div className="sidebar-wrapper">
           <div className="sidebar-follow sidebar-header"><div id="sidebar-icon-follow"/>Who to follow</div>
           <div className="sidebar-content">
+            <ul>
+              <li className="sidebar-follow-user-item">
+                <div className="sidebar-user-avatar"/>
+              </li>
+              <li className="sidebar-follow-user-item">
+                <div className="sidebar-user-avatar"/>
+              </li>
+              <li className="sidebar-follow-user-item">
+                <div className="sidebar-user-avatar"/>
+              </li>
+            </ul>
           </div>
           <div className="sidebar-likes sidebar-header"><div id="sidebar-icon-likes"/>likes</div>
           <div className="sidebar-content">
