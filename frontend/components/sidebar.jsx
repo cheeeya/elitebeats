@@ -14,23 +14,35 @@ class Sidebar extends React.Component {
             <ul className="sidebar-follow-user-list">
               <li className="sidebar-follow-user-item">
                 <div className="follow-list-user-avatar"/>
-                <div className="follow-list-user-info">\
-                  <span></span>
-                  <button className="follow-button" type="button">Follow</button>
+                <div className="follow-list-user-info">
+                  <div className="follow-list-username">
+                    <span>user1</span>
+                  </div>
+                  <div className="follow-list-user-data">
+                    <button className="follow-button" type="button">Follow</button>
+                  </div>
                 </div>
               </li>
               <li className="sidebar-follow-user-item">
                 <div className="follow-list-user-avatar"/>
                 <div className="follow-list-user-info">
-                  <span></span>
-                  <button className="follow-button" type="button">Follow</button>
+                  <div className="follow-list-username">
+                    <span>user2</span>
+                  </div>
+                  <div className="follow-list-user-data">
+                    <button className="follow-button" type="button">Follow</button>
+                  </div>
                 </div>
               </li>
               <li className="sidebar-follow-user-item">
                 <div className="follow-list-user-avatar"/>
                 <div className="follow-list-user-info">
-                  <span></span>
-                  <button className="follow-button" type="button">Follow</button>
+                  <div className="follow-list-username">
+                    <span>user3</span>
+                  </div>
+                  <div className="follow-list-user-data">
+                    <button className="follow-button" type="button">Follow</button>
+                  </div>
                 </div>
               </li>
             </ul>
