@@ -2,6 +2,7 @@
   width: 300px;
   height: 70px;
   padding: 10px 0;
+  display: flex;
 }
 
 .follow-list-user-avatar {
@@ -9,4 +10,13 @@
   width: 50px;
   border-radius: 50%;
   background-image: url("http://res.cloudinary.com/elitebeats/image/upload/v1518126520/defaultprofile_zl2itc.png");
+}
+
+.follow-button {
+  background-color: transparent;
+  border: 1px solid #e5e5e5;
+  color: #333;
+  border-radius: 3px;
+  font-size: 11px;
+  padding: 2px 9px 1px 8px;
 }
