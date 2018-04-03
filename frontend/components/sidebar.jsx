@@ -5,6 +5,10 @@ class Sidebar extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.fetchUsers();
+  }
+
   render() {
     return(
       <section className="sidebar">

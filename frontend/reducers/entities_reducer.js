@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import songProfileReducer from './song_profile_reducer';
 import profileReducer from './profile_reducer';
 import playlistReducer from './playlist_reducer';
+import usersReducer from './users_reducer';
 
 
 const entitiesReducer = combineReducers({
