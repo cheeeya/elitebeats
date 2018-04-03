@@ -4,7 +4,7 @@ export const fetchUserData = profile_url => (
     method: 'GET',
     url: `api/users/${profile_url}`
   })
-)
+);
 
 export const updateUserData = (formData, user_id) => (
   $.ajax({
@@ -15,4 +15,11 @@ export const updateUserData = (formData, user_id) => (
     dataType: 'json',
     data: formData
   })
-)
+);
+
+export const allUsers = () => (
+  $.ajax({
+    method: 'GET',
+    url: 'api/users'
+  })
+);
