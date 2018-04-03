@@ -17,7 +17,7 @@ export const updateUserData = (formData, user_id) => (
   })
 );
 
-export const allUsers = () => (
+export const fetchAllUsers = () => (
   $.ajax({
     method: 'GET',
     url: 'api/users'

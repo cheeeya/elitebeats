@@ -7,7 +7,8 @@ import playlistReducer from './playlist_reducer';
 const entitiesReducer = combineReducers({
   profiles: profileReducer,
   playlists: playlistReducer,
-  songProfiles: songProfileReducer
+  songProfiles: songProfileReducer,
+  userList: usersReducer
 });
 
 export default entitiesReducer;
