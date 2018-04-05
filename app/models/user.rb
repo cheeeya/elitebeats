@@ -56,23 +56,24 @@ class User < ApplicationRecord
     foreign_key: :author_id,
     class_name: 'Comment'
 
+  has_many :follower_follows,
+    primary_key: :id,
+    foreign_key: :follower_id,
+    class_name: "Follow"
+
   has_many :followers,
     through: :follower_follows,
     source: :follower
 
-  has_many :follower_follows,
+  has_many :following_follows,
     primary_key: :id,
-    foreign_key: :follower_id,
+    foreign_key: :user_id,
     class_name: "Follow"
 
   has_many :followings,
     through: :following_follows,
     source: :following
 
-  has_many :following_follows,
-    primary_key: :id,
-    foreign_key: :user_id,
-    class_name: "Follow"
 
   def self.user_exists? (identifier)
     !!User.find_by_identifier(identifier)

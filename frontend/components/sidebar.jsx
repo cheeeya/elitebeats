@@ -62,7 +62,13 @@ class Sidebar extends React.Component {
                       <div className="follow-list-username">
                         <span>{user.display_name}</span>
                       </div>
-                      <div className="follow-list-user-data">
+                      <div className="follow-list-extra">
+                        <div className="follow-list-user-data">
+                          <div className="icon-followers"/>
+                          <span>{user.user_followers}</span>
+                          <div className="icon-sounds"/>
+                          <span>{user.user_sounds}</span>
+                        </div>
                         <button className="follow-button" type="button">Follow</button>
                       </div>
                     </div>

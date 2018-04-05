@@ -6,5 +6,7 @@
     else
       json.profile_picture_url user.profile_picture.url
     end
+    json.user_sounds user.songs.length
+    json.user_followers user.followers.length
   end
 end
