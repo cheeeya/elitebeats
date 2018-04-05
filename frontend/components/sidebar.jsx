@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -12,41 +13,7 @@ class Sidebar extends React.Component {
   render() {
     const { userList } = this.props;
     // let suggestionList = Array.new(3);
-    let suggestionList = Object.values(userList).slice(0, 3);
-
-    // let followContent = <li className="sidebar-follow-user-item">
-    //                       <div className="follow-list-user-avatar"/>
-    //                       <div className="follow-list-user-info">
-    //                         <div className="follow-list-username">
-    //                           <span>user1</span>
-    //                         </div>
-    //                         <div className="follow-list-user-data">
-    //                           <button className="follow-button" type="button">Follow</button>
-    //                         </div>
-    //                       </div>
-    //                     </li>
-    //                     <li className="sidebar-follow-user-item">
-    //                       <div className="follow-list-user-avatar"/>
-    //                       <div className="follow-list-user-info">
-    //                         <div className="follow-list-username">
-    //                           <span>user2</span>
-    //                         </div>
-    //                         <div className="follow-list-user-data">
-    //                           <button className="follow-button" type="button">Follow</button>
-    //                         </div>
-    //                       </div>
-    //                     </li>
-    //                     <li className="sidebar-follow-user-item">
-    //                       <div className="follow-list-user-avatar"/>
-    //                       <div className="follow-list-user-info">
-    //                         <div className="follow-list-username">
-    //                           <span>user3</span>
-    //                         </div>
-    //                         <div className="follow-list-user-data">
-    //                           <button className="follow-button" type="button">Follow</button>
-    //                         </div>
-    //                       </div>
-    //                     </li>
+    let suggestionList = Object.values(userList).slice(1, 4);
 
     return(
       <section className="sidebar">
@@ -57,10 +24,16 @@ class Sidebar extends React.Component {
               {
                 suggestionList.map(user => (
                   <li className="sidebar-follow-user-item" key={user.id}>
-                    <div className="follow-list-user-avatar" style={{ backgroundImage: `url(${user.profile_picture_url})` }}/>
+                    <div className="follow-list-user-avatar">
+                      <Link to={`/${user.profile_url}`}>
+                        <div className="follow-list-user-avatar-image" style={{ backgroundImage: `url(${user.profile_picture_url})` }}/>
+                      </Link>
+                    </div>
                     <div className="follow-list-user-info">
                       <div className="follow-list-username">
-                        <span>{user.display_name}</span>
+                        <Link to={`/${user.profile_url}`} title={`Visit ${user.display_name}'s profile`}>
+                          <span>{user.display_name}</span>
+                        </Link>
                       </div>
                       <div className="follow-list-extra">
                         <div className="follow-list-user-data">
