@@ -45,7 +45,7 @@ class UserProfile extends React.Component {
   triggerFileUpload(inputButton) {
     return e => {
       e.preventDefault();
-      if (this.props.profile.display_name === "Demo") {
+      if (this.props.profile.id === 1) {
         alert("Cannot update profile picture of demo account. Please create a new personal account to access this feature!");
         return;
       }

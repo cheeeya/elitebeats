@@ -22,10 +22,14 @@ class EditProfileForm extends React.Component {
       last_name: profile.last_name,
       profile_url: profile.profile_url,
       profile_picture_url: profile.profile_picture_url,
+      tempImageUrl: "",
+      tempImageFile: null,
       newError: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkRedirect = this.checkRedirect.bind(this);
+    this.triggerFileInput = this.triggerFileInput.bind(this);
+    this.handlePicture = this.handlePicture.bind(this);
   }
 
   handleInput(field) {
@@ -36,6 +40,19 @@ class EditProfileForm extends React.Component {
         this.changed = true;
         this.setState({ [field]: input, newError: false })
       }
+    }
+  }
+
+  handlePicture(e) {
+    e.preventDefault();
+    const reader = new FileReader();
+    const file = e.currentTarget.files[0];
+    reader.onloadend = () => this.setState({ tempImageUrl: reader.result, tempImageFile: file });
+    if (file) {
+      this.changed = true;
+      reader.readAsDataURL(file);
+    } else {
+      this.setState({ imageUrl: "", imageFile: null });
     }
   }
 
@@ -69,9 +86,18 @@ class EditProfileForm extends React.Component {
     document.getElementById("pf-profile-url").select();
   }
 
+  triggerFileInput(e) {
+    e.preventDefault();
+    if (this.props.currentUserId === 1) {
+      alert("Cannot update profile picture of demo account. Please create a new personal account to access this feature!");
+      return;
+    }
+    document.getElementById("form-profile-pic-input").click();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    const { bio, city, country, display_name, first_name, last_name, profile_url } = this.state;
+    const { bio, city, country, display_name, first_name, last_name, profile_url, tempImageFile } = this.state;
     const formData = new FormData();
     formData.append("user[bio]", bio);
     formData.append("user[city]", city);
@@ -80,6 +106,9 @@ class EditProfileForm extends React.Component {
     formData.append("user[first_name]", first_name);
     formData.append("user[last_name]", last_name);
     formData.append("user[profile_url]", profile_url);
+    if (tempImageFile) {
+      formData.append("user[profile_picture]", tempImageFile);
+    }
     this.props.update(formData, this.props.currentUserId)
       .then(
         window.closeProfileEdit,
@@ -91,7 +120,8 @@ class EditProfileForm extends React.Component {
 
   render() {
     let { bio, city, country, display_name, first_name,
-      last_name, profile_url, profile_picture_url, newError } = this.state;
+      last_name, profile_url, profile_picture_url, newError, tempImageUrl } = this.state,
+      pictureUrl = profile_picture_url;
     const permalinkRegex = /^[a-z0-9_-]*$/;
     if (this.changed) {
       this.saveButtonDisabled = "";
@@ -107,13 +137,17 @@ class EditProfileForm extends React.Component {
     }else if (!permalinkRegex.test(profile_url)) {
       this.setErrorMessage("Use only numbers, lowercase letters, underscores, or hyphens.");
     }
+    if (tempImageUrl) {
+      pictureUrl = tempImageUrl;
+    }
     return (
       <form className="profile-form" onSubmit={this.handleSubmit}>
         <h2 className="pf-h2">Edit your Profile</h2>
         <div className="pf-main">
-          <div className="pf-image" style={{ backgroundImage: `url(${profile_picture_url})` }}>
-            <input id="profile-pic-input" type="file"/>
-            <button type="button" className="form-update-profile-pic-button">
+          <div className="pf-image" style={{ backgroundImage: `url(${pictureUrl})` }}>
+            <input id="form-profile-pic-input" type="file" onChange={this.handlePicture}/>
+            <button type="button" className="form-update-profile-pic-button"
+              onClick={this.triggerFileInput}>
               <span><i className="fas fa-camera"></i>&nbsp;&nbsp;Update image</span>
             </button>
           </div>
