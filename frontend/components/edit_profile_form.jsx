@@ -11,6 +11,7 @@ class EditProfileForm extends React.Component {
     this.validationError = "";
     this.errorMessage = "";
     this.saveButtonDisabled = "disabled-save-button";
+    this.imageErrorDisabled = "disabled";
     this.reservedLinks = ["stream", "collection", "upload",
       "charts", "discover", "search"];
     this.state = {
@@ -47,7 +48,8 @@ class EditProfileForm extends React.Component {
     e.preventDefault();
     const reader = new FileReader();
     const file = e.currentTarget.files[0];
-    reader.onloadend = () => this.setState({ tempImageUrl: reader.result, tempImageFile: file });
+    this.resetErrors();
+    reader.onloadend = () => this.setState({ tempImageUrl: reader.result, tempImageFile: file, newError: false });
     if (file) {
       this.changed = true;
       reader.readAsDataURL(file);
@@ -72,6 +74,8 @@ class EditProfileForm extends React.Component {
     this.validationError = "";
     this.errorMessage = "";
     this.saveButtonDisabled = "disabled-save-button";
+    this.imageErrorDisabled = "disabled";
+    this.pictureError = "";
   }
 
   setErrorMessage(message) {
@@ -126,6 +130,10 @@ class EditProfileForm extends React.Component {
     if (this.changed) {
       this.saveButtonDisabled = "";
     }
+    if (this.props.errors.includes("Profile picture is invalid") && newError) {
+      this.pictureError = "Your image file is too large or not supported.";
+      this.imageErrorDisabled = "";
+    }
     if (this.reservedLinks.includes(profile_url)) {
       this.setErrorMessage("This permalink is reserved. Enter another one.");
     }
@@ -144,12 +152,17 @@ class EditProfileForm extends React.Component {
       <form className="profile-form" onSubmit={this.handleSubmit}>
         <h2 className="pf-h2">Edit your Profile</h2>
         <div className="pf-main">
-          <div className="pf-image" style={{ backgroundImage: `url(${pictureUrl})` }}>
-            <input id="form-profile-pic-input" type="file" onChange={this.handlePicture}/>
-            <button type="button" className="form-update-profile-pic-button"
-              onClick={this.triggerFileInput}>
-              <span><i className="fas fa-camera"></i>&nbsp;&nbsp;Update image</span>
-            </button>
+          <div>
+            <div className="pf-image" style={{ backgroundImage: `url(${pictureUrl})` }}>
+              <input id="form-profile-pic-input" type="file" onChange={this.handlePicture}/>
+              <button type="button" className="form-update-profile-pic-button"
+                onClick={this.triggerFileInput}>
+                <span><i className="fas fa-camera"></i>&nbsp;&nbsp;Update image</span>
+              </button>
+            </div>
+            <div className={`artwork-validation ${this.imageErrorDisabled}`}>
+              {this.pictureError}
+            </div>
           </div>
           <div className="pf-settings">
             <div className="profile-form-field-div">
