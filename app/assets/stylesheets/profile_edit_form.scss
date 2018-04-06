@@ -141,15 +141,16 @@
 }
 
 .form-update-profile-pic-button {
-  background-color: rgba(255,255,255,.8);
+  background-color: #fff;
   border: 1px solid #e5e5e5;
   border-radius: 3px;
   padding-top: 5px;
   margin-top: 220px;
   margin-left: 73px;
-  transition: background-color .2s ease-in-out;
+  opacity: .8;
+  transition: opacity .2s ease-in-out;
 }
 
 .form-update-profile-pic-button:hover {
-  background-color: #fff;
+  opacity: 1;
 }

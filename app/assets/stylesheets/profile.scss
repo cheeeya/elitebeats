@@ -30,10 +30,7 @@
 
 .profile-picture:hover .update-profile-pic {
   opacity: 1;
-  background-color: white;
-  transition: background-color 0.2s ease-in-out;
-  transition-duration: .2s;
-  transition-delay: initial;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .profile-header {
@@ -106,7 +103,7 @@
   border-radius: 3px;
   padding-top: 5px;
   border: none;
-  background-color: none;
+  background-color: #fff;
   opacity: 0;
 }
 
