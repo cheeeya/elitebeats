@@ -111,7 +111,12 @@ class EditProfileForm extends React.Component {
       <form className="profile-form" onSubmit={this.handleSubmit}>
         <h2 className="pf-h2">Edit your Profile</h2>
         <div className="pf-main">
-          <div className="pf-image" style={{ backgroundImage: `url(${profile_picture_url})` }}/>
+          <div className="pf-image" style={{ backgroundImage: `url(${profile_picture_url})` }}>
+            <input id="profile-pic-input" type="file"/>
+            <button type="button" className="form-update-profile-pic-button">
+              <span><i className="fas fa-camera"></i>&nbsp;&nbsp;Update image</span>
+            </button>
+          </div>
           <div className="pf-settings">
             <div className="profile-form-field-div">
               <label htmlFor="pf-display-name">

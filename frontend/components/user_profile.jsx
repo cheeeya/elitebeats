@@ -121,7 +121,12 @@ class UserProfile extends React.Component {
           <div className="profile-cover" style={{ backgroundImage: `url(${profile.cover_url})` }}>
             <div className="profile-picture" style={{ backgroundImage: `url(${profile.profile_picture_url})`}}>
               <input id="profile-pic-input" type="file" onChange={this.handleFile('profile_picture')}></input>
-              <button onClick={this.triggerFileUpload('profile-pic')} className={`update-profile-pic ${disabledUnlessOwner}`} disabled={disabledUnlessOwner === "disabled"}><span><i className="fas fa-camera"></i>  Update image</span></button>
+              <button onClick={this.triggerFileUpload('profile-pic')}
+                className={`update-profile-pic ${disabledUnlessOwner}`}
+                disabled={disabledUnlessOwner === "disabled"}
+                type="button">
+                <span><i className="fas fa-camera"></i>&nbsp;&nbsp;Update image</span>
+              </button>
             </div>
             <div className="profile-header">
               <h1 className="display-name"><span>{this.props.profile.display_name}</span></h1>
@@ -131,7 +136,10 @@ class UserProfile extends React.Component {
           <section className="profile-music">
             <div className="profile-info">
               <div className="profile-tab-all"><span>All</span></div>
-              <button className={`profile-edit-button ${disabledUnlessOwner}`} disabled={disabledUnlessOwner} onClick={this.activateModal}><i className="fas fa-pencil-alt" /><span className="sm-button-text">Edit</span></button>
+              <button className={`profile-edit-button ${disabledUnlessOwner}`}
+                disabled={disabledUnlessOwner} onClick={this.activateModal}>
+                <i className="fas fa-pencil-alt" /><span className="sm-button-text">Edit</span>
+              </button>
             </div>
             {tracksElement}
           </section>
