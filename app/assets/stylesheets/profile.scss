@@ -47,7 +47,7 @@
   font-weight: 400;
   color: white;
   line-height: 1;
-  padding: 12px 10px;
+  padding: 11px 10px;
 }
 
 .display-name span {
@@ -119,21 +119,14 @@
   width: 240px;
 }
 
-.full-name-div {
-  margin-top: 11px;
-}
-
 .header-data {
-  color: white;
+  color: #e5e5e5;
   background-color: #000;
-  display: inline;
+  display: inline-block;
   padding: 6px 7px 3px 7px;
+  margin-top: 5px;
 }
 
 .full-data {
   padding: 6px 7px 3px 0;
-}
-
-.location-div {
-  margin-top: 13px;
 }
