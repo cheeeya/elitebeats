@@ -74,8 +74,8 @@ class UserProfile extends React.Component {
 
   render () {
     const { profile, currentUser } = this.props;
-    let tracks = {};
-    let disabledUnlessOwner = "disabled";
+    let tracks = {}, disabledUnlessOwner = "disabled", fNameEl = "", lNameEl= "",
+        fullName = "", countryEl = "" ,cityEl = "", withCountry = "", fullLoc = "";
     let tracksElement = <div className="profile-empty-tracks">
                           <img className="profile-no-tracks-img" src="https://res.cloudinary.com/elitebeats/image/upload/v1520851992/no-music_z6x98i.png"></img>
                           <h4 className="empty-h4">Nothing to hear here</h4>
@@ -115,6 +115,23 @@ class UserProfile extends React.Component {
                             }
                           </ul>
         }
+        if (profile.first_name) {
+          fNameEl = <h2 className="header-data">{profile.first_name}</h2>
+          fullName = "full-data";
+        }
+        if (profile.last_name) {
+          lNameEl = <h2 className={`header-data ${fullName}`}>{profile.last_name}</h2>
+        }
+        if (profile.city) {
+          if (profile.country) {
+            withCountry = ",";
+          }
+          cityEl = <h2 className="header-data">{profile.city}{withCountry}</h2>
+          fullLoc = "full-data";
+        }
+        if (profile.country) {
+          countryEl = <h2 className={`header-data ${fullLoc}`}>{profile.country}</h2>
+        }
       }
       return (
         <section className="profile-page" id="profile-section">
@@ -129,8 +146,15 @@ class UserProfile extends React.Component {
               </button>
             </div>
             <div className="profile-header">
-              <h1 className="display-name"><span>{this.props.profile.display_name}</span></h1>
-              <h2 className="full-name"></h2>
+              <h1 className="display-name"><span>{profile.display_name}</span></h1>
+              <div className="full-name-div">
+                {fNameEl}
+                {lNameEl}
+              </div>
+              <div className="location-div">
+                {cityEl}
+                {countryEl}
+              </div>
             </div>
           </div>
           <section className="profile-music">
