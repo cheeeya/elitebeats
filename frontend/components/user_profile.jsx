@@ -139,7 +139,7 @@ class UserProfile extends React.Component {
             <div className="profile-picture" style={{ backgroundImage: `url(${profile.profile_picture_url})`}}>
               <input id="profile-pic-input" type="file" onChange={this.handleFile('profile_picture')}></input>
               <button onClick={this.triggerFileUpload('profile-pic')}
-                className={`update-profile-pic ${disabledUnlessOwner}`}
+                className={`update-button update-profile-pic ${disabledUnlessOwner}`}
                 disabled={disabledUnlessOwner === "disabled"}
                 type="button">
                 <span><i className="fas fa-camera"></i>&nbsp;&nbsp;Update image</span>
@@ -155,6 +155,7 @@ class UserProfile extends React.Component {
                 {cityEl}
                 {countryEl}
               </div>
+              <button className="update-button update-cover-photo" type="button">Update Image</button>
             </div>
           </div>
           <section className="profile-music">
