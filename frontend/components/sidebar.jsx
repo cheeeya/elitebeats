@@ -13,12 +13,13 @@ class Sidebar extends React.Component {
 
   toggleFollow(userId) {
     return e => {
-      const { currentUser, userList, follow, unfollow } = this.props;
+      const { currentUser, userList, follow, unfollow, fetchUsers } = this.props;
       e.preventDefault();
       if (userList[userId].user_followers.includes(currentUser.id)) {
-        return;
+        unfollow(userId);
+      } else {
+        follow(userId);
       }
-      follow(userId);
     }
   }
 

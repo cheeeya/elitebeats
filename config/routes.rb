@@ -8,11 +8,11 @@ Rails.application.routes.draw do
     resources :songs, only: [:index, :create, :destroy, :update] do
       resources :comments, only: [:create]
     end
-    resources :follows, only: [:destroy]
     resources :comments, only: [:destroy]
     post '/users/find', to: 'users#verify_user_exists'
     get '/users/:profile_url', to: 'users#get_user'
     get '/users/:profile_url/songs/:permalink', to: 'songs#fetch_song'
+    delete '/users/:user_id/follows', to: 'follows#destroy'
   end
 
   # namespace :api, defaults: { format: :plain } do

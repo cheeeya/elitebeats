@@ -5,15 +5,15 @@ class Api::FollowsController < ApplicationController
     @follow.user_id = params[:user_id]
     @follow.follower_id = current_user.id
     if @follow.save
-      render json: ["followed"], stats: 200
+      render json: current_user.id, stats: 200
     else
       render json: @follow.errors.full_messages, status: 422
     end
   end
 
   def destroy
-    @follow = Follow.find(aprams[:id])
+    @follow = Follow.find_by!(user_id: params[:user_id], follower_id:  current_user.id)
     @follow.delete
-    render json: ["unfollowed"], status: 200
+    render json: current_user.id, status: 200
   end
 end
