@@ -4,6 +4,7 @@ import { fetchAllUsers } from '../actions/user_actions';
 import { follow, unfollow } from '../actions/follow_actions';
 
 const mapStateToProps = state => ({
+  currentUser: state.session.currentUser,
   userList: state.entities.userList
 });
 

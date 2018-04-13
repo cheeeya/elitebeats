@@ -7,6 +7,8 @@
       json.profile_picture_url user.profile_picture.url
     end
     json.user_sounds user.songs.length
-    json.user_followers user.followers.length
+    json.user_followers do
+      json.array! user.followers.map { |f| f.id }
+    end
   end
 end
