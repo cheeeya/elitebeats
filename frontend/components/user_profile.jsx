@@ -155,7 +155,7 @@ class UserProfile extends React.Component {
                 {cityEl}
                 {countryEl}
               </div>
-              <button className="update-button update-cover-photo" type="button">Update Image</button>
+              <button className="update-button update-cover-photo disabled" type="button">Update Image</button>
             </div>
           </div>
           <section className="profile-music">
