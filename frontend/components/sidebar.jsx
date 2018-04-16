@@ -26,8 +26,14 @@ class Sidebar extends React.Component {
 
   render() {
     const { userList, currentUser } = this.props;
-    // let suggestionList = Array.new(3);
-    let suggestionList = Object.values(userList).slice(1, 4);
+    let suggestionList = Object.values(userList).slice(1,4);
+    // let suggestionList = [], userArray = Object.values(userList);
+    // for (let i = 0; i < userArray.length; i++) {
+    //   if (!currentUser.user_followings.includes(userArray[i].id) && currentUser.id !== userArray[i].id) {
+    //     console.log(userArray[i]);
+    //     suggestionList.push(userArray[i]);
+    //   }
+    // }
 
     return(
       <section className="sidebar">

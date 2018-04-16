@@ -9,3 +9,9 @@ if user.s_cover_url
 else
   json.cover_url user.cover.url
 end
+json.user_followers do
+  json.array! user.followers.map { |f| f.id }
+end
+json.user_followings do
+  json.array! user.followings.map { |f| f.id }
+end
