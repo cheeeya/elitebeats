@@ -75,7 +75,8 @@ class UserProfile extends React.Component {
   render () {
     const { profile, currentUser } = this.props;
     let tracks = {}, disabledUnlessOwner = "disabled", fNameEl = "", lNameEl= "",
-        fullName = "", countryEl = "" ,cityEl = "", withCountry = "", fullLoc = "";
+        fullName = "", countryEl = "" ,cityEl = "", withCountry = "", fullLoc = "",
+        followingTitle = "", followersTitle = "", tracksTitle = "";
     let tracksElement = <div className="profile-empty-tracks">
                           <img className="profile-no-tracks-img" src="https://res.cloudinary.com/elitebeats/image/upload/v1520851992/no-music_z6x98i.png"></img>
                           <h4 className="empty-h4">Nothing to hear here</h4>
@@ -98,15 +99,20 @@ class UserProfile extends React.Component {
     }
     if (profile) {
       if (profile.tracks) {
-        tracks = profile.tracks;
-        if (Object.values(tracks.allTracks).length > 1) {
+        tracks = Object.values(profile.tracks.allTracks);
+        console.log(tracks);
+        tracksTitle = `${tracks.length - 1} track`;
+        if (tracks.length === 1 || tracks.length > 2) {
+          tracksTitle += "s";
+        }
+        if (tracks.length > 1) {
           tracksElement = <ul className="all-tracks">
                             {
-                              Object.values(tracks.allTracks).reverse().map(track => {
+                              tracks.reverse().map(track => {
                                 if (typeof track === 'object'){
                                   return (
                                     <li className="profile-song-list-item" key={track.id}>
-                                      <SongItemContainer song={track} path="profile" playlist={tracks.allTracks.title}/>
+                                      <SongItemContainer song={track} path="profile" playlist={profile.tracks.allTracks.title}/>
                                     </li>
                                   )
                                 }
@@ -115,23 +121,32 @@ class UserProfile extends React.Component {
                             }
                           </ul>
         }
-        if (profile.first_name) {
-          fNameEl = <h2 className="header-data">{profile.first_name}</h2>
-          fullName = "full-data";
-        }
-        if (profile.last_name) {
-          lNameEl = <h2 className={`header-data ${fullName}`}>{profile.last_name}</h2>
-        }
-        if (profile.city) {
-          if (profile.country) {
-            withCountry = ",";
-          }
-          cityEl = <h2 className="header-data">{profile.city}{withCountry}</h2>
-          fullLoc = "full-data";
-        }
+      }
+      if (profile.first_name) {
+        fNameEl = <h2 className="header-data">{profile.first_name}</h2>
+        fullName = "full-data";
+      }
+      if (profile.last_name) {
+        lNameEl = <h2 className={`header-data ${fullName}`}>{profile.last_name}</h2>
+      }
+      if (profile.city) {
         if (profile.country) {
-          countryEl = <h2 className={`header-data ${fullLoc}`}>{profile.country}</h2>
+          withCountry = ",";
         }
+        cityEl = <h2 className="header-data">{profile.city}{withCountry}</h2>
+        fullLoc = "full-data";
+      }
+      if (profile.country) {
+        countryEl = <h2 className={`header-data ${fullLoc}`}>{profile.country}</h2>
+      }
+      if (profile.user_followings.length === 1) {
+        followingTitle = "Following 1 person";
+      } else {
+        followingTitle = `Following ${profile.user_followings.length} people`;
+      }
+      followersTitle = `${profile.user_followers.length} follower`;
+      if (profile.user_followers.length === 0 || profile.user_followers.length > 1) {
+        followersTitle += "s";
       }
       return (
         <section className="profile-page" id="profile-section">
@@ -171,17 +186,17 @@ class UserProfile extends React.Component {
               <div className="profile-sidebar">
                 <div className="profile-info">
                   <div className="profile-stats">
-                    <div className="p-stats-div" title={`${profile.user_followers.length} followers`}>
+                    <div className="p-stats-div" title={followersTitle}>
                       <h4 className="stats-h4-first">Followers</h4>
                       <div className="stats-div-first">{profile.user_followers.length}</div>
                     </div>
-                    <div className="p-stats-div" title={`Following ${profile.user_followings.length} people`}>
+                    <div className="p-stats-div" title={followingTitle}>
                       <h4 className="stats-h4">Following</h4>
                       <div className="stats-div">{profile.user_followings.length}</div>
                     </div>
-                    <div className="p-stats-div" title={`${Object.values(profile.tracks.allTracks).length} tracks`}>
+                    <div className="p-stats-div" title={tracksTitle}>
                       <h4 className="stats-h4">Tracks</h4>
-                      <div className="stats-div">{Object.values(profile.tracks.allTracks).length}</div>
+                      <div className="stats-div">{Object.values(profile.tracks.allTracks).length - 1}</div>
                     </div>
                   </div>
                   <div className="profile-bio">
