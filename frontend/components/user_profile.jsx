@@ -171,15 +171,15 @@ class UserProfile extends React.Component {
               <div className="profile-sidebar">
                 <div className="profile-info">
                   <div className="profile-stats">
-                    <div className="p-stats-div">
+                    <div className="p-stats-div" title={`${profile.user_followers.length} followers`}>
                       <h4 className="stats-h4-first">Followers</h4>
                       <div className="stats-div-first">{profile.user_followers.length}</div>
                     </div>
-                    <div className="p-stats-div">
+                    <div className="p-stats-div" title={`Following ${profile.user_followings.length} people`}>
                       <h4 className="stats-h4">Following</h4>
                       <div className="stats-div">{profile.user_followings.length}</div>
                     </div>
-                    <div className="p-stats-div">
+                    <div className="p-stats-div" title={`${Object.values(profile.tracks.allTracks).length} tracks`}>
                       <h4 className="stats-h4">Tracks</h4>
                       <div className="stats-div">{Object.values(profile.tracks.allTracks).length}</div>
                     </div>
