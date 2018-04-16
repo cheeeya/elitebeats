@@ -159,14 +159,37 @@ class UserProfile extends React.Component {
             </div>
           </div>
           <section className="profile-music">
-            <div className="profile-info">
+            <div className="profile-tabs">
               <div className="profile-tab-all"><span>All</span></div>
               <button className={`profile-edit-button ${disabledUnlessOwner}`}
                 disabled={disabledUnlessOwner} onClick={this.activateModal}>
                 <i className="fas fa-pencil-alt" /><span className="sm-button-text">Edit</span>
               </button>
             </div>
-            {tracksElement}
+            <div className="profile-main">
+              {tracksElement}
+              <div className="profile-sidebar">
+                <div className="profile-info">
+                  <div className="profile-stats">
+                    <div className="p-stats-div">
+                      <h4 className="stats-h4-first">Followers</h4>
+                      <div className="stats-div-first">{profile.user_followers.length}</div>
+                    </div>
+                    <div className="p-stats-div">
+                      <h4 className="stats-h4">Following</h4>
+                      <div className="stats-div">{profile.user_followings.length}</div>
+                    </div>
+                    <div className="p-stats-div">
+                      <h4 className="stats-h4">Tracks</h4>
+                      <div className="stats-div">{Object.values(profile.tracks.allTracks).length}</div>
+                    </div>
+                  </div>
+                  <div className="profile-bio">
+                    {profile.bio}
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
           <SongFormModal loc="profile-page"/>
           {editProfileFormModal}
