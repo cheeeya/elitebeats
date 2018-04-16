@@ -100,7 +100,6 @@ class UserProfile extends React.Component {
     if (profile) {
       if (profile.tracks) {
         tracks = Object.values(profile.tracks.allTracks);
-        console.log(tracks);
         tracksTitle = `${tracks.length - 1} track`;
         if (tracks.length === 1 || tracks.length > 2) {
           tracksTitle += "s";
