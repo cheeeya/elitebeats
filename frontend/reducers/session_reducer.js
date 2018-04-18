@@ -1,3 +1,4 @@
+import { merge } from 'lodash';
 import {
   RECEIVE_CURRENT_USER,
   RECEIVE_FORM_TYPE,
@@ -5,7 +6,7 @@ import {
   RECEIVE_CURRENT_PLAYLIST,
   FINISH_UPDATE
 } from '../actions/session_actions';
-import { merge } from 'lodash';
+import { RECEIVE_FOLLOWER, REMOVE_FOLLOWER } from '../actions/follow_actions';
 import { REMOVE_SONG, RECEIVE_SONG } from '../actions/song_actions';
 
 const _nullState = {
@@ -33,6 +34,19 @@ const sessionReducer = (state = _nullState, action) => {
       return merge({}, state, { updateRequired: true });
     case FINISH_UPDATE:
       return merge({}, state, { updateRequired: false});
+    case RECEIVE_FOLLOWER:
+      newState = merge({}, state);
+      if (!newState.currentUser.user_followings.includes(action.userId)) {
+        newState.currentUser.user_followings.push(action.userId);
+      }
+      return newState;
+    case REMOVE_FOLLOWER:
+      newState = merge({}, state);
+      let index = newState.currentUser.user_followings.indexOf(action.userId);
+      if (index > -1 ) {
+        newState.currentUser.user_followings.splice(index, 1);
+      }
+      return newState;
     default:
       return state;
   }

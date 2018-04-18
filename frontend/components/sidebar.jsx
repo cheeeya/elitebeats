@@ -15,7 +15,7 @@ class Sidebar extends React.Component {
     return e => {
       const { currentUser, userList, follow, unfollow, fetchUsers } = this.props;
       e.preventDefault();
-      if (userList[userId].user_followers.includes(currentUser.id)) {
+      if (currentUser.user_followings.includes(userId)) {
         unfollow(userId);
       } else {
         follow(userId);

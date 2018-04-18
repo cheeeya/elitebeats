@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import UserProfile from './user_profile';
 import { fetchUserProfile } from '../actions/profile_actions';
 import { updateUserData, finishUpdate } from '../actions/session_actions';
+import { follow, unfollow } from '../actions/follow_actions';
 
 const mapStateToProps = (state, ownProps) => {
   let profile_url;
@@ -19,7 +20,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
   fetchUserProfile: (profile_url) => dispatch(fetchUserProfile(profile_url)),
   update: (formData, user_id) => dispatch(updateUserData(formData, user_id)),
-  finishUpdate: () => dispatch(finishUpdate())
+  finishUpdate: () => dispatch(finishUpdate()),
+  follow: (userId) => dispatch(follow(userId)),
+  unfollow: (userId) => dispatch(unfollow(userId))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps) (UserProfile));
