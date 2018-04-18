@@ -179,6 +179,10 @@ class UserProfile extends React.Component {
                 disabled={disabledUnlessOwner} onClick={this.activateModal}>
                 <i className="fas fa-pencil-alt" /><span className="sm-button-text">Edit</span>
               </button>
+              <button className={`profile-edit-button ${disabledUnlessOwner ? "" : "disabled"}`}
+                disabled={disabledUnlessOwner ? false : true}>
+                Follow
+              </button>
             </div>
             <div className="profile-main">
               {tracksElement}
