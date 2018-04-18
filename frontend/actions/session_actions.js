@@ -27,7 +27,10 @@ export const finishUpdate = () => ({
 
 export const login = user => dispatch => (
   SessionAPIUtil.login(user).then(
-    u => dispatch(receiveCurrentUser(u)),
+    u => {
+      dispatch(receiveCurrentUser(u));
+      dispatch(receiveFormType(""));
+    },
     errors => dispatch(receiveErrors(errors.responseJSON))
   )
 );

@@ -66,7 +66,6 @@ class SessionForm extends React.Component {
         <label>
           <input type="text" onChange={this.update('identifier')} placeholder="Your email address or profile URL *" value={identifier} required="required"/>
         </label>
-
       </div>
     );
 
@@ -74,7 +73,7 @@ class SessionForm extends React.Component {
       <div>
         <h5 className="signup-h5">By signing in, you agree to our Terms of Use.</h5>
       </div>
-    )
+    );
 
     const errorsList = (
       <ul className='errors-list'>
@@ -82,14 +81,14 @@ class SessionForm extends React.Component {
           errors.map((error, idx) => <li key={idx} className="error">{error}</li>)
         }
       </ul>
-    )
+    );
 
     const identifierDiv = (
       <div onClick={this.handleFormReset} className="form-id-div">
         <i className="fas fa-caret-left" id="form-id-caret"></i>
         {this.state.identifier}
       </div>
-    )
+    );
 
 
     if (formType === 'login') {
