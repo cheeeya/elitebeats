@@ -11,14 +11,14 @@ class Sidebar extends React.Component {
     this.props.fetchUsers();
   }
 
-  toggleFollow(userId) {
+  toggleFollow(userId, userUrl) {
     return e => {
       const { currentUser, follow, unfollow } = this.props;
       e.preventDefault();
       if (currentUser.user_followings.includes(userId)) {
-        unfollow(userId);
+        unfollow(userId, userUrl);
       } else {
-        follow(userId);
+        follow(userId, userUrl);
       }
     }
   }
@@ -68,7 +68,7 @@ class Sidebar extends React.Component {
                             <span>{user.user_sounds}</span>
                           </div>
                           <button className={`follow-button ${followText.toLowerCase()}`}
-                            type="button" onClick={this.toggleFollow(user.id)}
+                            type="button" onClick={this.toggleFollow(user.id, user.profile_url)}
                             title={followText === "Follow" ? followText : "Unfollow"}>
                             {followText}
                           </button>

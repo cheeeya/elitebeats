@@ -11,17 +11,21 @@ const usersReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_FOLLOWER:
       newState = merge({}, state);
-      followers = newState[action.userId].user_followers;
-      if (!followers.includes(action.followerId)) {
-        followers.push(action.followerId);
+      if (newState[action.userId]) {
+        followers = newState[action.userId].user_followers;
+        if (!followers.includes(action.followerId)) {
+          followers.push(action.followerId);
+        }
       }
       return newState;
     case REMOVE_FOLLOWER:
       newState = merge({}, state);
-      followers = newState[action.userId].user_followers;
-      let index = followers.indexOf(action.followerId);
-      if (index > -1 ) {
-        followers.splice(index, 1);
+      if (newState[action.userId]) {
+        followers = newState[action.userId].user_followers;
+        let index = followers.indexOf(action.followerId);
+        if (index > -1 ) {
+          followers.splice(index, 1);
+        }
       }
       return newState;
     default:

@@ -43,14 +43,14 @@ class UserProfile extends React.Component {
     return document.getElementById("profile-section");
   }
 
-  toggleFollow(userId) {
+  toggleFollow(userId, userUrl) {
     return e => {
-      const { currentUser, follow, unfollow } = this.props;
+      const { currentUser, follow, unfollow, profile } = this.props;
       e.preventDefault();
       if (currentUser.user_followings.includes(userId)) {
-        unfollow(userId);
+        unfollow(userId, userUrl);
       } else {
-        follow(userId);
+        follow(userId, userUrl);
       }
     }
   }
@@ -195,7 +195,7 @@ class UserProfile extends React.Component {
                 disabled={disabledUnlessOwner} onClick={this.activateModal}>
                 <i className="fas fa-pencil-alt" /><span className="sm-button-text">Edit</span>
               </button>
-              <button type="button" onClick={this.toggleFollow(profile.id)}
+              <button type="button" onClick={this.toggleFollow(profile.id, profile.profile_url)}
                 className={`profile-button p-follow-button
                   ${followText.toLowerCase()} ${disabledUnlessOwner ? "" : "disabled"}`}
                 disabled={disabledUnlessOwner ? false : true}
