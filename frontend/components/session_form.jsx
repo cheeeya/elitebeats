@@ -11,7 +11,7 @@ class SessionForm extends React.Component {
       validEmail: false,
       formType: ""
     }
-    this.processForm = this.props.login
+    this.processForm = this.props.login;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFormReset = this.handleFormReset.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
@@ -47,7 +47,7 @@ class SessionForm extends React.Component {
 
   demoLogin(e) {
     e.preventDefault();
-    this.props.login({ identifier: 'demo', password:'demopassword' });
+    this.processForm({ identifier: 'demo', password:'demopassword' });
   }
 
   handleFormReset(e) {
@@ -93,7 +93,7 @@ class SessionForm extends React.Component {
 
     if (formType === 'login') {
       this.processForm = this.props.login;
-      buttonText = "Sign in"
+      buttonText = "Sign in";
       inputForm = (
         <div className="login-form">
           <h2 className="signup-h2">Welcome back</h2>
@@ -104,7 +104,7 @@ class SessionForm extends React.Component {
             </label>
           </div>
         </div>
-      )
+      );
     } else if (formType === 'signup') {
       this.processForm = this.props.signup;
       signupCheck = (
@@ -143,7 +143,7 @@ class SessionForm extends React.Component {
         {signupCheck}
         <button type="button" onClick={this.demoLogin} id="demo-bttn">Demo</button>
       </div>
-    )
+    );
   }
 }
 
