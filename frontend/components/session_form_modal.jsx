@@ -11,6 +11,7 @@ class SessionFormModal extends React.Component {
     this.activateModal = this.activateModal.bind(this);
     this.deactivateModal = this.deactivateModal.bind(this);
     this.getApplicationNode = this.getApplicationNode.bind(this);
+    window.triggerLogin = this.activateModal.bind(this);
   }
 
   activateModal() {

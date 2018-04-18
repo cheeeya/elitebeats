@@ -47,10 +47,14 @@ class UserProfile extends React.Component {
     return e => {
       const { currentUser, follow, unfollow, profile } = this.props;
       e.preventDefault();
-      if (currentUser.user_followings.includes(userId)) {
-        unfollow(userId, userUrl);
+      if (currentUser) {
+        if (currentUser.user_followings.includes(userId)) {
+          unfollow(userId, userUrl);
+        } else {
+          follow(userId, userUrl);
+        }
       } else {
-        follow(userId, userUrl);
+        window.triggerLogin();
       }
     }
   }
