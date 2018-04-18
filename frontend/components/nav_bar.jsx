@@ -6,15 +6,25 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
+    this.checkLogin = this.checkLogin.bind(this);
   }
 
   handleLogout(e) {
-    e.preventDefault;
+    e.preventDefault();
     if (window.songHowl) {
       this.props.pause();
       window.songHowl.unload();
     }
     this.props.logout();
+  }
+
+  checkLogin(e) {
+    e.preventDefault();
+    if (this.props.currentUser) {
+      this.props.history.push("/upload");
+    } else {
+      window.triggerLogin();
+    }
   }
 
   render () {
@@ -60,7 +70,7 @@ class NavBar extends React.Component {
             <button className="nav-bar-search-btn"></button>
           </div>
           <div className="right-nav">
-            <Link to="/upload"><div className={`nav-link ${activeUpload}`} id="upload-link">Upload</div></Link>
+            <Link to="/upload" onClick={this.checkLogin}><div className={`nav-link ${activeUpload}`} id="upload-link">Upload</div></Link>
             {element}
           </div>
         </div>
