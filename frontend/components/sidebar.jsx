@@ -13,7 +13,7 @@ class Sidebar extends React.Component {
 
   toggleFollow(userId) {
     return e => {
-      const { currentUser, userList, follow, unfollow, fetchUsers } = this.props;
+      const { currentUser, follow, unfollow } = this.props;
       e.preventDefault();
       if (currentUser.user_followings.includes(userId)) {
         unfollow(userId);
@@ -43,10 +43,9 @@ class Sidebar extends React.Component {
             <ul className="sidebar-follow-user-list">
               {
                 suggestionList.map(user => {
-                  let followText = "Follow", title = "Follow";
-                  if (user.user_followers.includes(currentUser.id)) {
+                  let followText = "Follow";
+                  if (currentUser.user_followings.includes(user.id)) {
                     followText = "Following";
-                    title = "Unfollow";
                   }
                   return (
                     <li className="sidebar-follow-user-item" key={user.id}>
@@ -68,7 +67,11 @@ class Sidebar extends React.Component {
                             <div className="icon-sounds"/>
                             <span>{user.user_sounds}</span>
                           </div>
-                          <button className={`follow-button ${followText.toLowerCase()}`} type="button" onClick={this.toggleFollow(user.id)} title={title}>{followText}</button>
+                          <button className={`follow-button ${followText.toLowerCase()}`}
+                            type="button" onClick={this.toggleFollow(user.id)}
+                            title={followText === "Follow" ? followText : "Unfollow"}>
+                            {followText}
+                          </button>
                         </div>
                       </div>
                     </li>

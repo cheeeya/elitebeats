@@ -10,6 +10,7 @@ class UserProfile extends React.Component {
     this.state = {
       modalActive: false
     };
+    this.toggleFollow = this.toggleFollow.bind(this);
     this.handleFile = this.handleFile.bind(this);
     this.activateModal = this.activateModal.bind(this);
     this.deactivateModal = this.deactivateModal.bind(this);
@@ -40,6 +41,18 @@ class UserProfile extends React.Component {
 
   getApplicationNode() {
     return document.getElementById("profile-section");
+  }
+
+  toggleFollow(userId) {
+    return e => {
+      const { currentUser, follow, unfollow } = this.props;
+      e.preventDefault();
+      if (currentUser.user_followings.includes(userId)) {
+        unfollow(userId);
+      } else {
+        follow(userId);
+      }
+    }
   }
 
   triggerFileUpload(inputButton) {
@@ -76,7 +89,7 @@ class UserProfile extends React.Component {
     const { profile, currentUser } = this.props;
     let tracks = {}, disabledUnlessOwner = "disabled", fNameEl = "", lNameEl= "",
         fullName = "", countryEl = "" ,cityEl = "", withCountry = "", fullLoc = "",
-        followingTitle = "", followersTitle = "", tracksTitle = "";
+        followingTitle = "", followersTitle = "", tracksTitle = "", followText = "Follow";
     let tracksElement = <div className="profile-empty-tracks">
                           <img className="profile-no-tracks-img" src="https://res.cloudinary.com/elitebeats/image/upload/v1520851992/no-music_z6x98i.png"></img>
                           <h4 className="empty-h4">Nothing to hear here</h4>
@@ -95,6 +108,9 @@ class UserProfile extends React.Component {
     if (currentUser && profile) {
       if (currentUser.profile_url === profile.profile_url) {
         disabledUnlessOwner = "";
+      }
+      if (currentUser.user_followings.includes(profile.id)) {
+        followText = "Following";
       }
     }
     if (profile) {
@@ -175,13 +191,16 @@ class UserProfile extends React.Component {
           <section className="profile-music">
             <div className="profile-tabs">
               <div className="profile-tab-all"><span>All</span></div>
-              <button className={`profile-edit-button ${disabledUnlessOwner}`}
+              <button className={`profile-button ${disabledUnlessOwner}`}
                 disabled={disabledUnlessOwner} onClick={this.activateModal}>
                 <i className="fas fa-pencil-alt" /><span className="sm-button-text">Edit</span>
               </button>
-              <button className={`profile-edit-button ${disabledUnlessOwner ? "" : "disabled"}`}
-                disabled={disabledUnlessOwner ? false : true}>
-                Follow
+              <button type="button" onClick={this.toggleFollow(profile.id)}
+                className={`profile-button p-follow-button
+                  ${followText.toLowerCase()} ${disabledUnlessOwner ? "" : "disabled"}`}
+                disabled={disabledUnlessOwner ? false : true}
+                title={followText === "Follow" ? followText : "Unfollow"}>
+                {followText}
               </button>
             </div>
             <div className="profile-main">

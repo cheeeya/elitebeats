@@ -66,7 +66,7 @@
   justify-content: space-between;
 }
 
-.profile-edit-button {
+.profile-button {
   height: 26px;
   background-color: #ffffff;
   font-size: 14px;
@@ -76,8 +76,18 @@
   margin-top: -2px;
 }
 
-.profile-edit-button:hover {
+.profile-button:hover {
   border-color: #ccc;
+}
+
+.p-follow-button {
+  background-color: #0059B3;
+  border-color: #0059B3;
+  color: #fff;
+}
+
+.p-follow-button:hover {
+  border-color: #0059B3;
 }
 
 .profile-tab-all span {
