@@ -20,8 +20,9 @@ class NavBar extends React.Component {
 
   checkLogin(e) {
     e.preventDefault();
-    if (this.props.currentUser) {
-      this.props.history.push("/upload");
+    const { currentUser, history } = this.props;
+    if (currentUser) {
+      history.push("/upload");
     } else {
       window.triggerLogin();
     }
