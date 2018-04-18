@@ -68,7 +68,7 @@ button:focus {
 
 .empty-h4 {
   font-weight: 300;
-  margin-top: 25px;
+  margin: 25px 0 70px 0;
   font-size: 18px;
   color: #333333;
 }

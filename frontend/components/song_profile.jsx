@@ -102,7 +102,7 @@ class SongProfile extends React.Component {
     let userAvatarUrl = "https://res.cloudinary.com/elitebeats/image/upload/v1520836942/blue_v6mtey.jpg",
         comments = [];
     let commentsEl = <div className="empty-comments-div">
-                       <img className="empty-comments-image" src="http://res.cloudinary.com/elitebeats/image/upload/v1520941219/no-comments_f0a9ay.png"/>
+                       <img className="empty-comments-image" src="https://res.cloudinary.com/elitebeats/image/upload/v1520941219/no-comments_f0a9ay.png"/>
                        <h4 className="empty-h4">Seems a little quiet over here</h4>
                        <h5 className="empty-h5">Be the first to comment on this track</h5>
                      </div>
