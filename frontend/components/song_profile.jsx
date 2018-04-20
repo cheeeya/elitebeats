@@ -117,7 +117,7 @@ class SongProfile extends React.Component {
     }
     let userAvatarUrl = "https://res.cloudinary.com/elitebeats/image/upload/v1520836942/blue_v6mtey.jpg",
         comments = [], time = this.timeFormat(songProfile.created_at), genre,
-        followText = "Follow", disabledIfOwner = "";
+        followText = "Follow", disabledIfOwner = "", followersTitle = "", tracksTitle = "";
     let commentsEl = (<div className="empty-comments-div">
                        <img className="empty-comments-image" src="https://res.cloudinary.com/elitebeats/image/upload/v1520941219/no-comments_f0a9ay.png"/>
                        <h4 className="empty-h4">Seems a little quiet over here</h4>
@@ -170,6 +170,14 @@ class SongProfile extends React.Component {
                     </ul>
                  </div>
     }
+    tracksTitle = `${songProfile.author_sounds} track`;
+    if (songProfile.author_sounds === 0 || songProfile.author_sounds > 1) {
+      tracksTitle += "s";
+    }
+    followersTitle = `${songProfile.author_followers.length} follower`;
+    if (songProfile.author_followers.length === 0 || songProfile.author_followers.length > 1) {
+      followersTitle += "s";
+    }
     return (
       <section className="song-show-page">
         <div className="song-page-header">
@@ -202,10 +210,14 @@ class SongProfile extends React.Component {
                 <Link to={`/${songProfile.author_url}`}><div className="song-info-author-image" style={{ backgroundImage: `url(${songProfile.author_picture_url})`}}></div></Link>
                 <Link to={`/${songProfile.author_url}`}  title={`Visit ${songProfile.author_name}'s profile`}><span className="song-info-author-name">{songProfile.author_name}</span></Link>
                 <div className="song-info-author-details">
-                  <div className="icon-followers"/>
-                  <span>{songProfile.author_followers.length}</span>
-                  <div className="icon-sounds"/>
-                  <span>{songProfile.author_sounds}</span>
+                  <div className="user-details" title={followersTitle}>
+                    <div className="icon-followers"/>
+                    <span>{songProfile.author_followers.length}</span>
+                  </div>
+                  <div className="user-details" title={tracksTitle}>
+                    <div className="icon-sounds"/>
+                    <span>{songProfile.author_sounds}</span>
+                  </div>
                 </div>
                 <button type="button" title={followText === "Follow" ? followText : "Unfollow"}
                   className={`follow-button p-follow-button ${followText.toLowerCase()} ${disabledIfOwner}`}

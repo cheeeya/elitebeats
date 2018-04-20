@@ -26,7 +26,8 @@ class Sidebar extends React.Component {
 
   render() {
     const { userList, currentUser } = this.props;
-    let suggestionList = Object.values(userList).slice(1,4);
+    let suggestionList = Object.values(userList).slice(1,4), tracksTitle = "",
+        followersTitle ="";
     // let suggestionList = [], userArray = Object.values(userList);
     // for (let i = 0; i < userArray.length; i++) {
     //   if (!currentUser.user_followings.includes(userArray[i].id) && currentUser.id !== userArray[i].id) {
@@ -47,6 +48,14 @@ class Sidebar extends React.Component {
                   if (currentUser.user_followings.includes(user.id)) {
                     followText = "Following";
                   }
+                  tracksTitle = `${user.user_sounds} track`;
+                  if (user.user_sounds === 0 || user.user_sounds > 1) {
+                    tracksTitle += "s";
+                  }
+                  followersTitle = `${user.user_followers.length} follower`;
+                  if (user.user_followers.length === 0 || user.user_followers.length > 1) {
+                    followersTitle += "s";
+                  }
                   return (
                     <li className="sidebar-follow-user-item" key={user.id}>
                       <div className="follow-list-user-avatar">
@@ -62,10 +71,14 @@ class Sidebar extends React.Component {
                         </div>
                         <div className="follow-list-extra">
                           <div className="follow-list-user-data">
-                            <div className="icon-followers"/>
-                            <span>{user.user_followers.length}</span>
-                            <div className="icon-sounds"/>
-                            <span>{user.user_sounds}</span>
+                            <div className="user-details" title={followersTitle}>
+                              <div className="icon-followers"/>
+                              <span>{user.user_followers.length}</span>
+                            </div>
+                            <div className="user-details" title={tracksTitle}>
+                              <div className="icon-sounds"/>
+                              <span>{user.user_sounds}</span>
+                            </div>
                           </div>
                           <button className={`follow-button ${followText.toLowerCase()}`}
                             type="button" onClick={this.toggleFollow(user.id, user.profile_url)}

@@ -198,7 +198,6 @@ div[class^="icon-"] {
 }
 
 .icon-sounds {
-  margin-left: 10px;
   background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1520842715/sounds_zopriw.svg");
 }
 
@@ -249,7 +248,7 @@ div[class^="icon-"] {
 }
 
 .comment-author-avatar {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .comment-author-avatar-image {
@@ -270,6 +269,19 @@ div[class^="icon-"] {
 
 .comment-main {
   width: 520px;
+}
+
+.user-details {
+  display: flex;
+  font-size: 13px;
+}
+
+.user-details:last-of-type {
+  margin-left: 10px;
+}
+
+.user-details:hover {
+  cursor: default;
 }
 
 .comment-extra {
