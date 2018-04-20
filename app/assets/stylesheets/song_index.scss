@@ -1,7 +1,10 @@
 .song-list-user-img {
   height: 30px;
   width: 30px;
-  border-radius: 100%;
+  border-radius: 50%;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .song-list-user-div {

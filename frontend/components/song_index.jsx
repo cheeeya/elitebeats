@@ -56,7 +56,7 @@ class SongIndex extends React.Component {
               return (
                 <li className="song-index-list-item" key={song.id}>
                   <div className="song-list-user-div">
-                    <Link to={song.author_url}><img className="song-list-user-img" src={song.author_picture_url} /></Link>
+                    <Link to={song.author_url}><div className="song-list-user-img" style={{ backgroundImage: `url(${song.author_picture_url}` }} /></Link>
                     <span className="song-list-user-span">
                       <Link to={song.author_url}>{song.author_name}</Link><span className="song-list-user-span-inner">posted a track {time}</span>
                     </span>
