@@ -43,13 +43,19 @@
 }
 
 .follow-button {
-  background-color: transparent;
+  font-family: 'Overpass', 'Open Sans', 'Roboto', sans-serif;
   border: 1px solid #e5e5e5;
-  color: #333;
   border-radius: 3px;
   font-size: 11px;
-  padding: 4px 9px 3px 8px;
+  padding: 5px 9px 1px 8px;
 }
+
+.p-follow-button {
+  background-color: #0059B3;
+  border-color: #0059B3;
+  color: #fff;
+}
+
 
 .follow-button:hover {
   border-color: #ccc;
@@ -59,6 +65,10 @@
   background-color: #fff;
   border-color: #35A7FF;
   color: #35A7FF;
+}
+
+.p-follow-button:hover {
+  border-color: #0059B3;
 }
 
 .following:hover {

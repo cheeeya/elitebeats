@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { fetchSong } from '../actions/song_actions';
 import { playSong, pauseSong, receiveCurrentPlaylist } from '../actions/player_actions';
 import { postComment, deleteComment } from '../actions/comment_actions';
+import { follow, unfollow } from '../actions/follow_actions';
 import SongProfile from './song_profile';
 
 const mapStateToProps = (state, ownProps) => {
@@ -34,7 +35,9 @@ const mapDispatchToProps = dispatch => ({
   pause: () => dispatch(pauseSong()),
   updateCurrentPlaylist: (playlist) => dispatch(receiveCurrentPlaylist(playlist)),
   postComment: (comment, songId) => dispatch(postComment(comment, songId)),
-  deleteComment: (commentId) => dispatch(deleteComment(commentId))
+  deleteComment: (commentId) => dispatch(deleteComment(commentId)),
+  follow: (userId, userUrl, songUrl) => dispatch(follow(userId, userUrl, songUrl)),
+  unfollow: (userId, userUrl, songUrl) => dispatch(unfollow(userId, userUrl, songUrl))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps) (SongProfile));

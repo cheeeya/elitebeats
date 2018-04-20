@@ -53,6 +53,11 @@
   border: 0.5px solid white;
 }
 
+button {
+  background-color: transparent;
+  color: #333;
+}
+
 button:hover {
   cursor: pointer;
   outline: 0;

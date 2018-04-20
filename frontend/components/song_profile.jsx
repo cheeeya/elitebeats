@@ -60,6 +60,18 @@ class SongProfile extends React.Component {
     this.setState({ body: e.target.value });
   }
 
+  toggleFollow(userId, userUrl, songUrl) {
+    return e => {
+      const { currentUser, follow, unfollow } = this.props;
+      e.preventDefault();
+      if (currentUser.user_followings.includes(userId)) {
+        unfollow(userId, userUrl, songUrl);
+      } else {
+        follow(userId, userUrl, songUrl);
+      }
+    }
+  }
+
   timeFormat(createdAt) {
     let postDate = new Date(createdAt);
     let now = new Date();
@@ -190,6 +202,7 @@ class SongProfile extends React.Component {
                   <div className="icon-sounds"/>
                   <span>{songProfile.author_sounds}</span>
                 </div>
+                <button className="follow-button p-follow-button">Follow</button>
               </div>
               <div className="song-info-main">
                 <div className="song-info-description">

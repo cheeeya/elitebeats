@@ -67,27 +67,18 @@
 }
 
 .profile-button {
+  font-family: 'Overpass', 'Open Sans', 'Roboto', sans-serif;
   height: 26px;
   background-color: #ffffff;
   font-size: 14px;
   border: 1px solid #e5e5e5;
   border-radius: 3px;
-  padding: 2px 11px 2px 10px;
+  padding: 2px 11px 0 11px;
   margin-top: -2px;
 }
 
 .profile-button:hover {
   border-color: #ccc;
-}
-
-.p-follow-button {
-  background-color: #0059B3;
-  border-color: #0059B3;
-  color: #fff;
-}
-
-.p-follow-button:hover {
-  border-color: #0059B3;
 }
 
 .profile-tab-all span {
