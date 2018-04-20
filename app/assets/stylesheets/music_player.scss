@@ -54,7 +54,7 @@
 
 .progress-ball {
   position: absolute;
-  margin-top: -2.5px;
+  margin-top: -2px;
   margin-right: -5px;
   border: 1px solid #0059B3;
   border-radius: 100%;
@@ -142,4 +142,7 @@ span[class^="player-song"]:hover {
   width: 30px;
   height: 30px;
   margin-right: 10px;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }

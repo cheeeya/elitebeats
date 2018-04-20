@@ -170,8 +170,11 @@ class Player extends React.Component {
             <span>{this.formatTime(this.state.time)}</span>
           </div>
           <div className="progress-bar">
-
-            <div className="progress-bar-total"><div className="progress-bar-elapsed-time" style={elapsedTimeStyle}><div className="progress-ball" style={progressBallStyle}/></div></div>
+            <div className="progress-bar-total">
+              <div className="progress-bar-elapsed-time" style={elapsedTimeStyle}>
+                <div className="progress-ball" style={progressBallStyle}/>
+              </div>
+            </div>
           </div>
           <div className="progress-bar-time-total">
             <span>{this.formatTime(this.songHowl.duration())}</span>
@@ -182,7 +185,7 @@ class Player extends React.Component {
           <div className="volume-control-max"><div className="volume-control-current"></div></div>
         </div>
         <div className="player-song-info">
-          <Link to={permalink}><img className="player-song-artwork" src={song.image_url} /></Link>
+          <Link to={permalink}><div className="player-song-artwork" style={{ backgroundImage: `url(${song.image_url})` }} /></Link>
           <ul>
             <li><Link to={author_url}><span className="player-song-author">{song.author_name}</span></Link></li>
             <li><Link to={permalink}><span className="player-song-title">{song.title}</span></Link></li>
