@@ -26,7 +26,7 @@ const songProfileReducer = (state = {}, action) => {
     case RECEIVE_FOLLOWER:
       newState = merge({}, state);
       if (newState[action.songUrl]) {
-        followers = newState[action.userUrl].author_followers;
+        followers = newState[action.songUrl].author_followers;
         if (!followers.includes(action.followerId)) {
           followers.push(action.followerId);
         }

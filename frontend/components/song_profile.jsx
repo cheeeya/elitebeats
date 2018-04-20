@@ -11,7 +11,8 @@ class SongProfile extends React.Component {
     this.playbackButton = this.playbackButton.bind(this);
     this.handleComment = this.handleComment.bind(this);
     this.handleSubmitComment = this.handleSubmitComment.bind(this);
-    this.handleDelete = this.handleDelete.bind(this)
+    this.handleDelete = this.handleDelete.bind(this);
+    this.toggleFollow = this.toggleFollow.bind(this);
   }
 
   componentDidMount () {
@@ -109,28 +110,32 @@ class SongProfile extends React.Component {
   }
 
   render() {
-    const playbackButton = this.playbackButton();
     const { songProfile, currentUser } = this.props;
-    let userAvatarUrl = "https://res.cloudinary.com/elitebeats/image/upload/v1520836942/blue_v6mtey.jpg",
-        comments = [];
-    let commentsEl = <div className="empty-comments-div">
-                       <img className="empty-comments-image" src="https://res.cloudinary.com/elitebeats/image/upload/v1520941219/no-comments_f0a9ay.png"/>
-                       <h4 className="empty-h4">Seems a little quiet over here</h4>
-                       <h5 className="empty-h5">Be the first to comment on this track</h5>
-                     </div>
+    const playbackButton = this.playbackButton();
     if (!songProfile) {
       return null;
     }
+    let userAvatarUrl = "https://res.cloudinary.com/elitebeats/image/upload/v1520836942/blue_v6mtey.jpg",
+        comments = [], time = this.timeFormat(songProfile.created_at), genre,
+        followText = "Follow", disabledIfOwner = "";
+    let commentsEl = (<div className="empty-comments-div">
+                       <img className="empty-comments-image" src="https://res.cloudinary.com/elitebeats/image/upload/v1520941219/no-comments_f0a9ay.png"/>
+                       <h4 className="empty-h4">Seems a little quiet over here</h4>
+                       <h5 className="empty-h5">Be the first to comment on this track</h5>
+                     </div>);
     if (songProfile.comments) {
       comments = Object.values(songProfile.comments).reverse();
     }
     if (currentUser) {
       userAvatarUrl = currentUser.profile_picture_url;
+      if (currentUser.id === songProfile.author_id) {
+        disabledIfOwner = "disabled";
+      } else if (currentUser.user_followings.includes(songProfile.author_id)) {
+        followText = "Following";
+      }
     }
-    let time = this.timeFormat(songProfile.created_at);
-    let genre;
     if (songProfile.genre != "none") {
-      genre = (<div className="header-genre"><span># {songProfile.genre}</span></div>)
+      genre = (<div className="header-genre"><span># {songProfile.genre}</span></div>);
     }
     if (comments.length > 0) {
       commentsEl = <div className="song-info-comments">
@@ -202,7 +207,13 @@ class SongProfile extends React.Component {
                   <div className="icon-sounds"/>
                   <span>{songProfile.author_sounds}</span>
                 </div>
-                <button className="follow-button p-follow-button">Follow</button>
+                <button type="button" title={followText === "Follow" ? followText : "Unfollow"}
+                  className={`follow-button p-follow-button ${followText.toLowerCase()} ${disabledIfOwner}`}
+                  onClick={this.toggleFollow(songProfile.author_id, songProfile.author_url,
+                    `${songProfile.author_url}/${songProfile.permalink}`)}
+                  disabled={disabledIfOwner}>
+                  {followText}
+                </button>
               </div>
               <div className="song-info-main">
                 <div className="song-info-description">
