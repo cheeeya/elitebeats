@@ -124,6 +124,7 @@
   height: 40px;
   width: 40px;
   background-size: cover;
+  background-position: 50% 50%;
 }
 
 .comment-input-div {
@@ -256,6 +257,7 @@ div[class^="icon-"] {
   width: 40px;
   border-radius: 100%;
   background-size: cover;
+  background-position: 50% 50%;
 }
 
 .comment-author-name {
@@ -282,6 +284,7 @@ div[class^="icon-"] {
 
 .user-details:hover {
   cursor: default;
+  color: #333;
 }
 
 .comment-extra {
