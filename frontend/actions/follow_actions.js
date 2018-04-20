@@ -2,28 +2,30 @@ export const RECEIVE_FOLLOWER = "RECEIVE_FOLLOWER";
 export const REMOVE_FOLLOWER = "REMOVE_FOLLOWER";
 import * as FollowAPIUtil from '../util/follow_api_util';
 
-const receiveFollower = (userId, followerId, userUrl) => ({
+const receiveFollower = (userId, followerId, userUrl, songUrl) => ({
   type: RECEIVE_FOLLOWER,
   followerId,
   userId,
-  userUrl
+  userUrl,
+  songUrl
 });
 
-const removeFollower = (userId, followerId, userUrl) => ({
+const removeFollower = (userId, followerId, userUrl, songUrl) => ({
   type: REMOVE_FOLLOWER,
   followerId,
   userId,
-  userUrl
+  userUrl,
+  songUrl
 });
 
-export const follow = (userId, userUrl) => dispatch => (
+export const follow = (userId, userUrl, songUrl) => dispatch => (
   FollowAPIUtil.createFollow(userId).then(
-    followerId => dispatch(receiveFollower(userId, followerId, userUrl))
+    followerId => dispatch(receiveFollower(userId, followerId, userUrl, songUrl))
   )
 );
 
-export const unfollow = (userId, userUrl) => dispatch => (
+export const unfollow = (userId, userUrl, songUrl) => dispatch => (
   FollowAPIUtil.deleteFollow(userId).then(
-    followerId => dispatch(removeFollower(userId, followerId, userUrl))
+    followerId => dispatch(removeFollower(userId, followerId, userUrl, songUrl))
   )
 );

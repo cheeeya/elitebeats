@@ -6,7 +6,9 @@ else
 end
 json.author_name song.author.display_name
 json.author_sounds song.author.songs.length
-json.author_followers song.author.followers.length
+json.author_followers do
+  json.array! song.author.followers.map { |f| f.id }
+end
 if song.seed_image_url
   json.image_url song.seed_image_url
 else

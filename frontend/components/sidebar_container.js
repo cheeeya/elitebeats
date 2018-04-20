@@ -10,8 +10,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchUsers: () => dispatch(fetchAllUsers()),
-  follow: (userId, userUrl) => dispatch(follow(userId, userUrl)),
-  unfollow: (userId, userUrl) => dispatch(unfollow(userId, userUrl))
+  follow: (userId, userUrl, songUrl) => dispatch(follow(userId, userUrl, songUrl)),
+  unfollow: (userId, userUrl, songUrl) => dispatch(unfollow(userId, userUrl, songUrl))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps) (Sidebar);

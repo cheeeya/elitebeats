@@ -186,7 +186,7 @@ class SongProfile extends React.Component {
                 <Link to={`/${songProfile.author_url}`}  title={`Visit ${songProfile.author_name}'s profile`}><span className="song-info-author-name">{songProfile.author_name}</span></Link>
                 <div className="song-info-author-details">
                   <div className="icon-followers"/>
-                  <span>{songProfile.author_followers}</span>
+                  <span>{songProfile.author_followers.length}</span>
                   <div className="icon-sounds"/>
                   <span>{songProfile.author_sounds}</span>
                 </div>

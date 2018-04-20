@@ -49,9 +49,9 @@ class UserProfile extends React.Component {
       e.preventDefault();
       if (currentUser) {
         if (currentUser.user_followings.includes(userId)) {
-          unfollow(userId, userUrl);
+          unfollow(userId, userUrl, "");
         } else {
-          follow(userId, userUrl);
+          follow(userId, userUrl, "");
         }
       } else {
         window.triggerLogin();

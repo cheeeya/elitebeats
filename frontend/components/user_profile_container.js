@@ -21,8 +21,8 @@ const mapDispatchToProps = dispatch => ({
   fetchUserProfile: (profile_url) => dispatch(fetchUserProfile(profile_url)),
   update: (formData, user_id) => dispatch(updateUserData(formData, user_id)),
   finishUpdate: () => dispatch(finishUpdate()),
-  follow: (userId, userUrl) => dispatch(follow(userId, userUrl)),
-  unfollow: (userId, userUrl) => dispatch(unfollow(userId, userUrl))
+  follow: (userId, userUrl, songUrl) => dispatch(follow(userId, userUrl, songUrl)),
+  unfollow: (userId, userUrl, songUrl) => dispatch(unfollow(userId, userUrl, songUrl))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps) (UserProfile));
