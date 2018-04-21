@@ -178,7 +178,6 @@ class SongProfile extends React.Component {
     if (songProfile.author_followers.length === 0 || songProfile.author_followers.length > 1) {
       followersTitle += "s";
     }
-    console.log(songProfile.description);
     return (
       <section className="song-show-page">
         <div className="song-page-header">
