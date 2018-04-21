@@ -178,6 +178,7 @@ class SongProfile extends React.Component {
     if (songProfile.author_followers.length === 0 || songProfile.author_followers.length > 1) {
       followersTitle += "s";
     }
+    console.log(songProfile.description);
     return (
       <section className="song-show-page">
         <div className="song-page-header">
@@ -229,7 +230,9 @@ class SongProfile extends React.Component {
               </div>
               <div className="song-info-main">
                 <div className="song-info-description">
-                  {songProfile.description}
+                  {songProfile.description.split('\n').map((text, key) => {
+                    return <p key={key}>{text}<br/></p>
+                  })}
                 </div>
                 {commentsEl}
               </div>
