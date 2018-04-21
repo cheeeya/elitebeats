@@ -238,7 +238,9 @@ class UserProfile extends React.Component {
                     </div>
                   </div>
                   <div className="profile-bio">
-                    {profile.bio}
+                    {profile.bio.split('\n').map((text, key) => {
+                      return <p key={key}>{text}<br/></p>
+                    })}
                   </div>
                 </div>
               </div>
