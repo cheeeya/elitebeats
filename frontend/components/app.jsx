@@ -9,6 +9,7 @@ import SongUploadFormContainer from './song_upload_form_container';
 import SongProfileContainer from './song_profile_container';
 import UserProfileContainer from './user_profile_container';
 import PlayerContainer from './player_container';
+import ErrorPage from './error_page.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class App extends React.Component {
           <ProtectedRoute exact path="/upload" component={SongUploadFormContainer} />
           <Route exact path="/:author_url/:permalink" component={SongProfileContainer} />
           <Route exact path="/:author_url" component={UserProfileContainer} />
+          <Route component={ErrorPage} />
         </Switch>
         {player}
       </div>

@@ -142,15 +142,29 @@ input, textarea, select {
   text-align: center;
 }
 
-.image-404 {
+div[class^="image-404"] {
   margin-top: 76px;
   height: 380px;
-  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524343403/no-user-error-inverted_sbpnwg.png");
   background-size: 468px 335px;
   background-repeat: no-repeat;
   background-position: 50% 0;
 }
 
+.image-404 {
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524346121/404-inverted_yoxf5c.png");
+}
+
+.image-404-alt {
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524343403/no-user-error-inverted_sbpnwg.png");
+}
+
 .error-h1 {
   font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.error-p {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 100;
 }
