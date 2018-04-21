@@ -75,14 +75,14 @@ button:focus {
   font-weight: 300;
   margin-top: 25px;
   font-size: 18px;
-  color: #333333;
+  color: #333;
 }
 
 .empty-h5 {
   font-weight: 300;
   margin-top: 8px;
   font-size: 16px;
-  color: #999999;
+  color: #999;
 }
 
 .disabled-button {
@@ -130,7 +130,7 @@ select:focus {
 input, textarea, select {
   padding: 7px 8px 6px 8px;
   border-radius: 4px;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
   color: black;
   font-family: "Overpass";
 }

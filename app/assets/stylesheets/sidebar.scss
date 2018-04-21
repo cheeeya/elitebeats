@@ -12,7 +12,7 @@
 
 .sidebar-header {
   font-size: 14px;
-  color: #999999;
+  color: #999;
   line-height: 24px;
   border-bottom: 1px solid #f2f2f2;
   display:flex;
@@ -47,12 +47,12 @@ div[id^="sidebar-icon-"] {
 
 .sidebar-footer {
   font-size: 11px;
-  color: #cccccc;
+  color: #ccc;
   border-top: 1px solid #f2f2f2;
   padding: 11px 0;
 }
 
 .sidebar-footer > a:hover {
-  color: #999999;
+  color: #999;
   cursor: pointer;
 }

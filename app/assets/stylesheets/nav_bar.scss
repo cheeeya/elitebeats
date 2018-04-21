@@ -14,7 +14,7 @@ header {
   align-items: center;
   width: 1240px;
   height: 46px;
-  color: #999999;
+  color: #999;
 }
 
 .nav-logo {
@@ -98,7 +98,7 @@ header {
 }
 
 .nav-link:hover, .user-nav:hover {
-  color: #ffffff;
+  color: #fff;
 }
 
 #logout-btn {
@@ -132,6 +132,6 @@ header {
 }
 
 .active-tab {
-  background-color: #111111;
-  color: #ffffff;
+  background-color: #111;
+  color: #fff;
 }
