@@ -28,12 +28,12 @@
   border: none;
 }
 
-.profile-picture:hover #update-profile-pic {
+.profile-picture:hover .update-profile-pic {
   opacity: .8;
   transition: opacity 0.2s ease-in-out;
 }
 
-#update-profile-pic:hover {
+.update-profile-pic:hover {
   opacity: 1 !important;
   transition: opacity 0.1s ease-in-out;
 }
@@ -46,12 +46,12 @@
   justify-content: space-between;
 }
 
-.profile-header:hover #update-cover-photo {
+.profile-header:hover .update-cover-photo {
   opacity: .8;
   transition: opacity 0.2s ease-in-out;
 }
 
-#update-cover-photo:hover {
+.update-cover-photo:hover {
   opacity: 1 !important;
   transition: opacity 0.1s ease-in-out;
 }
