@@ -37,22 +37,23 @@
   width: 990px;
   height: 200px;
   padding: 30px 20px 30px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-header:hover .update-cover-photo {
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .display-name {
-  position: relative;
   display: inline-block;
   background: black;
   font-size: 24px;
   font-weight: 400;
   color: white;
   line-height: 1;
-  padding: 11px 10px;
-}
-
-.display-name span {
-  position: relative;
-  top: 2px;
+  padding: 11px 10px 7px 10px;
 }
 
 .profile-music {
@@ -101,9 +102,20 @@
   display: none;
 }
 
+#cover-input {
+  display: none;
+}
+
 .update-profile-pic {
-  margin-top: 160px;
-  margin-left: 42px;
+  margin: 160px 0 0 42px;
+}
+
+.update-cover-photo {
+  display: inline-block;
+  float: right;
+}
+
+.update-button {
   border-radius: 3px;
   padding-top: 5px;
   border: 0.5px solid #999;
@@ -137,10 +149,6 @@
 
 .full-data {
   padding: 6px 7px 3px 0;
-}
-
-.update-cover-photo {
-
 }
 
 .profile-main {

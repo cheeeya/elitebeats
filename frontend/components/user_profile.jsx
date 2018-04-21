@@ -84,7 +84,7 @@ class UserProfile extends React.Component {
       }
       const formData = new FormData();
       formData.append("user[id]", currentUser.id);
-      if (file) formData.append("user[profile_picture]", file);
+      if (file) formData.append(`user[${fileType}]`, file);
       this.props.update(formData, currentUser.id);
     }
   }
@@ -180,16 +180,28 @@ class UserProfile extends React.Component {
               </button>
             </div>
             <div className="profile-header">
-              <h1 className="display-name"><span>{profile.display_name}</span></h1>
-              <div className="full-name-div">
-                {fNameEl}
-                {lNameEl}
+              <div className="header-left">
+                <div className="display-name-div">
+                  <h1 className="display-name">{profile.display_name}</h1>
+                </div>
+                <div className="full-name-div">
+                  {fNameEl}
+                  {lNameEl}
+                </div>
+                <div className="location-div">
+                  {cityEl}
+                  {countryEl}
+                </div>
               </div>
-              <div className="location-div">
-                {cityEl}
-                {countryEl}
+              <div className="header-right">
+                <input id="cover-input" type="file" onChange={this.handleFile('cover')}></input>
+                <button onClick={this.triggerFileUpload('cover')}
+                  className={`update-button update-cover-photo ${disabledUnlessOwner}`}
+                  disabled={disabledUnlessOwner === "disabled"}
+                  type="button">
+                  <span><i className="fas fa-camera"></i>&nbsp;&nbsp;Update image</span>
+                </button>
               </div>
-              <button className="update-button update-cover-photo disabled" type="button">Update Image</button>
             </div>
           </div>
           <section className="profile-music">
