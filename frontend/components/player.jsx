@@ -137,6 +137,7 @@ class Player extends React.Component {
     const { song } = this.props;
     const playbackButton = this.playbackButton();
     const volumeButton = this.volumeButton();
+
     if (!song || !this.songHowl) {
       return null;
     }
@@ -182,7 +183,7 @@ class Player extends React.Component {
         </div>
         <button className="player-button" id={`player-${volumeButton}-button`} onClick={this.handleMute}></button>
         <div className="volume-control-div">
-          <div className="volume-control-max"><div className="volume-control-current"></div></div>
+
         </div>
         <div className="player-song-info">
           <Link to={permalink}><div className="player-song-artwork" style={{ backgroundImage: `url(${song.image_url})` }} /></Link>

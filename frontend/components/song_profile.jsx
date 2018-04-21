@@ -153,15 +153,24 @@ class SongProfile extends React.Component {
                           return (
                             <li className={`comment-list-item ${isAuthor}`} key={comment.id}>
                               <div className="comment-author-avatar">
-                                <Link to={`/${comment.author_url}`}><div className="comment-author-avatar-image" style={{ backgroundImage: `url(${comment.author_picture_url})` }}></div></Link>
+                                <Link to={`/${comment.author_url}`}>
+                                  <div className="comment-author-avatar-image"
+                                    style={{ backgroundImage: `url(${comment.author_picture_url})` }}/>
+                                </Link>
                               </div>
                               <div className="comment-main">
-                                <div className="comment-author-name"><Link to={`/${comment.author_url}`}>{comment.author_name}</Link></div>
+                                <div className="comment-author-name">
+                                  <Link to={`/${comment.author_url}`}>
+                                    {comment.author_name}
+                                  </Link>
+                                </div>
                                 <p>{comment.body}</p>
                               </div>
                               <div className="comment-extra">
                                 <span>{this.timeFormat(comment.created_at)}</span>
-                                <button id="delete-comment-button" onClick={this.handleDelete(comment.id)}><div className="delete-icon"/></button>
+                                <button id="delete-comment-button" onClick={this.handleDelete(comment.id)}>
+                                  <div className="delete-icon"/>
+                                </button>
                               </div>
                             </li>
                           )

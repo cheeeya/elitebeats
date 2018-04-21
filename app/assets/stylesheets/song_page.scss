@@ -54,7 +54,7 @@
   position: relative;
   top: 2px;
   font-size: 16px;
-  color: #cccccc;
+  color: #ccc;
   background: black;
   padding: 5px 7px 1px 7px;
 }
@@ -97,7 +97,7 @@
 
 .header-genre > span {
   font-size: 16px;
-  background: #999999;
+  background: #999;
   border-radius: 20px;
   justify-content: space-around;
   padding: 5px 5px 1px 5px;
@@ -145,7 +145,7 @@
 
 .song-comment-input:focus {
   outline: none;
-  border-color: #999999;
+  border-color: #999;
 }
 
 .song-info {
@@ -177,7 +177,7 @@
 
 .song-info-author-details {
   display: flex;
-  color: #999999;
+  color: #999;
   align-items: center;
   margin: 9px 0 10px 0;
   height: 14px;
@@ -221,7 +221,7 @@ div[class^="icon-"] {
   height: 21px;
   width: 100%;
   font-size: 14px;
-  color: #999999;
+  color: #999;
   align-items: center;
   padding-bottom: 5px;
   border-bottom: 1px solid #f2f2f2;
@@ -262,12 +262,12 @@ div[class^="icon-"] {
 }
 
 .comment-author-name {
-  color: #999999;
+  color: #999;
   margin-bottom: 5px;
 }
 
 .comment-author-name:hover {
-  color: #333333;
+  color: #333;
 }
 
 .comment-main {
@@ -320,6 +320,10 @@ div[class^="icon-"] {
   border-radius: 3px;
   padding: 0;
   display: none;
+}
+
+#delete-comment-button:hover {
+  border-color: #ccc;
 }
 
 .delete-icon {
