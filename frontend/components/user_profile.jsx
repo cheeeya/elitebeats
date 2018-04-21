@@ -63,7 +63,7 @@ class UserProfile extends React.Component {
     return e => {
       e.preventDefault();
       if (this.props.profile.id === 1) {
-        alert("Cannot update profile picture of demo account. Please create a new personal account to access this feature!");
+        alert("Cannot change image of demo account. Please create a new personal account to access this feature!");
         return;
       }
       document.getElementById(`${inputButton}-input`).click();
