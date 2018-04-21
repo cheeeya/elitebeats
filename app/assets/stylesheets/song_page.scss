@@ -210,7 +210,7 @@ div[class^="icon-"] {
 }
 
 .song-info-description {
-  height: 100px;
+  min-height: 100px;
   overflow: hidden;
   font-size: 14px;
   padding-bottom: 5px;
