@@ -134,3 +134,23 @@ input, textarea, select {
   color: black;
   font-family: "Overpass";
 }
+
+.error-page {
+  width: 1240px;
+  min-height: 100vh;
+  background-color: #fff;
+  text-align: center;
+}
+
+.no-user-image {
+  margin-top: 76px;
+  height: 380px;
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524343403/no-user-error-inverted_sbpnwg.png");
+  background-size: 468px 335px;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+}
+
+.error-h1 {
+  font-size: 32px;
+}

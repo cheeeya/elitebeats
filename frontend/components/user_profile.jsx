@@ -90,7 +90,7 @@ class UserProfile extends React.Component {
   }
 
   render () {
-    const { profile, currentUser } = this.props;
+    const { profile, currentUser, errors } = this.props;
     let tracks = {}, disabledUnlessOwner = "disabled", fNameEl = "", lNameEl= "",
         fullName = "", countryEl = "" ,cityEl = "", withCountry = "", fullLoc = "",
         followingTitle = "", followersTitle = "", tracksTitle = "", followText = "Follow";
@@ -109,6 +109,12 @@ class UserProfile extends React.Component {
                                 </div>
                               </AriaModal>
                               : false;
+    if (errors.includes("Unable to find user")) {
+      return (<div className="error-page">
+                <div className="no-user-image"/>
+                <h1 className="error-h1">We can't find that user.</h1>
+             </div>)
+    }
     if (currentUser && profile) {
       if (currentUser.profile_url === profile.profile_url) {
         disabledUnlessOwner = "";

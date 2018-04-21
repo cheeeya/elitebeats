@@ -13,7 +13,8 @@ const mapStateToProps = (state, ownProps) => {
   return ({
     currentUser: state.session.currentUser,
     profile: state.entities.profiles[profile_url],
-    updateRequired: state.session.updateRequired
+    updateRequired: state.session.updateRequired,
+    errors: state.errors.profile
   });
 };
 
