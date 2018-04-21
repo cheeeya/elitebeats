@@ -18,7 +18,7 @@ class Api::UsersController < ApplicationController
     if @user
       render 'api/users/profile'
     else
-      render json: ['Unable to find user'], status: 422
+      render json: ['Unable to find user.'], status: 404
     end
   end
 

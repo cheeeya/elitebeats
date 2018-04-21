@@ -142,7 +142,7 @@ input, textarea, select {
   text-align: center;
 }
 
-.no-user-image {
+.image-404 {
   margin-top: 76px;
   height: 380px;
   background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524343403/no-user-error-inverted_sbpnwg.png");

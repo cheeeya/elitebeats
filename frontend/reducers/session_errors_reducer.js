@@ -1,5 +1,4 @@
 import { RECEIVE_ERRORS, RECEIVE_CURRENT_USER, RECEIVE_FORM_TYPE } from '../actions/session_actions';
-import { merge } from 'lodash';
 
 const sessionErrorsReducer = (state = [], action) => {
   Object.freeze(state);

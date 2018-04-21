@@ -1,5 +1,4 @@
 import { RECEIVE_USER_PROFILE, RECEIVE_PROFILE_ERRORS } from '../actions/profile_actions';
-import { merge } from 'lodash';
 
 const profileErrorsReducer = (state = [], action) => {
   Object.freeze(state);

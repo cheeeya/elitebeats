@@ -16,13 +16,14 @@ const mapStateToProps = (state, ownProps) => {
     }
   }
   return {
-    currentUser: state.session.currentUser,
-    currentPlaylist: state.player.currentPlaylist,
     allSongs: state.entities.playlists.allSongs,
-    profileUrl: ownProps.match.params.author_url,
+    currentPlaylist: state.player.currentPlaylist,
+    currentUser: state.session.currentUser,
+    errors: state.errors.songProfile,
     permalink:  ownProps.match.params.permalink,
-    status,
-    songProfile
+    profileUrl: ownProps.match.params.author_url,
+    songProfile,
+    status
   };
 }
 

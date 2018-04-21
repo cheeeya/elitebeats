@@ -38,7 +38,7 @@ class Api::SongsController < ApplicationController
         return
       end
     end
-    render json: @song.errors.full_messages, status: 404
+    render json: ["Unable to find song."], status: 404
   end
 
   private

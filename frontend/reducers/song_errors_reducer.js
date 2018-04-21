@@ -1,5 +1,4 @@
 import { RECEIVE_SONG, RECEIVE_SONG_ERRORS, REMOVE_SONG } from '../actions/song_actions';
-import { merge } from 'lodash';
 
 const songErrorsReducer = (state = [], action) => {
   Object.freeze(state);

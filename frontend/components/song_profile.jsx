@@ -110,8 +110,14 @@ class SongProfile extends React.Component {
   }
 
   render() {
-    const { songProfile, currentUser } = this.props;
+    const { songProfile, currentUser, errors } = this.props;
     const playbackButton = this.playbackButton();
+    if (errors.includes("Unable to find song.")) {
+      return (<div className="error-page">
+                <div className="image-404" />
+                <h1 className="error-h1">This track was not found. Maybe it has been removed.</h1>
+              </div>);
+    }
     if (!songProfile) {
       return null;
     }

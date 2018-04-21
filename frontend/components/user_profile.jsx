@@ -109,11 +109,11 @@ class UserProfile extends React.Component {
                                 </div>
                               </AriaModal>
                               : false;
-    if (errors.includes("Unable to find user")) {
+    if (errors.includes("Unable to find user.")) {
       return (<div className="error-page">
-                <div className="no-user-image"/>
+                <div className="image-404" />
                 <h1 className="error-h1">We can't find that user.</h1>
-             </div>)
+             </div>);
     }
     if (currentUser && profile) {
       if (currentUser.profile_url === profile.profile_url) {
