@@ -50,6 +50,8 @@ class Player extends React.Component {
         }
         this.songHowl =  new Howl({
           src: [nextProps.song.song_url],
+          volume: volume,
+          mute: muted,
           onload: () => this.checkState(),
           onend: () => this.props.next(this.props.currentPlaylist, this.state.currentIndex + 1)
         });
@@ -190,8 +192,11 @@ class Player extends React.Component {
   }
 
   volumeButton() {
-    if (this.state.muted) {
+    const { muted, volume } = this.state;
+    if (muted || volume === 0) {
       return "muted";
+    } else if (volume <= 0.5) {
+      return "low-volume";
     } else {
       return "volume";
     }

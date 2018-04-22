@@ -34,6 +34,10 @@
   background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1518124938/muted_ubzvs2.svg");
 }
 
+#player-low-volume-button {
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524383729/low-volume_pa4f4o.svg");
+}
+
 .player-button {
   background-color: #f2f2f2;
   background-position: 50% 50%;
@@ -110,6 +114,10 @@ div[class^='progress-bar-time'] span {
   margin-left: 12px;
   display: flex;
   flex-direction: column;
+}
+
+.volume-control-div:hover {
+  cursor: pointer;
 }
 
 .volume-slider-box {
