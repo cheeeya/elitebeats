@@ -12,14 +12,23 @@ class Player extends React.Component {
       time: 0,
       muted: false,
       currentIndex: -1,
-      expandedVolume: ""
+      expandedVolume: "",
+      controlledVolumePosition: {
+        x: 0,
+        y: 0
+      },
+      isMouseDown: false
     }
+    this.dragVolume = this.dragVolume.bind(this);
     this.expandVolumeControl = this.expandVolumeControl.bind(this);
     this.formatTime = this.formatTime.bind(this);
     this.handleMute = this.handleMute.bind(this);
     this.playbackButton = this.playbackButton.bind(this);
     this.playbackControl = this.playbackControl.bind(this);
     this.reduceVolumeControl = this.reduceVolumeControl.bind(this);
+    this.releaseMouse = this.releaseMouse.bind(this);
+    this.setPosition = this.setPosition.bind(this);
+    this.snapToClick = this.snapToClick.bind(this);
     this.updateTime = this.updateTime.bind(this);
     this.volumeButton = this.volumeButton.bind(this);
   }
@@ -57,6 +66,13 @@ class Player extends React.Component {
     }
   }
 
+  dragVolume(e) {
+    e.preventDefault();
+    if (this.state.isMouseDown) {
+      this.setPositionFromBox(e);
+    }
+  }
+
   expandVolumeControl(e) {
     e.preventDefault();
     this.setState({ expandedVolume: "expanded-volume" });
@@ -65,6 +81,29 @@ class Player extends React.Component {
   reduceVolumeControl(e) {
     e.preventDefault();
     this.setState({ expandedVolume: "" });
+  }
+
+  snapToClick(e, position) {
+    e.preventDefault();
+    this.setState({ isMouseDown: true });
+    this.setPositionFromBox(e);
+  }
+
+  setPosition(e, position) {
+    const { y } = position;
+    this.setState({ controlledVolumePosition: { x: 0, y } });
+  }
+
+  setPositionFromBox (e) {
+    let bounds = document.getElementById("volume-box").getBoundingClientRect();
+    let newY = e.clientY - bounds.top - 15;
+    if (newY < 0) {
+      newY = 0;
+    }
+    else if (newY > 92) {
+      newY = 92;
+    }
+    this.setState({ controlledVolumePosition: { x: 0, y: newY } });
   }
 
   handlePlayback(action) {
@@ -126,6 +165,11 @@ class Player extends React.Component {
     }
   }
 
+  eventLogger (e, position) {
+    console.log("log");
+    console.log(e.target);
+  }
+
   volumeButton() {
     if (this.state.muted) {
       return "muted";
@@ -146,8 +190,13 @@ class Player extends React.Component {
     return timeString;
   }
 
+  releaseMouse (e) {
+    e.preventDefault();
+    this.setState({ isMouseDown: false });
+  }
+
   render () {
-    const { status, disabled, time, currentIndex, expandedVolume } = this.state;
+    const { status, disabled, time, currentIndex, expandedVolume, controlledVolumePosition } = this.state;
     const { song } = this.props;
     const playbackButton = this.playbackButton();
     const volumeButton = this.volumeButton();
@@ -197,16 +246,19 @@ class Player extends React.Component {
         </div>
         <div className="volume-control-div" onMouseOver={this.expandVolumeControl}
           onMouseOut={this.reduceVolumeControl}>
-          <div className={`volume-slider-box ${expandedVolume}`}>
+          <div id="volume-box" className={`volume-slider-box ${expandedVolume}`}
+            onMouseDown={this.snapToClick} onMouseMove={this.dragVolume}
+            onMouseUp={this.releaseMouse}>
             <div className={`volume-slider ${expandedVolume}`}>
               <Draggable
                 axis="y"
                 defaultPosition={{x:0, y:0}}
-                position={null}
+                position={controlledVolumePosition}
                 bounds={{top: 0, bottom: 92 }}
-                >
-                <div className="volume-ball" />
+                onDrag={this.setPosition}>
+                  <div id="volume-ball" />
               </Draggable>
+              <div className="volume-fill" style={{ height: 100 - controlledVolumePosition.y }} />
             </div>
           </div>
           <div className={`volume-slider-box-pointer-outline ${expandedVolume}`}/>

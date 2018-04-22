@@ -155,8 +155,16 @@ div[class^="volume-slider-box-pointer"] {
   // display: none;
 }
 
-.volume-ball {
-  margin-left: -3px;
+.volume-fill {
+  position: absolute;
+  bottom: 9px;
+  width: 2px;
+  background: #0059B3;
+}
+
+#volume-ball {
+  position: relative;
+  left: -3px;
   height: 8px;
   width: 8px;
   border-radius: 50%;
