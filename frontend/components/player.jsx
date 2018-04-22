@@ -13,6 +13,7 @@ class Player extends React.Component {
       muted: false,
       currentIndex: -1,
       expandedVolume: false,
+      volume: 1,
       controlledVolumePosition: {
         x: 0,
         y: 0
@@ -20,6 +21,7 @@ class Player extends React.Component {
       isMouseDown: false,
       tempDisplay: ""
     }
+    this.checkState = this.checkState.bind(this);
     this.dragVolume = this.dragVolume.bind(this);
     this.expandVolumeControl = this.expandVolumeControl.bind(this);
     this.formatTime = this.formatTime.bind(this);
@@ -38,7 +40,7 @@ class Player extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     let clicked = false;
-    const { controlledVolumePosition, muted } = this.state;
+    const { volume, muted } = this.state;
     if (nextProps.song) {
       if (!this.songHowl || this.props.song.id != nextProps.song.id || this.props.currentPlaylistTitle != nextProps.currentPlaylistTitle) {
         if (this.songHowl) {
@@ -48,8 +50,7 @@ class Player extends React.Component {
         }
         this.songHowl =  new Howl({
           src: [nextProps.song.song_url],
-          volume: (92 - controlledVolumePosition.y) / 92,
-          mute: muted,
+          onload: () => this.checkState(),
           onend: () => this.props.next(this.props.currentPlaylist, this.state.currentIndex + 1)
         });
         window.songHowl = this.songHowl;
@@ -66,6 +67,15 @@ class Player extends React.Component {
         return;
       }
       this.playbackControl(nextProps.song.status);
+    }
+  }
+
+  checkState() {
+    const { muted, status, volume } = this.state;
+    this.songHowl.mute(muted);
+    this.songHowl.volume(volume);
+    if (status === "pause") {
+      this.songHowl.pause();
     }
   }
 
@@ -101,15 +111,16 @@ class Player extends React.Component {
 
   setPositionFromBox (e) {
     let bounds = document.getElementById("volume-box").getBoundingClientRect();
-    let newY = e.clientY - bounds.top - 20;
+    let newY = e.clientY - bounds.top - 20, volume;
     if (newY < 0) {
       newY = 0;
     }
     else if (newY > 92) {
       newY = 92;
     }
-    this.songHowl.volume((92 - newY)/92);
-    this.setState({ controlledVolumePosition: { x: 0, y: newY } });
+    volume = (92 - newY)/92;
+    this.songHowl.volume(volume);
+    this.setState({ controlledVolumePosition: { x: 0, y: newY }, volume });
   }
 
   handlePlayback(action) {
