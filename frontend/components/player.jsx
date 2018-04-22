@@ -298,7 +298,12 @@ class Player extends React.Component {
           <div className="progress-bar">
             <div className="progress-bar-total">
               <div className="progress-bar-elapsed-time" style={elapsedTimeStyle}>
-                <div className="progress-ball" style={progressBallStyle}/>
+                <Draggable
+                  axis="x"
+                  defaultPosition={{x:0, y:0}}
+                  bounds={{left: 0, right: 492}}>
+                  <div className="progress-ball"/>
+                </Draggable>
               </div>
             </div>
           </div>
