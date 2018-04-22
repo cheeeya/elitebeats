@@ -12,12 +12,13 @@ class Player extends React.Component {
       time: 0,
       muted: false,
       currentIndex: -1,
-      expandedVolume: "",
+      expandedVolume: false,
       controlledVolumePosition: {
         x: 0,
         y: 0
       },
-      isMouseDown: false
+      isMouseDown: false,
+      tempDisplay: ""
     }
     this.dragVolume = this.dragVolume.bind(this);
     this.expandVolumeControl = this.expandVolumeControl.bind(this);
@@ -27,6 +28,7 @@ class Player extends React.Component {
     this.playbackControl = this.playbackControl.bind(this);
     this.reduceVolumeControl = this.reduceVolumeControl.bind(this);
     this.releaseMouse = this.releaseMouse.bind(this);
+    this.releaseMouseOutside = this.releaseMouseOutside.bind(this);
     this.setPosition = this.setPosition.bind(this);
     this.setPositionFromBox = this.setPositionFromBox.bind(this);
     this.snapToClick = this.snapToClick.bind(this);
@@ -86,7 +88,7 @@ class Player extends React.Component {
 
   snapToClick(e, position) {
     e.preventDefault();
-    document.getElementById("root").addEventListener('mouseup', this.releaseMouse);
+    document.getElementById("root").addEventListener('mouseup', this.releaseMouseOutside);
     document.getElementById("root").addEventListener('mousemove', this.dragVolume);
     this.setState({ isMouseDown: true });
     this.setPositionFromBox(e);
@@ -198,13 +200,25 @@ class Player extends React.Component {
 
   releaseMouse (e) {
     e.preventDefault();
-    document.getElementById("root").removeEventListener("mouseup", this.releaseMouse);
+    e.stopPropagation();
+    document.getElementById("root").removeEventListener("mouseup", this.releaseMouseOutside);
     document.getElementById("root").removeEventListener("mousemove", this.dragVolume);
     this.setState({ isMouseDown: false });
   }
 
+  releaseMouseOutside (e) {
+    e.preventDefault();
+    if (!e.target.classList.value.includes("volume")) {
+      document.getElementById("root").removeEventListener("mouseup", this.releaseMouseOutside);
+      document.getElementById("root").removeEventListener("mousemove", this.dragVolume);
+      this.setState({ isMouseDown: false, tempDisplay: "expanded-volume" });
+      window.setTimeout(() => this.setState({ tempDisplay: ""}), 700);
+    }
+  }
+
   render () {
-    const { status, disabled, time, currentIndex, expandedVolume, controlledVolumePosition } = this.state;
+    const { status, disabled, time, currentIndex, expandedVolume,
+      controlledVolumePosition, isMouseDown, tempDisplay } = this.state;
     const { song } = this.props;
     const playbackButton = this.playbackButton();
     const volumeButton = this.volumeButton();
@@ -234,9 +248,16 @@ class Player extends React.Component {
     }
     return(
       <section className="music-player">
-        <button className="player-button" id="player-prev-button" onClick={this.handleNext(currentIndex - 1)}></button>
-        <button className="player-button" id={`player-${playbackButton}-button`} onClick={this.handlePlayback(playbackButton)}><span className="playback-button-txt">{playbackButton}</span></button>
-        <button className={`player-button ${disabledNext}`} id="player-next-button" onClick={this.handleNext(currentIndex + 1)} disabled={disabled}></button>
+        <button className="player-button" id="player-prev-button"
+          onClick={this.handleNext(currentIndex - 1)} />
+        <button className="player-button" id={`player-${playbackButton}-button`}
+          onClick={this.handlePlayback(playbackButton)}>
+          <span className="playback-button-txt">
+            {playbackButton}
+          </span>
+        </button>
+        <button className={`player-button ${disabledNext}`} id="player-next-button"
+          onClick={this.handleNext(currentIndex + 1)} disabled={disabled} />
         <div className="progress-bar-div">
           <div className="progress-bar-time-current">
             <span>{this.formatTime(this.state.time)}</span>
@@ -254,7 +275,7 @@ class Player extends React.Component {
         </div>
         <div className="volume-control-div" onMouseOver={this.expandVolumeControl}
           onMouseOut={this.reduceVolumeControl}>
-          <div id="volume-box" className={`volume-slider-box ${expandedVolume}`}
+          <div id="volume-box" className={`volume-slider-box ${expandedVolume || isMouseDown ? "expanded-volume" : ""} ${tempDisplay}`}
             onMouseDown={this.snapToClick} onMouseMove={this.dragVolume}
             onMouseUp={this.releaseMouse}>
             <div className={`volume-slider ${expandedVolume}`}>
@@ -264,21 +285,32 @@ class Player extends React.Component {
                 position={controlledVolumePosition}
                 bounds={{top: 0, bottom: 92 }}
                 onDrag={this.setPosition}>
-                  <div id="volume-ball" />
+                  <div className="volume-ball" />
               </Draggable>
               <div className="volume-fill" style={{ height: 100 - controlledVolumePosition.y }} />
             </div>
           </div>
-          <div className={`volume-slider-box-pointer-outline ${expandedVolume}`}/>
-          <div className={`volume-slider-box-pointer-fill ${expandedVolume}`} />
+          <div className={`volume-slider-box-pointer-outline ${expandedVolume || isMouseDown ? "expanded-volume" : ""} ${tempDisplay}`}/>
+          <div className={`volume-slider-box-pointer-fill ${expandedVolume || isMouseDown ? "expanded-volume" : ""} ${tempDisplay}`} />
           <button className="player-button" id={`player-${volumeButton}-button`}
             onClick={this.handleMute} />
         </div>
         <div className="player-song-info">
-          <Link to={permalink}><div className="player-song-artwork" style={{ backgroundImage: `url(${song.image_url})` }} /></Link>
+          <Link to={permalink}>
+            <div className="player-song-artwork"
+              style={{ backgroundImage: `url(${song.image_url})` }} />
+          </Link>
           <ul>
-            <li><Link to={author_url}><span className="player-song-author">{song.author_name}</span></Link></li>
-            <li><Link to={permalink}><span className="player-song-title">{song.title}</span></Link></li>
+            <li>
+              <Link to={author_url}>
+                <span className="player-song-author">{song.author_name}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to={permalink}>
+                <span className="player-song-title">{song.title}</span>
+              </Link>
+            </li>
           </ul>
         </div>
       </section>

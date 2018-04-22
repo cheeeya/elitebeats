@@ -121,14 +121,14 @@ div[class^='progress-bar-time'] span {
   border: 1px solid #cecece;
   background: #f2f2f2;
   box-shadow: 0 3px 4px -1px rgba(0,0,0,.1);
-  // display: none;
+  display: none;
 }
 
 div[class^="volume-slider-box-pointer"] {
   position:absolute;
   width: 0;
   height: 0;
-  // display: none;
+  display: none;
   box-sizing:border-box;
   transform: rotate(-45deg);
 }
@@ -162,7 +162,7 @@ div[class^="volume-slider-box-pointer"] {
   background: #0059B3;
 }
 
-#volume-ball {
+.volume-ball {
   position: relative;
   left: -3px;
   height: 8px;
@@ -210,4 +210,8 @@ span[class^="player-song"]:hover {
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.display-while-clicked {
+  display: block;
 }
