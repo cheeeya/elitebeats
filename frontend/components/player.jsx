@@ -28,6 +28,7 @@ class Player extends React.Component {
     this.reduceVolumeControl = this.reduceVolumeControl.bind(this);
     this.releaseMouse = this.releaseMouse.bind(this);
     this.setPosition = this.setPosition.bind(this);
+    this.setPositionFromBox = this.setPositionFromBox.bind(this);
     this.snapToClick = this.snapToClick.bind(this);
     this.updateTime = this.updateTime.bind(this);
     this.volumeButton = this.volumeButton.bind(this);
@@ -35,6 +36,7 @@ class Player extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     let clicked = false;
+    const { controlledVolumePosition, muted } = this.state;
     if (nextProps.song) {
       if (!this.songHowl || this.props.song.id != nextProps.song.id || this.props.currentPlaylistTitle != nextProps.currentPlaylistTitle) {
         if (this.songHowl) {
@@ -44,15 +46,14 @@ class Player extends React.Component {
         }
         this.songHowl =  new Howl({
           src: [nextProps.song.song_url],
+          volume: (92 - controlledVolumePosition.y) / 92,
+          mute: muted,
           onend: () => this.props.next(this.props.currentPlaylist, this.state.currentIndex + 1)
         });
         window.songHowl = this.songHowl;
         let cPlaylist = Object.keys(nextProps.currentPlaylist).reverse();
         let currentIndex = cPlaylist.indexOf(nextProps.song.id.toString());
         this.setState({ currentIndex });
-        if (this.state.muted) {
-          this.songHowl.mute(true);
-        }
         if (!this.state.disabled && currentIndex + 1 >= cPlaylist.length) {
           this.setState({ disabled: true });
         } else if (this.state.disabled && currentIndex + 1 !== cPlaylist.length){
@@ -96,13 +97,14 @@ class Player extends React.Component {
 
   setPositionFromBox (e) {
     let bounds = document.getElementById("volume-box").getBoundingClientRect();
-    let newY = e.clientY - bounds.top - 15;
+    let newY = e.clientY - bounds.top - 20;
     if (newY < 0) {
       newY = 0;
     }
     else if (newY > 92) {
       newY = 92;
     }
+    this.songHowl.volume((92 - newY)/92);
     this.setState({ controlledVolumePosition: { x: 0, y: newY } });
   }
 
@@ -137,9 +139,11 @@ class Player extends React.Component {
   }
 
   playbackControl(action) {
+    const { controlledVolumePosition } = this.state;
     if (action === 'play') {
       this.setState({ status: action });
       this.songHowl.play();
+
       this.interval = setInterval(() => this.updateTime(), 100);
     } else if (action === 'pause'){
       this.setState({ status: action });

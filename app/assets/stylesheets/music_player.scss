@@ -115,8 +115,9 @@ div[class^='progress-bar-time'] span {
 .volume-slider-box {
   position: absolute;
   bottom: 40px;
-  height: 120px;
-  width: 24px;
+  margin-left: -4px;
+  height: 130px;
+  width: 32px;
   border: 1px solid #cecece;
   background: #f2f2f2;
   box-shadow: 0 3px 4px -1px rgba(0,0,0,.1);
@@ -150,14 +151,13 @@ div[class^="volume-slider-box-pointer"] {
 .volume-slider {
   height: 100px;
   width: 2px;
-  margin: 11px 0 0 11px;
+  margin: 15px 0 0 15px;
   background: #ccc;
-  // display: none;
 }
 
 .volume-fill {
   position: absolute;
-  bottom: 9px;
+  bottom: 15px;
   width: 2px;
   background: #0059B3;
 }
