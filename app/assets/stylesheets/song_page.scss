@@ -42,7 +42,7 @@
 .song-page-header-title {
   margin-left: 10px;
   width: 615px;
-  height: 60px;
+  max-height: 101px;
 }
 
 .header-author-div {
@@ -68,6 +68,10 @@
   background: black;
   padding: 8px 8px 4px 8px;
   color: white;
+  line-height: 36px;
+  display: inline;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .header-info {

@@ -203,7 +203,7 @@ class Player extends React.Component {
                 axis="y"
                 defaultPosition={{x:0, y:0}}
                 position={null}
-                grid={[25,25]}
+                bounds={{top:0, bottom: -100}}
                 >
                 <div>
                   test
