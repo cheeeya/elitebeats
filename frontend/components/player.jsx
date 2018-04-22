@@ -57,7 +57,7 @@ class Player extends React.Component {
           mute: muted,
           loop: repeat,
           onload: () => this.checkState(),
-          onend: () => next(currentPlaylist, currentIndex + 1)
+          onend: () => this.checkRepeat()
         });
         window.songHowl = this.songHowl;
         let cPlaylist = Object.keys(nextProps.currentPlaylist).reverse();
@@ -77,11 +77,20 @@ class Player extends React.Component {
   }
 
   checkState() {
-    const { muted, status, volume } = this.state;
+    const { muted, status, volume, repeat } = this.state;
     this.songHowl.mute(muted);
     this.songHowl.volume(volume);
+    this.songHowl.loop(repeat);
     if (status === "pause") {
       this.songHowl.pause();
+    }
+  }
+
+  checkRepeat() {
+    const { repeat, currentIndex } = this.state;
+    const { currentPlaylist, next } = this.props;
+    if (!repeat) {
+      next(currentPlaylist, currentIndex + 1);
     }
   }
 
