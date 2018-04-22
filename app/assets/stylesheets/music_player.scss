@@ -115,7 +115,7 @@ div[class^='progress-bar-time'] span {
 .volume-slider-box {
   position: absolute;
   bottom: 40px;
-  height: 110px;
+  height: 120px;
   width: 24px;
   border: 1px solid #cecece;
   background: #f2f2f2;
@@ -148,11 +148,19 @@ div[class^="volume-slider-box-pointer"] {
 }
 
 .volume-slider {
-  height: 92px;
+  height: 100px;
   width: 2px;
-  margin: 10px 0 0 11px;
+  margin: 11px 0 0 11px;
   background: #ccc;
   // display: none;
+}
+
+.volume-ball {
+  margin-left: -3px;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: #0059B3;
 }
 
 .expanded-volume {

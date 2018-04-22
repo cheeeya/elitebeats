@@ -203,11 +203,9 @@ class Player extends React.Component {
                 axis="y"
                 defaultPosition={{x:0, y:0}}
                 position={null}
-                bounds={{top:0, bottom: -100}}
+                bounds={{top: 0, bottom: 92 }}
                 >
-                <div>
-                  test
-                </div>
+                <div className="volume-ball" />
               </Draggable>
             </div>
           </div>
