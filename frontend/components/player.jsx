@@ -19,13 +19,15 @@ class Player extends React.Component {
         y: 0
       },
       isMouseDown: false,
-      tempDisplay: ""
+      tempDisplay: "",
+      repeat: false
     }
     this.checkState = this.checkState.bind(this);
     this.dragVolume = this.dragVolume.bind(this);
     this.expandVolumeControl = this.expandVolumeControl.bind(this);
     this.formatTime = this.formatTime.bind(this);
     this.handleMute = this.handleMute.bind(this);
+    this.handleRepeat = this.handleRepeat.bind(this);
     this.playbackButton = this.playbackButton.bind(this);
     this.playbackControl = this.playbackControl.bind(this);
     this.reduceVolumeControl = this.reduceVolumeControl.bind(this);
@@ -40,9 +42,10 @@ class Player extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     let clicked = false;
-    const { volume, muted } = this.state;
+    const { status, volume, muted, repeat, disabled, currentIndex } = this.state;
+    const { song, currentPlaylistTitle, next, currentPlaylist } = this.props;
     if (nextProps.song) {
-      if (!this.songHowl || this.props.song.id != nextProps.song.id || this.props.currentPlaylistTitle != nextProps.currentPlaylistTitle) {
+      if (!this.songHowl || song.id != nextProps.song.id || currentPlaylistTitle != nextProps.currentPlaylistTitle) {
         if (this.songHowl) {
           this.songHowl.unload();
           clearInterval(this.interval);
@@ -52,20 +55,21 @@ class Player extends React.Component {
           src: [nextProps.song.song_url],
           volume: volume,
           mute: muted,
+          loop: repeat,
           onload: () => this.checkState(),
-          onend: () => this.props.next(this.props.currentPlaylist, this.state.currentIndex + 1)
+          onend: () => next(currentPlaylist, currentIndex + 1)
         });
         window.songHowl = this.songHowl;
         let cPlaylist = Object.keys(nextProps.currentPlaylist).reverse();
         let currentIndex = cPlaylist.indexOf(nextProps.song.id.toString());
         this.setState({ currentIndex });
-        if (!this.state.disabled && currentIndex + 1 >= cPlaylist.length) {
+        if (!disabled && currentIndex + 1 >= cPlaylist.length) {
           this.setState({ disabled: true });
-        } else if (this.state.disabled && currentIndex + 1 !== cPlaylist.length){
+        } else if (disabled && currentIndex + 1 !== cPlaylist.length){
           this.setState({ disabled: false });
         }
       }
-      if (this.props.song && this.state.status === nextProps.song.status && this.props.song.id === nextProps.song.id) {
+      if (song && status === nextProps.song.status && song.id === nextProps.song.id) {
         return;
       }
       this.playbackControl(nextProps.song.status);
@@ -147,12 +151,14 @@ class Player extends React.Component {
 
   handleMute(e) {
     e.preventDefault();
-    if (this.state.muted) {
-      this.songHowl.mute(false);
-    } else {
-      this.songHowl.mute(true);
-    }
+    this.songHowl.mute(!this.state.muted);
     this.setState({ muted: !this.state.muted });
+  }
+
+  handleRepeat(e) {
+    e.preventDefault();
+    this.songHowl.loop(!this.state.repeat);
+    this.setState({ repeat: !this.state.repeat });
   }
 
   playbackControl(action) {
@@ -234,7 +240,7 @@ class Player extends React.Component {
 
   render () {
     const { status, disabled, time, currentIndex, expandedVolume,
-      controlledVolumePosition, isMouseDown, tempDisplay } = this.state;
+      controlledVolumePosition, isMouseDown, tempDisplay, repeat } = this.state;
     const { song } = this.props;
     const playbackButton = this.playbackButton();
     const volumeButton = this.volumeButton();
@@ -274,6 +280,8 @@ class Player extends React.Component {
         </button>
         <button className={`player-button ${disabledNext}`} id="player-next-button"
           onClick={this.handleNext(currentIndex + 1)} disabled={disabled} />
+        <button className="player-button" onClick={this.handleRepeat}
+          id={`player-${repeat ? "repeat-blue" : "repeat"}-button`} />
         <div className="progress-bar-div">
           <div className="progress-bar-time-current">
             <span>{this.formatTime(this.state.time)}</span>
