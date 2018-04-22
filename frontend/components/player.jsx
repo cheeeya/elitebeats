@@ -1,5 +1,6 @@
 import React from 'react';
 import { Howl, Howler } from 'howler';
+import Draggable from 'react-draggable';
 import { Link } from 'react-router-dom';
 
 class Player extends React.Component {
@@ -10,13 +11,16 @@ class Player extends React.Component {
       disabled: false,
       time: 0,
       muted: false,
-      currentIndex: -1
+      currentIndex: -1,
+      expandedVolume: ""
     }
-    this.playbackButton = this.playbackButton.bind(this);
-    this.updateTime = this.updateTime.bind(this);
-    this.playbackControl = this.playbackControl.bind(this);
+    this.expandVolumeControl = this.expandVolumeControl.bind(this);
     this.formatTime = this.formatTime.bind(this);
     this.handleMute = this.handleMute.bind(this);
+    this.playbackButton = this.playbackButton.bind(this);
+    this.playbackControl = this.playbackControl.bind(this);
+    this.reduceVolumeControl = this.reduceVolumeControl.bind(this);
+    this.updateTime = this.updateTime.bind(this);
     this.volumeButton = this.volumeButton.bind(this);
   }
 
@@ -51,6 +55,16 @@ class Player extends React.Component {
       }
       this.playbackControl(nextProps.song.status);
     }
+  }
+
+  expandVolumeControl(e) {
+    e.preventDefault();
+    this.setState({ expandedVolume: "expanded-volume" });
+  }
+
+  reduceVolumeControl(e) {
+    e.preventDefault();
+    this.setState({ expandedVolume: "" });
   }
 
   handlePlayback(action) {
@@ -133,7 +147,7 @@ class Player extends React.Component {
   }
 
   render () {
-    const { status, disabled, time, currentIndex } = this.state;
+    const { status, disabled, time, currentIndex, expandedVolume } = this.state;
     const { song } = this.props;
     const playbackButton = this.playbackButton();
     const volumeButton = this.volumeButton();
@@ -181,9 +195,26 @@ class Player extends React.Component {
             <span>{this.formatTime(this.songHowl.duration())}</span>
           </div>
         </div>
-        <button className="player-button" id={`player-${volumeButton}-button`} onClick={this.handleMute}></button>
-        <div className="volume-control-div">
-
+        <div className="volume-control-div" onMouseOver={this.expandVolumeControl}
+          onMouseOut={this.reduceVolumeControl}>
+          <div className={`volume-slider-box ${expandedVolume}`}>
+            <div className={`volume-slider ${expandedVolume}`}>
+              <Draggable
+                axis="y"
+                defaultPosition={{x:0, y:0}}
+                position={null}
+                grid={[25,25]}
+                >
+                <div>
+                  test
+                </div>
+              </Draggable>
+            </div>
+          </div>
+          <div className={`volume-slider-box-pointer-outline ${expandedVolume}`}/>
+          <div className={`volume-slider-box-pointer-fill ${expandedVolume}`} />
+          <button className="player-button" id={`player-${volumeButton}-button`}
+            onClick={this.handleMute} />
         </div>
         <div className="player-song-info">
           <Link to={permalink}><div className="player-song-artwork" style={{ backgroundImage: `url(${song.image_url})` }} /></Link>

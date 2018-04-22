@@ -41,7 +41,6 @@
   height: 48px;
   width: 24px;
   border: none;
-  margin-left: 12px;
 }
 
 .progress-bar-div {
@@ -108,11 +107,61 @@ div[class^='progress-bar-time'] span {
 }
 
 .volume-control-div {
-  margin-right: 20px;
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.volume-slider-box {
+  position: absolute;
+  bottom: 39px;
+  height: 100px;
+  width: 24px;
+  border: 1px solid #cecece;
+  background: #f2f2f2;
+  box-shadow: 0 3px 4px -1px rgba(0,0,0,.1);
+  display: none;
+}
+
+div[class^="volume-slider-box-pointer"] {
+  position:absolute;
+  width: 0;
+  height: 0;
+  display: none;
+  box-sizing:border-box;
+  transform: rotate(-45deg);
+}
+
+.volume-slider-box-pointer-outline {
+  margin-left: 8px;
+  bottom: 35px;
+  border: 5px solid #ccc;
+  border-color: transparent transparent #ccc #ccc;
+  box-shadow: -3px 3px 4px rgba(0,0,0,.1);
+}
+
+.volume-slider-box-pointer-fill {
+  margin-left: 9px;
+  bottom: 37px;
+  border: 4px solid #f2f2f2;
+  border-color: transparent transparent #f2f2f2 #f2f2f2;
+}
+
+.volume-slider {
+  height: 92px;
+  width: 2px;
+  margin-left: 11px;
+  background: #ccc;
+  display: none;
+}
+
+.expanded-volume {
+  display: block !important;
 }
 
 .player-song-info {
   width: 250px;
+  margin-left: 20px;
   display: flex;
   align-items: center;
   overflow: hidden;
