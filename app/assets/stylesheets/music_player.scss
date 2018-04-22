@@ -44,7 +44,12 @@
   background-repeat: no-repeat;
   height: 48px;
   width: 24px;
+  margin-left: 12px;
   border: none;
+}
+
+.volume-button {
+  margin: 0;
 }
 
 .progress-bar-div {
@@ -111,7 +116,6 @@ div[class^='progress-bar-time'] span {
 }
 
 .volume-control-div {
-  margin-left: 12px;
   display: flex;
   flex-direction: column;
 }

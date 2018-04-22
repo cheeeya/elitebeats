@@ -308,7 +308,7 @@ class Player extends React.Component {
           </div>
           <div className={`volume-slider-box-pointer-outline ${expandedVolume || isMouseDown ? "expanded-volume" : ""} ${tempDisplay}`}/>
           <div className={`volume-slider-box-pointer-fill ${expandedVolume || isMouseDown ? "expanded-volume" : ""} ${tempDisplay}`} />
-          <button className="player-button" id={`player-${volumeButton}-button`}
+          <button className="player-button volume-button" id={`player-${volumeButton}-button`}
             onClick={this.handleMute} />
         </div>
         <div className="player-song-info">
