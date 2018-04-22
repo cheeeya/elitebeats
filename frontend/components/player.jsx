@@ -86,6 +86,8 @@ class Player extends React.Component {
 
   snapToClick(e, position) {
     e.preventDefault();
+    document.getElementById("root").addEventListener('mouseup', this.releaseMouse);
+    document.getElementById("root").addEventListener('mousemove', this.dragVolume);
     this.setState({ isMouseDown: true });
     this.setPositionFromBox(e);
   }
@@ -196,6 +198,8 @@ class Player extends React.Component {
 
   releaseMouse (e) {
     e.preventDefault();
+    document.getElementById("root").removeEventListener("mouseup", this.releaseMouse);
+    document.getElementById("root").removeEventListener("mousemove", this.dragVolume);
     this.setState({ isMouseDown: false });
   }
 
