@@ -69,18 +69,12 @@
 }
 
 .progress-ball {
-  position: absolute;
-  margin-top: -3.5px;
-  margin-right: -5px;
+  position: relative;
+  top: -4px;
   border-radius: 50%;
   height: 8px;
   width: 8px;
   background-color: #0059B3;
-  opacity: 0;
-}
-
-.progress-bar-div:hover .progress-ball {
-  opacity: 1;
 }
 
 .progress-bar-elapsed-time {
@@ -96,7 +90,7 @@
   background: #ccc;
 }
 
-.progress-bar {
+#progress-bar {
   width: 500px;
 }
 

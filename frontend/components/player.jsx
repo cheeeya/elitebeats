@@ -14,28 +14,38 @@ class Player extends React.Component {
       currentIndex: -1,
       expandedVolume: false,
       volume: 1,
+      controlledProgressPosition: {
+        x: 0,
+        y: 0
+      },
       controlledVolumePosition: {
         x: 0,
         y: 0
       },
-      isMouseDown: false,
+      isMouseDownP: false,
+      isMouseDownV: false,
       tempDisplay: "",
       repeat: false
     }
     this.checkState = this.checkState.bind(this);
+    this.dragProgress = this.dragProgress.bind(this);
     this.dragVolume = this.dragVolume.bind(this);
     this.expandVolumeControl = this.expandVolumeControl.bind(this);
     this.formatTime = this.formatTime.bind(this);
     this.handleMute = this.handleMute.bind(this);
     this.handleRepeat = this.handleRepeat.bind(this);
+    this.incrementProgressBar = this.incrementProgressBar.bind(this);
     this.playbackButton = this.playbackButton.bind(this);
     this.playbackControl = this.playbackControl.bind(this);
     this.reduceVolumeControl = this.reduceVolumeControl.bind(this);
-    this.releaseMouse = this.releaseMouse.bind(this);
-    this.releaseMouseOutside = this.releaseMouseOutside.bind(this);
+    this.releaseMouseProg = this.releaseMouseProg.bind(this);
+    this.releaseMouseVol = this.releaseMouseVol.bind(this);
+    this.releaseMouseOutsideVol = this.releaseMouseOutsideVol.bind(this);
     this.setPosition = this.setPosition.bind(this);
+    this.setPositionFromBar = this.setPositionFromBar.bind(this);
     this.setPositionFromBox = this.setPositionFromBox.bind(this);
-    this.snapToClick = this.snapToClick.bind(this);
+    this.snapProgressToClick = this.snapProgressToClick.bind(this);
+    this.snapVolToClick = this.snapVolToClick.bind(this);
     this.updateTime = this.updateTime.bind(this);
     this.volumeButton = this.volumeButton.bind(this);
   }
@@ -94,9 +104,17 @@ class Player extends React.Component {
     }
   }
 
+  dragProgress (e, position) {
+    e.preventDefault();
+    if (this.state.isMouseDownP) {
+      this.setPositionFromBar(e);
+      this.updateTime();
+    }
+  }
+
   dragVolume(e) {
     e.preventDefault();
-    if (this.state.isMouseDown) {
+    if (this.state.isMouseDownV) {
       this.setPositionFromBox(e);
     }
   }
@@ -111,17 +129,37 @@ class Player extends React.Component {
     this.setState({ expandedVolume: "" });
   }
 
-  snapToClick(e, position) {
+  snapProgressToClick (e) {
     e.preventDefault();
-    document.getElementById("root").addEventListener('mouseup', this.releaseMouseOutside);
+    document.getElementById("root").addEventListener("mouseup", this.releaseMouseProg);
+    document.getElementById("root").addEventListener("mousemove", this.dragProgress);
+    this.setState({ isMouseDownP: true });
+    this.setPositionFromBar(e);
+    this.updateTime();
+  }
+
+  snapVolToClick(e, position) {
+    e.preventDefault();
+    document.getElementById("root").addEventListener('mouseup', this.releaseMouseOutsideVol);
     document.getElementById("root").addEventListener('mousemove', this.dragVolume);
-    this.setState({ isMouseDown: true });
+    this.setState({ isMouseDownV: true });
     this.setPositionFromBox(e);
   }
 
   setPosition(e, position) {
     const { y } = position;
     this.setState({ controlledVolumePosition: { x: 0, y } });
+  }
+
+  setPositionFromBar (e) {
+    let bounds = document.getElementById("progress-bar").getBoundingClientRect();
+    let x = e.clientX - bounds.left - 4, progress;
+    if (x < 0) {
+      x = 0;
+    } else if (x > 492) {
+      x = 492;
+    }
+    this.setState({ controlledProgressPosition: { x, y: 0}});
   }
 
   setPositionFromBox (e) {
@@ -170,6 +208,12 @@ class Player extends React.Component {
     this.setState({ repeat: !this.state.repeat });
   }
 
+  incrementProgressBar() {
+    if (this.songHowl && this.songHowl.playing()) {
+      this.setState({ controlledProgressPosition: { x: (500 / this.songHowl.duration()) * this.state.time }})
+    }
+  }
+
   playbackControl(action) {
     const { controlledVolumePosition } = this.state;
     if (action === 'play') {
@@ -186,7 +230,17 @@ class Player extends React.Component {
 
   updateTime() {
     if (this.songHowl) {
-      let time = this.songHowl.seek();
+      let time = 0;
+      if (this.state.isMouseDownP) {
+        let duration = this.songHowl.duration();
+        if (duration === 0) {
+          time = 0;
+        } else {
+          time = this.state.controlledProgressPosition.x / (492/duration);
+        }
+      } else {
+        time = this.songHowl.seek();
+      }
       if (typeof time === 'number'){
         this.setState({ time });
       }
@@ -229,27 +283,38 @@ class Player extends React.Component {
     return timeString;
   }
 
-  releaseMouse (e) {
+  releaseMouseProg (e) {
     e.preventDefault();
     e.stopPropagation();
-    document.getElementById("root").removeEventListener("mouseup", this.releaseMouseOutside);
-    document.getElementById("root").removeEventListener("mousemove", this.dragVolume);
-    this.setState({ isMouseDown: false });
+    document.getElementById("root").removeEventListener("mouseup", this.releaseMouseProg);
+    document.getElementById("root").removeEventListener("mousemove", this.dragProgress);
+    this.updateTime();
+    this.songHowl.seek(this.state.controlledProgressPosition.x / (492/this.songHowl.duration()));
+    this.setState({ isMouseDownP: false });
   }
 
-  releaseMouseOutside (e) {
+  releaseMouseVol (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    document.getElementById("root").removeEventListener("mouseup", this.releaseMouseOutsideVol);
+    document.getElementById("root").removeEventListener("mousemove", this.dragVolume);
+    this.setState({ isMouseDownV: false });
+  }
+
+  releaseMouseOutsideVol (e) {
     e.preventDefault();
     if (!e.target.classList.value.includes("volume")) {
-      document.getElementById("root").removeEventListener("mouseup", this.releaseMouseOutside);
+      document.getElementById("root").removeEventListener("mouseup", this.releaseMouseOutsideVol);
       document.getElementById("root").removeEventListener("mousemove", this.dragVolume);
-      this.setState({ isMouseDown: false, tempDisplay: "expanded-volume" });
+      this.setState({ isMouseDownV: false, tempDisplay: "expanded-volume" });
       window.setTimeout(() => this.setState({ tempDisplay: ""}), 700);
     }
   }
 
   render () {
     const { status, disabled, time, currentIndex, expandedVolume,
-      controlledVolumePosition, isMouseDown, tempDisplay, repeat } = this.state;
+      controlledVolumePosition, controlledProgressPosition,
+      isMouseDownV, isMouseDownP, tempDisplay, repeat } = this.state;
     const { song } = this.props;
     const playbackButton = this.playbackButton();
     const volumeButton = this.volumeButton();
@@ -261,15 +326,8 @@ class Player extends React.Component {
     if (disabled) {
       disabledNext = "disabled-button";
     }
-    let progressWidth = 0;
-    if (this.songHowl.duration() > 0 ) {
-      progressWidth = (500 / this.songHowl.duration()) * time;
-    }
-    let elapsedTimeStyle = {
-      width: progressWidth + 'px'
-    }
-    let progressBallStyle = {
-      marginLeft: (progressWidth - 4) + 'px'
+    if (this.songHowl.duration() > 0 && !isMouseDownP ) {
+      controlledProgressPosition.x = (492 / this.songHowl.duration()) * time;
     }
     let author_url = "";
     let permalink = "";
@@ -295,14 +353,16 @@ class Player extends React.Component {
           <div className="progress-bar-time-current">
             <span>{this.formatTime(this.state.time)}</span>
           </div>
-          <div className="progress-bar">
+          <div id="progress-bar" onMouseDown={this.snapProgressToClick}
+            onMouseMove={this.dragProgress} onMouseUp={this.releaseMouseProg}>
             <div className="progress-bar-total">
-              <div className="progress-bar-elapsed-time" style={elapsedTimeStyle}>
+              <div className="progress-bar-elapsed-time" style={{ width: controlledProgressPosition.x + 8 }}>
                 <Draggable
                   axis="x"
                   defaultPosition={{x:0, y:0}}
+                  position={controlledProgressPosition}
                   bounds={{left: 0, right: 492}}>
-                  <div className="progress-ball"/>
+                  <div className="progress-ball" />
                 </Draggable>
               </div>
             </div>
@@ -313,9 +373,9 @@ class Player extends React.Component {
         </div>
         <div className="volume-control-div" onMouseOver={this.expandVolumeControl}
           onMouseOut={this.reduceVolumeControl}>
-          <div id="volume-box" className={`volume-slider-box ${expandedVolume || isMouseDown ? "expanded-volume" : ""} ${tempDisplay}`}
-            onMouseDown={this.snapToClick} onMouseMove={this.dragVolume}
-            onMouseUp={this.releaseMouse}>
+          <div id="volume-box" className={`volume-slider-box ${expandedVolume || isMouseDownV ? "expanded-volume" : ""} ${tempDisplay}`}
+            onMouseDown={this.snapVolToClick} onMouseMove={this.dragVolume}
+            onMouseUp={this.releaseMouseVol}>
             <div className={`volume-slider ${expandedVolume}`}>
               <Draggable
                 axis="y"
@@ -328,8 +388,8 @@ class Player extends React.Component {
               <div className="volume-fill" style={{ height: 100 - controlledVolumePosition.y }} />
             </div>
           </div>
-          <div className={`volume-slider-box-pointer-outline ${expandedVolume || isMouseDown ? "expanded-volume" : ""} ${tempDisplay}`}/>
-          <div className={`volume-slider-box-pointer-fill ${expandedVolume || isMouseDown ? "expanded-volume" : ""} ${tempDisplay}`} />
+          <div className={`volume-slider-box-pointer-outline ${expandedVolume || isMouseDownV ? "expanded-volume" : ""} ${tempDisplay}`}/>
+          <div className={`volume-slider-box-pointer-fill ${expandedVolume || isMouseDownV ? "expanded-volume" : ""} ${tempDisplay}`} />
           <button className="player-button volume-button" id={`player-${volumeButton}-button`}
             onClick={this.handleMute} />
         </div>
