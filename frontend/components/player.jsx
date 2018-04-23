@@ -87,12 +87,16 @@ class Player extends React.Component {
   }
 
   checkState() {
-    const { muted, status, volume, repeat } = this.state;
+    const { muted, status, volume, repeat, controlledProgressPosition } = this.state;
     this.songHowl.mute(muted);
     this.songHowl.volume(volume);
     this.songHowl.loop(repeat);
     if (status === "pause") {
       this.songHowl.pause();
+    }
+    if (controlledProgressPosition.x > 0) {
+      this.songHowl.seek(this.state.controlledProgressPosition.x / (500/this.songHowl.duration()));
+      this.updateTime();
     }
   }
 
