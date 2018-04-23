@@ -288,7 +288,6 @@ class Player extends React.Component {
     let rootElement = document.getElementById("root");
     rootElement.removeEventListener("mouseup", this.releaseMouseProg);
     rootElement.removeEventListener("mousemove", this.dragProgress);
-    if (rootElement.releaseCapture) { rootElement.releaseCapture(); }
     if (this.songHowl) {
       this.updateTime();
       this.songHowl.seek(this.state.controlledProgressPosition.x / (500/this.songHowl.duration()));
