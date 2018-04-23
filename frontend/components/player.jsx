@@ -326,17 +326,17 @@ class Player extends React.Component {
     return(
       <section className="music-player">
         <button className="player-button" id="player-prev-button"
-          onClick={this.handleNext(currentIndex - 1)} />
+          onClick={this.handleNext(currentIndex - 1)}
+          title={"Pevious"} />
         <button className="player-button" id={`player-${playbackButton}-button`}
-          onClick={this.handlePlayback(playbackButton)}>
-          <span className="playback-button-txt">
-            {playbackButton}
-          </span>
-        </button>
+          onClick={this.handlePlayback(playbackButton)}
+          title={status === "play" ? "Pause current" : "Play current"} />
         <button className={`player-button ${disabledNext}`} id="player-next-button"
-          onClick={this.handleNext(currentIndex + 1)} disabled={disabled} />
+          onClick={this.handleNext(currentIndex + 1)} disabled={disabled}
+          title={"Next"} />
         <button className="player-button" onClick={this.handleRepeat}
-          id={`player-${repeat ? "repeat-blue" : "repeat"}-button`} />
+          id={`player-${repeat ? "repeat-blue" : "repeat"}-button`}
+          title={"Repeat"} />
         <div className="progress-bar-div">
           <div className="progress-bar-time-current">
             <span>{this.formatTime(this.state.time)}</span>
