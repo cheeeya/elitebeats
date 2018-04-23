@@ -71,10 +71,21 @@
 .progress-ball {
   position: relative;
   top: -4px;
+  margin-left: -4px;
   border-radius: 50%;
   height: 8px;
   width: 8px;
   background-color: #0059B3;
+  opacity: 0;
+  transition: opacity 150ms;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.progress-bar-div:hover .progress-ball {
+  opacity: 1;
 }
 
 .progress-bar-elapsed-time {
@@ -134,7 +145,7 @@ div[class^='progress-bar-time'] span {
   border: 1px solid #cecece;
   background: #f2f2f2;
   box-shadow: 0 3px 4px -1px rgba(0,0,0,.1);
-  display: none;
+  // display: none;
 }
 
 div[class^="volume-slider-box-pointer"] {
@@ -177,6 +188,7 @@ div[class^="volume-slider-box-pointer"] {
 
 .volume-ball {
   position: relative;
+  top: -4px;
   left: -3px;
   height: 8px;
   width: 8px;

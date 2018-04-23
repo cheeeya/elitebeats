@@ -34,7 +34,6 @@ class Player extends React.Component {
     this.formatTime = this.formatTime.bind(this);
     this.handleMute = this.handleMute.bind(this);
     this.handleRepeat = this.handleRepeat.bind(this);
-    this.incrementProgressBar = this.incrementProgressBar.bind(this);
     this.playbackButton = this.playbackButton.bind(this);
     this.playbackControl = this.playbackControl.bind(this);
     this.reduceVolumeControl = this.reduceVolumeControl.bind(this);
@@ -153,25 +152,25 @@ class Player extends React.Component {
 
   setPositionFromBar (e) {
     let bounds = document.getElementById("progress-bar").getBoundingClientRect();
-    let x = e.clientX - bounds.left - 4, progress;
+    let x = e.clientX - bounds.left, progress;
     if (x < 0) {
       x = 0;
-    } else if (x > 492) {
-      x = 492;
+    } else if (x > 500) {
+      x = 500;
     }
     this.setState({ controlledProgressPosition: { x, y: 0}});
   }
 
   setPositionFromBox (e) {
     let bounds = document.getElementById("volume-box").getBoundingClientRect();
-    let newY = e.clientY - bounds.top - 20, volume;
+    let newY = e.clientY - bounds.top - 15, volume;
     if (newY < 0) {
       newY = 0;
     }
-    else if (newY > 92) {
-      newY = 92;
+    else if (newY > 100) {
+      newY = 100;
     }
-    volume = (92 - newY)/92;
+    volume = (100 - newY)/100;
     this.songHowl.volume(volume);
     this.setState({ controlledVolumePosition: { x: 0, y: newY }, volume });
   }
@@ -208,12 +207,6 @@ class Player extends React.Component {
     this.setState({ repeat: !this.state.repeat });
   }
 
-  incrementProgressBar() {
-    if (this.songHowl && this.songHowl.playing()) {
-      this.setState({ controlledProgressPosition: { x: (500 / this.songHowl.duration()) * this.state.time }})
-    }
-  }
-
   playbackControl(action) {
     const { controlledVolumePosition } = this.state;
     if (action === 'play') {
@@ -236,7 +229,7 @@ class Player extends React.Component {
         if (duration === 0) {
           time = 0;
         } else {
-          time = this.state.controlledProgressPosition.x / (492/duration);
+          time = this.state.controlledProgressPosition.x / (500/duration);
         }
       } else {
         time = this.songHowl.seek();
@@ -253,11 +246,6 @@ class Player extends React.Component {
     } else {
       return 'play';
     }
-  }
-
-  eventLogger (e, position) {
-    console.log("log");
-    console.log(e.target);
   }
 
   volumeButton() {
@@ -289,7 +277,7 @@ class Player extends React.Component {
     document.getElementById("root").removeEventListener("mouseup", this.releaseMouseProg);
     document.getElementById("root").removeEventListener("mousemove", this.dragProgress);
     this.updateTime();
-    this.songHowl.seek(this.state.controlledProgressPosition.x / (492/this.songHowl.duration()));
+    this.songHowl.seek(this.state.controlledProgressPosition.x / (500/this.songHowl.duration()));
     this.setState({ isMouseDownP: false });
   }
 
@@ -327,7 +315,7 @@ class Player extends React.Component {
       disabledNext = "disabled-button";
     }
     if (this.songHowl.duration() > 0 && !isMouseDownP ) {
-      controlledProgressPosition.x = (492 / this.songHowl.duration()) * time;
+      controlledProgressPosition.x = (500 / this.songHowl.duration()) * time;
     }
     let author_url = "";
     let permalink = "";
@@ -356,13 +344,13 @@ class Player extends React.Component {
           <div id="progress-bar" onMouseDown={this.snapProgressToClick}
             onMouseMove={this.dragProgress} onMouseUp={this.releaseMouseProg}>
             <div className="progress-bar-total">
-              <div className="progress-bar-elapsed-time" style={{ width: controlledProgressPosition.x + 8 }}>
+              <div className="progress-bar-elapsed-time" style={{ width: controlledProgressPosition.x }}>
                 <Draggable
                   axis="x"
-                  defaultPosition={{x:0, y:0}}
+                  defaultPosition={{x: 0, y:0}}
                   position={controlledProgressPosition}
-                  bounds={{left: 0, right: 492}}>
-                  <div className="progress-ball" />
+                  bounds={{left: 0, right: 500}}>
+                  <div className={`progress-ball ${isMouseDownP ? "visible" : ""}`} />
                 </Draggable>
               </div>
             </div>
@@ -381,7 +369,7 @@ class Player extends React.Component {
                 axis="y"
                 defaultPosition={{x:0, y:0}}
                 position={controlledVolumePosition}
-                bounds={{top: 0, bottom: 92 }}
+                bounds={{top: 0, bottom: 100 }}
                 onDrag={this.setPosition}>
                   <div className="volume-ball" />
               </Draggable>
