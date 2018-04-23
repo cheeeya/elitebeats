@@ -27,6 +27,7 @@ class Player extends React.Component {
       tempDisplay: "",
       repeat: false
     }
+
     this.checkState = this.checkState.bind(this);
     this.dragProgress = this.dragProgress.bind(this);
     this.dragVolume = this.dragVolume.bind(this);
@@ -47,6 +48,10 @@ class Player extends React.Component {
     this.snapVolToClick = this.snapVolToClick.bind(this);
     this.updateTime = this.updateTime.bind(this);
     this.volumeButton = this.volumeButton.bind(this);
+  }
+
+  componentDidMount () {
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -130,8 +135,11 @@ class Player extends React.Component {
 
   snapProgressToClick (e) {
     e.preventDefault();
-    document.getElementById("root").addEventListener("mouseup", this.releaseMouseProg);
-    document.getElementById("root").addEventListener("mousemove", this.dragProgress);
+    let rootElement = document.getElementById("root");
+    rootElement.addEventListener("mouseup", this.releaseMouseProg);
+    rootElement.addEventListener("mousemove", this.dragProgress);
+    document.onmousemove = this.dragProgress;
+    document.onmouseup = this.releaseMouseProg;
     this.setState({ isMouseDownP: true });
     this.setPositionFromBar(e);
     this.updateTime();
@@ -139,8 +147,11 @@ class Player extends React.Component {
 
   snapVolToClick(e, position) {
     e.preventDefault();
-    document.getElementById("root").addEventListener('mouseup', this.releaseMouseOutsideVol);
-    document.getElementById("root").addEventListener('mousemove', this.dragVolume);
+    let rootElement = document.getElementById("root");
+    rootElement.addEventListener('mouseup', this.releaseMouseOutsideVol);
+    rootElement.addEventListener('mousemove', this.dragVolume);
+    document.onmousemove = this.dragVolume;
+    document.onmouseup = this.releaseMouseOutsideVol;
     this.setState({ isMouseDownV: true });
     this.setPositionFromBox(e);
   }
@@ -274,26 +285,32 @@ class Player extends React.Component {
   releaseMouseProg (e) {
     e.preventDefault();
     e.stopPropagation();
-    document.getElementById("root").removeEventListener("mouseup", this.releaseMouseProg);
-    document.getElementById("root").removeEventListener("mousemove", this.dragProgress);
-    this.updateTime();
-    this.songHowl.seek(this.state.controlledProgressPosition.x / (500/this.songHowl.duration()));
+    let rootElement = document.getElementById("root");
+    rootElement.removeEventListener("mouseup", this.releaseMouseProg);
+    rootElement.removeEventListener("mousemove", this.dragProgress);
+    if (rootElement.releaseCapture) { rootElement.releaseCapture(); }
+    if (this.songHowl) {
+      this.updateTime();
+      this.songHowl.seek(this.state.controlledProgressPosition.x / (500/this.songHowl.duration()));
+    }
     this.setState({ isMouseDownP: false });
   }
 
   releaseMouseVol (e) {
     e.preventDefault();
     e.stopPropagation();
-    document.getElementById("root").removeEventListener("mouseup", this.releaseMouseOutsideVol);
-    document.getElementById("root").removeEventListener("mousemove", this.dragVolume);
+    let rootElement = document.getElementById("root");
+    rootElement.removeEventListener("mouseup", this.releaseMouseOutsideVol);
+    rootElement.removeEventListener("mousemove", this.dragVolume);
     this.setState({ isMouseDownV: false });
   }
 
   releaseMouseOutsideVol (e) {
     e.preventDefault();
     if (!e.target.classList.value.includes("volume")) {
-      document.getElementById("root").removeEventListener("mouseup", this.releaseMouseOutsideVol);
-      document.getElementById("root").removeEventListener("mousemove", this.dragVolume);
+      let rootElement = document.getElementById("root");
+      rootElement.removeEventListener("mouseup", this.releaseMouseOutsideVol);
+      rootElement.removeEventListener("mousemove", this.dragVolume);
       this.setState({ isMouseDownV: false, tempDisplay: "expanded-volume" });
       window.setTimeout(() => this.setState({ tempDisplay: ""}), 700);
     }
