@@ -19,7 +19,7 @@ class Main extends React.Component {
       discoverActive = "selected-tab";
     }
     return (
-      <main className="main">
+      <section className="main">
         <section className="main-section">
           <div className="main-tabs">
             <Link className={`main-tab-link ${streamActive}`} to="/stream">Stream</Link>
@@ -28,7 +28,7 @@ class Main extends React.Component {
           {element}
         </section>
         <SidebarContainer />
-      </main>
+      </section>
     );
   }
 }

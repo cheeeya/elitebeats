@@ -130,14 +130,14 @@ class EditProfileForm extends React.Component {
     if (this.changed) {
       this.saveButtonDisabled = "";
     }
-    if (this.props.errors.includes("Profile picture is invalid") && newError) {
+    if (this.props.errors.indexOf("Profile picture is invalid") >= 0 && newError) {
       this.pictureError = "Your image file is too large or not supported.";
       this.imageErrorDisabled = "";
     }
-    if (this.reservedLinks.includes(profile_url)) {
+    if (this.reservedLinks.indexOf(profile_url) >= 0) {
       this.setErrorMessage("This permalink is reserved. Enter another one.");
     }
-    if (this.props.errors.includes("Profile url has already been taken") && (this.usedUrls.includes(profile_url) || newError)) {
+    if (this.props.errors.indexOf("Profile url has already been taken") >= 0 && (this.usedUrls.indexOf(profile_url) >= 0 || newError)) {
       this.setErrorMessage("This profile URL is already in use. Try a different one.");
     }
     if (!profile_url) {

@@ -27,7 +27,7 @@ const songProfileReducer = (state = {}, action) => {
       newState = merge({}, state);
       if (newState[action.songUrl]) {
         followers = newState[action.songUrl].author_followers;
-        if (!followers.includes(action.followerId)) {
+        if (!followers.indexOf(action.followerId) > -1) {
           followers.push(action.followerId);
         }
       }

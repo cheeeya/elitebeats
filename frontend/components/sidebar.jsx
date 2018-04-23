@@ -15,7 +15,7 @@ class Sidebar extends React.Component {
     return e => {
       const { currentUser, follow, unfollow } = this.props;
       e.preventDefault();
-      if (currentUser.user_followings.includes(userId)) {
+      if (currentUser.user_followings.indexOf(userId) >= 0) {
         unfollow(userId, userUrl, "");
       } else {
         follow(userId, userUrl, "");
@@ -28,13 +28,6 @@ class Sidebar extends React.Component {
     const { userList, currentUser } = this.props;
     let suggestionList = Object.keys(userList).map(el => userList[el]).slice(1,4), tracksTitle = "",
         followersTitle ="";
-    // let suggestionList = [], userArray = Object.values(userList);
-    // for (let i = 0; i < userArray.length; i++) {
-    //   if (!currentUser.user_followings.includes(userArray[i].id) && currentUser.id !== userArray[i].id) {
-    //     console.log(userArray[i]);
-    //     suggestionList.push(userArray[i]);
-    //   }
-    // }
 
     return(
       <section className="sidebar">
@@ -45,7 +38,7 @@ class Sidebar extends React.Component {
               {
                 suggestionList.map(user => {
                   let followText = "Follow";
-                  if (currentUser.user_followings.includes(user.id)) {
+                  if (currentUser.user_followings.indexOf(user.id) >= 0) {
                     followText = "Following";
                   }
                   tracksTitle = `${user.user_sounds} track`;

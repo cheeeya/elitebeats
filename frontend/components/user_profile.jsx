@@ -48,7 +48,7 @@ class UserProfile extends React.Component {
       const { currentUser, follow, unfollow, profile } = this.props;
       e.preventDefault();
       if (currentUser) {
-        if (currentUser.user_followings.includes(userId)) {
+        if (currentUser.user_followings.indexOf(userId) > -1) {
           unfollow(userId, userUrl, "");
         } else {
           follow(userId, userUrl, "");
@@ -109,7 +109,7 @@ class UserProfile extends React.Component {
                                 </div>
                               </AriaModal>
                               : false;
-    if (errors.includes("Unable to find user.")) {
+    if (errors.indexOf("Unable to find user.") > -1) {
       return (
         <div className="error-page">
           <div className="image-404-alt" />
@@ -128,7 +128,7 @@ class UserProfile extends React.Component {
       if (currentUser.profile_url === profile.profile_url) {
         disabledUnlessOwner = "";
       }
-      if (currentUser.user_followings.includes(profile.id)) {
+      if (currentUser.user_followings.indexOf(profile.id) > -1) {
         followText = "Following";
       }
     }

@@ -16,7 +16,7 @@ const profileReducer = (state = {}, action) => {
       newState = merge({}, state);
       if (newState[action.userUrl]) {
         followers = newState[action.userUrl].user_followers;
-        if (!followers.includes(action.followerId)) {
+        if (!followers.indexOf(action.followerId) > -1) {
           followers.push(action.followerId);
         }
       }

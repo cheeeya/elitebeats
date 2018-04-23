@@ -13,7 +13,7 @@ const usersReducer = (state = {}, action) => {
       newState = merge({}, state);
       if (newState[action.userId]) {
         followers = newState[action.userId].user_followers;
-        if (!followers.includes(action.followerId)) {
+        if (!followers.indexOf(action.followerId) > -1) {
           followers.push(action.followerId);
         }
       }

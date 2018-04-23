@@ -175,9 +175,9 @@ class SongUploadForm extends React.Component {
           }),
           error => {
             let linkError = false, imageError = false, fileError = false;
-            if (error.responseJSON.includes("Songfile is invalid")) fileError = true;
-            if (error.responseJSON.includes("Image is invalid")) imageError = true;
-            if (error.responseJSON.includes("Permalink has already been taken")) linkError = true;
+            if (error.responseJSON.indexOf("Songfile is invalid") > -1) fileError = true;
+            if (error.responseJSON.indexOf("Image is invalid") > -1) imageError = true;
+            if (error.responseJSON.indexOf("Permalink has already been taken") > -1) linkError = true;
             this.setState({ disabled: false, linkError, fileError, imageError });
           }
         );
@@ -188,9 +188,9 @@ class SongUploadForm extends React.Component {
           () => window.closeEdit(),
           error => {
             let linkError = false, imageError = false, fileError = false;
-            if (error.responseJSON.includes("Songfile is invalid")) fileError = true;
-            if (error.responseJSON.includes("Image is invalid")) imageError = true;
-            if (error.responseJSON.includes("Permalink has already been taken")) linkError = true;
+            if (error.responseJSON.indexOf("Songfile is invalid") > -1) fileError = true;
+            if (error.responseJSON.indexOf("Image is invalid") > -1) imageError = true;
+            if (error.responseJSON.indexOf("Permalink has already been taken") > -1) linkError = true;
             this.setState({ disabled: false, linkError, fileError, imageError });
           }
         );
@@ -222,16 +222,16 @@ class SongUploadForm extends React.Component {
                           </div>
     }
     if (linkSpanElement) errorMargin = `${linkSpanElement.offsetWidth}px`;
-    if (errors.includes("Permalink has already been taken") && linkError) {
+    if (errors.indexOf("Permalink has already been taken") > -1 && linkError) {
       this.setErrorMessage("This permalink is already in use. Enter another one.", "link");
     }
     if (!permalinkRegex.test(permalink)) {
       this.setErrorMessage("Use only numbers, lowercase letters, underscores, or hyphens.", "link");
     }
-    if (errors.includes("Songfile is invalid") && fileError) {
+    if (errors.indexOf("Songfile is invalid") > -1 && fileError) {
       this.setErrorMessage("Your song file is too large or not supported.", "file");
     }
-    if (errors.includes("Image is invalid") && imageError) {
+    if (errors.indexOf("Image is invalid") > - 1 && imageError) {
       this.setErrorMessage("Your image file is too large or not supported.", "image");
     }
     return(

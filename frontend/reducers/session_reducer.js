@@ -36,7 +36,7 @@ const sessionReducer = (state = _nullState, action) => {
       return merge({}, state, { updateRequired: false});
     case RECEIVE_FOLLOWER:
       newState = merge({}, state);
-      if (!newState.currentUser.user_followings.includes(action.userId)) {
+      if (!newState.currentUser.user_followings.indexOf(action.userId) > -1) {
         newState.currentUser.user_followings.push(action.userId);
       }
       return newState;

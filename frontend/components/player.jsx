@@ -307,7 +307,7 @@ class Player extends React.Component {
 
   releaseMouseOutsideVol (e) {
     e.preventDefault();
-    if (!e.target.classList.value.includes("volume")) {
+    if (!e.target.classList.value.indexOf("volume") >= 0) {
       let rootElement = document.getElementById("root");
       rootElement.removeEventListener("mouseup", this.releaseMouseOutsideVol);
       rootElement.removeEventListener("mousemove", this.dragVolume);

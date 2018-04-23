@@ -65,7 +65,7 @@ class SongProfile extends React.Component {
     return e => {
       const { currentUser, follow, unfollow } = this.props;
       e.preventDefault();
-      if (currentUser.user_followings.includes(userId)) {
+      if (currentUser.user_followings.indexOf(userId) > -1) {
         unfollow(userId, userUrl, songUrl);
       } else {
         follow(userId, userUrl, songUrl);
@@ -112,7 +112,7 @@ class SongProfile extends React.Component {
   render() {
     const { songProfile, currentUser, errors } = this.props;
     const playbackButton = this.playbackButton();
-    if (errors.includes("Unable to find song.")) {
+    if (errors.indexOf("Unable to find song.") > -1) {
       return (
         <div className="error-page">
           <div className="image-404-alt" />
@@ -138,7 +138,7 @@ class SongProfile extends React.Component {
       userAvatarUrl = currentUser.profile_picture_url;
       if (currentUser.id === songProfile.author_id) {
         disabledIfOwner = "disabled";
-      } else if (currentUser.user_followings.includes(songProfile.author_id)) {
+      } else if (currentUser.user_followings.indexOf(songProfile.author_id) > -1) {
         followText = "Following";
       }
     }
