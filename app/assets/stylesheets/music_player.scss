@@ -64,10 +64,6 @@
   padding: 0 18px;
 }
 
-.progress-bar-div:hover {
-  cursor: pointer;
-}
-
 .progress-ball {
   position: relative;
   top: -4px;
@@ -84,7 +80,12 @@
   opacity: 1;
 }
 
-.progress-bar-div:hover .progress-ball {
+.progress-bar:hover {
+  cursor: pointer;
+}
+
+.progress-bar:hover .progress-ball {
+  cursor: pointer;
   opacity: 1;
 }
 
