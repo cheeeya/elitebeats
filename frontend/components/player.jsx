@@ -129,27 +129,35 @@ class Player extends React.Component {
     this.setState({ expandedVolume: "" });
   }
 
-  snapProgressToClick (e) {
-    e.preventDefault();
-    let rootElement = document.getElementById("root");
-    rootElement.addEventListener("mouseup", this.releaseMouseProg);
-    rootElement.addEventListener("mousemove", this.dragProgress);
-    document.onmousemove = this.dragProgress;
-    document.onmouseup = this.releaseMouseProg;
-    this.setState({ isMouseDownP: true });
-    this.setPositionFromBar(e);
-    this.updateTime();
+  formatTime(time) {
+    let timeString = "";
+    let min = Math.floor(time / 60);
+    let sec = Math.floor(time % 60);
+    if (sec < 10) {
+      timeString = min + ":0" + sec;
+    } else {
+      timeString = min + ":" + sec;
+    }
+    return timeString;
   }
 
-  snapVolToClick(e, position) {
-    e.preventDefault();
-    let rootElement = document.getElementById("root");
-    rootElement.addEventListener('mouseup', this.releaseMouseOutsideVol);
-    rootElement.addEventListener('mousemove', this.dragVolume);
-    document.onmousemove = this.dragVolume;
-    document.onmouseup = this.releaseMouseOutsideVol;
-    this.setState({ isMouseDownV: true });
-    this.setPositionFromBox(e);
+  updateTime() {
+    if (this.songHowl) {
+      let time = 0;
+      if (this.state.isMouseDownP) {
+        let duration = this.songHowl.duration();
+        if (duration === 0) {
+          time = 0;
+        } else {
+          time = this.state.controlledProgressPosition.x / (500/duration);
+        }
+      } else {
+        time = this.songHowl.seek();
+      }
+      if (typeof time === 'number'){
+        this.setState({ time });
+      }
+    }
   }
 
   setPosition(e, position) {
@@ -228,25 +236,6 @@ class Player extends React.Component {
     }
   }
 
-  updateTime() {
-    if (this.songHowl) {
-      let time = 0;
-      if (this.state.isMouseDownP) {
-        let duration = this.songHowl.duration();
-        if (duration === 0) {
-          time = 0;
-        } else {
-          time = this.state.controlledProgressPosition.x / (500/duration);
-        }
-      } else {
-        time = this.songHowl.seek();
-      }
-      if (typeof time === 'number'){
-        this.setState({ time });
-      }
-    }
-  }
-
   playbackButton() {
     if (this.state.status === 'play') {
       return 'pause';
@@ -266,16 +255,27 @@ class Player extends React.Component {
     }
   }
 
-  formatTime(time) {
-    let timeString = "";
-    let min = Math.floor(time / 60);
-    let sec = Math.floor(time % 60);
-    if (sec < 10) {
-      timeString = min + ":0" + sec;
-    } else {
-      timeString = min + ":" + sec;
-    }
-    return timeString;
+  snapProgressToClick (e) {
+    e.preventDefault();
+    let rootElement = document.getElementById("root");
+    rootElement.addEventListener("mouseup", this.releaseMouseProg);
+    rootElement.addEventListener("mousemove", this.dragProgress);
+    document.onmousemove = this.dragProgress;
+    document.onmouseup = this.releaseMouseProg;
+    this.setState({ isMouseDownP: true });
+    this.setPositionFromBar(e);
+    this.updateTime();
+  }
+
+  snapVolToClick(e, position) {
+    e.preventDefault();
+    let rootElement = document.getElementById("root");
+    rootElement.addEventListener('mouseup', this.releaseMouseOutsideVol);
+    rootElement.addEventListener('mousemove', this.dragVolume);
+    document.onmousemove = this.dragVolume;
+    document.onmouseup = this.releaseMouseOutsideVol;
+    this.setState({ isMouseDownV: true });
+    this.setPositionFromBox(e);
   }
 
   releaseMouseProg (e) {
