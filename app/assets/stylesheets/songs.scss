@@ -47,13 +47,15 @@
   line-height: 16px;
 }
 
-.songtitle-author:hover {
+.songtitle-author:hover, .songtitle-title:hover {
   color: black;
 }
 
 .songtitle-title {
   font-size: 15px;
   line-height: 1.2px;
+  font-weight: 100;
+  color: #333;
 }
 
 .songtitle-list-el {
