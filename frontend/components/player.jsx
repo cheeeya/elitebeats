@@ -341,7 +341,7 @@ class Player extends React.Component {
           <div className="progress-bar-time-current">
             <span>{this.formatTime(this.state.time)}</span>
           </div>
-          <div id="progress-bar" onMouseDown={this.snapProgressToClick}
+          <div id="progress-bar" className="progress-bar" onMouseDown={this.snapProgressToClick}
             onMouseMove={this.dragProgress} onMouseUp={this.releaseMouseProg}>
             <div className="progress-bar-total">
               <div className="progress-bar-elapsed-time" style={{ width: controlledProgressPosition.x }}>
