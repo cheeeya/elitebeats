@@ -50,10 +50,6 @@ class Player extends React.Component {
     this.volumeButton = this.volumeButton.bind(this);
   }
 
-  componentDidMount () {
-
-  }
-
   componentWillReceiveProps(nextProps) {
     let clicked = false;
     const { status, volume, muted, repeat, disabled, currentIndex } = this.state;
@@ -63,7 +59,7 @@ class Player extends React.Component {
         if (this.songHowl) {
           this.songHowl.unload();
           clearInterval(this.interval);
-          this.setState({ time: 0 });
+          this.setState({ time: 0, controlledProgressPosition: { x: 0, y: 0}});
         }
         this.songHowl =  new Howl({
           src: [nextProps.song.song_url],
