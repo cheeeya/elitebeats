@@ -4,10 +4,14 @@ import { receiveCurrentPlaylist } from '../actions/player_actions';
 import SongIndex from './song_index';
 
 
-const mapStateToProps = (state) => ({
-   songs: Object.values(state.entities.playlists.allSongs).reverse(),
+const mapStateToProps = (state) => {
+  let allSongs = state.entities.playlists.allSongs;
+  let songs = Object.keys(allSongs).map(el => allSongs[el]).reverse();
+  return ({
+   songs,
    currentSong: state.player.currentSong
-});
+  });
+};
 
 const mapDispatchToProps = (dispatch) => ({
   fetchAllSongs: () => dispatch(fetchAllSongs()),

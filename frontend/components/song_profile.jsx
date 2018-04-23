@@ -132,7 +132,7 @@ class SongProfile extends React.Component {
                        <h5 className="empty-h5">Be the first to comment on this track</h5>
                      </div>);
     if (songProfile.comments) {
-      comments = Object.values(songProfile.comments).reverse();
+      comments = Object.keys(songProfile.comments).map(el => songProfile.comments[el]).reverse();
     }
     if (currentUser) {
       userAvatarUrl = currentUser.profile_picture_url;

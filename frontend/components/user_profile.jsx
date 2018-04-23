@@ -134,7 +134,7 @@ class UserProfile extends React.Component {
     }
     if (profile) {
       if (profile.tracks) {
-        tracks = Object.values(profile.tracks.allTracks);
+        tracks = Object.keys(profile.tracks.allTracks).map(el => profile.tracks.allTracks[el]);
         tracksTitle = `${tracks.length - 1} track`;
         if (tracks.length === 1 || tracks.length > 2) {
           tracksTitle += "s";
@@ -249,7 +249,7 @@ class UserProfile extends React.Component {
                     </div>
                     <div className="p-stats-div" title={tracksTitle}>
                       <h4 className="stats-h4">Tracks</h4>
-                      <div className="stats-div">{Object.values(profile.tracks.allTracks).length - 1}</div>
+                      <div className="stats-div">{Object.keys(profile.tracks.allTracks).length - 1}</div>
                     </div>
                   </div>
                   <div className="profile-bio">

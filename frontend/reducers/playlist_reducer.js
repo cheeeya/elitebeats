@@ -17,7 +17,8 @@ const playlistReducer = (state = _default, action) => {
       return newState;
     case REMOVE_SONG:
       newState = merge({}, state);
-      Object.values(newState).map(playlist => delete playlist[action.song.id]);
+      let playlists = Object.keys(newState).map(el => newState[el]);
+      playlists.map(playlist => delete playlist[action.song.id]);
       return newState;
     case RECEIVE_ALL_SONGS:
       newState = merge({}, state, { allSongs: songReducer(state, action) });

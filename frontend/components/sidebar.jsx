@@ -26,7 +26,7 @@ class Sidebar extends React.Component {
 
   render() {
     const { userList, currentUser } = this.props;
-    let suggestionList = Object.values(userList).slice(1,4), tracksTitle = "",
+    let suggestionList = Object.keys(userList).map(el => userList[el]).slice(1,4), tracksTitle = "",
         followersTitle ="";
     // let suggestionList = [], userArray = Object.values(userList);
     // for (let i = 0; i < userArray.length; i++) {
