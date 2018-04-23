@@ -282,9 +282,11 @@ class Player extends React.Component {
     e.preventDefault();
     e.stopPropagation();
     let rootElement = document.getElementById("root");
+    document.onmouseup = null;
+    document.onmousemove = null;
     rootElement.removeEventListener("mouseup", this.releaseMouseProg);
     rootElement.removeEventListener("mousemove", this.dragProgress);
-    if (this.songHowl) {
+    if (this.songHowl.state() === "loaded") {
       this.updateTime();
       this.songHowl.seek(this.state.controlledProgressPosition.x / (500/this.songHowl.duration()));
     }
@@ -294,6 +296,8 @@ class Player extends React.Component {
   releaseMouseVol (e) {
     e.preventDefault();
     e.stopPropagation();
+    document.onmouseup = null;
+    document.onmousemove = null;
     let rootElement = document.getElementById("root");
     rootElement.removeEventListener("mouseup", this.releaseMouseOutsideVol);
     rootElement.removeEventListener("mousemove", this.dragVolume);
@@ -304,6 +308,8 @@ class Player extends React.Component {
     e.preventDefault();
     if (!e.target.className.indexOf("volume") > -1) {
       let rootElement = document.getElementById("root");
+      document.onmouseup = null;
+      document.onmousemove = null;
       rootElement.removeEventListener("mouseup", this.releaseMouseOutsideVol);
       rootElement.removeEventListener("mousemove", this.dragVolume);
       this.setState({ isMouseDownV: false, tempDisplay: "expanded-volume" });
