@@ -2,10 +2,11 @@
   position: relative;
   max-width: 1180px;
   min-width: 600px;
-  min-height: 100vh;
+  min-height: calc(100vh - 76px);
   background: white;
   display: flex;
-  padding: 46px 30px;
+  margin-top: 46px;
+  padding: 0 30px 30px 30px;
 }
 
 .main-section {

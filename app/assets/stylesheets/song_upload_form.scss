@@ -16,14 +16,14 @@
 }
 
 .upload-form-page {
-  box-sizing: border-box;
   display:flex;
   flex-direction: column;
   align-items: center;
   background: white;
-  padding: 76px 30px 30px 30px;
-  width: 1240px;
-  min-height: 100vh;
+  margin-top: 46px;
+  padding: 30px;
+  width: 1180px;
+  min-height: calc(100vh - 106px);
 }
 
 .upload-form-input {

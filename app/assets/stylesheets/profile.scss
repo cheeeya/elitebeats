@@ -3,7 +3,7 @@
   margin-top: 46px;
   width: 1240px;
   min-width: 900px;
-  min-height: 100vh;
+  min-height: calc(100vh - 46px);
   background: white;
 }
 
