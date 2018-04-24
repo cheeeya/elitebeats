@@ -13,7 +13,7 @@ class Splash extends React.Component {
 
   render() {
     const { trendingList } = this.props;
-    const trendingArray = Object.keys(trendingList).map(el => trendingList[el]);
+    const trendingArray = Object.keys(trendingList).map(el => trendingList[el]).reverse();
     console.log(trendingArray);
     return(
       <div className="splash-main-div">
