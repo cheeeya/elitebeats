@@ -52,6 +52,7 @@ class PlayableSongTile extends React.Component {
                   className="song-tile-playback-button playback-button"
                   type="button"
                   onClick={this.handlePlayback(playbackState)}
+                  style={status === "play" ? { opacity: '1' } : null}
                 />
               </div>
             </div>
