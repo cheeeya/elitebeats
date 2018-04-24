@@ -13,7 +13,8 @@ header {
   width: 100%;
   display: flex;
   align-items: center;
-  width: 1240px;
+  min-width: 960px;
+  max-width: 1240px;
   height: 46px;
   color: #999;
 }
@@ -45,12 +46,16 @@ header {
 }
 
 .search-bar-wrapper {
-  padding: 8.5px;
+  width: 100%;
+  min-width: 431px;
+  max-width: 609px;
+  margin: 8.5px;
   position: relative;
 }
 
 .search-bar {
-  width: 590px;
+  width: 100%;
+  box-sizing: border-box;
   border-radius: 5px;
   padding: 5px 7px;
   background: #eee;
@@ -106,6 +111,10 @@ header {
   margin-left: 10px;
 }
 
+.nav-bar-session-bttns {
+  width: 201px;
+}
+
 #nav-bar-signin-btn {
   margin: 0 10px;
   padding: 4px 11px 3px 10px;
@@ -128,8 +137,8 @@ header {
   border: 0;
   padding: 0;
   position: absolute;
-  right: 20px;
-  top: 16px;
+  right: 10px;
+  top: 8px;
 }
 
 .active-tab {

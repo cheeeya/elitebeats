@@ -2,6 +2,9 @@
   margin-top: 46px;
   background: white;
   min-height: calc(100vh - 46px);
+  width: 100%;
+  max-width: 1240px;
+  min-width: 960px;
 }
 
 .song-page-playback-button {
@@ -10,23 +13,26 @@
 }
 
 .song-page-header {
+  position: relative;
   background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1518134094/default-cover3_x3axyo.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  width: 1240px;
+  width: 100%;
   height: 380px;
   display: flex;
 }
 
 .song-page-header-left {
+  position: relative;
   display: flex;
-  padding: 30px 10px 20px 30px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 30px 380px 20px 30px;
 }
 
 .song-page-header-title {
   margin-left: 10px;
-  width: 615px;
-  max-height: 101px;
+  width: calc(100% - 220px);
 }
 
 .header-author-div {
@@ -59,6 +65,9 @@
 }
 
 .header-info {
+  position: absolute;
+  top: 30px;
+  right: 390px;
   color: white;
   font-size: 16px;
   font-weight: 100;
@@ -92,12 +101,14 @@
 }
 
 .song-header-artwork {
+  position: absolute;
+  top: 20px;
+  right: 20px;
   height: 340px;
   width: 340px;
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
-  margin: 20px;
 }
 
 .song-page-main {
