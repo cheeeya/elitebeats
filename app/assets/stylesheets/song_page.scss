@@ -5,27 +5,8 @@
 }
 
 .song-page-playback-button {
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: cover;
   height: 60px;
   width: 60px;
-  margin-right: 5px;
-  border: none;
-}
-
-#song-page-play-button {
-  background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1524528748/playbutton-light_lzd84q.png');
-  background-color: transparent;
-}
-
-#song-page-play-button:hover {
-  background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1524528748/playbutton-dark_rmkf4t.png');
-}
-
-#song-page-pause-button {
-  background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1524528742/pausebutton-dark_rnyc7g.png');
-  background-color: transparent;
 }
 
 .song-page-header {

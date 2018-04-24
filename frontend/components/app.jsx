@@ -18,10 +18,8 @@ class App extends React.Component {
 
   render () {
     let navBar;
-    let player;
     if (this.props.location.pathname !== "/") {
       navBar = (<NavBarContainer />);
-      player = (<PlayerContainer />);
     }
 
     return (
@@ -36,7 +34,7 @@ class App extends React.Component {
           <Route exact path="/:author_url" component={UserProfileContainer} />
           <Route component={ErrorPage} />
         </Switch>
-        {player}
+        <PlayerContainer />
       </div>
     )
   }

@@ -5,10 +5,9 @@ class SongItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: this.props.status,
+      status: props.status,
       showMore: false
     }
-    this.playbackButton = this.playbackButton.bind(this);
     this.showMoreToggle = this.showMoreToggle.bind(this);
     this.closeShowMore = this.closeShowMore.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
@@ -34,27 +33,21 @@ class SongItem extends React.Component {
     }
   }
 
-  handleClick(action) {
+  handlePlayback(action) {
     return (e) => {
+      const { currentPlaylist, pause, play,
+        playlist, song, updateCurrentPlaylist } = this.props;
       e.preventDefault();
       if (action === 'play') {
-        if (this.props.currentPlaylist != this.props.playlist) {
-          this.props.updateCurrentPlaylist(this.props.playlist);
+        if (currentPlaylist != playlist) {
+          updateCurrentPlaylist(playlist);
         }
-        this.props.play(this.props.song)
+        play(song);
       }
       else {
-        this.props.pause();
+        pause();
       }
       this.setState({ status: action });
-    }
-  }
-
-  playbackButton() {
-    if (this.state.status === 'play') {
-      return 'pause';
-    } else {
-      return 'play';
     }
   }
 
@@ -72,7 +65,7 @@ class SongItem extends React.Component {
   render() {
     const { song } = this.props;
     const { status, showMore } = this.state;
-    const playbackButton = this.playbackButton();
+    const playbackState = status === "play" ? "pause" : "play";
     let author_url = "";
     let permalink = "";
     if (song) {
@@ -102,10 +95,10 @@ class SongItem extends React.Component {
         <div className="song-item-right">
           <div className="songtitle">
             <button
-              id={`song-list-${playbackButton}-button`}
-              className="song-list-playback-button"
-              title={`P${playbackButton.slice(1)}`}
-              onClick={this.handleClick(playbackButton)}
+              id={`song-${playbackState}-button`}
+              className="song-list-playback-button playback-button"
+              title={`P${playbackState.slice(1)}`}
+              onClick={this.handlePlayback(playbackState)}
             />
             <ul className="songtitle-list">
               <li className="songtitle-list-el">

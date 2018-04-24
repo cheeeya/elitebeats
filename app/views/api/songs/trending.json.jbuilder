@@ -14,5 +14,5 @@
       json.image_url asset_path(song.image.url)
     end
   end
-  json.title "trendingSongs"
 end
+json.title "trendingSongs"

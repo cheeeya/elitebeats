@@ -11,6 +11,10 @@
   z-index: 10;
 }
 
+.song-tile-artwork-div:hover .song-tile-playback-button {
+  opacity: 1;
+}
+
 .song-tile-image {
   box-shadow: rgba(0,0,0,.1) 0 0 0 1px inset;
   position: absolute;
@@ -24,6 +28,21 @@
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1518134441/default_album_kynclq.png");
+}
+
+.centered-button {
+  position: absolute;
+  top: 34%;
+  right: 34%;
+  bottom: 34%;
+  left: 34%;
+}
+
+.song-tile-playback-button {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: opacity .1s;
 }
 
 .song-tile-info {

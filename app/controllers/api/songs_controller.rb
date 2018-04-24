@@ -42,7 +42,7 @@ class Api::SongsController < ApplicationController
   end
 
   def trending
-    @songs = Song.order(total_plays: :desc)
+    @songs = Song.order(total_plays: :asc)
     render 'api/songs/trending'
   end
 

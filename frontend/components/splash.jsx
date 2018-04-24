@@ -13,6 +13,8 @@ class Splash extends React.Component {
 
   render() {
     const { trendingList } = this.props;
+    const trendingArray = Object.keys(trendingList).map(el => trendingList[el]);
+    console.log(trendingArray);
     return(
       <div className="splash-main-div">
         <div className="splash-hero" id="splash-hero">
@@ -50,9 +52,9 @@ class Splash extends React.Component {
             </h1>
             <ul className="trending-list">
               <div className="trending-list-wrapper">
-                {Object.keys(trendingList).map(el => trendingList[el]).slice(0, 12).map(song => (
+                {trendingArray.slice(0, 12).map(song => (
                   <li className="trending-list-el" key={song.id}>
-                    <PlayableSongTileContainer song={song} />
+                    <PlayableSongTileContainer song={song} playlist={"trendingSongs"} />
                   </li>
                 ))}
               </div>

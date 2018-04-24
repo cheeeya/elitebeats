@@ -5,10 +5,9 @@ class SongProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: this.props.status,
+      status: props.status,
       body: ""
     }
-    this.playbackButton = this.playbackButton.bind(this);
     this.handleComment = this.handleComment.bind(this);
     this.handleSubmitComment = this.handleSubmitComment.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -20,22 +19,21 @@ class SongProfile extends React.Component {
     this.props.fetchSong(profileUrl, permalink);
   }
 
-  playbackButton() {
-    if (this.state.status === 'play') {
-      return 'pause';
-    } else {
-      return 'play';
+  componentWillReceiveProps(nextProps) {
+    if (this.state.status !== nextProps.status) {
+      this.setState({ status: nextProps.status })
     }
   }
 
   handleClick(action) {
     return (e) => {
+      const { pause, play, songProfile } = this.props;
       e.preventDefault();
       if (action === 'play') {
-        this.props.play(this.props.songProfile)
+        play(songProfile);
       }
       else {
-        this.props.pause();
+        pause();
       }
       this.setState({ status: action });
     }
@@ -111,7 +109,8 @@ class SongProfile extends React.Component {
 
   render() {
     const { songProfile, currentUser, errors } = this.props;
-    const playbackButton = this.playbackButton();
+    const { status } = this.state;
+    const playbackState = status === "play" ? "pause" : "play";
     if (errors.indexOf("Unable to find song.") > -1) {
       return (
         <div className="error-page">
@@ -149,51 +148,53 @@ class SongProfile extends React.Component {
       genre = (<div className="header-genre"><span># {songProfile.genre}</span></div>);
     }
     if (comments.length > 0) {
-      commentsEl = <div className="song-info-comments">
-                    <div className="song-info-comment-header">
-                      <div className="song-info-comment-icon" />
-                      <span>{comments.length} comments</span>
+      commentsEl = (
+        <div className="song-info-comments">
+          <div className="song-info-comment-header">
+            <div className="song-info-comment-icon" />
+            <span>{comments.length} comments</span>
+          </div>
+          <ul className="comment-list">
+            {
+              comments.map(comment => {
+                let isAuthor = "";
+                if (currentUser && (comment.author_id === currentUser.id || songProfile.author_id === currentUser.id)) {
+                  isAuthor = "comment-list-item-author";
+                }
+                return (
+                  <li className={`comment-list-item ${isAuthor}`} key={comment.id}>
+                    <div className="comment-author-avatar">
+                      <Link to={`/${comment.author_url}`}>
+                        <div
+                          className="comment-author-avatar-image"
+                          style={{ backgroundImage: `url(${comment.author_picture_url})` }}
+                        />
+                      </Link>
                     </div>
-                    <ul className="comment-list">
-                      {
-                        comments.map(comment => {
-                          let isAuthor = "";
-                          if (currentUser && (comment.author_id === currentUser.id || songProfile.author_id === currentUser.id)) {
-                            isAuthor = "comment-list-item-author";
-                          }
-                          return (
-                            <li className={`comment-list-item ${isAuthor}`} key={comment.id}>
-                              <div className="comment-author-avatar">
-                                <Link to={`/${comment.author_url}`}>
-                                  <div
-                                    className="comment-author-avatar-image"
-                                    style={{ backgroundImage: `url(${comment.author_picture_url})` }}
-                                  />
-                                </Link>
-                              </div>
-                              <div className="comment-main">
-                                <div className="comment-author-name">
-                                  <Link to={`/${comment.author_url}`}>
-                                    {comment.author_name}
-                                  </Link>
-                                </div>
-                                <p>{comment.body}</p>
-                              </div>
-                              <div className="comment-extra">
-                                <span>{this.timeFormat(comment.created_at)}</span>
-                                <button
-                                  id="delete-comment-button"
-                                  onClick={this.handleDelete(comment.id)}
-                                >
-                                  <div className="delete-icon"/>
-                                </button>
-                              </div>
-                            </li>
-                          )
-                        })
-                      }
-                    </ul>
-                 </div>
+                    <div className="comment-main">
+                      <div className="comment-author-name">
+                        <Link to={`/${comment.author_url}`}>
+                          {comment.author_name}
+                        </Link>
+                      </div>
+                      <p>{comment.body}</p>
+                    </div>
+                    <div className="comment-extra">
+                      <span>{this.timeFormat(comment.created_at)}</span>
+                      <button
+                        id="delete-comment-button"
+                        onClick={this.handleDelete(comment.id)}
+                      >
+                        <div className="delete-icon"/>
+                      </button>
+                    </div>
+                  </li>
+                )
+              })
+            }
+          </ul>
+       </div>
+     );
     }
     tracksTitle = `${songProfile.author_sounds} track`;
     if (songProfile.author_sounds === 0 || songProfile.author_sounds > 1) {
@@ -208,10 +209,10 @@ class SongProfile extends React.Component {
         <div className="song-page-header">
           <div className="song-page-header-left">
             <button
-              id={`song-page-${playbackButton}-button`}
-              className="song-page-playback-button"
-              title={`P${playbackButton.slice(1)}`}
-              onClick={this.handleClick(playbackButton)}
+              id={`song-${playbackState}-button`}
+              className="song-page-playback-button playback-button"
+              title={`P${playbackState.slice(1)}`}
+              onClick={this.handleClick(playbackState)}
             />
             <div className="song-page-header-title">
               <div className="header-author-div">

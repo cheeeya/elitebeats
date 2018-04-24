@@ -3,27 +3,26 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-#song-list-play-button {
+#song-play-button {
   background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1524528748/playbutton-light_lzd84q.png');
 }
 
-#song-list-play-button:hover {
+#song-play-button:hover {
   background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1524528748/playbutton-dark_rmkf4t.png');
+  background-color: #000095;
+  border-color: #000095;
 }
 
-#song-list-pause-button {
+#song-pause-button {
   background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1524528742/pausebutton-dark_rnyc7g.png');
+  background-color: #000095;
+  border-color: #000095;
 }
 
 .song-list-playback-button {
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: cover;
   height: 36px;
   width: 36px;
   margin-right: 5px;
-  border: none;
-  background-color: transparent;
 }
 
 .songs-index {

@@ -5,7 +5,8 @@ import { RECEIVE_PLAYLIST } from '../actions/playlist_actions';
 import songReducer from './song_reducer';
 
 const _default = {
-  allSongs: {}
+  allSongs: {},
+  trendingSongs: {}
 }
 
 const playlistReducer = (state = _default, action) => {
