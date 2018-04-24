@@ -210,7 +210,7 @@ class SongProfile extends React.Component {
             <button
               id={`song-page-${playbackButton}-button`}
               className="song-page-playback-button"
-              title="Play"
+              title={`P${playbackButton.slice(1)}`}
               onClick={this.handleClick(playbackButton)}
             />
             <div className="song-page-header-title">

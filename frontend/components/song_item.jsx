@@ -1,5 +1,4 @@
 import React from 'react';
-import { Howl, Howler } from 'howler';
 import { Link } from 'react-router-dom';
 
 class SongItem extends React.Component {
@@ -105,7 +104,7 @@ class SongItem extends React.Component {
             <button
               id={`song-list-${playbackButton}-button`}
               className="song-list-playback-button"
-              title="Play"
+              title={`P${playbackButton.slice(1)}`}
               onClick={this.handleClick(playbackButton)}
             />
             <ul className="songtitle-list">
