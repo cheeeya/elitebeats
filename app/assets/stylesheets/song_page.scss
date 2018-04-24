@@ -16,12 +16,16 @@
 }
 
 #song-page-play-button {
-  background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1518427647/playbutton_d04vy0.png');
+  background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1524528748/playbutton-light_lzd84q.png');
   background-color: transparent;
 }
 
+#song-page-play-button:hover {
+  background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1524528748/playbutton-dark_rmkf4t.png');
+}
+
 #song-page-pause-button {
-  background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1518428461/pausebutton_aj6oxo.png');
+  background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1524528742/pausebutton-dark_rnyc7g.png');
   background-color: transparent;
 }
 
