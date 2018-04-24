@@ -97,20 +97,44 @@ class SongIndexItem extends React.Component {
     }
     return (
       <div className="song-item">
-        <Link to={permalink}><div className="song-artwork" style={{ backgroundImage: `url(${song.image_url})`}} /></Link>
+        <Link to={permalink}><div className="song-artwork"
+          style={{ backgroundImage: `url(${song.image_url})`}} /></Link>
         <div className="song-item-right">
           <div className="songtitle">
-            <button className="song-list-playback-button" id={`song-list-${playbackButton}-button`} onClick={this.handleClick(playbackButton)}><span className="playback-button-txt">{playbackButton}</span></button>
+            <button className="song-list-playback-button" title="Play"
+              id={`song-list-${playbackButton}-button`}
+              onClick={this.handleClick(playbackButton)} />
             <ul className="songtitle-list">
-              <li className="songtitle-list-el"><Link to={author_url}><span className="songtitle-author">{song.author_name}</span></Link></li>
-              <li className="songtitle-list-el"><Link to={permalink}><span className="songtitle-title">{song.title}</span></Link></li>
+              <li className="songtitle-list-el">
+                <Link to={author_url}>
+                  <span className="songtitle-author">{song.author_name}</span>
+                </Link>
+              </li>
+              <li className="songtitle-list-el">
+                <Link to={permalink}>
+                  <span className="songtitle-title">{song.title}</span>
+                </Link>
+              </li>
             </ul>
           </div>
           <div className={`management-div ${disabledClass}`}>
-            <button className={`song-management ${activeClass}`} id="more-button" onClick={this.showMoreToggle}><i className="fas fa-ellipsis-h" id={`more-${song.id}`}></i></button>
+            <button className={`song-management ${activeClass}`}
+              id="more-button" onClick={this.showMoreToggle}>
+              <i className="fas fa-ellipsis-h" id={`more-${song.id}`} />
+            </button>
             <ul className={`more-buttons-list ${showMoreClass}`}>
-              <li className="more-list-item"><button className="song-management-button" onClick={this.handleEdit}><i className="fas fa-pencil-alt" /><span className="sm-button-text">Edit Track</span></button></li>
-              <li className="more-list-item"><button className="song-management-button" onClick={this.handleDelete}><i className="fas fa-trash" /><span className="sm-button-text">Delete Track</span></button></li>
+              <li className="more-list-item">
+                <button className="song-management-button" onClick={this.handleEdit}>
+                  <i className="fas fa-pencil-alt" />
+                  <span className="sm-button-text">Edit Track</span>
+                </button>
+              </li>
+              <li className="more-list-item">
+                <button className="song-management-button" onClick={this.handleDelete}>
+                  <i className="fas fa-trash" />
+                  <span className="sm-button-text">Delete Track</span>
+                </button>
+              </li>
             </ul>
           </div>
         </div>
