@@ -60,12 +60,12 @@ class PlayableSongTile extends React.Component {
         </div>
         <div className="song-tile-info">
           <div className="song-tile-text song-tile-title">
-            <Link className="song-tile-link" to={fullPermalink}>
+            <Link to={fullPermalink} className="song-tile-link">
               {song.title}
             </Link>
           </div>
           <div className="song-tile-text song-tile-author">
-            <Link className="song-tile-link" to={song.author_url}>
+            <Link to={song.author_url} className="song-tile-link">
               {song.author_name}
             </Link>
           </div>

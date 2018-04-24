@@ -56,11 +56,12 @@
 
 .song-tile-title {
   font-size: 15px;
-  height: 15px;
+  height: 20px;
   color: #333;
 }
 
 .song-tile-link {
+  padding-top: 2px;
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
@@ -72,7 +73,7 @@
   font-size: 13px;
   height: 12px;
   color: #999;
-  margin-top: 3px;
+  margin-top: 4px;
 }
 
 .song-tile-text:hover {
