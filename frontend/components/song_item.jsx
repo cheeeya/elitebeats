@@ -2,7 +2,7 @@ import React from 'react';
 import { Howl, Howler } from 'howler';
 import { Link } from 'react-router-dom';
 
-class SongIndexItem extends React.Component {
+class SongItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -150,4 +150,4 @@ class SongIndexItem extends React.Component {
   }
 }
 
-export default SongIndexItem;
+export default SongItem;

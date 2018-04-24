@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { playSong, pauseSong, receiveCurrentPlaylist } from '../actions/player_actions';
 import { deleteSong } from '../actions/song_actions';
-import SongIndexItem from './song_index_item';
+import SongItem from './song_item';
 
 const mapStateToProps = (state, ownProps) => {
   let status = 'pause';
@@ -25,4 +25,4 @@ const mapDispatchToProps = dispatch => ({
   updateCurrentPlaylist: (playlist) => dispatch(receiveCurrentPlaylist(playlist))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps) (SongIndexItem);
+export default connect(mapStateToProps, mapDispatchToProps) (SongItem);
