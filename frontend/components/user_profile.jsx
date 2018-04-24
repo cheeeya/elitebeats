@@ -95,7 +95,10 @@ class UserProfile extends React.Component {
         fullName = "", countryEl = "" ,cityEl = "", withCountry = "", fullLoc = "",
         followingTitle = "", followersTitle = "", tracksTitle = "", followText = "Follow";
     let tracksElement = <div className="profile-empty-tracks">
-                          <img className="profile-no-tracks-img" src="https://res.cloudinary.com/elitebeats/image/upload/v1520851992/no-music_z6x98i.png"></img>
+                          <img
+                            className="profile-no-tracks-img"
+                            src="https://res.cloudinary.com/elitebeats/image/upload/v1520851992/no-music_z6x98i.png"
+                          />
                           <h4 className="empty-h4">Nothing to hear here</h4>
                         </div>;
     const editProfileFormModal = this.state.modalActive
@@ -146,7 +149,7 @@ class UserProfile extends React.Component {
                                 if (typeof track === 'object'){
                                   return (
                                     <li className="profile-song-list-item" key={track.id}>
-                                      <SongItemContainer song={track} path="profile" playlist={profile.tracks.allTracks.title}/>
+                                      <SongItemContainer song={track} path="profile" playlist={profile.tracks.allTracks.title} />
                                     </li>
                                   )
                                 }
@@ -184,13 +187,25 @@ class UserProfile extends React.Component {
       }
       return (
         <section className="profile-page" id="profile-section">
-          <div className="profile-cover" style={{ backgroundImage: `url(${profile.cover_url})` }}>
-            <div className="profile-picture" style={{ backgroundImage: `url(${profile.profile_picture_url})`}}>
-              <input id="profile-pic-input" type="file" onChange={this.handleFile('profile_picture')}></input>
-              <button onClick={this.triggerFileUpload('profile-pic')}
+          <div
+            className="profile-cover"
+            style={{ backgroundImage: `url(${profile.cover_url})` }}
+          >
+            <div
+              className="profile-picture"
+              style={{ backgroundImage: `url(${profile.profile_picture_url})`}}
+            >
+              <input
+                id="profile-pic-input"
+                type="file"
+                onChange={this.handleFile('profile_picture')}
+              />
+              <button
                 className={`update-button update-profile-pic ${disabledUnlessOwner}`}
+                type="button"
                 disabled={disabledUnlessOwner === "disabled"}
-                type="button">
+                onClick={this.triggerFileUpload('profile-pic')}
+              >
                 <span><i className="fas fa-camera"></i>&nbsp;&nbsp;Update image</span>
               </button>
             </div>
@@ -209,12 +224,19 @@ class UserProfile extends React.Component {
                 </div>
               </div>
               <div className="header-right">
-                <input id="cover-input" type="file" onChange={this.handleFile('cover')}></input>
-                <button onClick={this.triggerFileUpload('cover')}
+                <input
+                  id="cover-input"
+                  type="file"
+                  onChange={this.handleFile('cover')}
+                />
+                <button
                   className={`update-button update-cover-photo ${disabledUnlessOwner}`}
+                  type="button"
                   disabled={disabledUnlessOwner === "disabled"}
-                  type="button">
-                  <span><i className="fas fa-camera"></i>&nbsp;&nbsp;Update image</span>
+                  onClick={this.triggerFileUpload('cover')}
+                >
+                  <span><i className="fas fa-camera" />
+                  &nbsp;&nbsp;Update image</span>
                 </button>
               </div>
             </div>
@@ -222,15 +244,22 @@ class UserProfile extends React.Component {
           <section className="profile-music">
             <div className="profile-tabs">
               <div className="profile-tab-all"><span>All</span></div>
-              <button className={`profile-button ${disabledUnlessOwner}`}
-                disabled={disabledUnlessOwner} onClick={this.activateModal}>
-                <i className="fas fa-pencil-alt" /><span className="sm-button-text">Edit</span>
+              <button
+                className={`profile-button ${disabledUnlessOwner}`}
+                disabled={disabledUnlessOwner}
+                onClick={this.activateModal}
+              >
+                <i className="fas fa-pencil-alt" />
+                <span className="sm-button-text">Edit</span>
               </button>
-              <button type="button" onClick={this.toggleFollow(profile.id, profile.profile_url)}
+              <button
                 className={`profile-button p-follow-button
                   ${followText.toLowerCase()} ${disabledUnlessOwner ? "" : "disabled"}`}
+                title={followText === "Follow" ? followText : "Unfollow"}
+                type="button"
                 disabled={disabledUnlessOwner ? false : true}
-                title={followText === "Follow" ? followText : "Unfollow"}>
+                onClick={this.toggleFollow(profile.id, profile.profile_url)}
+              >
                 {followText}
               </button>
             </div>
@@ -249,7 +278,9 @@ class UserProfile extends React.Component {
                     </div>
                     <div className="p-stats-div" title={tracksTitle}>
                       <h4 className="stats-h4">Tracks</h4>
-                      <div className="stats-div">{Object.keys(profile.tracks.allTracks).length - 1}</div>
+                      <div className="stats-div">
+                        {Object.keys(profile.tracks.allTracks).length - 1}
+                      </div>
                     </div>
                   </div>
                   <div className="profile-bio">

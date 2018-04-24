@@ -101,7 +101,8 @@ class EditProfileForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { bio, city, country, display_name, first_name, last_name, profile_url, tempImageFile } = this.state;
+    const { bio, city, country, display_name, first_name,
+      last_name, profile_url, tempImageFile } = this.state;
     const formData = new FormData();
     formData.append("user[bio]", bio);
     formData.append("user[city]", city);
@@ -154,10 +155,20 @@ class EditProfileForm extends React.Component {
         <div className="pf-main">
           <div>
             <div className="pf-image" style={{ backgroundImage: `url(${pictureUrl})` }}>
-              <input id="form-profile-pic-input" type="file" onChange={this.handlePicture}/>
-              <button type="button" className="form-update-profile-pic-button"
-                onClick={this.triggerFileInput}>
-                <span><i className="fas fa-camera"></i>&nbsp;&nbsp;Update image</span>
+              <input
+                id="form-profile-pic-input"
+                type="file"
+                onChange={this.handlePicture}
+              />
+              <button
+                type="button"
+                className="form-update-profile-pic-button"
+                onClick={this.triggerFileInput}
+              >
+                <span>
+                  <i className="fas fa-camera" />
+                  &nbsp;&nbsp;Update image
+                </span>
               </button>
             </div>
             <div className={`artwork-validation ${this.imageErrorDisabled}`}>
@@ -172,8 +183,13 @@ class EditProfileForm extends React.Component {
                 </span>
               </label>
               <div className="pf-input-div">
-                <input id="pf-display-name" type="text" value={display_name}
-                  required="required" onChange={this.handleInput("display_name")} />
+                <input
+                  id="pf-display-name"
+                  type="text"
+                  value={display_name}
+                  onChange={this.handleInput("display_name")}
+                  required
+                />
               </div>
             </div>
             <div className="profile-form-field-div profile-form-permalink-div">
@@ -185,12 +201,21 @@ class EditProfileForm extends React.Component {
                   <div className="pf-span-wrapper">
                     <span className="form-permalink-span">elitebeats.herokuapp.com/#/</span>
                   </div>
-                  <input id="pf-profile-url" className={`url-input ${this.validationError}`}
-                    type="text" value={profile_url} required="required"
-                    onChange={this.handleInput("profile_url")} onClick={this.clickUrlEdit}/>
-                  <button type="button" className="permalink-edit-button"
+                  <input
+                    id="pf-profile-url"
+                    className={`url-input ${this.validationError}`}
+                    type="text"
+                    value={profile_url}
+                    onChange={this.handleInput("profile_url")}
+                    onClick={this.clickUrlEdit}
+                    required
+                  />
+                  <button
+                    className="permalink-edit-button"
+                    type="button"
                     onClick={this.clickUrlEdit}>
-                    <i className="fas fa-pencil-alt link-edit-pencil" />
+                    <i className="fas fa-pencil-alt link-edit-pencil"
+                  />
                   </button>
                 </div>
                 <div className={`permalink-validation ${this.pLinkErrorDisabled}`}>
@@ -201,48 +226,79 @@ class EditProfileForm extends React.Component {
             <div className="profile-form-field-div">
               <label htmlFor="pf-first-name">First name</label>
               <div className="pf-input-div">
-                <input className="pf-form-input" id="pf-first-name" type="text"
-                  value={first_name} onChange={this.handleInput("first_name")} />
+                <input
+                  id="pf-first-name"
+                  className="pf-form-input"
+                  type="text"
+                  value={first_name}
+                  onChange={this.handleInput("first_name")}
+                />
               </div>
             </div>
             <div className="profile-form-field-div">
               <label htmlFor="pf-last-name">Last name</label>
               <div className="pf-input-div">
-                <input className="pf-form-input" id="pf-last-name" type="text"
-                  value={last_name} onChange={this.handleInput("last_name")} />
+                <input
+                  id="pf-last-name"
+                  className="pf-form-input"
+                  type="text"
+                  value={last_name}
+                  onChange={this.handleInput("last_name")}
+                />
               </div>
             </div>
             <div className="profile-form-field-div">
               <label htmlFor="pf-city">City</label>
               <div className="pf-input-div">
-                <input className="pf-form-input" id="pf-city"type="text"
-                  value={city} onChange={this.handleInput("city")} />
+                <input
+                  id="pf-city"
+                  className="pf-form-input"
+                  type="text"
+                  value={city}
+                  onChange={this.handleInput("city")}
+                />
               </div>
             </div>
             <div className="profile-form-field-div">
               <label htmlFor="pf-country">Country</label>
               <div className="pf-input-div">
-                <input className="pf-form-input" id="pf-country" type="text"
-                  value={country} onChange={this.handleInput("country")} />
+                <input
+                  id="pf-country"
+                  className="pf-form-input"
+                  type="text"
+                  value={country}
+                  onChange={this.handleInput("country")}
+                />
               </div>
             </div>
             <div className="profile-form-field-div">
               <label htmlFor="pf-bio">Bio</label>
               <div className="pf-input-div">
-                <textarea className="pf-form-input" id="pf-bio"
+                <textarea
+                  id="pf-bio"
+                  className="pf-form-input"
                   placeholder="Tell the world a little bit about yourself. The shorter the better."
-                  value={bio} onChange={this.handleInput("bio")} />
+                  value={bio}
+                  onChange={this.handleInput("bio")}
+                />
               </div>
             </div>
           </div>
         </div>
         <div className="form-footer">
           <div className="pf-buttons">
-            <button type="button" className="form-cancel-button" onClick={this.cancelEdit}>
+            <button
+              className="form-cancel-button"
+              type="button"
+              onClick={this.cancelEdit}
+            >
               <span>Cancel</span>
             </button>
-            <button type="submit" disabled={this.saveButtonDisabled}
-              className={`form-save-button ${this.saveButtonDisabled}`}>
+            <button
+              className={`form-save-button ${this.saveButtonDisabled}`}
+              type="submit"
+              disabled={this.saveButtonDisabled}
+            >
               <span>Save changes</span>
             </button>
           </div>

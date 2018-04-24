@@ -64,7 +64,13 @@ class SessionForm extends React.Component {
       <div className="session-form-input">
         <h2 className="signup-h2">Welcome to EliteBeats</h2>
         <label>
-          <input type="text" onChange={this.update('identifier')} placeholder="Your email address or profile URL *" value={identifier} required="required"/>
+          <input
+            type="text"
+            onChange={this.update('identifier')}
+            placeholder="Your email address or profile URL *"
+            value={identifier}
+            required
+          />
         </label>
       </div>
     );
@@ -100,7 +106,12 @@ class SessionForm extends React.Component {
           {identifierDiv}
           <div className="session-form-input">
             <label>
-              <input type="password" placeholder="Your Password *" onChange={this.update('password')} required="required"/>
+              <input
+                type="password"
+                placeholder="Your Password *"
+                onChange={this.update('password')}
+                required
+              />
             </label>
           </div>
         </div>
@@ -120,14 +131,20 @@ class SessionForm extends React.Component {
           {identifierDiv}
           <div className="session-form-input">
             <label className="form-password-label">
-              <span className="label-span">Choose a  password&nbsp;<strong className="asterick-wrapper">*</strong></span>
-            <input type="password" onChange={this.update('password')} required="required"/>
+              <span className="label-span">
+                Choose a  password&nbsp;
+                <strong className="asterick-wrapper">*</strong>
+              </span>
+            <input type="password" onChange={this.update('password')} required />
             </label>
           </div>
           <div className="session-form-input">
             <label className="form-age-label">
-              <span className="label-span">Tell us your age&nbsp;<strong className="asterick-wrapper">*</strong></span>
-              <input type="text" onChange={this.update('age')} required="required"/>
+              <span className="label-span">
+                Tell us your age&nbsp;
+                <strong className="asterick-wrapper">*</strong>
+              </span>
+              <input type="text" onChange={this.update('age')} required />
             </label>
           </div>
         </div>
@@ -135,13 +152,17 @@ class SessionForm extends React.Component {
     }
     return (
       <div className="session-form-wrapper">
-        <form onSubmit={this.handleSubmit} className="session-form">
+        <form className="session-form" onSubmit={this.handleSubmit}>
           {inputForm}
           {errorsList}
-          <button type="submit" className="session-button" id="continue-bttn">{buttonText}</button>
+          <button id="continue-bttn" className="session-button" type="submit">
+            {buttonText}
+          </button>
         </form>
         {signupCheck}
-        <button type="button" onClick={this.demoLogin} id="demo-bttn">Demo</button>
+        <button id="demo-bttn" type="button" onClick={this.demoLogin}>
+          Demo
+        </button>
       </div>
     );
   }

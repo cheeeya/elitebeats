@@ -32,7 +32,10 @@ class Sidebar extends React.Component {
     return(
       <section className="sidebar">
         <div className="sidebar-wrapper">
-          <div className="sidebar-follow sidebar-header"><div id="sidebar-icon-follow"/>Who to follow</div>
+          <div className="sidebar-follow sidebar-header">
+            <div id="sidebar-icon-follow" />
+            Who to follow
+          </div>
           <div className="sidebar-content">
             <ul className="sidebar-follow-user-list">
               {
@@ -53,29 +56,38 @@ class Sidebar extends React.Component {
                     <li className="sidebar-follow-user-item" key={user.id}>
                       <div className="follow-list-user-avatar">
                         <Link to={`/${user.profile_url}`}>
-                          <div className="follow-list-user-avatar-image" style={{ backgroundImage: `url(${user.profile_picture_url})` }}/>
+                          <div
+                            className="follow-list-user-avatar-image"
+                            style={{ backgroundImage: `url(${user.profile_picture_url})` }}
+                          />
                         </Link>
                       </div>
                       <div className="follow-list-user-info">
                         <div className="follow-list-username">
-                          <Link to={`/${user.profile_url}`} title={`Visit ${user.display_name}'s profile`}>
+                          <Link
+                            to={`/${user.profile_url}`}
+                            title={`Visit ${user.display_name}'s profile`}
+                          >
                             <span>{user.display_name}</span>
                           </Link>
                         </div>
                         <div className="follow-list-extra">
                           <div className="follow-list-user-data">
                             <div className="user-details" title={followersTitle}>
-                              <div className="icon-followers"/>
+                              <div className="icon-followers" />
                               <span>{user.user_followers.length}</span>
                             </div>
                             <div className="user-details" title={tracksTitle}>
-                              <div className="icon-sounds"/>
+                              <div className="icon-sounds" />
                               <span>{user.user_sounds}</span>
                             </div>
                           </div>
-                          <button className={`follow-button ${followText.toLowerCase()}`}
-                            type="button" onClick={this.toggleFollow(user.id, user.profile_url)}
-                            title={followText === "Follow" ? followText : "Unfollow"}>
+                          <button
+                            className={`follow-button ${followText.toLowerCase()}`}
+                            type="button"
+                            title={followText === "Follow" ? followText : "Unfollow"}
+                            onClick={this.toggleFollow(user.id, user.profile_url)}
+                          >
                             {followText}
                           </button>
                         </div>
@@ -86,11 +98,19 @@ class Sidebar extends React.Component {
               }
             </ul>
           </div>
-          <div className="sidebar-likes sidebar-header"><div id="sidebar-icon-likes"/>likes</div>
-          <div className="sidebar-content">
+          <div className="sidebar-likes sidebar-header">
+            <div id="sidebar-icon-likes" />
+            likes
           </div>
-          <div className="sidebar-history sidebar-header"><div id="sidebar-icon-history"/>Listening history</div>
           <div className="sidebar-content">
+
+          </div>
+          <div className="sidebar-history sidebar-header">
+            <div id="sidebar-icon-history" />
+            Listening history
+          </div>
+          <div className="sidebar-content">
+
           </div>
           <footer className="sidebar-footer">
             <a>Legal</a> - <a>Privacy</a> - <a>Cookies</a> - <a>Imprint</a> - <a>Popular searches</a>

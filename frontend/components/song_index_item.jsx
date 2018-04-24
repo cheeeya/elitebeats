@@ -97,13 +97,17 @@ class SongIndexItem extends React.Component {
     }
     return (
       <div className="song-item">
-        <Link to={permalink}><div className="song-artwork"
-          style={{ backgroundImage: `url(${song.image_url})`}} /></Link>
+        <Link to={permalink}>
+          <div className="song-artwork" style={{ backgroundImage: `url(${song.image_url})`}} />
+        </Link>
         <div className="song-item-right">
           <div className="songtitle">
-            <button className="song-list-playback-button" title="Play"
+            <button
               id={`song-list-${playbackButton}-button`}
-              onClick={this.handleClick(playbackButton)} />
+              className="song-list-playback-button"
+              title="Play"
+              onClick={this.handleClick(playbackButton)}
+            />
             <ul className="songtitle-list">
               <li className="songtitle-list-el">
                 <Link to={author_url}>
@@ -118,8 +122,11 @@ class SongIndexItem extends React.Component {
             </ul>
           </div>
           <div className={`management-div ${disabledClass}`}>
-            <button className={`song-management ${activeClass}`}
-              id="more-button" onClick={this.showMoreToggle}>
+            <button
+              id="more-button"
+              className={`song-management ${activeClass}`}
+              onClick={this.showMoreToggle}
+            >
               <i className="fas fa-ellipsis-h" id={`more-${song.id}`} />
             </button>
             <ul className={`more-buttons-list ${showMoreClass}`}>

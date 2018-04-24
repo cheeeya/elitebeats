@@ -30,27 +30,45 @@ class SessionFormModal extends React.Component {
   render() {
     const sessionFormModal = this.state.modalActive
       ? <AriaModal
-        titleText='login-form'
-        onExit={this.deactivateModal}
-        getApplicationNode={this.getApplicationNode}
-      >
-        <div id='session-form-modal' className='modal'>
-          <SessionFormContainer />
-        </div>
-      </AriaModal>
-    : false;
+          titleText='login-form'
+          onExit={this.deactivateModal}
+          getApplicationNode={this.getApplicationNode}
+        >
+          <div id='session-form-modal' className='modal'>
+            <SessionFormContainer />
+          </div>
+        </AriaModal>
+      : false;
 
     let buttonElements = (
       <div className={`${this.props.loc}-session-bttns`}>
-        <button className="session-button signin-btn" id={`${this.props.loc}-signin-btn`} onClick={this.activateModal} >Sign in</button>
-        <button className="session-button" id={`${this.props.loc}-register-btn`} onClick={this.activateModal} >Create account</button>
+        <button
+          id={`${this.props.loc}-signin-btn`}
+          className="session-button signin-btn"
+          onClick={this.activateModal}
+        >
+          Sign in
+        </button>
+        <button
+          id={`${this.props.loc}-register-btn`}
+          className="session-button"
+          onClick={this.activateModal}
+        >
+          Create account
+        </button>
       </div>
     );
 
     if (this.props.loc === 'splash-notice') {
       buttonElements = (
         <div className="splash-bttn">
-          <button className="session-button" id="big-signup-bttn" onClick={this.activateModal} >Sign Up for Free</button>
+          <button
+            id="big-signup-bttn"
+            className="session-button"
+            onClick={this.activateModal}
+          >
+            Sign Up for Free
+          </button>
         </div>
       )
     }

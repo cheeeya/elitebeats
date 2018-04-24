@@ -347,31 +347,50 @@ class Player extends React.Component {
     }
     return(
       <section className="music-player">
-        <button className="player-button" id="player-prev-button"
+        <button
+          id="player-prev-button"
+          className="player-button"
           onClick={this.handleNext(currentIndex - 1)}
-          title={"Pevious"} />
-        <button className="player-button" id={`player-${playbackButton}-button`}
+          title={"Pevious"}
+        />
+        <button
+          id={`player-${playbackButton}-button`}
+          className="player-button"
           onClick={this.handlePlayback(playbackButton)}
-          title={status === "play" ? "Pause current" : "Play current"} />
-        <button className={`player-button ${disabledNext}`} id="player-next-button"
-          onClick={this.handleNext(currentIndex + 1)} disabled={disabled}
-          title={"Next"} />
-        <button className="player-button" onClick={this.handleRepeat}
+          title={status === "play" ? "Pause current" : "Play current"}
+        />
+        <button
+          id="player-next-button"
+          className={`player-button ${disabledNext}`}
+          onClick={this.handleNext(currentIndex + 1)}
+          disabled={disabled}
+          title={"Next"}
+        />
+        <button
           id={`player-${repeat ? "repeat-blue" : "repeat"}-button`}
-          title={"Repeat"} />
+          className="player-button"
+          onClick={this.handleRepeat}
+          title={"Repeat"}
+        />
         <div className="progress-bar-div">
           <div className="progress-bar-time-current">
             <span>{this.formatTime(this.state.time)}</span>
           </div>
-          <div id="progress-bar" className="progress-bar" onMouseDown={this.snapProgressToClick}
-            onMouseMove={this.dragProgress} onMouseUp={this.releaseMouseProg}>
+          <div
+            id="progress-bar"
+            className="progress-bar"
+            onMouseDown={this.snapProgressToClick}
+            onMouseMove={this.dragProgress}
+            onMouseUp={this.releaseMouseProg}
+          >
             <div className="progress-bar-total">
               <div className="progress-bar-elapsed-time" style={{ width: controlledProgressPosition.x }}>
                 <Draggable
                   axis="x"
                   defaultPosition={{x: 0, y:0}}
                   position={controlledProgressPosition}
-                  bounds={{left: 0, right: 500}}>
+                  bounds={{left: 0, right: 500}}
+                >
                   <div className={`progress-ball ${isMouseDownP ? "visible" : ""}`} />
                 </Draggable>
               </div>
@@ -381,32 +400,45 @@ class Player extends React.Component {
             <span>{this.formatTime(this.songHowl.duration())}</span>
           </div>
         </div>
-        <div className="volume-control-div" onMouseOver={this.expandVolumeControl}
-          onMouseOut={this.reduceVolumeControl}>
-          <div id="volume-box" className={`volume-slider-box ${expandedVolume || isMouseDownV ? "expanded-volume" : ""} ${tempDisplay}`}
-            onMouseDown={this.snapVolToClick} onMouseMove={this.dragVolume}
-            onMouseUp={this.releaseMouseVol}>
+        <div
+          className="volume-control-div"
+          onMouseOver={this.expandVolumeControl}
+          onMouseOut={this.reduceVolumeControl}
+        >
+          <div
+            id="volume-box"
+            className={`volume-slider-box ${expandedVolume || isMouseDownV ? "expanded-volume" : ""} ${tempDisplay}`}
+            onMouseDown={this.snapVolToClick}
+            onMouseMove={this.dragVolume}
+            onMouseUp={this.releaseMouseVol}
+          >
             <div className={`volume-slider ${expandedVolume}`}>
               <Draggable
                 axis="y"
                 defaultPosition={{x:0, y:0}}
                 position={controlledVolumePosition}
                 bounds={{top: 0, bottom: 100 }}
-                onDrag={this.setPosition}>
+                onDrag={this.setPosition}
+              >
                   <div className="volume-ball" />
               </Draggable>
               <div className="volume-fill" style={{ height: 100 - controlledVolumePosition.y }} />
             </div>
           </div>
-          <div className={`volume-slider-box-pointer-outline ${expandedVolume || isMouseDownV ? "expanded-volume" : ""} ${tempDisplay}`}/>
+          <div className={`volume-slider-box-pointer-outline ${expandedVolume || isMouseDownV ? "expanded-volume" : ""} ${tempDisplay}`} />
           <div className={`volume-slider-box-pointer-fill ${expandedVolume || isMouseDownV ? "expanded-volume" : ""} ${tempDisplay}`} />
-          <button className="player-button volume-button" id={`player-${volumeButton}-button`}
-            onClick={this.handleMute} />
+          <button
+            id={`player-${volumeButton}-button`}
+            className="player-button volume-button"
+            onClick={this.handleMute}
+          />
         </div>
         <div className="player-song-info">
           <Link to={permalink}>
-            <div className="player-song-artwork"
-              style={{ backgroundImage: `url(${song.image_url})` }} />
+            <div
+              className="player-song-artwork"
+              style={{ backgroundImage: `url(${song.image_url})` }}
+            />
           </Link>
           <ul>
             <li>

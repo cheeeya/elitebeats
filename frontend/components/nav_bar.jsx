@@ -30,8 +30,10 @@ class NavBar extends React.Component {
 
   render () {
     const { currentUser, receiveFormType, route } = this.props;
-    let element = <SessionFormModal receiveFormType={receiveFormType} loc='nav-bar'/>,
-        activeHome = "", activeUpload ="", activeProfile = "";
+    let element = (
+          <SessionFormModal receiveFormType={receiveFormType} loc="nav-bar" />
+        );
+    let activeHome = "", activeUpload ="", activeProfile = "";
 
     if (route === "/stream" || route === "/discover") {
       activeHome = "active-tab";
@@ -46,12 +48,21 @@ class NavBar extends React.Component {
         <div className="user-nav-wrapper">
           <Link to={`/${currentUser.profile_url}`}>
             <div className={`user-nav ${activeProfile}`}>
-              <div className="user-nav-avatar" style={{ backgroundImage: `url(${currentUser.profile_picture_url})`}}></div>
+              <div
+                className="user-nav-avatar"
+                style={{ backgroundImage: `url(${currentUser.profile_picture_url})`}}
+              />
               <span className="user-nav-name">{currentUser.display_name}</span>
             </div>
           </Link>
           <div className="session-button-div">
-            <button className="session-button" id='logout-btn' onClick={this.handleLogout}>Logout</button>
+            <button
+              id='logout-btn'
+              className="session-button"
+              onClick={this.handleLogout}
+            >
+              Logout
+            </button>
           </div>
         </div>
       )
@@ -60,18 +71,38 @@ class NavBar extends React.Component {
       <header>
         <div id='nav-bar'>
           <div className="nav-logo">
-            <Link to="/stream" className="root-link"><img className="logo-blue" src="https://res.cloudinary.com/elitebeats/image/upload/v1520850261/eb_icon_bluewhite_calphx.png"></img></Link>
+            <Link to="/stream" className="root-link">
+              <img
+                className="logo-blue"
+                src="https://res.cloudinary.com/elitebeats/image/upload/v1520850261/eb_icon_bluewhite_calphx.png"
+              />
+            </Link>
           </div>
           <div className="left-nav">
-            <Link to="/stream"><div className={`nav-link ${activeHome}`} id="home-link">Home</div></Link>
-            <Link to="/stream"><div className="nav-link" id="collection-link">Collection</div></Link>
+            <Link to="/stream">
+              <div id="home-link" className={`nav-link ${activeHome}`}>
+                Home
+              </div>
+            </Link>
+            <Link to="/stream">
+              <div
+                className="nav-link"
+                id="collection-link"
+              >
+                Collection
+              </div>
+            </Link>
           </div>
           <div className="search-bar-wrapper">
-            <input className="search-bar" placeholder="Search"></input>
-            <button className="nav-bar-search-btn"></button>
+            <input className="search-bar" placeholder="Search" />
+            <button className="nav-bar-search-btn" />
           </div>
           <div className="right-nav">
-            <Link to="/upload" onClick={this.checkLogin}><div className={`nav-link ${activeUpload}`} id="upload-link">Upload</div></Link>
+            <Link to="/upload" onClick={this.checkLogin}>
+              <div id="upload-link" className={`nav-link ${activeUpload}`}>
+                Upload
+              </div>
+            </Link>
             {element}
           </div>
         </div>

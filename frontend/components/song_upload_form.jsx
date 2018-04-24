@@ -213,9 +213,11 @@ class SongUploadForm extends React.Component {
         uploadButtonDiv = <div className="upload-header">
                             <h1 className="upload-h1">Upload to EliteBeats</h1>
                             <div>
-                              <button onClick={this.handleUploadButton("file-input")}
+                              <button
                                 className="session-button" id="song-upload-button"
-                                type="button">
+                                onClick={this.handleUploadButton("file-input")}
+                                type="button"
+                              >
                                 <span>Choose a file to upload</span>
                               </button>
                             </div>
@@ -245,10 +247,16 @@ class SongUploadForm extends React.Component {
           <div className="sf-main">
             <input type="file" id="file-input" onChange={this.handleFile} />
             <div className="artwork-div">
-              <div className="upload-artwork" style={{ backgroundImage: `url(${artworkUrl})` }}></div>
+              <div
+                className="upload-artwork"
+                style={{ backgroundImage: `url(${artworkUrl})` }}
+              />
               <input type="file" id="artwork-input" onChange={this.handleImage} />
-              <button onClick={this.handleUploadButton("artwork-input")}
-                className="image-update-button" type="button">
+              <button
+                className="image-update-button"
+                type="button"
+                onClick={this.handleUploadButton("artwork-input")}
+              >
                 <span>
                   <i className="fas fa-camera"></i>&nbsp;Update image
                 </span>
@@ -263,34 +271,53 @@ class SongUploadForm extends React.Component {
                   <span className="label-span">
                     Title:&nbsp;<strong className="asterick-wrapper">*</strong>
                   </span>
-                <input className="upload-form-input" value={title}
-                  onChange={this.handleUpdate('title')} required="required"/>
+                <input
+                  className="upload-form-input"
+                  value={title}
+                  onChange={this.handleUpdate('title')}
+                  required
+                />
                 </label>
               </div>
               <div className="upload-form-input-div" id="upload-form-permalink-div">
-                <label className="form-permalink-label"
-                  htmlFor="upload-form-permalink-input">
+                <label
+                  className="form-permalink-label"
+                  htmlFor="upload-form-permalink-input"
+                >
                   <span className="form-permalink-span" id="song-form-link-span">
                     elitebeats.herokuapp.com/#/{currentUser.profile_url}/
                   </span>
                 </label>
-                <input id="upload-form-permalink-input"
-                  className={`url-input ${this.linkValidationError}`} value={permalink}
-                  onChange={this.handleUpdate('permalink')} required="required"
-                  onClick={this.clickUrlEdit} />
-                <button type="button" className="permalink-edit-button"
-                  onClick={this.clickUrlEdit}>
+                <input
+                  id="upload-form-permalink-input"
+                  className={`url-input ${this.linkValidationError}`}
+                  value={permalink}
+                  onChange={this.handleUpdate('permalink')}
+                  onClick={this.clickUrlEdit}
+                  required
+                />
+                <button
+                  type="button"
+                  className="permalink-edit-button"
+                  onClick={this.clickUrlEdit}
+                >
                   <i className="fas fa-pencil-alt link-edit-pencil" />
                 </button>
               </div>
-              <div className={`permalink-validation ${this.pLinkErrorDisabled}`} style={{ marginLeft: `${errorMargin}` }}>
+              <div
+                className={`permalink-validation ${this.pLinkErrorDisabled}`}
+                style={{ marginLeft: `${errorMargin}` }}
+              >
                 {this.errorMessages.link}
               </div>
               <div className="upload-form-input-div">
                 <label>
                   <span className="genre-span">Genre:</span>
-                  <select className="genre-select upload-form-input"
-                    onChange={this.handleUpdate('genre')} value={this.state.genre}>
+                  <select
+                    className="genre-select upload-form-input"
+                    value={this.state.genre}
+                    onChange={this.handleUpdate('genre')}
+                  >
                     <option value="none">None</option>
                     <option value="alternative">Alternative Rock</option>
                     <option value="ambient">Ambient</option>
@@ -330,21 +357,28 @@ class SongUploadForm extends React.Component {
                   Description:
                   <textarea
                     className="upload-form-input sf-description"
-                    onChange={this.handleUpdate('description')}
                     value={description}
-                    placeholder="Describe your track"/>
+                    placeholder="Describe your track"
+                    onChange={this.handleUpdate('description')}
+                  />
                 </label>
               </div>
             </div>
           </div>
           <div className="form-footer">
             <div className="upload-form-buttons-div">
-              <button type="button" className={`form-cancel-button ${btnDisabled}`}
-                onClick={this.handleCancel} disabled={disabled}>
+              <button
+                className={`form-cancel-button ${btnDisabled}`}
+                type="button"
+                onClick={this.handleCancel} disabled={disabled}
+              >
                 <span>Cancel</span>
               </button>
-              <button type="submit" className={`form-save-button ${this.saveButtonDisabled}`}
-                disabled={this.saveButtonDisabled}>
+              <button
+                className={`form-save-button ${this.saveButtonDisabled}`}
+                type="submit"
+                disabled={this.saveButtonDisabled}
+              >
                 <span>Save</span>
               </button>
             </div>
