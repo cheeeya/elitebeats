@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413221435) do
+ActiveRecord::Schema.define(version: 20180424071117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20180413221435) do
     t.string "aws_url"
     t.string "permalink", null: false
     t.string "seed_image_url"
+    t.integer "total_plays", default: 0
     t.index ["author_id", "permalink"], name: "index_songs_on_author_id_and_permalink", unique: true
   end
 

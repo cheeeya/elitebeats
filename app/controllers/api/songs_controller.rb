@@ -41,6 +41,11 @@ class Api::SongsController < ApplicationController
     render json: ["Unable to find song."], status: 404
   end
 
+  def trending
+    @songs = Song.order(total_plays: :desc)
+    render 'api/songs/trending'
+  end
+
   private
   def song_params
     params.require(:song).permit(:title, :description, :genre, :songfile, :permalink, :image)

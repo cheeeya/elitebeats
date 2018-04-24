@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { playSong, pauseSong, receiveCurrentPlaylist } from '../actions/player_actions';
-import PlayableSongTile from './playabl_'
+import PlayableSongTile from './playable_song_tile';
 
-const mapStateToProps = (state) => {
-  
-}
+const mapStateToProps = (state, ownProps) => ({
+  song: ownProps.song
+});
 
 
 

@@ -1,5 +1,3 @@
-
-
 export const fetchAllSongs = () => (
   $.ajax({
     method: 'GET',
@@ -41,5 +39,12 @@ export const fetchSong = (profile_url, permalink) => (
   $.ajax({
     method: 'GET',
     url: `api/users/${profile_url}/songs/${permalink}`
+  })
+);
+
+export const fetchTrendingList = () => (
+  $.ajax({
+    method: 'GET',
+    url: 'api/songs/trending'
   })
 );

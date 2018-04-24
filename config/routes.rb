@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     post '/users/find', to: 'users#verify_user_exists'
     get '/users/:profile_url', to: 'users#get_user'
     get '/users/:profile_url/songs/:permalink', to: 'songs#fetch_song'
+    get '/songs/trending', to: 'songs#trending'
     delete '/users/:user_id/follows', to: 'follows#destroy'
   end
 

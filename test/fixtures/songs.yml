@@ -20,6 +20,7 @@
 #  aws_url               :string
 #  permalink             :string           not null
 #  seed_image_url        :string
+#  total_plays           :integer          default(0)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

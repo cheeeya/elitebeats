@@ -1,12 +1,18 @@
 import React from 'react';
 import SessionFormModal from './session_form_modal';
+import PlayableSongTileContainer from './playable_song_tile_container';
 
 class Splash extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.fetchTrending();
+  }
+
   render() {
+    const { trendingList } = this.props;
     return(
       <div className="splash-main-div">
         <div className="splash-hero" id="splash-hero">
@@ -42,20 +48,13 @@ class Splash extends React.Component {
             <h1 className="trending-h1">
               Hear what’s trending in the EliteBeats community
             </h1>
-            <ul className="trendingList">
+            <ul className="trending-list">
               <div className="trending-list-wrapper">
-                <div className="trending-list-el"><li></li></div>
-                <div className="trending-list-el"><li></li></div>
-                <div className="trending-list-el"><li></li></div>
-                <div className="trending-list-el"><li></li></div>
-                <div className="trending-list-el"><li></li></div>
-                <div className="trending-list-el"><li></li></div>
-                <div className="trending-list-el"><li></li></div>
-                <div className="trending-list-el"><li></li></div>
-                <div className="trending-list-el"><li></li></div>
-                <div className="trending-list-el"><li></li></div>
-                <div className="trending-list-el"><li></li></div>
-                <div className="trending-list-el"><li></li></div>
+                {Object.keys(trendingList).map(el => trendingList[el]).slice(0, 12).map(song => (
+                  <li className="trending-list-el" key={song.id}>
+                    <PlayableSongTileContainer song={song} />
+                  </li>
+                ))}
               </div>
             </ul>
           </div>

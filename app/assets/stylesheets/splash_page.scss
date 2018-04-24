@@ -1,6 +1,7 @@
 .splash-main-div {
-  max-width: 1260px;
-  min-width: 900px;
+  max-width: 1240px;
+  min-width: 960px;
+  width: 100%;
   height: auto;
 }
 
@@ -85,7 +86,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 45px 10px;
+  padding: 45px 30px;
 }
 
 .splash-search-bar {
@@ -111,6 +112,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .trending-h1 {
@@ -129,14 +131,16 @@
 }
 
 .trending-list {
-  margin: 0 auto;
+  width: 100%;
 }
 
 .trending-list-el {
-  height: 158px;
-  width: 158px;
-  border: 1px solid black;
-  margin: 10px;
+  margin-right: 20px;
+  width: calc((100% - 100px) / 6);
+}
+
+.trending-list-el:nth-of-type(6n) {
+  margin-right: 0;
 }
 
 #explore-bttn {

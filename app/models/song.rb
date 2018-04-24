@@ -20,6 +20,7 @@
 #  aws_url               :string
 #  permalink             :string           not null
 #  seed_image_url        :string
+#  total_plays           :integer          default(0)
 #
 
 class Song < ApplicationRecord
