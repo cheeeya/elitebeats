@@ -139,6 +139,7 @@
 .trending-list-el {
   margin-right: 20px;
   width: calc((100% - 100px) / 6);
+  max-width: 180px;
 }
 
 .trending-list-el:nth-of-type(6n) {
