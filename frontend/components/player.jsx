@@ -25,6 +25,7 @@ class Player extends React.Component {
       isMouseDownP: false,
       isMouseDownV: false,
       tempDisplay: "",
+      shuffle: false,
       repeat: false,
       playlist: []
     }
@@ -36,6 +37,7 @@ class Player extends React.Component {
     this.formatTime = this.formatTime.bind(this);
     this.handleMute = this.handleMute.bind(this);
     this.handleRepeat = this.handleRepeat.bind(this);
+    this.handleShuffle = this.handleShuffle.bind(this);
     this.playbackButton = this.playbackButton.bind(this);
     this.playbackControl = this.playbackControl.bind(this);
     this.reduceVolumeControl = this.reduceVolumeControl.bind(this);
@@ -224,16 +226,21 @@ class Player extends React.Component {
     }
   }
 
-  handleMute(e) {
+  handleShuffle(e) {
     e.preventDefault();
-    this.songHowl.mute(!this.state.muted);
-    this.setState({ muted: !this.state.muted });
+    this.setState({ shuffle: !this.state.shuffle });
   }
 
   handleRepeat(e) {
     e.preventDefault();
     this.songHowl.loop(!this.state.repeat);
     this.setState({ repeat: !this.state.repeat });
+  }
+
+  handleMute(e) {
+    e.preventDefault();
+    this.songHowl.mute(!this.state.muted);
+    this.setState({ muted: !this.state.muted });
   }
 
   playbackControl(action) {
@@ -334,17 +341,13 @@ class Player extends React.Component {
   render () {
     const { status, disabled, time, currentIndex, expandedVolume,
       controlledVolumePosition, controlledProgressPosition,
-      isMouseDownV, isMouseDownP, tempDisplay, repeat } = this.state;
+      isMouseDownV, isMouseDownP, tempDisplay, repeat, shuffle } = this.state;
     const { song } = this.props;
     const playbackButton = this.playbackButton();
     const volumeButton = this.volumeButton();
 
     if (!song || !this.songHowl) {
       return null;
-    }
-    let disabledNext = "";
-    if (disabled) {
-      disabledNext = "disabled-button";
     }
     if (this.songHowl.duration() > 0 && !isMouseDownP ) {
       controlledProgressPosition.x = (500 / this.songHowl.duration()) * time;
@@ -361,26 +364,37 @@ class Player extends React.Component {
           id="player-prev-button"
           className="player-button"
           onClick={this.handleNext(currentIndex - 1)}
-          title={"Pevious"}
+          title="Pevious"
+          type="button"
         />
         <button
           id={`player-${playbackButton}-button`}
           className="player-button"
           onClick={this.handlePlayback(playbackButton)}
           title={status === "play" ? "Pause current" : "Play current"}
+          type="button"
         />
         <button
           id="player-next-button"
-          className={`player-button ${disabledNext}`}
+          className={`player-button ${disabled ? "disabled-button" : ""}`}
           onClick={this.handleNext(currentIndex + 1)}
           disabled={disabled}
-          title={"Next"}
+          title="Next"
+          type="button"
+        />
+        <button
+          id={`player-${shuffle ? "shuffle-blue" : "shuffle" }-button`}
+          className="player-button"
+          onClick={this.handleShuffle}
+          title="Shuffle"
+          type="button"
         />
         <button
           id={`player-${repeat ? "repeat-blue" : "repeat"}-button`}
           className="player-button"
           onClick={this.handleRepeat}
-          title={"Repeat"}
+          title="Repeat"
+          type="button"
         />
         <div className="progress-bar-div">
           <div className="progress-bar-time-current">
@@ -441,6 +455,7 @@ class Player extends React.Component {
             id={`player-${volumeButton}-button`}
             className="player-button volume-button"
             onClick={this.handleMute}
+            type="button"
           />
         </div>
         <div className="player-song-info">

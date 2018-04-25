@@ -41,11 +41,22 @@
 
 #player-repeat-button {
   background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524386787/repeat_ufmwdn.svg");
+  margin-right: 10px;
 }
 
 #player-repeat-blue-button {
   background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524388553/repeat-blue_bvrhsb.png");
+  margin-right: 10px;
 }
+
+#player-shuffle-button {
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524621438/shuffle_cfeuic.svg");
+}
+
+#player-shuffle-blue-button {
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524621445/shuffle-inverted_ztzh9i.png");
+}
+
 
 .player-button {
   background-color: #f2f2f2;
