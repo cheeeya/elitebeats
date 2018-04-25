@@ -20,10 +20,12 @@
   flex-direction: column;
   align-items: center;
   background: white;
-  margin-top: 46px;
-  padding: 30px;
-  width: 1180px;
-  min-height: calc(100vh - 106px);
+  box-sizing: border-box;
+  padding: 76px 0;
+  width: 100%;
+  max-width: 1240px;
+  min-width: 960px;
+  min-height: 100vh;
 }
 
 .upload-form-input {
