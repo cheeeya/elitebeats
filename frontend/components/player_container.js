@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { getSongFromPlaylist } from '../util/player_util';
 import { playSong, pauseSong, getNextSong } from '../actions/player_actions';
 import Player from './player';
 

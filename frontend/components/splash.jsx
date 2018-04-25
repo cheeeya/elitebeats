@@ -13,7 +13,8 @@ class Splash extends React.Component {
 
   render() {
     const { trendingList } = this.props;
-    const trendingArray = Object.keys(trendingList).map(el => trendingList[el]).reverse();
+    const trendingArray = Object.keys(trendingList).map(el => trendingList[el]).sort((a, b) => b.total_plays - a.total_plays);
+    // console.log(trendingArray);
     return(
       <div className="splash-main-div">
         <div className="splash-hero" id="splash-hero">

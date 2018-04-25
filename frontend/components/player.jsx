@@ -25,7 +25,8 @@ class Player extends React.Component {
       isMouseDownP: false,
       isMouseDownV: false,
       tempDisplay: "",
-      repeat: false
+      repeat: false,
+      playlist: []
     }
 
     this.checkState = this.checkState.bind(this);
@@ -54,8 +55,9 @@ class Player extends React.Component {
     let clicked = false;
     const { status, volume, muted, repeat, disabled, currentIndex } = this.state;
     const { song, currentPlaylistTitle, next, currentPlaylist } = this.props;
+    let idArray = [], songArray = [];
     if (nextProps.song) {
-      if (!this.songHowl || song.id != nextProps.song.id || currentPlaylistTitle != nextProps.currentPlaylistTitle) {
+      if ((!this.songHowl) || (song.id != nextProps.song.id) || (currentPlaylistTitle != nextProps.currentPlaylistTitle)) {
         if (this.songHowl) {
           this.songHowl.unload();
           clearInterval(this.interval);
@@ -70,12 +72,20 @@ class Player extends React.Component {
           onend: () => this.checkRepeat()
         });
         window.songHowl = this.songHowl;
-        let cPlaylist = Object.keys(nextProps.currentPlaylist).reverse();
-        let currentIndex = cPlaylist.indexOf(nextProps.song.id.toString());
+        songArray = Object.keys(nextProps.currentPlaylist).map(el => nextProps.currentPlaylist[el]);
+        if (nextProps.currentPlaylistTitle === "trendingSongs") {
+          songArray = songArray.sort((a, b) => b.total_plays - a.total_plays);
+          idArray = songArray.map(el => el.id.toString());
+          this.setState({ playlist: songArray });
+        } else {
+          idArray = Object.keys(nextProps.currentPlaylist).reverse();
+          this.setState({ playlist: songArray.reverse() });
+        }
+        let currentIndex = idArray.indexOf(nextProps.song.id.toString());
         this.setState({ currentIndex });
-        if (!disabled && currentIndex + 1 >= cPlaylist.length) {
+        if (!disabled && currentIndex + 1 >= idArray.length) {
           this.setState({ disabled: true });
-        } else if (disabled && currentIndex + 1 !== cPlaylist.length){
+        } else if (disabled && currentIndex + 1 !== idArray.length){
           this.setState({ disabled: false });
         }
       }
@@ -101,10 +111,10 @@ class Player extends React.Component {
   }
 
   checkRepeat() {
-    const { repeat, currentIndex } = this.state;
-    const { currentPlaylist, next } = this.props;
+    const { repeat, currentIndex, playlist } = this.state;
+    const { next } = this.props;
     if (!repeat) {
-      next(currentPlaylist, currentIndex + 1);
+      next(playlist, currentIndex + 1);
     }
   }
 
@@ -209,7 +219,7 @@ class Player extends React.Component {
       if (nextIdx === -1 ) {
         this.playbackControl('play');
       } else {
-        this.props.next(this.props.currentPlaylist, nextIdx);
+        this.props.next(this.state.playlist, nextIdx);
       }
     }
   }

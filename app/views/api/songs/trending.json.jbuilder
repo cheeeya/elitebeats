@@ -1,6 +1,6 @@
 @songs.each do |song|
   json.set! song.id do
-    json.extract! song, :id, :title, :author_id, :permalink
+    json.extract! song, :id, :title, :author_id, :permalink, :total_plays
     json.author_name song.author.display_name
     json.author_url song.author.profile_url
     if song.aws_url
