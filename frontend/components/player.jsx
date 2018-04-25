@@ -240,7 +240,6 @@ class Player extends React.Component {
       if (nextIdx === -1 ) {
         this.playbackControl('play');
       } else {
-        console.log(this.state.playlist);
         this.props.next(this.state.playlist, nextIdx);
       }
     }
