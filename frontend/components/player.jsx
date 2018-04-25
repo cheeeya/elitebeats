@@ -55,7 +55,8 @@ class Player extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     let clicked = false;
-    const { status, volume, muted, repeat, disabled, currentIndex } = this.state;
+    const { status, volume, muted, repeat, disabled,
+      currentIndex, playlist, shuffle } = this.state;
     const { song, currentPlaylistTitle, next, currentPlaylist } = this.props;
     let idArray = [], songArray = [];
     if (nextProps.song) {
@@ -74,14 +75,20 @@ class Player extends React.Component {
           onend: () => this.checkRepeat()
         });
         window.songHowl = this.songHowl;
-        songArray = Object.keys(nextProps.currentPlaylist).map(el => nextProps.currentPlaylist[el]);
+        if ((playlist.length > 0) && (nextProps.currentPlaylistTitle === currentPlaylistTitle)) {
+          songArray = playlist;
+        } else {
+          songArray = Object.keys(nextProps.currentPlaylist).map(el => nextProps.currentPlaylist[el]).reverse();
+        }
         if (nextProps.currentPlaylistTitle === "trendingSongs") {
           songArray = songArray.sort((a, b) => b.total_plays - a.total_plays);
-          idArray = songArray.map(el => el.id.toString());
+        }
+        idArray = songArray.map(el => el.id.toString());
+        if ((playlist.length === 0) || (nextProps.currentPlaylistTitle !== currentPlaylistTitle)) {
+          if (shuffle) {
+            this.shuffleArray(songArray);
+          }
           this.setState({ playlist: songArray });
-        } else {
-          idArray = Object.keys(nextProps.currentPlaylist).reverse();
-          this.setState({ playlist: songArray.reverse() });
         }
         let currentIndex = idArray.indexOf(nextProps.song.id.toString());
         this.setState({ currentIndex });
@@ -176,6 +183,13 @@ class Player extends React.Component {
     }
   }
 
+  shuffleArray(array) {
+    for(let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[j], array[i]] = [array[i], array[j]]
+    }
+  }
+
   setPosition(e, position) {
     const { y } = position;
     this.setState({ controlledVolumePosition: { x: 0, y } });
@@ -221,6 +235,7 @@ class Player extends React.Component {
       if (nextIdx === -1 ) {
         this.playbackControl('play');
       } else {
+        console.log(this.state.playlist);
         this.props.next(this.state.playlist, nextIdx);
       }
     }
@@ -228,7 +243,32 @@ class Player extends React.Component {
 
   handleShuffle(e) {
     e.preventDefault();
-    this.setState({ shuffle: !this.state.shuffle });
+    const { currentPlaylist, currentPlaylistTitle } = this.props;
+    const { shuffle, playlist, disabled } = this.state;
+    let songArray = [], idArray = [], currentIndex = -1;
+    if (!shuffle) {
+      this.shuffleArray(playlist);
+      songArray = playlist;
+    } else {
+      songArray = Object.keys(currentPlaylist).map(el => currentPlaylist[el]);
+      if (currentPlaylistTitle === "trendingSongs") {
+        songArray = songArray.sort((a, b) => b.total_plays - a.total_plays);
+      } else {
+        songArray = songArray.reverse();
+      }
+    }
+    idArray = songArray.map(el => el.id.toString());
+    currentIndex = idArray.indexOf(this.props.song.id.toString());
+    if (!shuffle) {
+      [songArray[0], songArray[currentIndex]] = [songArray[currentIndex], songArray[0]]
+      currentIndex = 0;
+    }
+    if (!disabled && currentIndex + 1 >= idArray.length) {
+      this.setState({ disabled: true });
+    } else if (disabled && currentIndex + 1 !== idArray.length){
+      this.setState({ disabled: false });
+    }
+    this.setState({ shuffle: !shuffle, currentIndex, playlist: songArray });
   }
 
   handleRepeat(e) {
