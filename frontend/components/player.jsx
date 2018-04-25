@@ -78,19 +78,23 @@ class Player extends React.Component {
         if ((playlist.length > 0) && (nextProps.currentPlaylistTitle === currentPlaylistTitle)) {
           songArray = playlist;
         } else {
-          songArray = Object.keys(nextProps.currentPlaylist).map(el => nextProps.currentPlaylist[el]).reverse();
-        }
-        if (nextProps.currentPlaylistTitle === "trendingSongs") {
-          songArray = songArray.sort((a, b) => b.total_plays - a.total_plays);
+          songArray = Object.keys(nextProps.currentPlaylist).map(el => nextProps.currentPlaylist[el]);
+          if (nextProps.currentPlaylistTitle === "trendingSongs") {
+            songArray = songArray.sort((a, b) => b.total_plays - a.total_plays);
+          } else {
+            songArray = songArray.reverse();
+          }
         }
         idArray = songArray.map(el => el.id.toString());
+        let currentIndex = idArray.indexOf(nextProps.song.id.toString());
         if ((playlist.length === 0) || (nextProps.currentPlaylistTitle !== currentPlaylistTitle)) {
           if (shuffle) {
             this.shuffleArray(songArray);
+            [songArray[0], songArray[currentIndex]] = [songArray[currentIndex], songArray[0]];
+            currentIndex = 0;
           }
           this.setState({ playlist: songArray });
         }
-        let currentIndex = idArray.indexOf(nextProps.song.id.toString());
         this.setState({ currentIndex });
         if (!disabled && currentIndex + 1 >= idArray.length) {
           this.setState({ disabled: true });
@@ -260,7 +264,7 @@ class Player extends React.Component {
     idArray = songArray.map(el => el.id.toString());
     currentIndex = idArray.indexOf(this.props.song.id.toString());
     if (!shuffle) {
-      [songArray[0], songArray[currentIndex]] = [songArray[currentIndex], songArray[0]]
+      [songArray[0], songArray[currentIndex]] = [songArray[currentIndex], songArray[0]];
       currentIndex = 0;
     }
     if (!disabled && currentIndex + 1 >= idArray.length) {
