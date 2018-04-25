@@ -55,8 +55,7 @@ class Player extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     let clicked = false;
-    const { status, volume, muted, repeat, disabled,
-      currentIndex, playlist, shuffle } = this.state;
+    const { status, volume, muted, repeat, disabled, playlist, shuffle } = this.state;
     const { song, currentPlaylistTitle, next, currentPlaylist } = this.props;
     let idArray = [], songArray = [];
     if (nextProps.song) {
@@ -90,6 +89,8 @@ class Player extends React.Component {
         if ((playlist.length === 0) || (nextProps.currentPlaylistTitle !== currentPlaylistTitle)) {
           if (shuffle) {
             this.shuffleArray(songArray);
+            idArray = songArray.map(el => el.id.toString());
+            currentIndex = idArray.indexOf(nextProps.song.id.toString());
             [songArray[0], songArray[currentIndex]] = [songArray[currentIndex], songArray[0]];
             currentIndex = 0;
           }
