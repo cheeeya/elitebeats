@@ -164,7 +164,7 @@ i[id^="more-"] {
 .song-stats {
   display: flex;
   color: #999;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .song-stats-el {
@@ -172,8 +172,8 @@ i[id^="more-"] {
   margin: 5px 10px 5px 0;
 }
 
-.playcount > span {
-  margin-top: 1px;
+.stat-span {
+  margin-top: 0.5px;
 }
 
 .list-icon {
@@ -184,11 +184,18 @@ i[id^="more-"] {
   width: 16px;
 }
 
+.song-stats-link {
+  display: flex;
+}
+
+.song-stats-link:hover {
+  color: black;
+}
+
 #playcount-icon {
   background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524724643/playcount_fqzswo.svg");
 }
 
 #list-comment-icon {
-  margin-top: 1px;
-  background-position: 50% 50%;
+  background-position: 50% 37%;
 }

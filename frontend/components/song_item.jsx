@@ -132,14 +132,16 @@ class SongItem extends React.Component {
               title={`${song.total_plays} play${song.total_plays === 1 ? "" : "s"}`}
             >
               <div id="playcount-icon" className="list-icon" />
-              &nbsp;<span>{song.total_plays}</span>
+              &nbsp;<span className="stat-span">{song.total_plays}</span>
             </div>
             <div
               className="song-stats-el"
               title={`${numComments} comment${numComments === 1 ? "" : "s"}`}
             >
-              <div id="list-comment-icon" className="comment-icon list-icon" />
-              &nbsp;<span>{numComments}</span>
+              <Link to={permalink} className="song-stats-link">
+                <div id="list-comment-icon" className="comment-icon list-icon" />
+                &nbsp;<span className="stat-span">{numComments}</span>
+              </Link>
             </div>
           </div>
           <div className={`management-div ${disabledClass}`}>
