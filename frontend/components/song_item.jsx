@@ -66,8 +66,7 @@ class SongItem extends React.Component {
     const { song } = this.props;
     const { status, showMore } = this.state;
     const playbackState = status === "play" ? "pause" : "play";
-    let author_url = "";
-    let permalink = "";
+    let author_url = "", permalink = "", songTagElement = "";
     if (song) {
       author_url = `/${song.author_url}`;
       permalink = `${author_url}/${song.permalink}`;
@@ -87,31 +86,41 @@ class SongItem extends React.Component {
         disabledClass = "";
       }
     }
+    if (song.genre !== "none") {
+      songTagElement = (
+        <span className="genre-tag list-tag"># {song.genre}</span>
+      );
+    }
     return (
       <div className="song-item">
-        <Link to={permalink}>
-          <div className="song-artwork" style={{ backgroundImage: `url(${song.image_url})`}} />
-        </Link>
+        <div className="song-item-left">
+          <Link to={permalink}>
+            <div className="song-artwork" style={{ backgroundImage: `url(${song.image_url})`}} />
+          </Link>
+        </div>
         <div className="song-item-right">
-          <div className="songtitle">
+          <div className="song-header">
             <button
               id={`song-${playbackState}-button`}
               className="song-list-playback-button playback-button"
               title={`P${playbackState.slice(1)}`}
               onClick={this.handlePlayback(playbackState)}
-            />
-            <ul className="songtitle-list">
-              <li className="songtitle-list-el">
+              />
+            <div className="songtitle">
+              <div className="songtitle-list-el">
                 <Link to={author_url}>
                   <span className="songtitle-author">{song.author_name}</span>
                 </Link>
-              </li>
-              <li className="songtitle-list-el">
+              </div>
+              <div className="songtitle-list-el">
                 <Link to={permalink}>
                   <span className="songtitle-title">{song.title}</span>
                 </Link>
-              </li>
-            </ul>
+              </div>
+            </div>
+            <div className="song-genre">
+              {songTagElement}
+            </div>
           </div>
           <div className={`management-div ${disabledClass}`}>
             <button

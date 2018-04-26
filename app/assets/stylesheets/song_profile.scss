@@ -92,11 +92,15 @@
   align-items: flex-end;
 }
 
-.header-genre > span {
-  font-size: 16px;
+.genre-tag {
+  color: white;
   background: #999;
   border-radius: 20px;
   justify-content: space-around;
+}
+
+.sp-tag {
+  font-size: 16px;
   padding: 5px 5px 1px 5px;
 }
 

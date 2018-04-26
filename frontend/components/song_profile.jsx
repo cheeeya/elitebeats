@@ -144,8 +144,8 @@ class SongProfile extends React.Component {
         followText = "Following";
       }
     }
-    if (songProfile.genre != "none") {
-      genre = (<div className="header-genre"><span># {songProfile.genre}</span></div>);
+    if (songProfile.genre !== "none") {
+      genre = (<div className="header-genre"><span className="genre-tag sp-tag"># {songProfile.genre}</span></div>);
     }
     if (comments.length > 0) {
       commentsEl = (

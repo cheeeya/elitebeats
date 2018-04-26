@@ -38,7 +38,6 @@ class Player extends React.Component {
     this.handleMute = this.handleMute.bind(this);
     this.handleRepeat = this.handleRepeat.bind(this);
     this.handleShuffle = this.handleShuffle.bind(this);
-    this.playbackButton = this.playbackButton.bind(this);
     this.playbackControl = this.playbackControl.bind(this);
     this.reduceVolumeControl = this.reduceVolumeControl.bind(this);
     this.releaseMouseProg = this.releaseMouseProg.bind(this);
@@ -304,14 +303,6 @@ class Player extends React.Component {
     }
   }
 
-  playbackButton() {
-    if (this.state.status === 'play') {
-      return 'pause';
-    } else {
-      return 'play';
-    }
-  }
-
   volumeButton() {
     const { muted, volume } = this.state;
     if (muted || volume === 0) {
@@ -390,7 +381,7 @@ class Player extends React.Component {
       controlledVolumePosition, controlledProgressPosition,
       isMouseDownV, isMouseDownP, tempDisplay, repeat, shuffle } = this.state;
     const { song } = this.props;
-    const playbackButton = this.playbackButton();
+    const playbackState = status === "play" ? "pause" : "play";
     const volumeButton = this.volumeButton();
 
     if (!song || !this.songHowl) {
@@ -415,9 +406,9 @@ class Player extends React.Component {
           type="button"
         />
         <button
-          id={`player-${playbackButton}-button`}
+          id={`player-${playbackState}-button`}
           className="player-button"
-          onClick={this.handlePlayback(playbackButton)}
+          onClick={this.handlePlayback(playbackState)}
           title={status === "play" ? "Pause current" : "Play current"}
           type="button"
         />

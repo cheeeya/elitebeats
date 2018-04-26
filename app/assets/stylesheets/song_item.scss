@@ -9,7 +9,6 @@
   background-position: 50% 50%;
   background-repeat: no-repeat;
   box-shadow: rgba(0,0,0,.1)0 0 0 1px inset;
-  margin-right: 10px;
 }
 
 .display-list {
@@ -79,4 +78,85 @@
 i[id^="more-"] {
   font-size: 16px;
   padding: 2px 5px 1px 5px;
+}
+
+.song-item-left {
+  margin-right: 15px;
+  height: 160px;
+  width: 160px;
+}
+
+.song-item-right {
+  width: calc(100% - 175px);
+}
+
+.song-header {
+  display: flex;
+  width: 100%;
+  padding: 7px 0;
+}
+
+.list-tag {
+  font-size: 13px;
+  padding: 0 6px;
+  line-height: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+#song-play-button {
+  background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1524528748/playbutton-light_lzd84q.png');
+}
+
+#song-play-button:hover {
+  background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1524528748/playbutton-dark_rmkf4t.png');
+  background-color: #000095;
+  border-color: #000095;
+}
+
+#song-pause-button {
+  background-image: url('https://res.cloudinary.com/elitebeats/image/upload/v1524528742/pausebutton-dark_rnyc7g.png');
+  background-color: #000095;
+  border-color: #000095;
+}
+
+.song-list-playback-button {
+  height: 36px;
+  width: 36px;
+  margin-right: 5px;
+}
+
+.songs-index {
+  width: 100%;
+}
+
+.song-item {
+  width: 100%;
+  display: flex;
+  margin-bottom: 36px;
+}
+
+.songtitle {
+  flex: 1;
+}
+
+.songtitle-author {
+  font-size: 13px;
+  color: #999;
+  line-height: 16px;
+}
+
+.songtitle-author:hover, .songtitle-title:hover {
+  color: black;
+}
+
+.songtitle-title {
+  font-size: 15px;
+  line-height: 1.2px;
+  font-weight: 100;
+  color: #333;
+}
+
+.songtitle-list-el {
+  margin-bottom: 3px;
 }
