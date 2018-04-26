@@ -88,7 +88,7 @@ class SongItem extends React.Component {
     }
     if (song.genre !== "none") {
       songTagElement = (
-        <span className="genre-tag list-tag"># {song.genre}</span>
+        <span className="genre-tag list-tag">#&nbsp;{song.genre}</span>
       );
     }
     return (
@@ -120,6 +120,20 @@ class SongItem extends React.Component {
             </div>
             <div className="song-genre">
               {songTagElement}
+            </div>
+          </div>
+          <div className="song-stats">
+            <div
+              className="playcount"
+              title={`${song.total_plays} play${song.total_plays === 1 ? "" : "s"}`}
+            >
+              <div id="playcount-icon" />
+              &nbsp;<span>{song.total_plays}</span>
+            </div>
+            <div
+              className="comment-stats"
+            >
+              <div id="comment-icon" />
             </div>
           </div>
           <div className={`management-div ${disabledClass}`}>

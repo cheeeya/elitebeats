@@ -160,3 +160,26 @@ i[id^="more-"] {
 .songtitle-list-el {
   margin-bottom: 3px;
 }
+
+.song-stats {
+  display: flex;
+  color: #999;
+  font-size: 13px;
+}
+
+.playcount {
+  display: flex;
+}
+
+.playcount > span {
+  margin-top: 1px;
+}
+
+#playcount-icon {
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524724643/playcount_fqzswo.svg");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 16px 16px;
+  height: 12px;
+  width: 16px;
+}
