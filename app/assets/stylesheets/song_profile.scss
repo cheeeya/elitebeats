@@ -234,9 +234,12 @@ div[class^="icon-"] {
   height: 21px;
   width: 21px;
   background-size: 22px 22px;
+  margin-right: 5px;
+}
+
+.comment-icon {
   background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1520841178/comments_zgunvi.svg");
   background-position: center bottom;
-  margin-right: 5px;
 }
 
 .post-comment-button {

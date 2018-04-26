@@ -66,6 +66,7 @@ class SongItem extends React.Component {
     const { song } = this.props;
     const { status, showMore } = this.state;
     const playbackState = status === "play" ? "pause" : "play";
+    let numComments = 0;
     let author_url = "", permalink = "", songTagElement = "";
     if (song) {
       author_url = `/${song.author_url}`;
@@ -90,6 +91,9 @@ class SongItem extends React.Component {
       songTagElement = (
         <span className="genre-tag list-tag">#&nbsp;{song.genre}</span>
       );
+    }
+    if (song.comments) {
+      numComments = Object.keys(song.comments).length;
     }
     return (
       <div className="song-item">
@@ -124,16 +128,18 @@ class SongItem extends React.Component {
           </div>
           <div className="song-stats">
             <div
-              className="playcount"
+              className="song-stats-el"
               title={`${song.total_plays} play${song.total_plays === 1 ? "" : "s"}`}
             >
-              <div id="playcount-icon" />
+              <div id="playcount-icon" className="list-icon" />
               &nbsp;<span>{song.total_plays}</span>
             </div>
             <div
-              className="comment-stats"
+              className="song-stats-el"
+              title={`${numComments} comment${numComments === 1 ? "" : "s"}`}
             >
-              <div id="comment-icon" />
+              <div id="list-comment-icon" className="comment-icon list-icon" />
+              &nbsp;<span>{numComments}</span>
             </div>
           </div>
           <div className={`management-div ${disabledClass}`}>

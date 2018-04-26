@@ -151,7 +151,7 @@ class SongProfile extends React.Component {
       commentsEl = (
         <div className="song-info-comments">
           <div className="song-info-comment-header">
-            <div className="song-info-comment-icon" />
+            <div className="song-info-comment-icon comment-icon" />
             <span>{comments.length} comments</span>
           </div>
           <ul className="comment-list">

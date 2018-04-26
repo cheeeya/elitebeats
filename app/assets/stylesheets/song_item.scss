@@ -167,19 +167,28 @@ i[id^="more-"] {
   font-size: 13px;
 }
 
-.playcount {
+.song-stats-el {
   display: flex;
+  margin: 5px 10px 5px 0;
 }
 
 .playcount > span {
   margin-top: 1px;
 }
 
-#playcount-icon {
-  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524724643/playcount_fqzswo.svg");
+.list-icon {
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 16px 16px;
   height: 12px;
   width: 16px;
+}
+
+#playcount-icon {
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524724643/playcount_fqzswo.svg");
+}
+
+#list-comment-icon {
+  margin-top: 1px;
+  background-position: 50% 50%;
 }
