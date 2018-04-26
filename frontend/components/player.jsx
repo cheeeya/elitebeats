@@ -57,15 +57,16 @@ class Player extends React.Component {
     let clicked = false;
     const { status, volume, muted, repeat, disabled, playlist, shuffle } = this.state;
     const { song, currentPlaylistTitle, next, currentPlaylist } = this.props;
-    let idArray = [], songArray = [];
+    let idArray = [], songArray = [], newSong = false;
     if (nextProps.song) {
       if ((!this.songHowl) || (song.id != nextProps.song.id) || (currentPlaylistTitle != nextProps.currentPlaylistTitle)) {
+        newSong = true;
         if (this.songHowl) {
           this.songHowl.unload();
           clearInterval(this.interval);
           this.setState({ time: 0, controlledProgressPosition: { x: 0, y: 0}});
         }
-        this.songHowl =  new Howl({
+        this.songHowl = new Howl({
           src: [nextProps.song.song_url],
           volume: volume,
           mute: muted,
@@ -106,7 +107,7 @@ class Player extends React.Component {
       if (song && status === nextProps.song.status && song.id === nextProps.song.id) {
         return;
       }
-      this.playbackControl(nextProps.song.status);
+      this.playbackControl(nextProps.song, newSong);
     }
   }
 
@@ -238,7 +239,7 @@ class Player extends React.Component {
       this.songHowl.stop();
       clearInterval(this.interval);
       if (nextIdx === -1 ) {
-        this.playbackControl('play');
+        this.playbackControl(this.props.song, true);
       } else {
         this.props.next(this.state.playlist, nextIdx);
       }
@@ -287,15 +288,17 @@ class Player extends React.Component {
     this.setState({ muted: !this.state.muted });
   }
 
-  playbackControl(action) {
-    const { controlledVolumePosition } = this.state;
-    if (action === 'play') {
-      this.setState({ status: action });
+  playbackControl(song, newSong) {
+    if (song.status === 'play') {
+      this.setState({ status: song.status });
+      if (newSong) {
+        this.props.incrementSongPlays(song);
+        this.setState({ newSong: false });
+      }
       this.songHowl.play();
-
       this.interval = setInterval(() => this.updateTime(), 100);
-    } else if (action === 'pause'){
-      this.setState({ status: action });
+    } else if (song.status === 'pause'){
+      this.setState({ status: song.status });
       this.songHowl.pause();
       clearInterval(this.interval);
     }

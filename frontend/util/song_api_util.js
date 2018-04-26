@@ -27,6 +27,14 @@ export const updateSong = (formData, songId) => (
   })
 );
 
+export const incrementSongPlays = (song) => (
+  $.ajax({
+    method: 'PATCH',
+    url: `api/songs/${song.id}`,
+    data: { song: { total_plays: song.total_plays + 1 }}
+  })
+);
+
 export const deleteSong = (songId) => (
   $.ajax({
     method: 'DELETE',

@@ -71,3 +71,10 @@ export const fetchSong = (profile_url, permalink) => dispatch => (
     errors => dispatch(receiveSongProfileErrors(errors.responseJSON))
   )
 );
+
+export const incrementSongPlays = song => dispatch => (
+  SongAPIUtil.incrementSongPlays(song).then(
+    song => dispatch(receiveSong(song)),
+    errors => dispatch(receiveSongErrors(errors.responseJSON))
+  )
+);

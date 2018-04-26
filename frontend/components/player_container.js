@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { playSong, pauseSong, getNextSong } from '../actions/player_actions';
+import { incrementSongPlays } from '../actions/song_actions';
 import Player from './player';
 
 const mapStateToProps = state => ({
@@ -11,7 +12,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   play: (song) => dispatch(playSong(song)),
   pause: () => dispatch(pauseSong()),
-  next: (currentPlaylist, nextSongIndex) => dispatch(getNextSong(currentPlaylist, nextSongIndex))
+  next: (currentPlaylist, nextSongIndex) => {
+    return (dispatch(getNextSong(currentPlaylist, nextSongIndex)));
+  },
+  incrementSongPlays: (song) => dispatch(incrementSongPlays(song))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps) (Player);

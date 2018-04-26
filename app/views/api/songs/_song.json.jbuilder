@@ -1,4 +1,5 @@
-json.extract! song, :id, :title, :description, :permalink, :author_id, :created_at, :genre, :total_plays
+json.extract! song, :id, :title, :description,
+  :permalink, :author_id, :created_at, :genre, :total_plays
 if (song.author.s_prof_pic_url)
   json.author_picture_url song.author.s_prof_pic_url
 else
