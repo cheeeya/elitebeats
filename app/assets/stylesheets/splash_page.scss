@@ -146,24 +146,36 @@
   margin-right: 0;
 }
 
-#explore-bttn {
-  font-size: 16px;
-  padding: 10px 20px;
-}
-
-.external-links {
+.splash-footer {
   display: flex;
   width: 148px;
   justify-content: space-between;
+  margin: 30px 0;
+}
+
+.external-link-button {
+  position: relative;
+  top: 0;
+  padding: 0;
+  border: none;
+  transition: top .2s ease-in-out;
+}
+
+.external-link-button:hover {
+  top: -10px;
+}
+
+.external-link{
+  height: 64px;
+  width: 64px;
+  border-radius: 15px;
+  background-repeat: no-repeat;
 }
 
 .github-mark {
-  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524898435/25657-github-sign-icon-vector-icon-vector-eps_zzmbhw.png");
-  height: 64px;
-  width: 64px;
-  background-size: cover;
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524898743/25657-github-sign-icon-vector-icon-vector-eps_seh0rk.png");
   background-position: 50% 50%;
-  background-repeat: no-repeat;
+  background-size: 64px 64px;
 }
 
 .linkedin-mark {
@@ -172,5 +184,4 @@
   width: 64px;
   background-size: 77px 66px;
   background-position: 10% 50%;
-  border-radius: 5px;
 }

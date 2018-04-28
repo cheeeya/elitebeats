@@ -11,6 +11,16 @@ class Splash extends React.Component {
     this.props.fetchTrending();
   }
 
+  clickExternalLogo (site) {
+    return (e) => {
+      if (site === "github") {
+        window.open("https://github.com/cheeeya/elitebeats");
+      } else {
+        window.open("https://www.linkedin.com/in/samuel-chia-3422b8118/");
+      }
+    }
+  }
+
   render() {
     const { trendingList } = this.props;
     const trendingArray = Object.keys(trendingList).map(el => trendingList[el]).sort((a, b) => b.total_plays - a.total_plays);
@@ -60,9 +70,21 @@ class Splash extends React.Component {
               </div>
             </ul>
           </div>
-          <div className="external-links">
-            <div className="github-mark" />
-            <div className="linkedin-mark" />
+          <div className="splash-footer">
+            <button
+              className="external-link-button"
+              type="button"
+              onClick={this.clickExternalLogo("github")}
+            >
+              <div className="github-mark external-link" />
+            </button>
+            <button
+              className="external-link-button"
+              type="button"
+              onClick={this.clickExternalLogo("linkedin")}
+            >
+              <div className="linkedin-mark external-link" />
+            </button>
           </div>
         </div>
       </div>
