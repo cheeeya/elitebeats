@@ -151,17 +151,21 @@
   padding: 10px 20px;
 }
 
+.external-links {
+  display: flex;
+}
+
 .github-mark {
-  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524897317/GitHub-Mark-64px_r0xquc.png");
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524898435/25657-github-sign-icon-vector-icon-vector-eps_zzmbhw.png");
   height: 64px;
   width: 64px;
-  background-size: 64px 64px;
+  background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
 }
 
 .linkedin-mark {
-  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524897917/In-2CRev-66px-R_eq7k4d.png");
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524898263/In-Black-66px-TM_fxofbg.png");
   height: 64px;
   width: 64px;
   background-size: 77px 66px;

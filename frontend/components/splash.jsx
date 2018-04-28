@@ -60,8 +60,10 @@ class Splash extends React.Component {
               </div>
             </ul>
           </div>
-          <div className="github-mark" />
-          <div className="linkedin-mark" />
+          <div className="external-links">
+            <div className="github-mark" />
+            <div className="linkedin-mark" />
+          </div>
         </div>
       </div>
     )
