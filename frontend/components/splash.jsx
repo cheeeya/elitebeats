@@ -60,9 +60,8 @@ class Splash extends React.Component {
               </div>
             </ul>
           </div>
-          <button id="explore-bttn" className='session-button' >
-            Explore our top 50
-          </button>
+          <div className="github-mark" />
+          <div className="linkedin-mark" />
         </div>
       </div>
     )

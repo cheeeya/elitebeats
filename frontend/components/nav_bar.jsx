@@ -85,8 +85,8 @@ class NavBar extends React.Component {
             </Link>
             <Link to="/stream">
               <div
-                className="nav-link"
                 id="collection-link"
+                className="nav-link"
               >
                 Collection
               </div>
