@@ -124,20 +124,24 @@ class Sidebar extends React.Component {
           <footer className="sidebar-footer">
             <a>Legal</a> - <a>Privacy</a> - <a>Cookies</a> - <a>Imprint</a> - <a>Popular searches</a>
             <div className="sidebar-external-links">
-              <button
-                className="external-link-button-small"
-                type="button"
-                onClick={this.clickExternalLogo("github")}
-              >
-                <div className="github-mark-small external-link-small" />
-              </button>
-              <button
-                className="external-link-button-small"
-                type="button"
-                onClick={this.clickExternalLogo("linkedin")}
-              >
-                <div className="linkedin-mark-small external-link-small" />
-              </button>
+              <div className="sidebar-external-buttons-wrap">
+                <button
+                  className="external-link-button-small"
+                  title="Github"
+                  type="button"
+                  onClick={this.clickExternalLogo("github")}
+                  >
+                  <div className="github-mark-small external-link-small" />
+                </button>
+                <button
+                  className="external-link-button-small"
+                  title="LinkedIn"
+                  type="button"
+                  onClick={this.clickExternalLogo("linkedin")}
+                  >
+                  <div className="linkedin-mark-small external-link-small" />
+                </button>
+              </div>
             </div>
           </footer>
         </div>
