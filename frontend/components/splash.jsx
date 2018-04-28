@@ -75,6 +75,7 @@ class Splash extends React.Component {
               className="external-link-button"
               type="button"
               onClick={this.clickExternalLogo("github")}
+              title="Github"
             >
               <div className="github-mark external-link" />
             </button>
@@ -82,6 +83,7 @@ class Splash extends React.Component {
               className="external-link-button"
               type="button"
               onClick={this.clickExternalLogo("linkedin")}
+              title="LinkedIn"
             >
               <div className="linkedin-mark external-link" />
             </button>
