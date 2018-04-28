@@ -23,6 +23,15 @@ class Sidebar extends React.Component {
     }
   }
 
+  clickExternalLogo (site) {
+    return (e) => {
+      if (site === "github") {
+        window.open("https://github.com/cheeeya/elitebeats");
+      } else {
+        window.open("https://www.linkedin.com/in/samuel-chia-3422b8118/");
+      }
+    }
+  }
 
   render() {
     const { userList, currentUser } = this.props;
@@ -114,6 +123,22 @@ class Sidebar extends React.Component {
           </div>
           <footer className="sidebar-footer">
             <a>Legal</a> - <a>Privacy</a> - <a>Cookies</a> - <a>Imprint</a> - <a>Popular searches</a>
+            <div className="sidebar-external-links">
+              <button
+                className="external-link-button-small"
+                type="button"
+                onClick={this.clickExternalLogo("github")}
+              >
+                <div className="github-mark-small external-link-small" />
+              </button>
+              <button
+                className="external-link-button-small"
+                type="button"
+                onClick={this.clickExternalLogo("linkedin")}
+              >
+                <div className="linkedin-mark-small external-link-small" />
+              </button>
+            </div>
           </footer>
         </div>
       </section>

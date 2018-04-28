@@ -56,3 +56,34 @@ div[id^="sidebar-icon-"] {
   color: #999;
   cursor: pointer;
 }
+
+.sidebar-external-links {
+  display: flex;
+  margin-top: 14px;
+}
+.external-link-button-small {
+  margin-right: 14px;
+}
+
+.external-link-small {
+  height: 21px;
+  width: 21px;
+  border-radius: 3px;
+}
+
+.github-mark-small {
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524919233/github-gray_aotlh2.png");
+  background-size: 21px 21px;
+}
+
+.github-mark-small:hover {
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524898743/25657-github-sign-icon-vector-icon-vector-eps_seh0rk.png");
+}
+
+.linkedin-mark-small {
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524919219/In-gray-21px-TM_wp7s7v.png");
+}
+
+.linkedin-mark-small:hover {
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1524918694/In-Black-21px-TM_vrbokx.png");
+}
