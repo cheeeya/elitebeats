@@ -13,7 +13,7 @@ class SongFormModal extends React.Component {
     this.deactivateModal = this.deactivateModal.bind(this);
     this.getApplicationNode = this.getApplicationNode.bind(this);
     window.activateEdit = this.activateModal.bind(this);
-    window.closeEdit = this.deactivateModal.bind(this);
+    window.closeEdit = this.onModalExit.bind(this);
   }
 
   activateModal() {

@@ -15,7 +15,8 @@ class UserProfile extends React.Component {
     this.activateModal = this.activateModal.bind(this);
     this.deactivateModal = this.deactivateModal.bind(this);
     this.getApplicationNode = this.getApplicationNode.bind(this);
-    window.closeProfileEdit = this.deactivateModal.bind(this);
+    this.onModalExit = this.onModalExit.bind(this);
+    window.closeProfileEdit = this.onModalExit.bind(this);
   }
 
   componentDidMount() {
@@ -41,6 +42,17 @@ class UserProfile extends React.Component {
 
   getApplicationNode() {
     return document.getElementById("profile-section");
+  }
+
+  onModalEnter() {
+    const nav = document.getElementById("nav-wrap");
+    if (nav) nav.setAttribute("style", "width: calc(100% - 17px);");
+  }
+
+  onModalExit() {
+    this.deactivateModal();
+    const nav = document.getElementById("nav-wrap");
+    if (nav) nav.removeAttribute("style");
   }
 
   toggleFollow(userId, userUrl) {
@@ -104,7 +116,8 @@ class UserProfile extends React.Component {
     const editProfileFormModal = this.state.modalActive
                                 ? <AriaModal
                                 titleText='login-form'
-                                onExit={this.deactivateModal}
+                                onEnter={this.onModalEnter}
+                                onExit={this.onModalExit}
                                 getApplicationNode={this.getApplicationNode}
                                 >
                                 <div id='profile-form-modal' className='modal'>
