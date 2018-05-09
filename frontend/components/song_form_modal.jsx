@@ -22,6 +22,8 @@ class SongFormModal extends React.Component {
 
   deactivateModal() {
     this.setState({ modalActive: false });
+    const nav = document.getElementById("nav-wrap");
+    if (nav) nav.removeAttribute("style");
   }
 
   getApplicationNode() {
@@ -31,12 +33,14 @@ class SongFormModal extends React.Component {
   onModalEnter() {
     const nav = document.getElementById("nav-wrap");
     if (nav) nav.setAttribute("style", "width: calc(100% - 17px);")
+    const formModal = document.getElementById("song-form-modal");
+    formModal.setAttribute("class", "out");
   }
 
   onModalExit() {
-    this.deactivateModal();
-    const nav = document.getElementById("nav-wrap");
-    if (nav) nav.removeAttribute("style");
+    const formModal = document.getElementById("song-form-modal");
+    formModal.setAttribute("class", "in");
+    window.setTimeout(() => this.deactivateModal(), 500);
   }
 
   render() {
