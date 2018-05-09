@@ -141,7 +141,7 @@ class SongUploadForm extends React.Component {
     this.resetErrors();
     if (this.props.page === "modal") {
       window.closeEdit();
-    } else {      
+    } else {
       this.setState({
         songUrl: "", songFile: null, title: "",
         genre: "", description: "", permalink: "", redirect: false,
@@ -191,9 +191,9 @@ class SongUploadForm extends React.Component {
           () => window.closeEdit(),
           error => {
             let linkError = false, imageError = false, fileError = false;
-            if (error.responseJSON.indexOf("Songfile is invalid") > -1) fileError = true;
-            if (error.responseJSON.indexOf("Image is invalid") > -1) imageError = true;
-            if (error.responseJSON.indexOf("Permalink has already been taken") > -1) linkError = true;
+            if (error.errors.indexOf("Songfile is invalid") > -1) fileError = true;
+            if (error.errors.indexOf("Image is invalid") > -1) imageError = true;
+            if (error.errors.indexOf("Permalink has already been taken") > -1) linkError = true;
             this.setState({ disabled: false, linkError, fileError, imageError });
           }
         );
