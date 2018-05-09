@@ -139,12 +139,15 @@ class SongUploadForm extends React.Component {
   handleCancel(e) {
     e.preventDefault();
     this.resetErrors();
-    this.setState({ songUrl: "", songFile: null, title: "",
-      genre: "", description: "", permalink: "", redirect: false,
-      linkError: false, fileError: false, imageError: false,
-      artworkUrl: "https://res.cloudinary.com/elitebeats/image/upload/v1518134441/default_album_kynclq.png" });
     if (this.props.page === "modal") {
       window.closeEdit();
+    } else {      
+      this.setState({
+        songUrl: "", songFile: null, title: "",
+        genre: "", description: "", permalink: "", redirect: false,
+        linkError: false, fileError: false, imageError: false,
+        artworkUrl: "https://res.cloudinary.com/elitebeats/image/upload/v1518134441/default_album_kynclq.png"
+      });
     }
   }
 
