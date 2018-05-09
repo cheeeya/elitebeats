@@ -31,12 +31,18 @@ class SessionFormModal extends React.Component {
   onModalEnter() {
     const nav = document.getElementById("nav-wrap");
     if (nav) nav.setAttribute("style", "width: calc(100% - 17px);");
+    const formModal = document.getElementById("session-form-modal");
+    formModal.setAttribute("class", "out");
   }
 
   onModalExit() {
-    this.deactivateModal();
-    const nav = document.getElementById("nav-wrap");
-    if (nav) nav.removeAttribute("style");
+    const formModal = document.getElementById("session-form-modal");
+    formModal.setAttribute("class", "in");
+    window.setTimeout(() => {
+      this.deactivateModal();
+      const nav = document.getElementById("nav-wrap");
+      if (nav) nav.removeAttribute("style");
+    }, 320);
   }
 
   render() {
@@ -47,7 +53,7 @@ class SessionFormModal extends React.Component {
           onExit={this.onModalExit}
           getApplicationNode={this.getApplicationNode}
         >
-          <div id='session-form-modal' className='modal'>
+          <div id='session-form-modal'>
             <SessionFormContainer />
           </div>
         </AriaModal>
