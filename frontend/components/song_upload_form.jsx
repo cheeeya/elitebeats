@@ -143,7 +143,7 @@ class SongUploadForm extends React.Component {
       genre: "", description: "", permalink: "", redirect: false,
       linkError: false, fileError: false, imageError: false,
       artworkUrl: "https://res.cloudinary.com/elitebeats/image/upload/v1518134441/default_album_kynclq.png" });
-    if (window.closeEdit) {
+    if (this.props.page === "modal") {
       window.closeEdit();
     }
   }
