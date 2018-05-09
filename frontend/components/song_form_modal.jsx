@@ -8,6 +8,7 @@ class SongFormModal extends React.Component {
     this.state = {
       modalActive : false
     };
+    this.onModalExit = this.onModalExit.bind(this);
     this.activateModal = this.activateModal.bind(this);
     this.deactivateModal = this.deactivateModal.bind(this);
     this.getApplicationNode = this.getApplicationNode.bind(this);
@@ -27,14 +28,26 @@ class SongFormModal extends React.Component {
     return document.getElementById(this.props.loc);
   }
 
+  onModalEnter() {
+    const nav = document.getElementById("nav-wrap");
+    if (nav) nav.setAttribute("style", "width: calc(100% - 17px);")
+  }
+
+  onModalExit() {
+    this.deactivateModal();
+    const nav = document.getElementById("nav-wrap");
+    if (nav) nav.removeAttribute("style");
+  }
+
   render() {
     const songFormModal = this.state.modalActive
       ? <AriaModal
         titleText='song-form'
-        onExit={this.deactivateModal}
+        onExit={this.onModalExit}
+        onEnter={this.onModalEnter}
         getApplicationNode={this.getApplicationNode}
       >
-        <div id='song-form-modal' className='modal'>
+        <div id='song-form-modal'>
           <SongUploadFormContainer page={'modal'} song={window.song} />
         </div>
       </AriaModal>

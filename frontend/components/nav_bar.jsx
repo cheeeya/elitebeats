@@ -68,41 +68,43 @@ class NavBar extends React.Component {
     }
     return (
       <header>
-        <div id='nav-bar'>
-          <div className="nav-logo">
-            <Link to="/stream" className="root-link">
-              <img
-                className="logo-blue"
-                src="https://res.cloudinary.com/elitebeats/image/upload/v1520850261/eb_icon_bluewhite_calphx.png"
-              />
-            </Link>
-          </div>
-          <div className="left-nav">
-            <Link to="/stream">
-              <div id="home-link" className={`nav-link ${activeHome}`}>
-                Home
-              </div>
-            </Link>
-            <Link to="/stream">
-              <div
-                id="collection-link"
-                className="nav-link"
-              >
-                Collection
-              </div>
-            </Link>
-          </div>
-          <div className="search-bar-wrapper">
-            <input className="search-bar" placeholder="Search" />
-            <button className="nav-bar-search-btn" />
-          </div>
-          <div className="right-nav">
-            <Link to="/upload" onClick={this.checkLogin}>
-              <div id="upload-link" className={`nav-link ${activeUpload}`}>
-                Upload
-              </div>
-            </Link>
-            {element}
+        <div id="nav-wrap">
+          <div id='nav-bar'>
+            <div className="nav-logo">
+              <Link to="/stream" className="root-link">
+                <img
+                  className="logo-blue"
+                  src="https://res.cloudinary.com/elitebeats/image/upload/v1520850261/eb_icon_bluewhite_calphx.png"
+                  />
+              </Link>
+            </div>
+            <div className="left-nav">
+              <Link to="/stream">
+                <div id="home-link" className={`nav-link ${activeHome}`}>
+                  Home
+                </div>
+              </Link>
+              <Link to="/stream">
+                <div
+                  id="collection-link"
+                  className="nav-link"
+                  >
+                  Collection
+                </div>
+              </Link>
+            </div>
+            <div className="search-bar-wrapper">
+              <input className="search-bar" placeholder="Search" />
+              <button className="nav-bar-search-btn" />
+            </div>
+            <div className="right-nav">
+              <Link to="/upload" onClick={this.checkLogin}>
+                <div id="upload-link" className={`nav-link ${activeUpload}`}>
+                  Upload
+                </div>
+              </Link>
+              {element}
+            </div>
           </div>
         </div>
       </header>

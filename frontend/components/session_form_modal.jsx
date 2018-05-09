@@ -11,6 +11,7 @@ class SessionFormModal extends React.Component {
     this.activateModal = this.activateModal.bind(this);
     this.deactivateModal = this.deactivateModal.bind(this);
     this.getApplicationNode = this.getApplicationNode.bind(this);
+    this.onModalExit = this.onModalExit.bind(this);
     window.triggerLogin = this.activateModal.bind(this);
   }
 
@@ -27,11 +28,23 @@ class SessionFormModal extends React.Component {
     return document.getElementById(this.props.loc);
   }
 
+  onModalEnter() {
+    const nav = document.getElementById("nav-wrap");
+    if (nav) nav.setAttribute("style", "width: calc(100% - 17px);");
+  }
+
+  onModalExit() {
+    this.deactivateModal();
+    const nav = document.getElementById("nav-wrap");
+    if (nav) nav.removeAttribute("style");
+  }
+
   render() {
     const sessionFormModal = this.state.modalActive
       ? <AriaModal
           titleText='login-form'
-          onExit={this.deactivateModal}
+          onEnter={this.onModalEnter}
+          onExit={this.onModalExit}
           getApplicationNode={this.getApplicationNode}
         >
           <div id='session-form-modal' className='modal'>

@@ -24,7 +24,9 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.formType) {
-      this.processForm(this.state);
+      this.processForm(this.state).then(
+        () => this.removeNavStyle()
+      );
     } else {
       this.props.getUser(this.state);
     }
@@ -47,12 +49,19 @@ class SessionForm extends React.Component {
 
   demoLogin(e) {
     e.preventDefault();
-    this.processForm({ identifier: 'demo', password:'demopassword' });
+    this.props.login({ identifier: 'demo', password:'demopassword' }).then(
+      () => this.removeNavStyle()
+    );
   }
 
   handleFormReset(e) {
     e.preventDefault();
     this.props.receiveFormType("");
+  }
+
+  removeNavStyle() {
+    const nav = document.getElementById("nav-wrap");
+    if (nav) nav.removeAttribute("style");
   }
 
   render() {
