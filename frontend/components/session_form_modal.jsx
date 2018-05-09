@@ -13,6 +13,7 @@ class SessionFormModal extends React.Component {
     this.getApplicationNode = this.getApplicationNode.bind(this);
     this.onModalExit = this.onModalExit.bind(this);
     window.triggerLogin = this.activateModal.bind(this);
+    window.closeSessionForm = this.onModalExit.bind(this);
   }
 
   activateModal() {
@@ -42,7 +43,7 @@ class SessionFormModal extends React.Component {
       this.deactivateModal();
       const nav = document.getElementById("nav-wrap");
       if (nav) nav.removeAttribute("style");
-    }, 320);
+    }, 300);
   }
 
   render() {

@@ -28,8 +28,11 @@ export const finishUpdate = () => ({
 export const login = user => dispatch => (
   SessionAPIUtil.login(user).then(
     u => {
-      dispatch(receiveCurrentUser(u));
-      dispatch(receiveFormType(""));
+      window.closeSessionForm();
+      window.setTimeout(() => {
+        dispatch(receiveCurrentUser(u));
+        dispatch(receiveFormType(""));
+      }, 320);
     },
     errors => dispatch(receiveErrors(errors.responseJSON))
   )
@@ -38,8 +41,11 @@ export const login = user => dispatch => (
 export const signup = user => dispatch => (
   SessionAPIUtil.signup(user).then(
     u => {
-      dispatch(receiveCurrentUser(u));
-      dispatch(receiveFormType(""));
+      window.closeSessionForm();
+      window.setTimeout(() => {
+        dispatch(receiveCurrentUser(u));
+        dispatch(receiveFormType(""));
+      }, 320);
     },
     errors => dispatch(receiveErrors(errors.responseJSON))
   )

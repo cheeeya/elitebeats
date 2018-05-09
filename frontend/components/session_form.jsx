@@ -24,9 +24,7 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.formType) {
-      this.processForm(this.state).then(
-        () => this.removeNavStyle()
-      );
+      this.processForm(this.state);
     } else {
       this.props.getUser(this.state);
     }
@@ -49,9 +47,7 @@ class SessionForm extends React.Component {
 
   demoLogin(e) {
     e.preventDefault();
-    this.props.login({ identifier: 'demo', password:'demopassword' }).then(
-      () => this.removeNavStyle()
-    );
+    this.props.login({ identifier: 'demo', password:'demopassword' });
   }
 
   handleFormReset(e) {

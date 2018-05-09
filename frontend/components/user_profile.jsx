@@ -58,7 +58,7 @@ class UserProfile extends React.Component {
       this.deactivateModal();
       const nav = document.getElementById("nav-wrap");
       if (nav) nav.removeAttribute("style");
-    }, 320);
+    }, 300);
   }
 
   toggleFollow(userId, userUrl) {
