@@ -73,6 +73,11 @@ class User < ApplicationRecord
     through: :following_follows,
     source: :following
 
+  has_many :likes,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: "Like"
+
 
   def self.user_exists? (identifier)
     !!User.find_by_identifier(identifier)

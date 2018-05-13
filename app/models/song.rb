@@ -44,4 +44,9 @@ class Song < ApplicationRecord
     foreign_key: :song_id,
     class_name: 'Comment'
 
+  has_many :likes,
+    primary_key: :id,
+    foreign_key: :song_id,
+    class_name: "Like"
+
 end
