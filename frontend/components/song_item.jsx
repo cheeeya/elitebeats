@@ -145,7 +145,7 @@ class SongItem extends React.Component {
             </div>
           </div>
           <div className="song-item-buttons-div">
-            <button id="like-button" className="song-item-button">
+            <button id="like-button" className="song-item-button" title="Like">
               <div className="like-button-icon" />
             </button>
             <div className={`management-div ${disabledClass}`}>
