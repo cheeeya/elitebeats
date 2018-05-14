@@ -7,8 +7,10 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :songs, only: [:index, :create, :destroy, :update] do
       resources :comments, only: [:create]
+      resources :likes, only: [:create]
     end
     resources :comments, only: [:destroy]
+    resources :likes, only: [:destroy]
     post '/users/find', to: 'users#verify_user_exists'
     get '/users/:profile_url', to: 'users#get_user'
     get '/users/:profile_url/songs/:permalink', to: 'songs#fetch_song'
