@@ -144,28 +144,33 @@ class SongItem extends React.Component {
               </Link>
             </div>
           </div>
-          <div className={`management-div ${disabledClass}`}>
-            <button
-              id="more-button"
-              className={`song-management ${activeClass}`}
-              onClick={this.showMoreToggle}
-            >
-              <i className="fas fa-ellipsis-h" id={`more-${song.id}`} />
+          <div className="song-item-buttons-div">
+            <button id="like-button" className="song-item-button">
+              <div className="like-button-icon" />
             </button>
-            <ul className={`more-buttons-list ${showMoreClass}`}>
-              <li className="more-list-item">
-                <button className="song-management-button" onClick={this.handleEdit}>
-                  <i className="fas fa-pencil-alt" />
-                  <span className="sm-button-text">Edit Track</span>
-                </button>
-              </li>
-              <li className="more-list-item">
-                <button className="song-management-button" onClick={this.handleDelete}>
-                  <i className="fas fa-trash" />
-                  <span className="sm-button-text">Delete Track</span>
-                </button>
-              </li>
-            </ul>
+            <div className={`management-div ${disabledClass}`}>
+              <button
+                id="more-button"
+                className={`song-item-button song-management ${activeClass}`}
+                onClick={this.showMoreToggle}
+                >
+                <i className="fas fa-ellipsis-h" id={`more-${song.id}`} />
+              </button>
+              <ul className={`more-buttons-list ${showMoreClass}`}>
+                <li className="more-list-item">
+                  <button className="song-management-button" onClick={this.handleEdit}>
+                    <i className="fas fa-pencil-alt" />
+                    <span className="sm-button-text">Edit Track</span>
+                  </button>
+                </li>
+                <li className="more-list-item">
+                  <button className="song-management-button" onClick={this.handleDelete}>
+                    <i className="fas fa-trash" />
+                    <span className="sm-button-text">Delete Track</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

@@ -18,20 +18,34 @@
   display: block;
 }
 
-.management-div {
+.song-item-buttons-div {
+  display: flex;
   margin-top: 7px;
+}
+
+.management-div {
   position: relative;
 }
 
-.song-management {
+.song-item-button {
   background: white;
   border: 1px solid #e5e5e5;
   border-radius: 3px;
   padding: 0;
+  height: 21px;
 }
 
-.song-management:hover {
+.song-item-button:hover {
   border-color: #ccc;
+}
+
+.like-button-icon {
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1526270028/like-dark_zozwdc.svg");
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  background-position: 50% 40%;
+  width: 20px;
+  height: 20px;
 }
 
 .active-button {
