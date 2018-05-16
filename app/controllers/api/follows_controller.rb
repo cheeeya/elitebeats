@@ -12,8 +12,12 @@ class Api::FollowsController < ApplicationController
   end
 
   def destroy
-    @follow = Follow.find_by!(user_id: params[:user_id], follower_id:  current_user.id)
-    @follow.delete
-    render json: current_user.id, status: 200
+    @follow = Follow.find_by(user_id: params[:user_id], follower_id:  current_user.id)
+    if @follow
+      @follow.delete
+      render json: current_user.id, status: 200
+    else
+      render json: ["Follow does not exist"], status: 404
+    end
   end
 end

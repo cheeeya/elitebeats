@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { merge } from 'lodash';
+import { merge, mergeWith, isArray } from 'lodash';
 import { RECEIVE_ALL_SONGS, REMOVE_SONG, RECEIVE_SONG } from '../actions/song_actions';
 import { RECEIVE_PLAYLIST } from '../actions/playlist_actions';
 import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
@@ -8,6 +8,12 @@ import songReducer from './song_reducer';
 const _default = {
   allSongs: {},
   trendingSongs: {}
+}
+
+const replaceArrays = (o, n) => {
+  if (isArray(o)) {
+    return n;
+  }
 }
 
 const playlistReducer = (state = _default, action) => {
@@ -38,10 +44,16 @@ const playlistReducer = (state = _default, action) => {
         merge(playlists[i], songReducer(playlists[i], action));
       }
       return newState
+    case REMOVE_LIKE:
+      newState = merge({}, state);
+      playlists = Object.keys(newState).map(el => newState[el]);
+      for (let i = 0; i < playlists.length; i++) {
+        mergeWith(playlists[i], songReducer(playlists[i], action), replaceArrays);
+      }
+      return newState
     default:
       return state;
   }
 }
-
 
 export default playlistReducer;

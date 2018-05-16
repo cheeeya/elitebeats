@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { playSong, pauseSong, receiveCurrentPlaylist } from '../actions/player_actions';
 import { deleteSong } from '../actions/song_actions';
-import { likeSong } from '../actions/like_actions';
+import { likeSong, unlikeSong } from '../actions/like_actions';
 import SongItem from './song_item';
 
 const mapStateToProps = (state, ownProps) => {

@@ -1,6 +1,7 @@
 import { RECEIVE_ALL_SONGS, RECEIVE_SONG, REMOVE_SONG, RECEIVE_SONG_ERRORS } from '../actions/song_actions';
 import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
 import { merge } from 'lodash';
+
 const songReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState = {};
@@ -25,10 +26,12 @@ const songReducer = (state = {}, action) => {
     case REMOVE_LIKE:
       newState = merge({}, state);
       song = newState[action.like.song_id];
-      if (song && song.likes) {
-        let index = song.likes.indexOf(action.like);
-        if (index > -1) {
-          song.likes.splice(action.like);
+      if (song) {
+        for (let i = 0; i < song.likes.length; i++) {
+          if (song.likes[i].id === action.like.id) {
+            song.likes.splice(i, 1);
+            break;
+          }
         }
       }
       return newState;

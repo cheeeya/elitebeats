@@ -9,4 +9,13 @@ class Api::LikesController < ApplicationController
       render json: @like.errors.full_messages, status: 422
     end
   end
+
+  def destroy
+    @like = Like.find(params[:id])
+    if @like
+      render json: @like.delete, status: 200
+    else
+      render json: ["Like does not exist"], status: 404
+    end
+  end
 end

@@ -62,11 +62,25 @@ class SongItem extends React.Component {
     this.props.deleteSong(this.props.song.id);
   }
 
-  handleLike(songId, songUrl) {
+  toggleLike(songId, songUrl, likeId) {
     return (e) => {
       e.preventDefault();
-      this.props.likeSong(songId, songUrl);
+      const { song } = this.props;
+      if (likeId > -1) {
+        this.props.unlikeSong(likeId, songUrl);
+      } else {
+        this.props.likeSong(songId, songUrl);
+      }
     };
+  }
+
+  getLikeId(song) {
+    if (this.props.currentUser) {
+      for (let i = 0; i < song.likes.length; i++) {
+        if (song.likes[i].user_id === this.props.currentUser.id) return song.likes[i].id;
+      }
+    }
+    return -1;
   }
 
   render() {
@@ -74,7 +88,7 @@ class SongItem extends React.Component {
     const { status, showMore } = this.state;
     const playbackState = status === "play" ? "pause" : "play";
     let numComments = 0;
-    let author_url = "", permalink = "", songTagElement = "";
+    let author_url = "", permalink = "", songTagElement = "", likeId = this.getLikeId(song);
     if (song) {
       author_url = `/${song.author_url}`;
       permalink = `${author_url}/${song.permalink}`;
@@ -156,11 +170,11 @@ class SongItem extends React.Component {
             <button
               id="like-button"
               className="song-item-button"
-              title="Like"
+              title={likeId > -1 ? "Unlike" : "Like"}
               type="button"
-              onClick={this.handleLike(song.id, permalink)}
+              onClick={this.toggleLike(song.id, permalink, likeId)}
             >
-              <div className="like-button-icon" />
+              <div className={`${likeId > -1 ? "unlike" : "like"}-button-icon`} />
               <div>
                 {song.likes.length}
               </div>
@@ -171,7 +185,7 @@ class SongItem extends React.Component {
                 className={`song-item-button song-management ${activeClass}`}
                 type="button"
                 onClick={this.showMoreToggle}
-                >
+              >
                 <i className="fas fa-ellipsis-h" id={`more-${song.id}`} />
               </button>
               <ul className={`more-buttons-list ${showMoreClass}`}>

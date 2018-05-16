@@ -40,13 +40,20 @@
   border-color: #ccc;
 }
 
-.like-button-icon {
-  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1526270028/like-dark_zozwdc.svg");
+div[class*="like-button-icon"] {
   background-repeat: no-repeat;
   background-size: 16px 16px;
   background-position: 50% 40%;
   width: 20px;
   height: 20px;
+}
+
+.like-button-icon {
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1526270028/like-dark_zozwdc.svg");
+}
+
+.unlike-button-icon {
+  background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1526271191/like-blue_pwxgb4.png");
 }
 
 .active-button {
