@@ -12,7 +12,7 @@ const replaceArrays = (o, n) => {
 
 const profileReducer = (state = {}, action) => {
   Object.freeze(state);
-  let newState = {}, followers = [];
+  let newState = {}, followers = [], playlists = [], profile = {};
   switch (action.type) {
     case RECEIVE_USER_PROFILE:
       let userData = action.userData;
@@ -41,9 +41,9 @@ const profileReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_LIKE:
       newState = merge({}, state);
-      let profile = newState[action.authorUrl];
+      profile = newState[action.authorUrl];
       if (profile) {
-        let playlists = Object.keys(profile.tracks).map(el => profile.tracks[el]);
+        playlists = Object.keys(profile.tracks).map(el => profile.tracks[el]);
         for (let i = 0; i < playlists.length; i++) {
           merge(playlists[i], songReducer(playlists[i], action));
         }

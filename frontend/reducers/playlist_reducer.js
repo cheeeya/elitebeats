@@ -18,21 +18,21 @@ const replaceArrays = (o, n) => {
 
 const playlistReducer = (state = _default, action) => {
   Object.freeze(state);
-  let newState = {};
+  let newState = {}, playlists = [], playlist = {};
   switch (action.type) {
     case RECEIVE_SONG:
       newState = merge({},state, { allSongs: songReducer(state.allSongs, action)});
       return newState;
     case REMOVE_SONG:
       newState = merge({}, state);
-      let playlists = Object.keys(newState).map(el => newState[el]);
+      playlists = Object.keys(newState).map(el => newState[el]);
       playlists.map(playlist => delete playlist[action.song.id]);
       return newState;
     case RECEIVE_ALL_SONGS:
       newState = merge({}, state, { allSongs: songReducer(state, action) });
       return newState;
     case RECEIVE_PLAYLIST:
-      let playlist = merge({}, action.playlist);
+      playlist = merge({}, action.playlist);
       let playlistTitle = playlist.title;
       delete playlist.title;
       newState = merge({}, state, { [playlistTitle]: playlist });
