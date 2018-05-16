@@ -26,7 +26,7 @@ const songReducer = (state = {}, action) => {
     case REMOVE_LIKE:
       newState = merge({}, state);
       song = newState[action.like.song_id];
-      if (song) {
+      if (song && song.likes) {
         for (let i = 0; i < song.likes.length; i++) {
           if (song.likes[i].id === action.like.id) {
             song.likes.splice(i, 1);
