@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { merge } from 'lodash';
 import { RECEIVE_ALL_SONGS, REMOVE_SONG, RECEIVE_SONG } from '../actions/song_actions';
 import { RECEIVE_PLAYLIST } from '../actions/playlist_actions';
+import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
 import songReducer from './song_reducer';
 
 const _default = {
@@ -30,6 +31,13 @@ const playlistReducer = (state = _default, action) => {
       delete playlist.title;
       newState = merge({}, state, { [playlistTitle]: playlist });
       return newState;
+    case RECEIVE_LIKE:
+      newState = merge({}, state);
+      playlists = Object.keys(newState).map(el => newState[el]);
+      for (let i = 0; i < playlists.length; i++) {
+        merge(playlists[i], songReducer(playlists[i], action));
+      }
+      return newState
     default:
       return state;
   }

@@ -62,6 +62,13 @@ class SongItem extends React.Component {
     this.props.deleteSong(this.props.song.id);
   }
 
+  handleLike(songId, songUrl) {
+    return (e) => {
+      e.preventDefault();
+      this.props.likeSong(songId, songUrl);
+    };
+  }
+
   render() {
     const { song } = this.props;
     const { status, showMore } = this.state;
@@ -108,6 +115,7 @@ class SongItem extends React.Component {
               id={`song-${playbackState}-button`}
               className="song-list-playback-button playback-button"
               title={`P${playbackState.slice(1)}`}
+              type="button"
               onClick={this.handlePlayback(playbackState)}
               />
             <div className="songtitle">
@@ -145,26 +153,44 @@ class SongItem extends React.Component {
             </div>
           </div>
           <div className="song-item-buttons-div">
-            <button id="like-button" className="song-item-button" title="Like">
+            <button
+              id="like-button"
+              className="song-item-button"
+              title="Like"
+              type="button"
+              onClick={this.handleLike(song.id, permalink)}
+            >
               <div className="like-button-icon" />
+              <div>
+                {song.likes.length}
+              </div>
             </button>
             <div className={`management-div ${disabledClass}`}>
               <button
                 id="more-button"
                 className={`song-item-button song-management ${activeClass}`}
+                type="button"
                 onClick={this.showMoreToggle}
                 >
                 <i className="fas fa-ellipsis-h" id={`more-${song.id}`} />
               </button>
               <ul className={`more-buttons-list ${showMoreClass}`}>
                 <li className="more-list-item">
-                  <button className="song-management-button" onClick={this.handleEdit}>
+                  <button
+                    className="song-management-button"
+                    type="button"
+                    onClick={this.handleEdit}
+                  >
                     <i className="fas fa-pencil-alt" />
                     <span className="sm-button-text">Edit Track</span>
                   </button>
                 </li>
                 <li className="more-list-item">
-                  <button className="song-management-button" onClick={this.handleDelete}>
+                  <button
+                    className="song-management-button"
+                    onClick={this.handleDelete}
+                    type="button"
+                  >
                     <i className="fas fa-trash" />
                     <span className="sm-button-text">Delete Track</span>
                   </button>
