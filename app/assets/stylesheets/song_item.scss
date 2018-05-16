@@ -34,10 +34,20 @@
   padding: 0;
   height: 21px;
   margin-right: 7px;
+  display: flex;
 }
 
 .song-item-button:hover {
   border-color: #ccc;
+}
+
+button[id*="like-button"] {
+  padding: 0 3px;
+}
+
+#unlike-button {
+  border-color: #35A7FF;
+  color: #35A7FF;
 }
 
 div[class*="like-button-icon"] {
@@ -54,6 +64,12 @@ div[class*="like-button-icon"] {
 
 .unlike-button-icon {
   background-image: url("https://res.cloudinary.com/elitebeats/image/upload/v1526271191/like-blue_pwxgb4.png");
+}
+
+.like-button-count {
+  margin-left: 2px;
+  padding-top: 1px;
+  line-height: 19px;
 }
 
 .active-button {

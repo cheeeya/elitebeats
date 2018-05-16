@@ -1,6 +1,14 @@
 import { RECEIVE_USER_PROFILE } from '../actions/profile_actions';
 import { RECEIVE_FOLLOWER, REMOVE_FOLLOWER } from '../actions/follow_actions';
-import { merge, pick, keys } from 'lodash';
+import { RECEIVE_LIKE, REMOVE_LIKE } from '../actions/like_actions';
+import { merge, pick, keys, mergeWith, isArray } from 'lodash';
+import songReducer from './song_reducer';
+
+const replaceArrays = (o, n) => {
+  if (isArray(o)) {
+    return n;
+  }
+}
 
 const profileReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -29,6 +37,23 @@ const profileReducer = (state = {}, action) => {
         if (index > -1 ) {
           followers.splice(index, 1);
         }
+      }
+      return newState;
+    case RECEIVE_LIKE:
+      newState = merge({}, state);
+      let tracks = newState[action.authorUrl]["tracks"];
+      let playlists = Object.keys(tracks).map(el => tracks[el]);
+      for (let i = 0; i < playlists.length; i++) {
+        merge(playlists[i], songReducer(playlists[i], action));
+        console.log(playlists[i]);
+      }
+      return newState;
+    case REMOVE_LIKE:
+      newState = merge({}, state);
+      tracks = newState[action.authorUrl]["tracks"];
+      playlists = Object.keys(tracks).map(el => tracks[el]);
+      for (let i = 0; i < playlists.length; i++) {
+        mergeWith(playlists[i], songReducer(playlists[i], action), replaceArrays);
       }
       return newState;
     default:

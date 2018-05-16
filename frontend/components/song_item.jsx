@@ -62,14 +62,14 @@ class SongItem extends React.Component {
     this.props.deleteSong(this.props.song.id);
   }
 
-  toggleLike(songId, songUrl, likeId) {
+  toggleLike(songId, songUrl, likeId, authorUrl) {
     return (e) => {
       e.preventDefault();
       const { song } = this.props;
       if (likeId > -1) {
-        this.props.unlikeSong(likeId, songUrl);
+        this.props.unlikeSong(likeId, songUrl, authorUrl);
       } else {
-        this.props.likeSong(songId, songUrl);
+        this.props.likeSong(songId, songUrl, authorUrl);
       }
     };
   }
@@ -168,14 +168,14 @@ class SongItem extends React.Component {
           </div>
           <div className="song-item-buttons-div">
             <button
-              id="like-button"
+              id={`${likeId > -1 ? "unlike" : "like"}-button`}
               className="song-item-button"
               title={likeId > -1 ? "Unlike" : "Like"}
               type="button"
-              onClick={this.toggleLike(song.id, permalink, likeId)}
+              onClick={this.toggleLike(song.id, permalink, likeId, song.author_url)}
             >
               <div className={`${likeId > -1 ? "unlike" : "like"}-button-icon`} />
-              <div>
+              <div className="like-button-count">
                 {song.likes.length}
               </div>
             </button>
