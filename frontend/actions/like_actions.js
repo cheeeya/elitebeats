@@ -2,7 +2,7 @@ export const RECEIVE_LIKE = "RECEIVE_LIKE";
 export const REMOVE_LIKE = "REMOVE_LIKE";
 import * as LikeAPIUtil from '../util/like_api_util';
 
-const receiveLike = (like, songUrl) => ({
+const receiveLike = (like, songUrl, songId) => ({
   type: RECEIVE_LIKE,
   like,
   songUrl
@@ -20,7 +20,7 @@ export const likeSong = (songId, songUrl) => dispatch => (
   )
 );
 
-export const unlikeSong = (likeId) => dispatch => (
+export const unlikeSong = (likeId, songUrl) => dispatch => (
   LikeAPIUtil.unlikeSong(likeId).then(
     like => dispatch(removeLike(like, songUrl))
   )

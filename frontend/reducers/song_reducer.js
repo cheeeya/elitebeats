@@ -14,6 +14,23 @@ const songReducer = (state = {}, action) => {
       let song = action.song;
       newState = merge(newState, state, { [song.id]: song });
       return newState;
+    case RECEIVE_LIKE:
+      newState = merge({}, state);
+      let song = newState[action.like.song_id];
+      if (song && song.likes) {
+        song.likes.push(action.like)
+      }
+      return newState;
+    case REMOVE_LIKE:
+      newState = merge({}, state);
+      let song = newState[action.like.song_id];
+      if (song && song.likes) {
+        let index = song.likes.indexOf(action.like);
+        if (index > -1) {
+          song.likes.splice(action.like);
+        }
+      }
+      return newState;
     default:
       return state;
   }
