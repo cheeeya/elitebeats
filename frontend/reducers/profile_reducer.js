@@ -41,19 +41,22 @@ const profileReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_LIKE:
       newState = merge({}, state);
-      let tracks = newState[action.authorUrl]["tracks"];
-      let playlists = Object.keys(tracks).map(el => tracks[el]);
-      for (let i = 0; i < playlists.length; i++) {
-        merge(playlists[i], songReducer(playlists[i], action));
-        console.log(playlists[i]);
+      let profile = newState[action.authorUrl];
+      if (profile) {
+        let playlists = Object.keys(profile.tracks).map(el => profile.tracks[el]);
+        for (let i = 0; i < playlists.length; i++) {
+          merge(playlists[i], songReducer(playlists[i], action));
+        }
       }
       return newState;
     case REMOVE_LIKE:
       newState = merge({}, state);
-      tracks = newState[action.authorUrl]["tracks"];
-      playlists = Object.keys(tracks).map(el => tracks[el]);
-      for (let i = 0; i < playlists.length; i++) {
-        mergeWith(playlists[i], songReducer(playlists[i], action), replaceArrays);
+      profile = newState[action.authorUrl];
+      if (profile) {
+        playlists = Object.keys(profile.tracks).map(el => profile.tracks[el]);
+        for (let i = 0; i < playlists.length; i++) {
+          mergeWith(playlists[i], songReducer(playlists[i], action), replaceArrays);
+        }
       }
       return newState;
     default:
